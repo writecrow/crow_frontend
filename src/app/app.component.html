@@ -1,0 +1,25 @@
+<header class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="logo-wrapper">
+        <a routerLink="/" routerLinkActive="active"><img class="logo" [src]="LOGO" alt="Pencil sketch of a crow" /></a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="title align-middle">
+        <h1><a routerLink="/" routerLinkActive="active">CROW</a></h1>
+        <h4>Corpus & Repository of Writing</h4>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <nav>
+        <a class="nav-link" routerLink="page/teachers" routerLinkActive="active">Instructors</a>
+        <a class="nav-link" routerLink="page/students" routerLinkActive="active">Students</a>
+        <a class="nav-link" routerLink="page/researchers" routerLinkActive="active">Researchers</a>
+        <a class="nav-link" routerLink="page/developers" routerLinkActive="active">Developers</a>
+        <a class="nav-link" routerLink="page/how-to" routerLinkActive="active">How to...</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<router-outlet></router-outlet>
