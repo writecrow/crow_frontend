@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { APIService } from '../services/api.service';
 
 @Component({
   templateUrl: '../corpus/search.component.html',
@@ -7,5 +8,15 @@ import { Component } from '@angular/core';
 
 export class CorpusSearchComponent {
 
-  constructor() { }
+  constructor(
+    private API: APIService,
+  ) { }
+
+  ngOnInit(): void {
+    this.API.getTotalWords().subscribe((response) => {
+      if (typeof response !== 'undefined' && response != '') {
+        console.log(response);
+      }
+    });
+  }
 }

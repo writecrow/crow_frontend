@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Components : the business logic for different page types.
 import { AppComponent } from './app.component';
@@ -15,7 +15,11 @@ import { RepositorySearchComponent } from './repository/search.component';
 import { RepositoryResourceComponent } from './repository/resource.component';
 
 // Services : helper classes for advanced logic.
-// import { RestAPI } from './api/restAPI.service';
+import { APIService } from './services/api.service';
+// The cache implementation below follows https://fullstack-developer.academy/caching-http-requests-with-angular/
+import { RequestCache } from './services/request-cache.service';
+import { CachingInterceptor } from './services/caching-interceptor.service';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { RouteReuseStrategy, DetachedRouteHandle, ActivatedRouteSnapshot } from "@angular/router";
 
@@ -51,13 +55,17 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false }
     ),
   ],
-  providers: [],
+  providers: [
+    APIService,
+    RequestCache,
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
