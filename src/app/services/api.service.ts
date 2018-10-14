@@ -16,13 +16,19 @@ export class APIService {
   data;
   observable;
 
+  getPage(path) {
+    return this.getResponseFromPath('pages?path=' + path + '&_format=json');
+  }
+
   getTotalWords() {
-    if (this.data) {
-      return of(this.data);
-    } else if (this.observable) {
+    return this.getResponseFromPath('frequency/total');
+  }
+
+  getResponseFromPath(path) {
+    if (this.observable) {
       return this.observable;
     } else {
-      this.observable = this.http.get(environment.backend + 'frequency/total', {
+      this.observable = this.http.get(environment.backend + path, {
         observe: 'response'
       })
         .pipe(map(response => {

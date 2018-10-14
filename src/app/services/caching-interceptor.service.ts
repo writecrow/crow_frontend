@@ -22,6 +22,9 @@ export class CachingInterceptor implements HttpInterceptor {
         results$;
     }
     // cache-or-fetch
+    if (cachedResponse) {
+      console.log('Returned from cache');
+    }
     return cachedResponse ?
       of(cachedResponse) : this.sendRequest(req, next, this.cache);
   }

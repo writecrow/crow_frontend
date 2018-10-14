@@ -1,0 +1,49 @@
+header {
+  background:#3d3d3d;
+  padding-bottom:0.5rem;
+  padding-top:0.5rem;
+}
+
+header, a, a:hover, a:focus {
+  color:#fff;
+}
+
+header .title h2 {
+  font-size:2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 2px solid #fff;
+  letter-spacing: 1rem;
+}
+
+/* Logo */
+.logo img {
+  width: 140px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+/* Navigation */
+nav a {
+  font-size: 1.3rem;
+  padding-left: 1rem;
+  display: inline-block;
+}
+
+/* Adjustments for small displays */
+@media (max-width: 992px) {
+	nav {
+	  float:unset;
+	  text-align:center;
+	}
+	nav a {
+		font-size:0.9rem;
+		padding: 0.5em 0.5em;
+	}
+	.logo {
+		display:none;
+	}
+	.title {
+		text-align:center;
+	}
+}

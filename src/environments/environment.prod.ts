@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backend: 'https://writecrow.corporaproject.org/',
+  backend: 'https://api.corporaproject.org/',
 };
