@@ -1,3 +1,4 @@
+// The cache implementation below follows https://fullstack-developer.academy/caching-http-requests-with-angular/
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse } from '@angular/common/http';
 

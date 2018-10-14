@@ -26,6 +26,6 @@ export class PageComponent implements OnInit {
         this.title = val[0].title;
         this.body = val[0].body;
       });
-    }
+    });
   }
 }

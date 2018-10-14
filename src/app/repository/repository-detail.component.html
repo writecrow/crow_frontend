@@ -1,0 +1,60 @@
+<div *ngIf="isLoaded" class="row">
+  <div class="col">
+    <h1>{{ content.document_type }} 
+      <span *ngIf="content.document_type == 'Syllabus'">: {{ content.course }}</span>
+      <span *ngIf="content.document_type == 'Checklist'">: {{ content.assignment }}</span>
+      <span *ngIf="content.document_type == 'Assignment Sheet'">: {{ content.assignment }}</span>
+      <span *ngIf="content.document_type == 'Rubric'">: {{ content.assignment }}</span>
+      <span *ngIf="content.document_type == 'Sample paper'">: {{ content.assignment }}</span>
+    </h1>
+  </div>
+</div>
+<div *ngIf="isLoaded" class="row">
+  <div class="col order-2 order-2 order-xl-1 panel">
+    <div [innerHTML]="content.raw_text | keepHtml"></div>       
+  </div>
+  <div class="order-1 order-xl-2 panel">
+    <h2>Download</h2>
+    <p *ngIf="content.filename">
+      <a href="{{ content.uri }}">
+        <img class="download" src="assets/download.svg" alt="Download icon" /> {{ content.filename }} ({{ content.filesize }})
+      </a>
+    </p>
+    <table>
+      <tbody>
+        <tr *ngIf="content.document_type">
+          <th scope="row">Document type</th>
+          <td>{{ content.document_type }}</td>
+        </tr>
+        <tr *ngIf="content.assignment">
+          <th scope="row">Assignment</th>
+          <td>{{ content.assignment }}</td>
+        </tr>
+        <tr *ngIf="content.institution">
+          <th scope="row">Institution</th>
+          <td>{{ content.institution }}</td>
+        </tr>
+        <tr *ngIf="content.semester">
+            <th scope="row">Term</th>
+            <td>{{ content.semester }} {{ content.year }}</td>
+        </tr>
+        <tr *ngIf="content.course">
+          <th scope="row">Course</th>
+          <td>{{ content.course }}</td>
+        </tr>
+        <tr *ngIf="content.length">
+            <th scope="row">Length</th>
+            <td>{{ content.length }}</td>
+        </tr>
+        <tr *ngIf="content.mode">
+            <th scope="row">Mode</th>
+            <td>{{ content.mode }}</td>
+        </tr>
+        <tr *ngIf="content.file_type">
+            <th scope="row">File type</th>
+            <td>{{ content.file_type }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

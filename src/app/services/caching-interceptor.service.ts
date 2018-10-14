@@ -21,10 +21,7 @@ export class CachingInterceptor implements HttpInterceptor {
         results$.pipe(startWith(cachedResponse)) :
         results$;
     }
-    // cache-or-fetch
-    if (cachedResponse) {
-      console.log('Returned from cache');
-    }
+    // Return a cached version, or fetch the request if no cache.
     return cachedResponse ?
       of(cachedResponse) : this.sendRequest(req, next, this.cache);
   }

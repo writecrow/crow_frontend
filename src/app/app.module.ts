@@ -1,3 +1,4 @@
+// Angular-specific modules used by this particular application.
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -5,18 +6,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Components : the business logic for different page types.
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './404/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
-import { CorpusSearchComponent } from './corpus/search.component';
-import { CorpusTextComponent } from './corpus/text.component';
-import { RepositorySearchComponent } from './repository/search.component';
-import { RepositoryResourceComponent } from './repository/resource.component';
+import { CorpusSearchComponent } from './corpus/corpus-search.component';
+import { CorpusDetailComponent } from './corpus/corpus-detail.component';
+import { RepositorySearchComponent } from './repository/repository-search.component';
+import { RepositoryDetailComponent } from './repository/repository-detail.component';
+
+// Define what URL paths map to which components.
+import { AppRoutingModule } from './app-routing.module';
 
 // Services : helper classes for advanced logic.
 import { APIService } from './services/api.service';
-// The cache implementation below follows https://fullstack-developer.academy/caching-http-requests-with-angular/
 import { RequestCache } from './services/request-cache.service';
 import { CachingInterceptor } from './services/caching-interceptor.service';
 
@@ -39,9 +41,9 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
     HomeComponent,
     PageComponent,
     CorpusSearchComponent,
-    CorpusTextComponent,
+    CorpusDetailComponent,
     RepositorySearchComponent,
-    RepositoryResourceComponent,
+    RepositoryDetailComponent,
     NotFoundComponent,
   ],
   imports: [

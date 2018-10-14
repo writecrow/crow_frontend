@@ -16,6 +16,10 @@ export class APIService {
   data;
   observable;
 
+  getRepositoryDetail(id) {
+    return this.getResponseFromPath('resources?id=' + id + '&_format=json');
+  }
+
   getPage(path) {
     return this.getResponseFromPath('pages?path=' + path + '&_format=json');
   }
@@ -33,11 +37,13 @@ export class APIService {
       })
         .pipe(map(response => {
           this.observable = null;
-          if (response.status === 400) {
-            return 'Request failed.';
-          } else if (response.status === 200) {
+          if (response.status === 200) {
             this.data = response.body;
             return this.data;
+          }
+          else {
+            console.log(response.status + 'response from' + path);
+            return false;
           }
         })
         ).pipe(share());

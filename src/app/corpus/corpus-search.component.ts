@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { APIService } from '../services/api.service';
 
 @Component({
-  templateUrl: '../corpus/search.component.html',
-  styleUrls: ['../corpus/search.component.css']
+  templateUrl: '../corpus/corpus-search.component.html',
+  styleUrls: ['../corpus/corpus-search.component.css']
 })
 
 export class CorpusSearchComponent {
