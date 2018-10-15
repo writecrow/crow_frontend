@@ -15,7 +15,6 @@ export class CorpusSearchComponent {
   ngOnInit(): void {
     this.API.getTotalWords().subscribe((response) => {
       if (typeof response !== 'undefined' && response != '') {
-        console.log(response);
       }
     });
   }

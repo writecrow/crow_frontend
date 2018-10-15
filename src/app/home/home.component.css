@@ -1,0 +1,44 @@
+div.row {
+  padding-top:2rem;
+}
+a.feature, div.feature {
+	display:block;
+	font-size:1.1rem;
+	font-weight:bold;
+	border: 1px solid #a9a9a9;
+	background-color: #ffffff;
+	color: #555;
+	padding:2rem;
+	margin:0.5rem;
+	min-height:300px;
+	border-radius:5px;
+}
+a.feature {
+	text-decoration:none;
+}
+a:hover.feature, a:focus.feature {
+	background-color:rgb(240, 235, 235);
+}
+.feature > h2 {
+	font-size:2rem;
+	font-weight:normal;
+	text-align:center;
+}
+.feature.secondary {
+	background-color: #dcdcdc;
+	color:#000;
+}
+h2 {
+	text-align:center;
+}
+.center-block {
+	text-align:center;
+}
+.pad-bottom {
+	padding-bottom:2rem;
+}
+@media (max-width: 992px) {
+	.pad-bottom {
+		padding-bottom:0.5rem;
+	}
+}

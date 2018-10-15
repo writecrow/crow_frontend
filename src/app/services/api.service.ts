@@ -13,8 +13,11 @@ export class APIService {
 
   constructor(private http: HttpClient) { }
 
-  data;
   observable;
+
+  getDefaultCorpusSearch() {
+    return this.getResponseFromPath('texts/word?&_format=json');
+  }
 
   getRepositoryDetail(id) {
     return this.getResponseFromPath('resources?id=' + id + '&_format=json');
@@ -38,8 +41,7 @@ export class APIService {
         .pipe(map(response => {
           this.observable = null;
           if (response.status === 200) {
-            this.data = response.body;
-            return this.data;
+            return response.body;
           }
           else {
             console.log(response.status + 'response from' + path);

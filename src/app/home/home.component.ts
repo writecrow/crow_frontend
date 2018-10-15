@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { APIService } from '../services/api.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: '../home/home.component.html',
@@ -8,23 +7,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class HomeComponent {
-  total;
+  total_words : number;
+  total_texts : number;
 
   constructor(
     private API: APIService,
-    private route: ActivatedRoute,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      this.API.getTotalWords().subscribe((response) => {
-        if (typeof response !== 'undefined' && response != '') {
-          this.total = response.total;
-          console.log(response.total);
-        }
-      })
-    ); 
+    this.total_words = 7287456;
+    this.total_texts = 8253;
+    this.API.getTotalWords().subscribe((frequency) => {
+      if (typeof frequency !== 'undefined' && frequency) {
+        this.total_words = frequency.total;
+        // Pre-load the corpus search data, in part to get the total
+        // number of text, and also for faster perceived loading when
+        // users navigate to the corpus (results already cached).
+        this.API.getDefaultCorpusSearch().subscribe((response) => {
+          if (typeof response !== 'undefined' && response) {
+            this.total_texts = response.pager.total_items;
+          }
+        });
+      }
+    });
   }
 }
 

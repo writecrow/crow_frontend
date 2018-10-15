@@ -1,1 +1,66 @@
-Main page text here! <h1> {{ total }} </h1>
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/corpus" routerLinkActive="active" class="feature">
+      <h2>Corpus</h2>
+      <ul>
+        <li>{{ total_texts | number }} samples of college writing, containing {{ total_words | number }} words</li>
+        <li>Texts from Fall 2014 to Spring 2017</li>
+        <li>Filter by country, gender, assignment, date, TOEFL scores</li>
+        <li>Search by word, lemma, or phrase</li>
+      </ul>
+      <div class="center-block">
+        <button class="primary">Search corpus</button>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-6">
+  <a routerLink="/repository" routerLinkActive="active" class="feature">
+    <h2>Repository</h2>
+    Downloadable assignment prompts, syllabi, rubrics, lesson plans, and other course material.
+    <ul>
+      <li>
+        Filter by material, document format, course, and date
+      </li>
+      <li>
+        Search the full text of resources; export to markdown
+      </li>
+    </ul>
+    <div class="center-block">
+        <button class="primary">Browse repository</button>
+      </div>
+  </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 pad-bottom">
+    <div class="feature secondary">
+    <h2>What's new?</h2>
+      <p>We will be presenting our current state of the corpus & repository at the Symposium for Interdisciplinary Writing and Collaboration, at Purdue University, Oct 5 and 6, 2018.</p>
+      <ul>
+        <li>Added on-hover information about courses & assignments</li>
+        <li>Processed additional texts from Academic Year 2017</li>  
+        <li>Added new frequency data with raw & normed result counts</li>      
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6 pad-bottom">
+    <div class="feature secondary">
+    <h2>Resources & Tutorials</h2>
+      Writing Models
+        <ul><li><a routerLink="/page/students" fragment="idiom" routerLinkActive="active">Compare how other writers use an English idiom</a></li></ul>
+      Lesson Planning
+        <ul>
+          <li><a routerLink="/page/teachers" fragment="passive" routerLinkActive="active">Find sample sentences for a lesson on signal phrases</a></li>
+        </ul>
+      Research & Analysis
+        <ul>
+          <li><a routerLink="/page/researchers" fragment="export" routerLinkActive="active">Export Crow data for statistical analysis in R</a></li>
+          <li><a routerLink="/page/researchers/" fragment="api" routerLinkActive="active">Perform machine-driven queries with the API</a></li>
+          </ul>
+      Corpus Building
+        <ul>
+          <li><a routerLink="/page/developers" routerLinkActive="active">Develop a similar corpus using the source code</a></li>
+        </ul>
+    </div>
+  </div>
+</div>
