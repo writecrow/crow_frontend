@@ -1,0 +1,124 @@
+<div class="row">
+	<div class="col-lg-7" *ngIf="isLoaded">
+		<div class="panel" *ngIf="content.concordance_views_field">
+			<h2>Sentences containing search term</h2>
+			<p>A maximum of 5 sentences will be shown.</p>
+			<div [innerHTML]="content.concordance_views_field | keepHtml"></div>
+		</div>
+		<div class="panel">
+      <h2>Original text</h2>
+      <div [innerHTML]="content.corpus_text | keepHtml"></div>
+    </div>
+	</div>
+  <div class="col-lg-4 panel">
+		<div *ngIf="Drafts">
+			<h2>Drafts of this assignment</h2>
+			<ul *ngFor="let result of Drafts">
+				<li><a routerLink="/corpus/{{ result.data.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
+					<span *ngIf="result.draft == 'F'">Final Draft</span>
+					<span *ngIf="result.draft != 'F'">Draft {{result.draft}}</span>
+				</a></li>
+			</ul>
+		</div>
+		<div *ngIf="AssignmentResources">
+			<h2>Materials for this assignment</h2>
+			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment (all instructors)
+			<ul *ngFor="let result of AssignmentResources">
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}} from {{ result.course}}, {{ result.semester }} {{ result.year }}</a></li>
+			</ul>
+		</div>
+		<h2>Course Data</h2>
+		<table *ngIf="isLoaded">
+			<tbody>
+				<tr *ngIf="content.institution">
+					<th scope="row">Institution</th>
+					<td>{{ content.institution }}</td>
+				</tr>
+				<tr *ngIf="content.semester">
+					<th scope="row">Semester</th>
+					<td>{{ content.semester }}</td>
+				</tr>
+				<tr *ngIf="content.year">
+					<th scope="row">Year</th>
+					<td>{{ content.year }}</td>
+				</tr>
+				<tr *ngIf="content.course">
+					<th scope="row">Course</th>
+					<td>{{ content.course }}</td>
+				</tr>
+				<tr *ngIf="content.instructor">
+					<th scope="row">Instructor</th>
+					<td>{{ content.instructor }}</td>
+				</tr>
+				<tr *ngIf="content.assignment">
+					<th scope="row">Assignment</th>
+					<td>{{ content.assignment }}<br />{{ content.assignment }}</td>	
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<h2>Student Data</h2>
+		<table *ngIf="isLoaded">
+			<tbody>
+				<tr *ngIf="content.program">
+					<th scope="row">Program</th>
+					<td>{{ content.program }}</td>	
+				</tr>
+				<tr *ngIf="content.college">
+					<th scope="row">College</th>
+					<td>{{ content.college }}</td>
+				</tr>
+				<tr *ngIf="content.gender">
+					<th scope="row">Gender</th>
+					<td>{{ content.gender }}</td>
+				</tr>
+				<tr *ngIf="content.year_in_school">
+					<th scope="row">Year in School</th>
+					<td>{{ content.year_in_school }}</td>	
+				</tr>
+				<tr *ngIf="content.country">
+					<th scope="row">Country of Origin</th>
+					<td>{{ content.country }}</td>	
+				</tr>
+				<tr *ngIf="content.toefl_listening">
+					<th scope="row">TOEFL Listening</th>
+					<td>{{ content.toefl_listening }}</td>
+				</tr>
+				<tr *ngIf="content.toefl_reading">
+					<th scope="row">TOEFL Reading</th>
+					<td>{{ content.toefl_reading }}</td>
+				</tr>
+				<tr *ngIf="content.toefl_writing">
+					<th scope="row">TOEFL Writing</th>
+					<td>{{ content.toefl_writing }}</td>
+				</tr>
+				<tr *ngIf="content.toefl_speaking">
+					<th scope="row">TOEFL Speaking</th>
+					<td>{{ content.toefl_speaking }}</td>
+				</tr>
+				<tr *ngIf="content.toefl_total">
+					<th scope="row">TOEFL Total</th>
+					<td>{{ content.toefl_total }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<h2>Text Data</h2>
+		<table *ngIf="isLoaded">
+			<tbody>
+				<tr *ngIf="content.filename">
+					<th scope="row">Corpus Filename</th>
+					<td>{{ content.filename }}</td>
+				</tr>
+				<tr *ngIf="content.draft">
+					<th scope="row">Draft</th>
+					<td>{{ content.draft }}</td>
+				</tr>
+				<tr *ngIf="content.wordcount">
+					<th scope="row">Wordcount</th>
+					<td>{{ content.wordcount }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

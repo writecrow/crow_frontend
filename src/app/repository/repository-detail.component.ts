@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
 
@@ -22,7 +22,6 @@ export class RepositoryDetailComponent implements OnInit {
       this.API.getRepositoryDetail(routeParams.id).subscribe(response => {
         if (response && response[0]) {
           this.content = response[0];
-          console.log(this.content);
           this.isLoaded = true;
         }
       });
