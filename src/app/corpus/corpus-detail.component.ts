@@ -10,6 +10,7 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 
 export class CorpusDetailComponent implements OnInit {
   content: CorpusDetail;
+  drafts: CorpusDetail;
   isLoaded: boolean;
 
   constructor(
@@ -24,6 +25,20 @@ export class CorpusDetailComponent implements OnInit {
         if (response && response[0]) {
           this.content = response[0];
           this.isLoaded = true;
+          // Retrieve all drafts for this ID, institution, & assignment.
+          let draftParameters = {'id' : this.content.id, 'assignment' : this.content.assignment, 'institution' : this.content.institution}
+          // Retrieve all texts with same ID.
+          this.API.getCorpusDetailByAttributes(draftParameters).subscribe(response => {
+            if (response && response != '') {
+              console.log(response);
+              //for (const i of Object.keys(response)) {
+              //  const element = {};
+              //  let draftno = response[i].draft;
+              //  this.Drafts.push({ draft: draftno, data: response[i] });
+              //}
+              //this.Drafts = this.sortByKey(this.Drafts, "draft");
+            }
+          }); 
         }
       });
     });

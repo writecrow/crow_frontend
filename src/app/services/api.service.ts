@@ -31,6 +31,17 @@ export class APIService {
     return this.getResponseFromPath('texts?' + query + '&_format=json');
   }
 
+  getCorpusDetailByAttributes(attributes) {
+    const queryElements = [];
+    for (let key of Object.keys(attributes)) {
+      queryElements.push(key + '=' + attributes[key]);
+    }
+    const query = Object.keys(queryElements)
+      .map(k => queryElements[k])
+      .join('&');
+    return this.getResponseFromPath('texts?' + query + '&_format=json');
+  }
+
   getDefaultCorpusSearchResults() {
     return this.getResponseFromPath('texts/word?&_format=json');
   }
