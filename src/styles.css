@@ -69,6 +69,11 @@ th, td {
 	padding:0.5rem;
 }
 
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 0.2rem;
+}
+
 .panel {
   border: 1px solid #e5e5e5;
   background-color: #f9f9f9;
@@ -76,6 +81,10 @@ th, td {
   padding: 2rem;
   margin: .5rem;
   border-radius: 10px;  
+}
+
+.smaller {
+  font-size:90%;
 }
 
 /* Footer */

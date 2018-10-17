@@ -17,8 +17,7 @@ const appRoutes: Routes = [
   { path: 'corpus/:id', component: CorpusDetailComponent },
   { path: 'repository/:id', component: RepositoryDetailComponent },
   { path: 'repository', component: RepositorySearchComponent },
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

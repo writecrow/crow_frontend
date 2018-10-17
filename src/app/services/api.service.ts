@@ -13,7 +13,7 @@ export class APIService {
 
   observable;
 
-  getCorpusDetail(filename, queryParams) {
+  getCorpusDetailById(filename, queryParams) {
     const queryElements = [];
     queryElements.push('filename=' + filename);
     // Determine whether the back-end should be sent search string query parameters.
@@ -31,15 +31,16 @@ export class APIService {
     return this.getResponseFromPath('texts?' + query + '&_format=json');
   }
 
-  getCorpusDetailByAttributes(attributes) {
+  getCorpusReferenceByMetadata(attributes) {
     const queryElements = [];
     for (let key of Object.keys(attributes)) {
-      queryElements.push(key + '=' + attributes[key]);
+      // It's important to encode, as there may be spaces.
+      queryElements.push(key + '=' + encodeURIComponent(attributes[key]));
     }
     const query = Object.keys(queryElements)
       .map(k => queryElements[k])
       .join('&');
-    return this.getResponseFromPath('texts?' + query + '&_format=json');
+    return this.getResponseFromPath('corpus/metadata?' + query + '&_format=json');
   }
 
   getDefaultCorpusSearchResults() {
@@ -50,8 +51,20 @@ export class APIService {
     return this.getResponseFromPath('pages?path=' + path + '&_format=json');
   }
 
-  getRepositoryDetail(id) {
+  getRepositoryDetailById(id) {
     return this.getResponseFromPath('resources?id=' + id + '&_format=json');
+  }
+
+  getRepositoryReferenceByMetadata(attributes) {
+    const queryElements = [];
+    for (let key of Object.keys(attributes)) {
+      // It's important to encode, as there may be spaces.
+      queryElements.push(key + '=' + encodeURIComponent(attributes[key]));
+    }
+    const query = Object.keys(queryElements)
+      .map(k => queryElements[k])
+      .join('&');
+    return this.getResponseFromPath('repository/metadata?' + query + '&_format=json');
   }
 
   getTotalWords() {

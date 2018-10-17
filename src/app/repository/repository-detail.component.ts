@@ -19,7 +19,7 @@ export class RepositoryDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
-      this.API.getRepositoryDetail(routeParams.id).subscribe(response => {
+      this.API.getRepositoryDetailById(routeParams.id).subscribe(response => {
         if (response && response[0]) {
           this.content = response[0];
           this.isLoaded = true;

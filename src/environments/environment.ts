@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend: 'https://api.corporaproject.org/',
+  backend: 'https://api.lndo.site/',
 };
 
 /*

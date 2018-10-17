@@ -10,7 +10,8 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 
 export class CorpusDetailComponent implements OnInit {
   content: CorpusDetail;
-  drafts: CorpusDetail;
+  drafts: any[] = [];
+  repositoryResources: any[] = [];
   isLoaded: boolean;
 
   constructor(
@@ -20,27 +21,53 @@ export class CorpusDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
+      this.drafts = [];
+      this.repositoryResources = [];
       // Pass 2 parameters to API: the route path, and any query parameters.
-      this.API.getCorpusDetail(routeParams.id, this.route.snapshot.queryParams).subscribe(response => {
+      this.API.getCorpusDetailById(routeParams.id, this.route.snapshot.queryParams).subscribe(response => {
         if (response && response[0]) {
           this.content = response[0];
           this.isLoaded = true;
           // Retrieve all drafts for this ID, institution, & assignment.
-          let draftParameters = {'id' : this.content.id, 'assignment' : this.content.assignment, 'institution' : this.content.institution}
-          // Retrieve all texts with same ID.
-          this.API.getCorpusDetailByAttributes(draftParameters).subscribe(response => {
+          let draftParameters = {
+            'id' : this.content.id,
+            'assignment' : this.content.assignment,
+            'institution' : this.content.institution
+          };
+          // Retrieve all texts with same ID (i.e., drafts).
+          this.API.getCorpusReferenceByMetadata(draftParameters).subscribe(response => {
             if (response && response != '') {
-              console.log(response);
-              //for (const i of Object.keys(response)) {
-              //  const element = {};
-              //  let draftno = response[i].draft;
-              //  this.Drafts.push({ draft: draftno, data: response[i] });
-              //}
-              //this.Drafts = this.sortByKey(this.Drafts, "draft");
+              for (const i of Object.keys(response)) {
+                const element = {};
+                let draftno = response[i].draft;
+                this.drafts.push({ draft: draftno, data: response[i] });
+              }
+              this.drafts = this.sortByKey(this.drafts, "draft");
             }
-          }); 
+          });
+          // Retrieve any repository resources that have matching metadata.
+          // @todo: narrow the criteria when we have more materials.
+          let repositoryParameters = { 
+            'course': this.content.course,
+            'assignment': this.content.assignment,
+            'institution': this.content.institution
+          };
+          this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
+            if (response && response != '') {
+              this.repositoryResources = response;
+            }
+          });  
+
         }
       });
+    });
+  }
+
+  // Used to sort drafts alphanumerically (final at end).
+  sortByKey(array, key) {
+    return array.sort(function (a, b) {
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
 
