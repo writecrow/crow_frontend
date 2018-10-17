@@ -1,11 +1,13 @@
 export class CorpusDetail {
   assignment: string;
+  assignment_description: string;
   body: string;
   college: string;
   concordance_views_field: string;
   corpus_text: string;
   country: string;
   course: string;
+  course_description: string;
   draft: string;
   filename: string;
   gender: string;

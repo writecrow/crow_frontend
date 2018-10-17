@@ -21,6 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { APIService } from './services/api.service';
 import { RequestCache } from './services/request-cache.service';
 import { CachingInterceptor } from './services/caching-interceptor.service';
+import { AssignmentDescriptionService } from './services/assignmentDescription.service';
+import { CourseDescriptionService } from './services/courseDescription.service';
 
 // Pipes : Helper methods to alter behavior.
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
@@ -54,6 +56,8 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
   ],
   providers: [
     APIService,
+    AssignmentDescriptionService,
+    CourseDescriptionService,
     RequestCache,
     { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
   ],

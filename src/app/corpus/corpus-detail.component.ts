@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APIService } from '../services/api.service';
+import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
+import { CourseDescriptionService } from '../services/courseDescription.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
 
 @Component({
@@ -17,6 +19,8 @@ export class CorpusDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private API: APIService,
+    private assignments: AssignmentDescriptionService,
+    private courses: CourseDescriptionService,
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +31,9 @@ export class CorpusDetailComponent implements OnInit {
       this.API.getCorpusDetailById(routeParams.id, this.route.snapshot.queryParams).subscribe(response => {
         if (response && response[0]) {
           this.content = response[0];
+          // Add assignment description.
+          this.content.assignment_description = this.assignments.getDescription(this.content.assignment, this.content.institution);
+          this.content.course_description = this.courses.getDescription(this.content.course);
           this.isLoaded = true;
           // Retrieve all drafts for this ID, institution, & assignment.
           let draftParameters = {
