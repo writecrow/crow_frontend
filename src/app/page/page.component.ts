@@ -1,4 +1,4 @@
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,15 +14,21 @@ export class PageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private API: APIService,
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
-      this.API.getPage(routeParams.id).subscribe(val => {
-        this.title = val[0].title;
-        this.body = val[0].body;
-        this.isLoaded = true;
+      this.API.getPage(routeParams.id).subscribe(response => {
+        if (response && response[0]) {
+          this.title = response[0].title;
+          this.body = response[0].body;
+          this.isLoaded = true;
+        }
+        else {
+          this.router.navigateByUrl('404', { skipLocationChange: true });
+        }
       });
     });
   }

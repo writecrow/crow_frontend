@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
 import { CourseDescriptionService } from '../services/courseDescription.service';
@@ -18,6 +18,7 @@ export class CorpusDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private API: APIService,
     private assignments: AssignmentDescriptionService,
     private courses: CourseDescriptionService,
@@ -64,7 +65,9 @@ export class CorpusDetailComponent implements OnInit {
               this.repositoryResources = response;
             }
           });  
-
+        }
+        else {
+          this.router.navigateByUrl('404', { skipLocationChange: true });
         }
       });
     });

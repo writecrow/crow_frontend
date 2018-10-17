@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
 
@@ -14,6 +14,7 @@ export class RepositoryDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private API: APIService,
   ) { }
 
@@ -23,6 +24,9 @@ export class RepositoryDetailComponent implements OnInit {
         if (response && response[0]) {
           this.content = response[0];
           this.isLoaded = true;
+        }
+        else {
+          this.router.navigateByUrl('404', { skipLocationChange: true });
         }
       });
     });
