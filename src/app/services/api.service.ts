@@ -71,6 +71,11 @@ export class APIService {
     return this.getResponseFromPath('frequency/total');
   }
 
+  searchRepository(params) {
+    let query = '';
+    return this.getResponseFromPath('repository/?' + query + '&_format=json');
+  }
+
   // The abstracted method that all http requests use.
   getResponseFromPath(path) {
     this.observable = this.http.get(environment.backend + path, {

@@ -1,0 +1,27 @@
+<!-- Search Results -->
+<div class="search-results" *ngIf="isLoaded">
+  <div class="search-result" *ngFor="let result of searchResults">
+    <a routerLink="/repository/{{result.id}}">
+      <div class="row">
+        <div class="col-md-12">
+          <h4>{{ result.document_type}}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><p *ngIf="result.excerpt" [innerHTML]="result.excerpt"></p></div>
+      </div>
+      <div class="row">
+        <div *ngIf="result.course" class="col-md-6"><strong>Course:</strong> {{ result.course }} ({{ result.institution }})</div>
+        <div *ngIf="result.assignment" class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
+      </div>
+      <div class="row">
+        <div *ngIf="result.semester" class="col-md-6"><strong>Term:</strong> {{ result.semester }} {{ result.year }}</div>
+        <div *ngIf="result.file_type" class="col-md-6"><strong>File type:</strong> {{ result.file_type }}</div>
+      </div> 
+      <div class="row">
+        <div *ngIf="result.mode" class="col-md-6"><strong>Mode:</strong> {{ result.mode }}</div>
+        <div *ngIf="result.course_length" class="col-md-6"><strong>Length:</strong> {{ result.course_length }}</div>
+      </div>
+    </a>
+  </div>
+</div><!-- SearchResults -->
