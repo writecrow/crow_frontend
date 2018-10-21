@@ -76,6 +76,18 @@ export class APIService {
     if (typeof params.search !== 'undefined') {
       queryParameters.push('search=' + params.search);
     }
+    // Parse all front-end query parameters to construct API URL query.
+    // 1. Parse active facets.
+    let inc = 0;
+    for (const key in params) {
+      if (key !== 'search') { // Skeip 'search' parameter here.
+        const selections = params[key].split(',');
+        for (const i of Object.keys(selections)) {
+          queryParameters.push('f[' + inc + ']=' + key + ':' + encodeURIComponent(selections[i]));
+          inc++;
+        }
+      }
+    }
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');

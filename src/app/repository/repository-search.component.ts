@@ -21,6 +21,17 @@ export class RepositorySearchComponent {
     private router: Router,
     private API: APIService,
   ) {
+    // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
+    this.Facets = <any>[];
+    this.Facets['document_type'] = { label: 'Type', show: true, index: '3' };
+    this.Facets['assignment'] = { label: 'Assignment', show: true, index: '0' };
+    this.Facets['institution'] = { label: 'Institution', show: false, index: '5' };
+    this.Facets['year'] = { label: 'Year', show: false, index: '9' };
+    this.Facets['semester'] = { label: 'Semester', show: false, index: '8' };
+    this.Facets['course'] = { label: 'Course', show: false, index: '1' };
+    this.Facets['mode'] = { label: 'Mode', show: false, index: '7' };
+    this.Facets['course_length'] = { label: 'Length', show: false, index: '2' };
+    this.Facets['file_type'] = { label: 'File Type', show: false, index: '4' };
     this.querySearch(); 
    }
 
@@ -49,24 +60,51 @@ export class RepositorySearchComponent {
     });
   }
 
+  sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+
   textSearch(terms: string): void {
+    this.searchInProgress = true;
     // Called on click of search button.
     // Merges user-supplied search term into existing URL and calls querySearch().
     this.router.navigate(['/repository'], { queryParams: { search: terms }, queryParamsHandling: 'merge' });
   }
 
+  facetSearch(facetgroup, facet, active) {
+    this.searchInProgress = true;
+    // First, retrieve the current facetgroup & split its choices into an array.
+    let selections = [];
+    if (typeof this.route.snapshot.queryParams[facetgroup] !== 'undefined') {
+      const selected = this.route.snapshot.queryParams[facetgroup];
+      selections = selected.split(',');
+    }
+
+    if (typeof active === 'undefined') {
+      // The clicked facet was not selected.
+      // Append it to the list of selected items for the given facetgroup.
+      if (typeof selections[facet] === 'undefined') {
+        selections.push(facet);
+      }
+    }
+    else {
+      // The clicked facet had been selected.
+      // Remove it from the list of selected items for the given facetgroup.
+      for (const i in selections) {
+        if (selections[i] === facet) {
+          selections.splice(+i, 1);
+        }
+      }
+    }
+    let facetString = selections.join(',');
+    if (facetString === '') {
+      facetString = null;
+    }
+
+    this.router.navigate(['/repository'], { queryParams: { [facetgroup]: facetString }, queryParamsHandling: 'merge' });
+  }
+
   prepareFacets(facets) {
-    // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
-    this.Facets = <any>[];
-    this.Facets['document_type'] = { label: 'Document Type', show: true, index: '3' };
-    this.Facets['assignment'] = { label: 'Assignment', show: true, index: '0' };
-    this.Facets['institution'] = { label: 'Institution', show: false, index: '5' };
-    this.Facets['year'] = { label: 'Year', show: false, index: '9' };
-    this.Facets['semester'] = { label: 'Semester', show: false, index: '8' };
-    this.Facets['course'] = { label: 'Course', show: false, index: '1' };
-    this.Facets['mode'] = { label: 'Mode', show: false, index: '7' };
-    this.Facets['course_length'] = { label: 'Length', show: false, index: '2' };
-    this.Facets['file_type'] = { label: 'File Type', show: false, index: '4' };
     this.FacetKeys = Object.keys(this.Facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
