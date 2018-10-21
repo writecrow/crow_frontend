@@ -72,7 +72,13 @@ export class APIService {
   }
 
   searchRepository(params) {
-    let query = '';
+    const queryParameters = [];
+    if (typeof params.search !== 'undefined') {
+      queryParameters.push('search=' + params.search);
+    }
+    const query = Object.keys(queryParameters)
+      .map(k => queryParameters[k])
+      .join('&');
     return this.getResponseFromPath('repository/?' + query + '&_format=json');
   }
 

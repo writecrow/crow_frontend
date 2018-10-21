@@ -1,27 +1,52 @@
-<!-- Search Results -->
-<div class="search-results" *ngIf="isLoaded">
-  <div class="search-result" *ngFor="let result of searchResults">
-    <a routerLink="/repository/{{result.id}}">
-      <div class="row">
-        <div class="col-md-12">
-          <h4>{{ result.document_type}}</h4>
+<div class="row">
+  <div class="col-lg-8  order-2 order-xl-1" *ngIf="isLoaded">
+    <form id="search-box" class="form-inline">
+      <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
+      <label for="searchSubmit">
+        <button name="searchSubmit" class="secondary" (click)="textSearch(searchBox.value)">Search</button>
+      </label>
+      <label for="resetSubmit">        
+        <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
+      </label>
+      <span class="search-progress">
+        <span *ngIf="searchInProgress == true">
+          <img class="loading" src="/assets/loading.svg" alt="Loading icon" height="50px" />
+        </span>
+      </span>
+    </form>
+    <div class="search-result" *ngFor="let result of searchResults">
+      <a routerLink="/repository/{{result.id}}">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>{{ result.document_type}}</h4>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12"><p *ngIf="result.excerpt" [innerHTML]="result.excerpt"></p></div>
-      </div>
-      <div class="row">
-        <div *ngIf="result.course" class="col-md-6"><strong>Course:</strong> {{ result.course }} ({{ result.institution }})</div>
-        <div *ngIf="result.assignment" class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
-      </div>
-      <div class="row">
-        <div *ngIf="result.semester" class="col-md-6"><strong>Term:</strong> {{ result.semester }} {{ result.year }}</div>
-        <div *ngIf="result.file_type" class="col-md-6"><strong>File type:</strong> {{ result.file_type }}</div>
-      </div> 
-      <div class="row">
-        <div *ngIf="result.mode" class="col-md-6"><strong>Mode:</strong> {{ result.mode }}</div>
-        <div *ngIf="result.course_length" class="col-md-6"><strong>Length:</strong> {{ result.course_length }}</div>
-      </div>
-    </a>
+        <div class="row">
+          <div class="col-md-12"><p *ngIf="result.excerpt" [innerHTML]="result.excerpt"></p></div>
+        </div>
+        <div class="row">
+          <div *ngIf="result.course" class="col-md-6"><strong>Course:</strong> {{ result.course }} ({{ result.institution }})</div>
+          <div *ngIf="result.assignment" class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
+        </div>
+        <div class="row">
+          <div *ngIf="result.semester" class="col-md-6"><strong>Term:</strong> {{ result.semester }} {{ result.year }}</div>
+          <div *ngIf="result.file_type" class="col-md-6"><strong>File type:</strong> {{ result.file_type }}</div>
+        </div> 
+        <div class="row">
+          <div *ngIf="result.mode" class="col-md-6"><strong>Mode:</strong> {{ result.mode }}</div>
+          <div *ngIf="result.course_length" class="col-md-6"><strong>Length:</strong> {{ result.course_length }}</div>
+        </div>
+      </a>
+    </div>
+  </div><!-- End SearchResults -->
+  <div class="col-lg-4 order-1 order-xl-2" *ngIf="isLoaded">
+    <div class="facet-wrapper" *ngFor="let key of FacetKeys">
+      <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ Facets[key].label }}</div>
+        <ul class="facet-items" [hidden]="!Facets[key].show">
+          <li *ngFor="let item of Facets[key].values">
+            <input name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
+          </li>
+        </ul>
+    </div>
   </div>
-</div><!-- SearchResults -->
+</div>

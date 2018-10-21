@@ -16,6 +16,12 @@ html, body {
   min-height: 100%;
 }
 
+/* Collapsible elements */
+[hidden] { 
+  display: none !important;
+  opacity: 0;
+}
+
 /* Buttons */
 button {
   display: inline-block;
@@ -85,6 +91,54 @@ dl, ol, ul {
 
 .smaller {
   font-size:90%;
+}
+
+/* Facets */
+.facet-header {
+  font-weight: 700;
+  color: #fff;
+  background-color: #3d3d3d;
+  padding: 0.5rem;
+  border-radius: 5px 5px 0px 0px;
+  cursor:pointer;
+}
+
+.facet-items {
+  list-style-type: none;
+  background-color: #fff;
+  border-radius: 0px 0px 5px 5px;
+  padding-left: 1rem;
+  padding-bottom:1rem;
+}
+
+.facet-wrapper {
+  box-shadow: 1px 1px 1px 1px #ddd;
+  margin-bottom:0.5rem;
+}
+
+/* Search inputs */
+.search-progress {
+	width:100px;
+	height:50px;
+	padding-left:1rem;
+	font-size:1.5rem;
+}
+form#search-box button {
+  margin-left:1rem;
+}
+input#search-input {
+	width:50%;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 1px solid #3d3d3d;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight:900;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 /* Footer */
