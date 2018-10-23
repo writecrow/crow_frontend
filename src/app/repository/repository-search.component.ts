@@ -60,10 +60,6 @@ export class RepositorySearchComponent {
     });
   }
 
-  sleep(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
-  }
-
   textSearch(terms: string): void {
     this.searchInProgress = true;
     // Called on click of search button.
