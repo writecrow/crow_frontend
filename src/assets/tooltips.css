@@ -1,0 +1,40 @@
+div.tooltip-toggle {
+  cursor: pointer;
+  position: relative;
+  display:inline-block;
+  z-index:100;
+  color:#5C5C80;
+  font-weight:bold;
+}
+  
+div.tooltip-toggle::before {
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    background-color: #2B222A;
+    border-radius: 5px;
+    color: #fff;
+    content: attr(aria-label);
+    padding: 0.1rem;
+    text-transform: none;
+    transition: all 0.5s ease;
+    width: 310px;
+  }
+
+div.tooltip-toggle::before,
+div.tooltip-toggle::after {
+    color: #efefef;
+    font-size: 1rem;
+    font-weight:bold;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+  }
+  
+div.tooltip-toggle:focus::before,
+div.tooltip-toggle:focus::after,
+div.tooltip-toggle:hover::before,
+div.tooltip-toggle:hover::after {
+  opacity: 1;
+  transition: all 0.75s ease;
+}

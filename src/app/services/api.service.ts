@@ -71,7 +71,7 @@ export class APIService {
     return this.getResponseFromPath('frequency/total');
   }
 
-  searchRepository(params) {
+  searchCorpus(params) {
     const queryParameters = [];
     if (typeof params.search !== 'undefined') {
       queryParameters.push('search=' + params.search);
@@ -81,6 +81,29 @@ export class APIService {
     let inc = 0;
     for (const key in params) {
       if (key !== 'search') { // Skeip 'search' parameter here.
+        const selections = params[key].split(',');
+        for (const i of Object.keys(selections)) {
+          queryParameters.push('f[' + inc + ']=' + key + ':' + encodeURIComponent(selections[i]));
+          inc++;
+        }
+      }
+    }
+    const query = Object.keys(queryParameters)
+      .map(k => queryParameters[k])
+      .join('&');
+    return this.getResponseFromPath('texts/word/?' + query + '&_format=json');
+  }
+
+  searchRepository(params) {
+    const queryParameters = [];
+    if (typeof params.search !== 'undefined') {
+      queryParameters.push('search=' + params.search);
+    }
+    // Parse all front-end query parameters to construct API URL query.
+    // 1. Parse active facets.
+    let inc = 0;
+    for (const key in params) {
+      if (key !== 'search') { // Skip 'search' parameter here.
         const selections = params[key].split(',');
         for (const i of Object.keys(selections)) {
           queryParameters.push('f[' + inc + ']=' + key + ':' + encodeURIComponent(selections[i]));

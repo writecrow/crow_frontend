@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-lg-3" *ngIf="isLoaded">
+    <div class="facet-wrapper" *ngFor="let key of FacetKeys">
+      <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ Facets[key].label }}</div>
+        <ul class="facet-items" [hidden]="!Facets[key].show">
+          <li *ngFor="let item of Facets[key].values">
+            <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="col-lg-9 panel" *ngIf="isLoaded">
+    <form id="search-box" class="form-inline">
+      <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
+      <label for="searchSubmit">
+        <button name="searchSubmit" class="secondary" (click)="textSearch(searchBox.value)">Search</button>
+      </label>
+      <label for="resetSubmit">        
+        <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
+      </label>
+      <span class="search-progress">
+        <span *ngIf="searchInProgress == true">
+          <img class="loading" src="/assets/loading.svg" alt="Loading icon" height="50px" />
+        </span>
+      </span>
+    </form>
+    <div class="search-result" *ngFor="let result of searchResults">
+      <a routerLink="/corpus/{{result.filename}}">
+        <div class="row">
+          <div class="col-md-3">{{result.filename}}</div>
+          <div class="col-md-3">
+            <span [innerHTML]="result.assignment"></span>
+            <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>
+          </div>
+          <div class="col-md-1">{{result.draft}}</div>
+          <div class="col-md-3" [innerHTML]="result.college"></div>
+          <div class="col-md-2">{{result.toefl_total}}</div>
+        </div>
+        <div class="row">
+          <div class="col" [innerHTML]="result.search_api_excerpt"></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

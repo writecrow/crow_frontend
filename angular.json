@@ -25,6 +25,7 @@
             "styles": [
               "src/assets/bootstrap-grid.min.css",
               "src/assets/bootstrap-reboot.min.css",
+              "src/assets/tooltips.css",
               "src/styles.css"
             ],
             "scripts": []
