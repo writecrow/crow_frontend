@@ -9,13 +9,14 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 })
 
 export class CorpusSearchComponent {
-  searchResults: CorpusDetail[];
   Facets: any[] = [];
   FacetKeys: any[] = [];
+  frequencyData: any[] = [];
   isLoaded: boolean;
   searchInProgress: boolean;
+  searchResults: CorpusDetail[];
   searchString: string;
-  frequencyData: any[] = [];
+  
   resultCount: number;
 
   constructor(
@@ -105,18 +106,18 @@ export class CorpusSearchComponent {
     this.searchInProgress = true;
     this.resultCount = 0;
     this.route.queryParams.subscribe((routeParams) => {
-      if (routeParams.search != 'undefined') {
+      if (typeof routeParams.search != 'undefined') {
         // Set the text input to the query provided in the URL.
         this.searchString = routeParams.search;
+        this.API.getFrequencyData(routeParams).subscribe(response => {
+          if (response && response.tokens) {
+            this.frequencyData = response.tokens;
+          }
+          else {
+            this.frequencyData = [];
+          }
+        });
       }
-      this.API.getFrequencyData(this.searchString).subscribe(response => {
-        if (response && response.tokens) {
-          this.frequencyData = response.tokens;
-        }
-        else {
-          this.frequencyData = [];
-        }
-      });
       this.API.searchCorpus(routeParams).subscribe(response => {
         if (response && response.search_results) {
           this.searchResults = response.search_results;

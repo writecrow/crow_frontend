@@ -28,7 +28,7 @@ export class APIService {
     const query = Object.keys(queryElements)
       .map(k => queryElements[k])
       .join('&');
-    return this.getResponseFromPath('texts?' + query + '&_format=json');
+    return this.getResponseFromPath('texts?' + query);
   }
 
   getCorpusReferenceByMetadata(attributes) {
@@ -40,11 +40,11 @@ export class APIService {
     const query = Object.keys(queryElements)
       .map(k => queryElements[k])
       .join('&');
-    return this.getResponseFromPath('corpus/metadata?' + query + '&_format=json');
+    return this.getResponseFromPath('corpus/metadata?' + query);
   }
 
   getDefaultCorpusSearchResults() {
-    return this.getResponseFromPath('corpus?_format=json');
+    return this.getResponseFromPath('corpus?');
   }
 
   getFrequencyData(attributes) {
@@ -56,15 +56,15 @@ export class APIService {
     const query = Object.keys(queryElements)
       .map(k => queryElements[k])
       .join('&');
-    return this.getResponseFromPath('frequency/search?' + query + '&_format=json');
+    return this.getResponseFromPath('frequency/search?' + query);
   }
 
   getPage(path) {
-    return this.getResponseFromPath('pages?path=' + path + '&_format=json');
+    return this.getResponseFromPath('pages?path=' + path);
   }
 
   getRepositoryDetailById(id) {
-    return this.getResponseFromPath('resources?id=' + id + '&_format=json');
+    return this.getResponseFromPath('resources?id=' + id);
   }
 
   getRepositoryReferenceByMetadata(attributes) {
@@ -76,11 +76,11 @@ export class APIService {
     const query = Object.keys(queryElements)
       .map(k => queryElements[k])
       .join('&');
-    return this.getResponseFromPath('repository/metadata?' + query + '&_format=json');
+    return this.getResponseFromPath('repository/metadata?' + query);
   }
 
   getTotalWords() {
-    return this.getResponseFromPath('frequency/total');
+    return this.getResponseFromPath('frequency/total?');
   }
 
   searchCorpus(params) {
@@ -103,7 +103,7 @@ export class APIService {
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');
-    return this.getResponseFromPath('corpus?' + query + '&_format=json');
+    return this.getResponseFromPath('corpus?' + query);
   }
 
   searchRepository(params) {
@@ -126,12 +126,12 @@ export class APIService {
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');
-    return this.getResponseFromPath('repository?' + query + '&_format=json');
+    return this.getResponseFromPath('repository?' + query);
   }
 
   // The abstracted method that all http requests use.
   getResponseFromPath(path) {
-    this.observable = this.http.get(environment.backend + path, {
+    this.observable = this.http.get(environment.backend + path + '&_format=json', {
       observe: 'response'
     })
       .pipe(map(response => {
