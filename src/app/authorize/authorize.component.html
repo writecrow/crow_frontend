@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6 light-panel">
+      <h2>Authorization Needed</h2>
+      <p>The Macaws interface currentlys require additional permission to view. If you have been given a passphrase by maintainers, enter it below. If you are interested in gaining basic access, contact us via <a href="mailto:collaborate@writecrow.org">collaborate@writecrow.org</a>.
+      </p>
+      <p class="status" *ngIf="statusMessage">&#9888; {{ statusMessage }}</p>
+      <form id="authorize" class="form-inline">
+        <input #userBox id="user" name="pass" class="form-control" placeholder="Username" aria-label="Username" autofocus />
+        <input #passBox id="pass" name="pass" class="form-control" placeholder="Password" aria-label="Password" />
+        <label for="authSubmit">
+          <button name="authSubmit" class="secondary" (click)="authorize(userBox.value, passBox.value)">Authorize</button>
+        </label>
+      </form>
+    </div>
+  </div>
+</div>

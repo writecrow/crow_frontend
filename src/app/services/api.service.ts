@@ -44,7 +44,7 @@ export class APIService {
   }
 
   getDefaultCorpusSearchResults() {
-    return this.getResponseFromPath('texts/word?&_format=json');
+    return this.getResponseFromPath('corpus?_format=json');
   }
 
   getPage(path) {
@@ -80,7 +80,7 @@ export class APIService {
     // 1. Parse active facets.
     let inc = 0;
     for (const key in params) {
-      if (key !== 'search') { // Skeip 'search' parameter here.
+      if (key !== 'search') { // Skip 'search' parameter here.
         const selections = params[key].split(',');
         for (const i of Object.keys(selections)) {
           queryParameters.push('f[' + inc + ']=' + key + ':' + encodeURIComponent(selections[i]));
@@ -91,7 +91,7 @@ export class APIService {
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');
-    return this.getResponseFromPath('texts/word/?' + query + '&_format=json');
+    return this.getResponseFromPath('corpus?' + query + '&_format=json');
   }
 
   searchRepository(params) {
@@ -114,7 +114,7 @@ export class APIService {
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');
-    return this.getResponseFromPath('repository/?' + query + '&_format=json');
+    return this.getResponseFromPath('repository?' + query + '&_format=json');
   }
 
   // The abstracted method that all http requests use.

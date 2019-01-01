@@ -9,7 +9,7 @@
         </ul>
     </div>
   </div>
-  <div class="col-lg-9 panel" *ngIf="isLoaded">
+  <div class="col-lg-8 panel" *ngIf="isLoaded">
     <form id="search-box" class="form-inline">
       <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
       <label for="searchSubmit">
@@ -24,20 +24,17 @@
         </span>
       </span>
     </form>
+    <h3>Results: {{ resultCount }}</h3>
     <div class="search-result" *ngFor="let result of searchResults">
-      <a routerLink="/corpus/{{result.filename}}">
+      <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
         <div class="row">
-          <div class="col-md-3">{{result.filename}}</div>
-          <div class="col-md-3">
-            <span [innerHTML]="result.assignment"></span>
-            <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>
-          </div>
-          <div class="col-md-1">{{result.draft}}</div>
-          <div class="col-md-3" [innerHTML]="result.college"></div>
-          <div class="col-md-2">{{result.toefl_total}}</div>
+          <div class="col-md-3"><strong>Term:</strong> {{result.semester}} {{result.year}}</div>
+          <div class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
+          <div class="col-md-1"><strong>Draft:</strong> {{result.draft }}</div>
+          <div class="col-md-2"><strong>TOEFL:</strong> {{result.toefl_total}}</div>
         </div>
         <div class="row">
-          <div class="col" [innerHTML]="result.search_api_excerpt"></div>
+          <div class="col result" [innerHTML]="result.excerpt"></div>
         </div>
       </a>
     </div>

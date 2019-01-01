@@ -17,10 +17,8 @@ header .title h2 {
 }
 
 /* Logo */
-.logo img {
-  width: 140px;
-  border-radius: 50%;
-  background-color: #fff;
+.logo {
+	width:350px;
 }
 
 /* Navigation */

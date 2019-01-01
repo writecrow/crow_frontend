@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Components : the business logic for different page types.
 import { AppComponent } from './app.component';
+import { AuthorizeComponent } from './authorize/authorize.component';
 import { NotFoundComponent } from './404/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
@@ -27,9 +28,6 @@ import { CourseDescriptionService } from './services/courseDescription.service';
 // Pipes : Helper methods to alter behavior.
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { RouteReuseStrategy, DetachedRouteHandle, ActivatedRouteSnapshot } from "@angular/router";
-
 // Declarations are to make directives (including components and pipes)
 // from the current module available to other directives in the current module.
 
@@ -39,6 +37,7 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 @NgModule({
   declarations: [
     AppComponent,
+    AuthorizeComponent,
     EscapeHtmlPipe,
     HomeComponent,
     PageComponent,

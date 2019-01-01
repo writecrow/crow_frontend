@@ -1,0 +1,12 @@
+p {
+  font-size:1.2rem;
+}
+input {
+  padding:0.25rem;
+  margin:0.5rem 0 0.5rem 0;
+  display:block;
+}
+.status {
+  border:1px solid #ddd;
+  font-weight:bold;
+}
