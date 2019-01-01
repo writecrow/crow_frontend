@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Components.
+import { AuthorizeComponent } from './authorize/authorize.component';
 import { NotFoundComponent } from './404/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
@@ -12,6 +13,7 @@ import { RepositoryDetailComponent } from './repository/repository-detail.compon
 
 // Define the application's available page paths.
 const appRoutes: Routes = [
+  { path: 'authorize', component: AuthorizeComponent},
   { path: 'page/:id', component: PageComponent },
   { path: 'corpus', component: CorpusSearchComponent },
   { path: 'corpus/:id', component: CorpusDetailComponent },
