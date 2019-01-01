@@ -19,7 +19,7 @@ export class AuthorizeComponent {
 
   ngOnInit(): void {
     this.statusMessage = '';
-    var authenticated = localStorage.getItem('macawsAuthenticate');
+    var authenticated = localStorage.getItem('crowAuthenticate');
     if (authenticated == 'yes') {
       this.router.navigateByUrl('corpus');
     }
@@ -28,7 +28,7 @@ export class AuthorizeComponent {
   authorize(user: string, pass: string): void {
     var allowed = this.authorizeService.checkAuth(user, pass);
     if (allowed) {
-      localStorage.setItem('macawsAuthenticate', 'yes');
+      localStorage.setItem('crowAuthenticate', 'yes');
       this.router.navigateByUrl('corpus');
     }
     else {

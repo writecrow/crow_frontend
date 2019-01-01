@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
       if (auth[1]) {
         var allowed = this.authorizeService.checkAuth(auth[0], auth[1]);
         if (allowed) {
-          localStorage.setItem('macawsAuthenticate', 'yes');
+          localStorage.setItem('crowAuthenticate', 'yes');
           this.router.navigateByUrl('/');
         }
       }
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
       if (auth[1]) {
         var allowed = this.authorizeService.checkAuth(auth[0], auth[1]);
         if (allowed) {
-          localStorage.setItem('macawsAuthenticate', 'yes');
+          localStorage.setItem('crowAuthenticate', 'yes');
           this.router.navigateByUrl('/');
         }
       }
@@ -50,6 +50,11 @@ export class HomeComponent implements OnInit {
     this.API.getDefaultCorpusSearchResults().subscribe((response) => {
       if (typeof response !== 'undefined' && response) {
         this.total_texts = response.pager.total_items;
+      }
+    });
+    this.API.getTotalWords().subscribe((response) => {
+      if (typeof response !== 'undefined' && response) {
+        this.total_words = response.total;
       }
     });
   }

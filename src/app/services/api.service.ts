@@ -47,6 +47,18 @@ export class APIService {
     return this.getResponseFromPath('corpus?_format=json');
   }
 
+  getFrequencyData(attributes) {
+    const queryElements = [];
+    for (let key of Object.keys(attributes)) {
+      // It's important to encode, as there may be spaces.
+      queryElements.push(key + '=' + encodeURIComponent(attributes[key]));
+    }
+    const query = Object.keys(queryElements)
+      .map(k => queryElements[k])
+      .join('&');
+    return this.getResponseFromPath('frequency/search?' + query + '&_format=json');
+  }
+
   getPage(path) {
     return this.getResponseFromPath('pages?path=' + path + '&_format=json');
   }
