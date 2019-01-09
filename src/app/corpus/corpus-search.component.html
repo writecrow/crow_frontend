@@ -1,42 +1,74 @@
 <div class="row">
   <div class="col-lg-3" *ngIf="isLoaded">
-    <div class="facet-wrapper" *ngFor="let key of FacetKeys">
-      <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ Facets[key].label }}</div>
-        <ul class="facet-items" [hidden]="!Facets[key].show">
-          <li *ngFor="let item of Facets[key].values">
+    <div class="facet-wrapper" *ngFor="let key of facetKeys">
+      <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ facets[key].label }}</div>
+        <ul class="facet-items" [hidden]="!facets[key].show">
+          <li *ngFor="let item of facets[key].values">
             <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
           </li>
         </ul>
     </div>
   </div>
-  <div class="col-lg-8 panel" *ngIf="isLoaded">
-    <form id="search-box" class="form-inline">
-      <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
-      <label for="searchSubmit">
-        <button name="searchSubmit" class="secondary" (click)="textSearch(searchBox.value)">Search</button>
-      </label>
-      <label for="resetSubmit">        
-        <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
-      </label>
-      <span class="search-progress">
-        <span *ngIf="searchInProgress == true">
-          <img class="loading" src="/assets/loading.svg" alt="Loading icon" height="50px" />
+  <div class="col-lg-8 search-wrapper">
+    <div class="row">
+      <form id="search-box" class="form-inline">
+        <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
+        <label for="searchSubmit">
+          <button name="searchSubmit" class="secondary" (click)="textSearch(searchBox.value)">Search</button>
+        </label>
+        <label for="resetSubmit">        
+          <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
+        </label>
+        <span class="search-progress">
+          <span *ngIf="searchInProgress == true">
+            <img class="loading" src="/assets/loading.svg" alt="Loading icon" height="50px" />
+          </span>
         </span>
-      </span>
-    </form>
-    <h3>Results: {{ resultCount }}</h3>
-    <div class="search-result" *ngFor="let result of searchResults">
-      <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
-        <div class="row">
-          <div class="col-md-3"><strong>Term:</strong> {{result.semester}} {{result.year}}</div>
-          <div class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
-          <div class="col-md-1"><strong>Draft:</strong> {{result.draft }}</div>
-          <div class="col-md-2"><strong>TOEFL:</strong> {{result.toefl_total}}</div>
-        </div>
-        <div class="row">
-          <div class="col result" [innerHTML]="result.excerpt"></div>
-        </div>
-      </a>
+      </form>
+    </div>
+    <div class="row search-results">
+      <h3>Results: {{ resultCount }}</h3>
+      <table *ngIf="frequencyData && frequencyData.length > 0">
+        <thead>
+          <tr>
+            <th>Search query</th>
+            <th>Instances in corpus<div class="tooltip-toggle" aria-label="The total number of instances in the entire corpus">&nbsp;&#9432;</div></th>
+            <th>Normed (per 1 million)<div class="tooltip-toggle" aria-label="The number of instances per 1 million words in the corpus">&nbsp;&#9432;</div></th>
+            <th>Number of Texts</th>
+          </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let i of frequencyData">
+            <tr>
+              <th>{{ i.token }}</th>
+              <td>{{ i.raw | number}}</td>
+              <td>{{ i.normed | number:'1.0-0' }}</td>
+              <td>{{ i.texts | number }}</td>
+            </tr>
+        </ng-container>
+        <ng-container >
+            <tr class="border-top">
+              <th></th>
+              <td>{{ frequencyTotals.raw | number}}</td>
+              <td>{{ frequencyTotals.normed | number:'1.0-0' }}</td>
+              <td>{{ frequencyTotals.texts | number }}</td>
+            </tr>
+        </ng-container>
+      </tbody>
+      </table>
+      <div class="search-result" *ngFor="let result of searchResults">
+        <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
+          <div class="row">
+            <div class="col-md-3"><strong>Term:</strong> {{result.semester}} {{result.year}}</div>
+            <div class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
+            <div class="col-md-1"><strong>Draft:</strong> {{result.draft }}</div>
+            <div class="col-md-2"><strong>TOEFL:</strong> {{result.toefl_total}}</div>
+          </div>
+          <div class="row">
+            <div class="col result" [innerHTML]="result.excerpt"></div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </div>

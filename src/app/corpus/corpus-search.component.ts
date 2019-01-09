@@ -9,9 +9,10 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 })
 
 export class CorpusSearchComponent {
-  Facets: any[] = [];
-  FacetKeys: any[] = [];
+  facets: any[] = [];
+  facetKeys: any[] = [];
   frequencyData: any[] = [];
+  frequencyTotals: any[] = [];
   isLoaded: boolean;
   searchInProgress: boolean;
   searchResults: CorpusDetail[];
@@ -28,21 +29,21 @@ export class CorpusSearchComponent {
     if (authenticated != 'yes') {
       this.router.navigate(['/authorize']);
     }
-    // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
-    this.Facets = <any>[];
-    this.Facets['institution'] = { label: 'Institution', show: true, index: '6' };
-    this.Facets['year'] = { label: 'Year', show: false, index: '10' };
-    this.Facets['semester'] = { label: 'Semester', show: false, index: '9' };
-    this.Facets['course'] = { label: 'Course', show: false, index: '3' };
-    this.Facets['assignment'] = { label: 'Assignment', show: false, index: '0' };
-    this.Facets['draft'] = { label: 'Draft', show: false, index: '4' };
+    // The order in which these are pushed into the "facets" object determine their order in the sidebar.
+    this.facets = <any>[];
+    this.facets['institution'] = { label: 'Institution', show: true, index: '6' };
+    this.facets['year'] = { label: 'Year', show: false, index: '10' };
+    this.facets['semester'] = { label: 'Semester', show: false, index: '9' };
+    this.facets['course'] = { label: 'Course', show: false, index: '3' };
+    this.facets['assignment'] = { label: 'Assignment', show: false, index: '0' };
+    this.facets['draft'] = { label: 'Draft', show: false, index: '4' };
 
-    this.Facets['college'] = { label: 'College', show: false, index: '1' };
-    this.Facets['country'] = { label: 'Country', show: false, index: '2' };
-    this.Facets['gender'] = { label: 'Gender', show: false, index: '5' };
-    // this.Facets['instructor'] = { label: 'Instructor', show: true, index: '7' };
-    this.Facets['program'] = { label: 'Program', show: false, index: '8' };
-    this.Facets['year_in_school'] = { label: 'Year in School', show: false, index: '11' };
+    this.facets['college'] = { label: 'College', show: false, index: '1' };
+    this.facets['country'] = { label: 'Country', show: false, index: '2' };
+    this.facets['gender'] = { label: 'Gender', show: false, index: '5' };
+    // this.facets['instructor'] = { label: 'Instructor', show: true, index: '7' };
+    this.facets['program'] = { label: 'Program', show: false, index: '8' };
+    this.facets['year_in_school'] = { label: 'Year in School', show: false, index: '11' };
     this.querySearch();
   }
 
@@ -86,17 +87,17 @@ export class CorpusSearchComponent {
     this.router.navigate(['/corpus'], { queryParams: { [facetgroup]: facetString }, queryParamsHandling: 'merge' });
   }
 
-  prepareFacets(facets) {
-    this.FacetKeys = Object.keys(this.Facets);
+  preparefacets(facets) {
+    this.facetKeys = Object.keys(this.facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
-    for (let name in this.Facets) {
-      let i = this.Facets[name].index;
+    for (let name in this.facets) {
+      let i = this.facets[name].index;
       if (typeof facets[i][0] !== 'undefined') {
-        this.Facets[name].values = facets[i][0][name];
+        this.facets[name].values = facets[i][0][name];
       }
       else {
-        this.Facets[name].values = [];
+        this.facets[name].values = [];
       }
     }
   }
@@ -116,6 +117,13 @@ export class CorpusSearchComponent {
           else {
             this.frequencyData = [];
           }
+          if (response && response.totals) {
+            console.log(response.totals);
+            this.frequencyTotals = response.totals;
+          }
+          else {
+            this.frequencyTotals = [];
+          }
         });
       }
       this.API.searchCorpus(routeParams).subscribe(response => {
@@ -128,7 +136,7 @@ export class CorpusSearchComponent {
           this.searchResults = [];
         }
         if (response && response.facets) {
-          this.prepareFacets(response.facets);
+          this.preparefacets(response.facets);
         }
         this.resultCount = response.pager['total_items'];
         this.searchInProgress = false;
@@ -139,10 +147,10 @@ export class CorpusSearchComponent {
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037
-    if (this.Facets[i].show === false) {
-      this.Facets[i].show = true;
+    if (this.facets[i].show === false) {
+      this.facets[i].show = true;
     } else {
-      this.Facets[i].show = false;
+      this.facets[i].show = false;
     }
   }
 
