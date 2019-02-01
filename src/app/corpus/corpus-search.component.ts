@@ -9,16 +9,24 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 })
 
 export class CorpusSearchComponent {
+  // Data containers.
   facets: any[] = [];
   facetKeys: any[] = [];
   frequencyData: any[] = [];
   frequencyTotals: any[] = [];
+  searchResults: CorpusDetail[];
+  resultCount: number;
+  filters: any[] = [];
+
+  // Used for constructing the search
+  public keywordMode = 'or';
+  public method = 'word';
+  searchString: string;
+
+  // Display toggles.
+  advancedSearch: boolean;
   isLoaded: boolean;
   searchInProgress: boolean;
-  searchResults: CorpusDetail[];
-  searchString: string;
-  
-  resultCount: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +37,15 @@ export class CorpusSearchComponent {
     if (authenticated != 'yes') {
       this.router.navigate(['/authorize']);
     }
+
+    // Set startup defaults.
+    this.advancedSearch = false;
+    // Additional filters.
+    this.filters = <any>[];
+    this.filters['searchByID'] = { backend_key: 'id', value: '' };
+    this.filters['toeflTotalMin'] = { backend_key: 'toefl_total[min]', value: '' };
+    this.filters['toeflTotalMax'] = { backend_key: 'toefl_total[max]', value: '' };
+
     // The order in which these are pushed into the "facets" object determine their order in the sidebar.
     this.facets = <any>[];
     this.facets['institution'] = { label: 'Institution', show: true, index: '6' };
@@ -51,7 +68,7 @@ export class CorpusSearchComponent {
     this.searchInProgress = true;
     // Called on click of search button.
     // Merges user-supplied search term into existing URL and calls querySearch().
-    this.router.navigate(['/corpus'], { queryParams: { search: terms }, queryParamsHandling: 'merge' });
+    this.router.navigate(['/corpus'], { queryParams: { search: terms, op: this.keywordMode }, queryParamsHandling: 'merge' });
   }
 
   facetSearch(facetgroup, facet, active) {
@@ -156,6 +173,25 @@ export class CorpusSearchComponent {
 
   reset() {
     this.router.navigate(['/corpus']);
+  }
+
+  setOperation(i) {
+    this.keywordMode = i;
+  }
+  setMethod(i) {
+    this.method = i;
+  }
+  toggle(i) {
+    // Used to show/hide visualizations in an Angular way.
+    // See https://stackoverflow.com/a/35163037
+    if (this[i] === false) {
+      this[i] = true;
+    } else {
+      this[i] = false;
+    }
+  }
+  evaluateToggle(i) {
+    return this[i];
   }
 
 }

@@ -26,6 +26,22 @@
         </span>
       </form>
     </div>
+    <div class="row">
+      <div class="details-wrapper">
+        <div class="details-header" (click)="toggle('advancedSearch')">&#9654; Advanced Search</div>
+        <div class="detail</div>s-body" [hidden]="!advancedSearch">
+          <p><strong>Tip:</strong> To search by phrase, place multiple words in quotation marks</p>
+          <strong>Word form handling: </strong>
+          <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word(s)
+          <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms (e.g., begin, began, begun, beginning"> Lemma<br />
+          <br />
+          <strong>Multiple word handling: </strong>
+          <input type="radio" name="or" (click)="setOperation('or')" [checked]="keywordMode == 'or'"  aria-label="or"> Contains any word
+          <input type="radio" name="and" (click)="setOperation('and')" [checked]="keywordMode == 'and'"  aria-label="and"> Contains all words<br /><br />
+          <input id="searchByID" name="searchByID" placeholder="Filter by ID..." [(ngModel)]="filters['searchByID'].value" aria-label="Search by ID" />
+        </div>
+      </div>
+    </div>
     <div class="row search-results">
       <h3>Results: {{ resultCount }}</h3>
       <table *ngIf="frequencyData && frequencyData.length > 0">

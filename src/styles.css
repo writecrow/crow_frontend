@@ -121,7 +121,8 @@ dl, ol, ul {
 	width:100px;
 	height:50px;
 	padding-left:1rem;
-	font-size:1.5rem;
+  font-size:1.5rem;
+  position:absolute;
 }
 form#search-box button {
   margin-left:1rem;
