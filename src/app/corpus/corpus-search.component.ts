@@ -28,6 +28,7 @@ export class CorpusSearchComponent {
   isLoaded: boolean = false;
   searchInProgress: boolean = false;;
   toeflShow: boolean = false;
+  showMetadata: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -80,6 +81,9 @@ export class CorpusSearchComponent {
     if (this.keywordMode != "or") {
       currentParams.op = this.keywordMode;
     }
+    if (typeof this.method !== "undefined") {
+      currentParams.method = this.method;
+    }
     this.router.navigate(['/corpus'], { queryParams: currentParams, queryParamsHandling: 'merge' });
   }
 
@@ -129,7 +133,6 @@ export class CorpusSearchComponent {
       }
     }
   }
-
   querySearch() {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
     this.route.queryParams.subscribe((routeParams) => {
@@ -137,6 +140,7 @@ export class CorpusSearchComponent {
       this.searchInProgress = true;
       this.frequencyData = [];
       this.frequencyTotals = [];
+      this.searchResults = [];
       if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
         // Set the text input to the query provided in the URL.
         this.searchString = routeParams.search;
@@ -155,9 +159,6 @@ export class CorpusSearchComponent {
           this.isLoaded = true;
           // Do additional modifications on the returned API data.
         }
-        else {
-          this.searchResults = [];
-        }
         if (response && response.facets) {
           this.preparefacets(response.facets);
         }
@@ -166,7 +167,6 @@ export class CorpusSearchComponent {
       });
     });
   }
-
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037
@@ -176,15 +176,14 @@ export class CorpusSearchComponent {
       this.facets[i].show = false;
     }
   }
-
   reset() {
     this.searchString = "";
+    this.method = "word";
     this.filters['searchByID'].value = "";
     this.filters['toeflTotalMin'].value = "";
     this.filters['toeflTotalMax'].value = "";
     this.router.navigate(['/corpus']);
   }
-
   setOperation(i) {
     this.keywordMode = i;
   }

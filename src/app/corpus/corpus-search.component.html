@@ -4,7 +4,7 @@
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ facets[key].label }}</div>
         <ul class="facet-items" [hidden]="!facets[key].show">
           <li *ngFor="let item of facets[key].values">
-            <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
+            <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }} texts)
           </li>
         </ul>
     </div>
@@ -54,14 +54,19 @@
       </div>
     </div>
     <div class="row search-results">
-      <h3 *ngIf="searchInProgress != true">Results: {{ resultCount }}</h3>
+      <form *ngIf="searchInProgress != true" class="search-results-top">
+        <h3>Matching texts: {{ resultCount | number }}</h3>
+        <label>
+          <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
+        </label>
+      </form>
       <table *ngIf="frequencyData && frequencyData.length > 0">
         <thead>
           <tr>
             <th>Search query</th>
             <th>Instances in corpus<div class="tooltip-toggle" aria-label="The total number of instances in the entire corpus">&nbsp;&#9432;</div></th>
             <th>Normed (per 1 million)<div class="tooltip-toggle" aria-label="The number of instances per 1 million words in the corpus">&nbsp;&#9432;</div></th>
-            <th>Number of Texts</th>
+            <th>Texts containing term</th>
           </tr>
         </thead>
         <tbody>
@@ -74,7 +79,7 @@
             </tr>
         </ng-container>
         <ng-container >
-            <tr class="border-top">
+            <tr *ngIf="frequencyTotals && frequencyTotals.length > 0" class="border-top">
               <th></th>
               <td>{{ frequencyTotals.raw | number}}</td>
               <td>{{ frequencyTotals.normed | number:'1.0-0' }}</td>
@@ -86,13 +91,18 @@
       <div class="search-result" *ngFor="let result of searchResults">
         <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
-            <div class="col-md-3"><strong>Term:</strong> {{result.semester}} {{result.year}}</div>
-            <div class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
-            <div class="col-md-1"><strong>Draft:</strong> {{result.draft }}</div>
-            <div class="col-md-2"><strong>TOEFL:</strong> {{result.toefl_total}}</div>
-          </div>
-          <div class="row">
             <div class="col result" [innerHTML]="result.excerpt"></div>
+          </div>
+          <div *ngIf="showMetadata" class="row">
+            <div class="col search-metadata">
+              <hr />
+              <strong>Term:</strong> {{result.semester}} {{result.year}},  
+              <strong>Course:</strong> {{ result.course }}, 
+              <strong>Assignment:</strong> {{ result.assignment }}, 
+              <strong>Draft:</strong> {{result.draft }}, 
+              <strong>Gender:</strong> {{ result.gender }}, 
+              <strong>TOEFL:</strong> {{result.toefl_total}}
+            </div>
           </div>
         </a>
       </div>

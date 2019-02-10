@@ -24,7 +24,7 @@
 			<h2>Related repository materials</h2>
 			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment (all instructors)
 			<ul *ngFor="let result of repositoryResources">
-				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.type}} from {{ result.course}}, {{ result.semester }} {{ result.year }}</a></li>
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}} from {{ result.course}}, {{ result.semester }} {{ result.year }}</a></li>
 			</ul>
 		</div>
 		<div *ngIf="isLoaded">

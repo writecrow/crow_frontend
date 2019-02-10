@@ -28,7 +28,7 @@ export class APIService {
     const query = Object.keys(queryElements)
       .map(k => queryElements[k])
       .join('&');
-    return this.getResponseFromPath('texts?' + query);
+    return this.getResponseFromPath('corpus/metadata?' + query);
   }
 
   getCorpusReferenceByMetadata(attributes) {
@@ -64,7 +64,7 @@ export class APIService {
   }
 
   getRepositoryDetailById(id) {
-    return this.getResponseFromPath('resources?id=' + id);
+    return this.getResponseFromPath('repository/metadata?id=' + id);
   }
 
   getRepositoryReferenceByMetadata(attributes) {
@@ -85,7 +85,7 @@ export class APIService {
 
   searchCorpus(params) {
     const queryParameters = [];
-    let nonFacets = ["search", "id", "op", "toefl_total[min]", "toefl_total[max]"];
+    let nonFacets = ["method", "search", "id", "op", "toefl_total[min]", "toefl_total[max]"];
     let inc = 0;
     for (const key in params) {
       if (nonFacets.includes(key)){
@@ -102,7 +102,12 @@ export class APIService {
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');
-    return this.getResponseFromPath('corpus?' + query);
+    if (typeof params.method !== "undefined" && params.method == "lemma") {
+      return this.getResponseFromPath('corpus/lemma?' + query);
+    }
+    else {
+      return this.getResponseFromPath('corpus?' + query);
+    }
   }
 
   searchRepository(params) {
