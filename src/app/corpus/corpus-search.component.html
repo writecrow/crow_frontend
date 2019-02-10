@@ -73,7 +73,7 @@
       </tbody>
       </table>
       <div class="search-result" *ngFor="let result of searchResults">
-        <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
+        <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
             <div class="col-md-3"><strong>Term:</strong> {{result.semester}} {{result.year}}</div>
             <div class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
