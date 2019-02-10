@@ -85,17 +85,13 @@ export class APIService {
 
   searchCorpus(params) {
     const queryParameters = [];
-    if (typeof params.search !== 'undefined') {
-      queryParameters.push('search=' + params.search);
-    }
-    if (typeof params.op !== 'undefined') {
-      queryParameters.push('op=' + params.op);
-    }
-    // Parse all front-end query parameters to construct API URL query.
-    // 1. Parse active facets.
+    let nonFacets = ["search", "id", "op", "toefl_total[min]", "toefl_total[max]"];
     let inc = 0;
     for (const key in params) {
-      if (key !== 'search' && key !== 'op') { // Skip 'search' parameter here.
+      if (nonFacets.includes(key)){
+        queryParameters.push(encodeURIComponent(key) + '=' + params[key]);
+      }
+      else {
         const selections = params[key].split(',');
         for (const i of Object.keys(selections)) {
           queryParameters.push('f[' + inc + ']=' + key + ':' + encodeURIComponent(selections[i]));

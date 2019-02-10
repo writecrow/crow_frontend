@@ -24,9 +24,10 @@ export class CorpusSearchComponent {
   searchString: string;
 
   // Display toggles.
-  advancedSearch: boolean;
-  isLoaded: boolean;
-  searchInProgress: boolean;
+  advancedSearch: boolean = false;
+  isLoaded: boolean = false;
+  searchInProgress: boolean = false;;
+  toeflShow: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,8 +39,6 @@ export class CorpusSearchComponent {
       this.router.navigate(['/authorize']);
     }
 
-    // Set startup defaults.
-    this.advancedSearch = false;
     // Additional filters.
     this.filters = <any>[];
     this.filters['searchByID'] = { backend_key: 'id', value: '' };
@@ -65,14 +64,26 @@ export class CorpusSearchComponent {
   }
 
   textSearch(terms: string): void {
-    this.searchInProgress = true;
     // Called on click of search button.
-    // Merges user-supplied search term into existing URL and calls querySearch().
-    this.router.navigate(['/corpus'], { queryParams: { search: terms, op: this.keywordMode }, queryParamsHandling: 'merge' });
+    // Merge user-supplied search parameters into existing URL & call querySearch().
+    let currentParams = <any>[];
+    // Evaluate additional filters (search by ID, TOEFL scores).
+    for (let filter in this.filters) {
+      let key = this.filters[filter].backend_key;
+      if (this.filters[filter].value !== "") {
+        currentParams[key] = this.filters[filter].value;
+      }
+    }
+    if (terms != "") {
+      currentParams.search = terms;
+    }
+    if (this.keywordMode != "or") {
+      currentParams.op = this.keywordMode;
+    }
+    this.router.navigate(['/corpus'], { queryParams: currentParams, queryParamsHandling: 'merge' });
   }
 
   facetSearch(facetgroup, facet, active) {
-    this.searchInProgress = true;
     // First, retrieve the current facetgroup & split its choices into an array.
     let selections = [];
     if (typeof this.route.snapshot.queryParams[facetgroup] !== 'undefined') {
@@ -121,25 +132,20 @@ export class CorpusSearchComponent {
 
   querySearch() {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
-    this.searchInProgress = true;
-    this.resultCount = 0;
     this.route.queryParams.subscribe((routeParams) => {
-      if (typeof routeParams.search != 'undefined') {
+      this.resultCount = 0;
+      this.searchInProgress = true;
+      this.frequencyData = [];
+      this.frequencyTotals = [];
+      if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
         // Set the text input to the query provided in the URL.
         this.searchString = routeParams.search;
         this.API.getFrequencyData(routeParams).subscribe(response => {
           if (response && response.tokens) {
             this.frequencyData = response.tokens;
           }
-          else {
-            this.frequencyData = [];
-          }
           if (response && response.totals) {
-            console.log(response.totals);
             this.frequencyTotals = response.totals;
-          }
-          else {
-            this.frequencyTotals = [];
           }
         });
       }
@@ -172,6 +178,10 @@ export class CorpusSearchComponent {
   }
 
   reset() {
+    this.searchString = "";
+    this.filters['searchByID'].value = "";
+    this.filters['toeflTotalMin'].value = "";
+    this.filters['toeflTotalMax'].value = "";
     this.router.navigate(['/corpus']);
   }
 

@@ -8,6 +8,17 @@
           </li>
         </ul>
     </div>
+    <div class="details-wrapper">
+      <div class="facet-header" (click)="toggle('toeflShow')">&#9654; TOEFL Score</div>
+      <div class="details-body" [hidden]="!evaluateToggle('toeflShow')">
+        <strong>Filter by TOEFL total score between:</strong>
+        <label for="toeflTotalMin">Minimum:</label>
+        <input type="number" min="0" max="120" id="toeflTotalMin" name="toeflTotalMin" [(ngModel)]="filters['toeflTotalMin'].value" aria-label="TOEFL Total (minimum)" />
+        <label for="toeflTotalMax">Maximum:</label>
+        <input type="number" min="0" max="120" id="toeflTotalMax" name="toeflTotalMax" [(ngModel)]="filters['toeflTotalMax'].value" aria-label="TOEFL Total (maximum)" /><br />
+        (TOEFL scores range from 0-120)
+      </div>
+    </div>
   </div>
   <div class="col-lg-8 search-wrapper">
     <div class="row">
@@ -29,7 +40,7 @@
     <div class="row">
       <div class="details-wrapper">
         <div class="details-header" (click)="toggle('advancedSearch')">&#9654; Advanced Search</div>
-        <div class="detail</div>s-body" [hidden]="!advancedSearch">
+        <div class="details-body" [hidden]="!advancedSearch">
           <p><strong>Tip:</strong> To search by phrase, place multiple words in quotation marks</p>
           <strong>Word form handling: </strong>
           <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word(s)
@@ -43,7 +54,7 @@
       </div>
     </div>
     <div class="row search-results">
-      <h3>Results: {{ resultCount }}</h3>
+      <h3 *ngIf="searchInProgress != true">Results: {{ resultCount }}</h3>
       <table *ngIf="frequencyData && frequencyData.length > 0">
         <thead>
           <tr>
