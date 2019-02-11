@@ -1,6 +1,6 @@
 <div *ngIf="isLoaded" class="row">
   <div class="col-lg-8 offset-lg-2">
     <h1>{{ title }}</h1>
-    <div [innerHTML]="body | keepHtml"></div>
+    <div class="bigger" [innerHTML]="body | keepHtml"></div>
   </div>
 </div>

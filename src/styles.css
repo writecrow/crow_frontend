@@ -3,7 +3,8 @@
 html, body {
   height: 100%;
   font-family: "Raleway", sans-serif; /* 1 */
-  font-size:1.1rem;
+  font-size:1rem;
+  line-height:1.5;
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
   background-color:#f0f0f0;
@@ -94,15 +95,19 @@ dl, ol, ul {
 
 .panel {
   border: 1px solid #e5e5e5;
-  background-color: #f9f9f9;
+  background-color: #fff;
   color: #555;
   padding: 2rem;
   margin: .5rem;
-  border-radius: 10px;  
+  border-radius: 10px;
+  height: fit-content;
 }
 
 .smaller {
-  font-size:90%;
+  font-size:0.9rem;
+}
+.bigger {
+  font-size:1.2rem;
 }
 
 /* Facets */
@@ -126,6 +131,35 @@ dl, ol, ul {
 .facet-wrapper {
   box-shadow: 1px 1px 1px 1px #ddd;
   margin-bottom:0.5rem;
+}
+.facet-wrapper, .search-wrapper {
+  margin-top: 0.5rem;
+}
+
+/* Layout */
+.details-wrapper {
+  -webkit-box-shadow: 1px 1px 1px 1px #ddd;
+  box-shadow: 1px 1px 1px 1px #ddd;
+	margin-bottom: .5rem;
+	width:100%;
+}
+
+.details-header {
+  background: #d3d3d3;
+  font-weight: 700;
+  color: #000;
+  padding: .5rem;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+}
+
+.details-body {
+    list-style-type: none;
+    background-color: #fff;
+    color: #000;
+    border-radius: 0 0 5px 5px;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
 }
 
 /* Search inputs */

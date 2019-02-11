@@ -1,18 +1,18 @@
 <div class="row">
 	<div class="col-lg-7" *ngIf="isLoaded">
-		<div class="panel" *ngIf="content.concordance_views_field">
+		<div class="panel bigger" *ngIf="content.concordance_views_field">
 			<h2>Sentences containing search term</h2>
 			<p>A maximum of 5 sentences will be shown.</p>
 			<div [innerHTML]="content.concordance_views_field | keepHtml"></div>
 		</div>
 		<div class="panel">
-      <h2>Original text</h2>
-      <div [innerHTML]="content.body | keepHtml"></div>
+      <h2>Excerpt from Original Text</h2>
+      <div class="bigger" [innerHTML]="content.body | keepHtml"></div>
     </div>
 	</div>
-  <div class="col-lg-4 panel smaller">
+  <div class="col-lg-4 panel bigger">
 		<div *ngIf="drafts.length">
-			<h2>Drafts</h2>
+			<h3>Drafts</h3>
 			<ul *ngFor="let result of drafts">
 				<li><a routerLink="/corpus/{{ result.data.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
 					<span *ngIf="result.draft == 'F'">Final Draft</span>
@@ -21,14 +21,14 @@
 			</ul>
 		</div>
 		<div *ngIf="repositoryResources.length">
-			<h2>Related repository materials</h2>
+			<h3>Related repository materials</h3>
 			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment (all instructors)
 			<ul *ngFor="let result of repositoryResources">
 				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}} from {{ result.course}}, {{ result.semester }} {{ result.year }}</a></li>
 			</ul>
 		</div>
 		<div *ngIf="isLoaded">
-			<h2>Course Data</h2>
+			<h3>Course Data</h3>
 			<table>
 				<tbody>
 					<tr *ngIf="content.institution">
@@ -58,7 +58,7 @@
 				</tbody>
 			</table>
 			<br />
-			<h2>Student Data</h2>
+			<h3>Student Data</h3>
 			<table>
 				<tbody>
 					<tr *ngIf="content.program">
@@ -104,7 +104,7 @@
 				</tbody>
 			</table>
 			<br />
-			<h2>Text Data</h2>
+			<h3>Text Data</h3>
 			<table>
 				<tbody>
 					<tr *ngIf="content.filename">
