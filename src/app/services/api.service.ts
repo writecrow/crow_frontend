@@ -83,7 +83,11 @@ export class APIService {
     return this.getResponseFromPath('frequency/total?');
   }
 
-  searchCorpus(params) {
+  searchCorpus(path) {
+    return this.getResponseFromPath(path);
+  }
+
+  getCorpusSearchApiUrl(params) {
     const queryParameters = [];
     let nonFacets = ["method", "search", "id", "op", "toefl_total[min]", "toefl_total[max]"];
     let inc = 0;
@@ -103,10 +107,10 @@ export class APIService {
       .map(k => queryParameters[k])
       .join('&');
     if (typeof params.method !== "undefined" && params.method == "lemma") {
-      return this.getResponseFromPath('corpus/lemma?' + query);
+      return 'corpus/lemma?' + query;
     }
     else {
-      return this.getResponseFromPath('corpus?' + query);
+      return 'corpus?' + query;
     }
   }
 

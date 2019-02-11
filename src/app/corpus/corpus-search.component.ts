@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
+import { environment } from '../../environments/environment';
 
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
@@ -22,6 +23,7 @@ export class CorpusSearchComponent {
   public keywordMode = 'or';
   public method = 'word';
   searchString: string;
+  public exportUrl: string = "";
 
   // Display toggles.
   advancedSearch: boolean = false;
@@ -153,7 +155,9 @@ export class CorpusSearchComponent {
           }
         });
       }
-      this.API.searchCorpus(routeParams).subscribe(response => {
+      let searchUrl = this.API.getCorpusSearchApiUrl(routeParams);
+      this.exportUrl = environment.backend + searchUrl + "&_format=csv";
+      this.API.searchCorpus(searchUrl).subscribe(response => {
         if (response && response.search_results) {
           this.searchResults = response.search_results;
           this.isLoaded = true;
@@ -183,6 +187,7 @@ export class CorpusSearchComponent {
     this.filters['toeflTotalMin'].value = "";
     this.filters['toeflTotalMax'].value = "";
     this.router.navigate(['/corpus']);
+    this.exportUrl = "";
   }
   setOperation(i) {
     this.keywordMode = i;

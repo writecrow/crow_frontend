@@ -25,11 +25,12 @@
       <form id="search-box" class="form-inline">
         <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
         <label for="searchSubmit">
-          <button name="searchSubmit" class="secondary" (click)="textSearch(searchBox.value)">Search</button>
+          <button name="searchSubmit" class="primary" (click)="textSearch(searchBox.value)">Search</button>
         </label>
         <label for="resetSubmit">        
           <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
         </label>
+        <a *ngIf="exportUrl && searchInProgress == false" href="{{ exportUrl }}" class="btn btn-dark">Download (CSV)</a>
         <span class="search-progress">
           <span *ngIf="searchInProgress == true">
             <img class="loading" src="/assets/loading.svg" alt="Loading icon" height="50px" />

@@ -27,7 +27,7 @@ html, body {
 }
 
 /* Buttons */
-button {
+button, .btn {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -40,17 +40,15 @@ button {
   line-height: 1.5;
   border-radius: .25rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  cursor: pointer;
 }
 
-button {
-  cursor:pointer;
-}
 button.primary {
-  background-color:#252533;
+  background-color: #5C5C80;
   color:#ffffff;
 }
 button.primary:hover, button.primary:focus {
-  background-color: #5C5C80;
+  background-color:rgb(71, 71, 100);
 }
 button.secondary {
   border:1px solid #555;
@@ -59,6 +57,16 @@ button.secondary {
 }
 button.secondary:hover, button.secondary:focus {
   background-color:#D3D3D3;
+}
+.btn-dark {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+.btn-dark:hover, .btn-dark:focus {
+  text-decoration:none;
+  color:#fff;
+  background-color: #3e454d;
 }
 
 a, a:hover, a:focus {
@@ -128,7 +136,8 @@ dl, ol, ul {
   font-size:1.5rem;
   position:absolute;
 }
-form#search-box button {
+form#search-box button, 
+form#search-box .btn {
   margin-left:1rem;
 }
 input#search-input {
