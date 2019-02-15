@@ -27,6 +27,7 @@
 }
 .search-results-top h3 {
   display: inline-block;
+  margin-right: 2rem;
 }
 .search-results-top label {
   float: right;

@@ -17,6 +17,7 @@ export class CorpusSearchComponent {
   frequencyTotals: any[] = [];
   searchResults: CorpusDetail[];
   resultCount: number;
+  subcorpusWordcount: number;
   filters: any[] = [];
 
   // Used for constructing the search
@@ -94,7 +95,7 @@ export class CorpusSearchComponent {
     let selections = [];
     if (typeof this.route.snapshot.queryParams[facetgroup] !== 'undefined') {
       const selected = this.route.snapshot.queryParams[facetgroup];
-      selections = selected.split(',');
+      selections = selected.split('+');
     }
 
     if (typeof active === 'undefined') {
@@ -113,7 +114,7 @@ export class CorpusSearchComponent {
         }
       }
     }
-    let facetString = selections.join(',');
+    let facetString = selections.join('+');
     if (facetString === '') {
       facetString = null;
     }
@@ -127,8 +128,15 @@ export class CorpusSearchComponent {
     // values returned from the API to their object.
     for (let name in this.facets) {
       let i = this.facets[name].index;
-      if (typeof facets[i][0] !== 'undefined') {
-        this.facets[name].values = facets[i][0][name];
+      if (typeof facets[name] !== 'undefined') {
+        let facetKeys = Object.keys(facets[name]);
+        let facetValues = Object.values(facets[name]);
+        let facetOutput = [];
+        for (let key in facetKeys) {
+          let id = facetKeys[key];
+          facetOutput.push({ 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active});
+        }
+        this.facets[name].values = facetOutput;
       }
       else {
         this.facets[name].values = [];
@@ -139,22 +147,24 @@ export class CorpusSearchComponent {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
     this.route.queryParams.subscribe((routeParams) => {
       this.resultCount = 0;
+      this.subcorpusWordcount = 0;
       this.searchInProgress = true;
       this.frequencyData = [];
       this.frequencyTotals = [];
       this.searchResults = [];
-      if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
-        // Set the text input to the query provided in the URL.
-        this.searchString = routeParams.search;
-        this.API.getFrequencyData(routeParams).subscribe(response => {
-          if (response && response.tokens) {
-            this.frequencyData = response.tokens;
-          }
-          if (response && response.totals) {
-            this.frequencyTotals = response.totals;
-          }
-        });
-      }
+      // if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
+      //   // Set the text input to the query provided in the URL.
+      //   this.searchString = routeParams.search;
+      //   this.API.getFrequencyData(routeParams).subscribe(response => {
+      //     if (response && response.tokens) {
+      //       console.log(response.tokens);
+      //       this.frequencyData = response.tokens;
+      //     }
+      //     if (response && response.totals) {
+      //       this.frequencyTotals = response.totals;
+      //     }
+      //   });
+      // }
       let searchUrl = this.API.getCorpusSearchApiUrl(routeParams);
       this.exportUrl = environment.backend + searchUrl + "&_format=csv";
       this.API.searchCorpus(searchUrl).subscribe(response => {
@@ -166,7 +176,24 @@ export class CorpusSearchComponent {
         if (response && response.facets) {
           this.preparefacets(response.facets);
         }
+        if (response && response.frequency) {
+          let tokenKeys = Object.keys(response.frequency.tokens);
+          let tokenValues = Object.values(response.frequency.tokens);
+          for (let key in tokenKeys) {
+            let id = tokenKeys[key];
+            this.frequencyData.push({ 
+              'token': id,
+              'raw': tokenValues[key]["raw"],
+              'normed': tokenValues[key]["normed"],
+              'texts': tokenValues[key]["texts"],
+            });
+          }
+          if (typeof response.frequency.totals != undefined) {
+            this.frequencyTotals = response.frequency.totals;
+          }
+        }
         this.resultCount = response.pager['total_items'];
+        this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
         this.searchInProgress = false;
       });
     });

@@ -4,7 +4,9 @@
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ facets[key].label }}</div>
         <ul class="facet-items" [hidden]="!facets[key].show">
           <li *ngFor="let item of facets[key].values">
-            <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }} texts)
+            <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} 
+              <ng-container *ngIf="item.count > 1">({{item.count }} texts)</ng-container>
+              <ng-container *ngIf="item.count == 1">({{item.count }} text)</ng-container>
           </li>
         </ul>
     </div>
@@ -57,15 +59,16 @@
     <div class="row search-results">
       <form *ngIf="searchInProgress != true" class="search-results-top">
         <h3>Matching texts: {{ resultCount | number }}</h3>
+        <h3 *ngIf="subcorpusWordcount != 0">Sub-corpus word count: {{ subcorpusWordcount | number }}</h3>
         <label>
           <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
         </label>
       </form>
-      <table *ngIf="frequencyData && frequencyData.length > 0">
+      <table>
         <thead>
           <tr>
             <th>Search query</th>
-            <th>Instances in corpus<div class="tooltip-toggle" aria-label="The total number of instances in the entire corpus">&nbsp;&#9432;</div></th>
+            <th>Instances in matching texts<div class="tooltip-toggle" aria-label="The total number of instances within texts that match all search criteria">&nbsp;&#9432;</div></th>
             <th>Normed (per 1 million)<div class="tooltip-toggle" aria-label="The number of instances per 1 million words in the corpus">&nbsp;&#9432;</div></th>
             <th>Texts containing term</th>
           </tr>
@@ -80,7 +83,7 @@
             </tr>
         </ng-container>
         <ng-container >
-            <tr *ngIf="frequencyTotals && frequencyTotals.length > 0" class="border-top">
+            <tr class="border-top">
               <th></th>
               <td>{{ frequencyTotals.raw | number}}</td>
               <td>{{ frequencyTotals.normed | number:'1.0-0' }}</td>

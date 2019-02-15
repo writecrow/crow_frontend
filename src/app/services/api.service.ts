@@ -96,11 +96,7 @@ export class APIService {
         queryParameters.push(encodeURIComponent(key) + '=' + params[key]);
       }
       else {
-        const selections = params[key].split(',');
-        for (const i of Object.keys(selections)) {
-          queryParameters.push('f[' + inc + ']=' + key + ':' + encodeURIComponent(selections[i]));
-          inc++;
-        }
+        queryParameters.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
       }
     }
     const query = Object.keys(queryParameters)
@@ -110,7 +106,7 @@ export class APIService {
       return 'corpus/lemma?' + query;
     }
     else {
-      return 'corpus?' + query;
+      return 'corpus_search?' + query;
     }
   }
 
