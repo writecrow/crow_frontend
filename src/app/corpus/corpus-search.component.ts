@@ -21,9 +21,9 @@ export class CorpusSearchComponent {
   filters: any[] = [];
 
   // Used for constructing the search
-  public keywordMode = 'or';
-  public method = 'word';
-  searchString: string;
+  public keywordMode: string = 'or';
+  public method: string = 'word';
+  public searchString: string = "";
   public exportUrl: string = "";
 
   // Display toggles.
@@ -152,19 +152,10 @@ export class CorpusSearchComponent {
       this.frequencyData = [];
       this.frequencyTotals = [];
       this.searchResults = [];
-      // if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
-      //   // Set the text input to the query provided in the URL.
-      //   this.searchString = routeParams.search;
-      //   this.API.getFrequencyData(routeParams).subscribe(response => {
-      //     if (response && response.tokens) {
-      //       console.log(response.tokens);
-      //       this.frequencyData = response.tokens;
-      //     }
-      //     if (response && response.totals) {
-      //       this.frequencyTotals = response.totals;
-      //     }
-      //   });
-      // }
+      if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
+        // Set the text input to the query provided in the URL.
+        this.searchString = routeParams.search;
+      }
       let searchUrl = this.API.getCorpusSearchApiUrl(routeParams);
       this.exportUrl = environment.backend + searchUrl + "&_format=csv";
       this.API.searchCorpus(searchUrl).subscribe(response => {
