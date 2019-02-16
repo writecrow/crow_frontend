@@ -5,7 +5,7 @@
         <ul class="facet-items" [hidden]="!facets[key].show">
           <li *ngFor="let item of facets[key].values">
             <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} 
-              <ng-container *ngIf="item.count > 1">({{item.count }} texts)</ng-container>
+              <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>
               <ng-container *ngIf="item.count == 1">({{item.count }} text)</ng-container>
           </li>
         </ul>
@@ -82,7 +82,7 @@
               <td>{{ i.texts | number }}</td>
             </tr>
         </ng-container>
-        <ng-container >
+        <ng-container *ngIf="frequencyTotals" >
             <tr class="border-top">
               <th></th>
               <td>{{ frequencyTotals.raw | number}}</td>
