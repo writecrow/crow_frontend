@@ -167,7 +167,7 @@ export class CorpusSearchComponent {
         if (response && response.facets) {
           this.preparefacets(response.facets);
         }
-        if (response && response.frequency) {
+        if (response && response.frequency.tokens) {
           let tokenKeys = Object.keys(response.frequency.tokens);
           let tokenValues = Object.values(response.frequency.tokens);
           for (let key in tokenKeys) {

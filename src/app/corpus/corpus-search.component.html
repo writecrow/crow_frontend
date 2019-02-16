@@ -59,12 +59,12 @@
     <div class="row search-results">
       <form *ngIf="searchInProgress != true" class="search-results-top">
         <h3>Matching texts: {{ resultCount | number }}</h3>
-        <h3 *ngIf="subcorpusWordcount != 0">Sub-corpus word count: {{ subcorpusWordcount | number }}</h3>
+        <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
         <label>
           <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
         </label>
       </form>
-      <table>
+      <table *ngIf="frequencyData.length > 0">
         <thead>
           <tr>
             <th>Search query</th>
@@ -82,7 +82,7 @@
               <td>{{ i.texts | number }}</td>
             </tr>
         </ng-container>
-        <ng-container *ngIf="frequencyTotals" >
+        <ng-container *ngIf="frequencyTotals">
             <tr class="border-top">
               <th></th>
               <td>{{ frequencyTotals.raw | number}}</td>
