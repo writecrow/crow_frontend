@@ -45,16 +45,12 @@ export class HomeComponent implements OnInit {
       }
     }
     // Pre-load the corpus search data, in part to get the total
-    // number of text, and also for faster perceived loading when
+    // number of texts, and also for faster perceived loading when
     // users navigate to the corpus (results already cached).
     this.API.getDefaultCorpusSearchResults().subscribe((response) => {
-      if (typeof response !== 'undefined' && response) {
+      if (typeof response !== 'undefined' && response.pager) {
         this.total_texts = response.pager.total_items;
-      }
-    });
-    this.API.getTotalWords().subscribe((response) => {
-      if (typeof response !== 'undefined' && response) {
-        this.total_words = response.total;
+        this.total_words = response.pager.subcorpus_wordcount;
       }
     });
   }

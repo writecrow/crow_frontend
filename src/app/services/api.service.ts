@@ -44,7 +44,7 @@ export class APIService {
   }
 
   getDefaultCorpusSearchResults() {
-    return this.getResponseFromPath('corpus?');
+    return this.getResponseFromPath('corpus_search?');
   }
 
   getFrequencyData(attributes) {
