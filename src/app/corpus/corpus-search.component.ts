@@ -46,8 +46,8 @@ export class CorpusSearchComponent {
     // Additional filters.
     this.filters = <any>[];
     this.filters['searchByID'] = { backend_key: 'id', value: '' };
-    this.filters['toeflTotalMin'] = { backend_key: 'toefl_total[min]', value: '' };
-    this.filters['toeflTotalMax'] = { backend_key: 'toefl_total[max]', value: '' };
+    this.filters['toeflTotalMin'] = { backend_key: 'toefl_total_min', value: '' };
+    this.filters['toeflTotalMax'] = { backend_key: 'toefl_total_max', value: '' };
 
     // The order in which these are pushed into the "facets" object determine their order in the sidebar.
     this.facets = <any>[];
@@ -130,7 +130,6 @@ export class CorpusSearchComponent {
       let i = this.facets[name].index;
       if (typeof facets[name] !== 'undefined') {
         let facetKeys = Object.keys(facets[name]);
-        let facetValues = Object.values(facets[name]);
         let facetOutput = [];
         for (let key in facetKeys) {
           let id = facetKeys[key];
@@ -155,6 +154,21 @@ export class CorpusSearchComponent {
       if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
         // Set the text input to the query provided in the URL.
         this.searchString = routeParams.search;
+      }
+      if (typeof routeParams.method != 'undefined' && routeParams.method != "") {
+        this.method = routeParams.method;
+      }
+      if (typeof routeParams.op != 'undefined' && routeParams.op == "and") {
+        this.keywordMode = "and";
+      }
+      if (typeof routeParams.id != 'undefined' && routeParams.id != "") {
+        this.filters['searchByID'].value = routeParams.id;
+      }
+      if (typeof routeParams.toefl_total_min != 'undefined' && routeParams.toefl_total_min != "") {
+        this.filters['toeflTotalMin'].value = routeParams.toefl_total_min;
+      }
+      if (typeof routeParams.toefl_total_max != 'undefined' && routeParams.toefl_total_max != "") {
+        this.filters['toeflTotalMax'].value = routeParams.toefl_total_max;
       }
       let searchUrl = this.API.getCorpusSearchApiUrl(routeParams);
       this.exportUrl = environment.backend + searchUrl + "&_format=csv";

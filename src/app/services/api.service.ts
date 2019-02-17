@@ -89,7 +89,7 @@ export class APIService {
 
   getCorpusSearchApiUrl(params) {
     const queryParameters = [];
-    let nonFacets = ["method", "search", "id", "op", "toefl_total[min]", "toefl_total[max]"];
+    let nonFacets = ["method", "search", "id", "op", "toefl_total_min", "toefl_total_max"];
     let inc = 0;
     for (const key in params) {
       if (nonFacets.includes(key)){
@@ -103,7 +103,7 @@ export class APIService {
       .map(k => queryParameters[k])
       .join('&');
     if (typeof params.method !== "undefined" && params.method == "lemma") {
-      return 'corpus/lemma?' + query;
+      return 'corpus_search?' + query;
     }
     else {
       return 'corpus_search?' + query;
