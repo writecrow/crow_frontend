@@ -93,7 +93,7 @@ export class APIService {
     let inc = 0;
     for (const key in params) {
       if (nonFacets.includes(key)){
-        queryParameters.push(encodeURIComponent(key) + '=' + params[key]);
+        queryParameters.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
       }
       else {
         queryParameters.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
