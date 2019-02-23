@@ -7,6 +7,7 @@
             <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} 
               <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>
               <ng-container *ngIf="item.count == 1">({{item.count }} text)</ng-container>
+              <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
           </li>
         </ul>
     </div>
@@ -46,7 +47,7 @@
         <div class="details-body" [hidden]="!advancedSearch">
           <p><strong>Tip:</strong> To search by phrase, place multiple words in quotation marks</p>
           <strong>Word form handling: </strong>
-          <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word(s)
+          <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word
           <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms (e.g., begin, began, begun, beginning"> Lemma<br />
           <br />
           <strong>Multiple word handling: </strong>
@@ -101,8 +102,8 @@
             <div class="col search-metadata">
               <hr />
               <strong>Term:</strong> {{result.semester}} {{result.year}},  
-              <strong>Course:</strong> {{ result.course }}, 
-              <strong>Assignment:</strong> {{ result.assignment }}, 
+              <strong>Course:</strong> {{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}">&nbsp;&#9432;</div>,
+              <strong>Assignment:</strong> {{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>, 
               <strong>Draft:</strong> {{result.draft }}, 
               <strong>Gender:</strong> {{ result.gender }}, 
               <strong>TOEFL:</strong> {{result.toefl_total}}

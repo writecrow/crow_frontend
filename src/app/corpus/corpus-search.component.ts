@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
 import { environment } from '../../environments/environment';
-
+import { CourseDescriptionService } from '../services/courseDescription.service';
+import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
+import { courseDescriptionSchema } from '../services/courseDescriptionSchema';
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
   styleUrls: ['../corpus/corpus-search.component.css']
@@ -22,7 +25,9 @@ export class CorpusSearchComponent {
 
   // Used for constructing the search
   public keywordMode: string = 'or';
+  public validKeywordModes: any[] = ['and', 'or'];
   public method: string = 'word';
+  public validMethods: any[] = ['word', 'lemma'];
   public searchString: string = "";
   public exportUrl: string = "";
 
@@ -37,6 +42,9 @@ export class CorpusSearchComponent {
     private route: ActivatedRoute,
     private router: Router,
     private API: APIService,
+    private sanitizer: DomSanitizer,
+    private courses: CourseDescriptionService,
+    private assignments: AssignmentDescriptionService,
   ) {
     var authenticated = localStorage.getItem('crowAuthenticate');
     if (authenticated != 'yes') {
@@ -79,12 +87,12 @@ export class CorpusSearchComponent {
       }
     }
     if (terms != "") {
-      currentParams.search = terms;
+      currentParams.search = this.sanitizer.sanitize(SecurityContext.URL, terms);
     }
-    if (this.keywordMode != "or") {
+    if (this.keywordMode !== "undefined" && this.validKeywordModes.includes(this.keywordMode)) {
       currentParams.op = this.keywordMode;
     }
-    if (typeof this.method !== "undefined") {
+    if (typeof this.method !== "undefined" && this.validMethods.includes(this.method)) {
       currentParams.method = this.method;
     }
     this.router.navigate(['/corpus'], { queryParams: currentParams, queryParamsHandling: 'merge' });
@@ -133,7 +141,14 @@ export class CorpusSearchComponent {
         let facetOutput = [];
         for (let key in facetKeys) {
           let id = facetKeys[key];
-          facetOutput.push({ 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active});
+          let data = { 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active, 'description': '' };
+          if (name == 'course') {
+            data.description = this.courses.getDescription(facetKeys[key]);
+          }
+          if (name == 'assignment') {
+            data.description = this.assignments.getDescription(facetKeys[key], "Purdue University");
+          }
+          facetOutput.push(data);
         }
         this.facets[name].values = facetOutput;
       }
@@ -146,6 +161,8 @@ export class CorpusSearchComponent {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
     this.route.queryParams.subscribe((routeParams) => {
       this.resultCount = 0;
+      this.method = "word";
+      this.keywordMode = "or";
       this.subcorpusWordcount = 0;
       this.searchInProgress = true;
       this.frequencyData = [];
@@ -155,11 +172,11 @@ export class CorpusSearchComponent {
         // Set the text input to the query provided in the URL.
         this.searchString = routeParams.search;
       }
-      if (typeof routeParams.method != 'undefined' && routeParams.method != "") {
+      if (typeof routeParams.method != 'undefined' && this.validMethods.includes(routeParams.method)) {
         this.method = routeParams.method;
       }
-      if (typeof routeParams.op != 'undefined' && routeParams.op == "and") {
-        this.keywordMode = "and";
+      if (typeof routeParams.op != 'undefined' && this.validKeywordModes.includes(routeParams.op)) {
+        this.keywordMode = routeParams.op;
       }
       if (typeof routeParams.id != 'undefined' && routeParams.id != "") {
         this.filters['searchByID'].value = routeParams.id;
@@ -174,9 +191,8 @@ export class CorpusSearchComponent {
       this.exportUrl = environment.backend + searchUrl + "&_format=csv";
       this.API.searchCorpus(searchUrl).subscribe(response => {
         if (response && response.search_results) {
-          this.searchResults = response.search_results;
+          this.searchResults = this.prepareSearchResults(response.search_results);
           this.isLoaded = true;
-          // Do additional modifications on the returned API data.
         }
         if (response && response.facets) {
           this.preparefacets(response.facets);
@@ -202,6 +218,13 @@ export class CorpusSearchComponent {
         this.searchInProgress = false;
       });
     });
+  }
+  prepareSearchResults(results) {
+    for (let r in results) {
+      results[r]["course_description"] = this.courses.getDescription(results[r].course);
+      results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
+    }
+    return results;    
   }
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
