@@ -22,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { APIService } from './services/api.service';
 import { RequestCache } from './services/request-cache.service';
 import { CachingInterceptor } from './services/caching-interceptor.service';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { AssignmentDescriptionService } from './services/assignmentDescription.service';
 import { CourseDescriptionService } from './services/courseDescription.service';
 
@@ -58,7 +59,12 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
     AssignmentDescriptionService,
     CourseDescriptionService,
     RequestCache,
-    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

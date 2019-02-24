@@ -37,6 +37,7 @@ export class CorpusSearchComponent {
   searchInProgress: boolean = false;;
   toeflShow: boolean = false;
   showMetadata: boolean = true;
+  statusMessage: string = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -168,8 +169,9 @@ export class CorpusSearchComponent {
       this.frequencyData = [];
       this.frequencyTotals = [];
       this.searchResults = [];
+      // Populate the interface from the URL.
+      // @todo -- move this to a callback function?
       if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
-        // Set the text input to the query provided in the URL.
         this.searchString = routeParams.search;
       }
       if (typeof routeParams.method != 'undefined' && this.validMethods.includes(routeParams.method)) {
@@ -216,8 +218,19 @@ export class CorpusSearchComponent {
         this.resultCount = response.pager['total_items'];
         this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
         this.searchInProgress = false;
+      }, 
+      err => {
+        this.isLoaded = true;
+        this.searchInProgress = false;
+        if (err == "403") {
+          this.router.navigate(['/authorize']);
+        }
+        else {
+          this.statusMessage = 'There was a problem completing the search. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
+        }
       });
     });
+
   }
   prepareSearchResults(results) {
     for (let r in results) {

@@ -25,6 +25,7 @@
   </div>
   <div class="col-lg-8 search-wrapper">
     <div class="row">
+      <div *ngIf="statusMessage" class="panel" [innerHTML]="statusMessage | keepHtml"></div>
       <form id="search-box" class="form-inline">
         <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
         <label for="searchSubmit">

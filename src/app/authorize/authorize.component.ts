@@ -19,10 +19,6 @@ export class AuthorizeComponent {
 
   ngOnInit(): void {
     this.statusMessage = '';
-    var authenticated = localStorage.getItem('crowAuthenticate');
-    if (authenticated == 'yes') {
-      this.router.navigateByUrl('corpus');
-    }
   }
 
   authorize(user: string, pass: string): void {
