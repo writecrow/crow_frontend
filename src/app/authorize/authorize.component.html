@@ -1,17 +1,22 @@
 <div class="container">
   <div class="row justify-content-md-center">
-    <div class="col-md-6 light-panel">
-      <h2>Authorization Needed</h2>
-      <p>The Crow corpus & repository components currently require additional permission to view. If you have been given a passphrase by Crow maintainers, enter it below. If you are interested in gaining basic access, contact us via <a href="mailto:collaborate@writecrow.org">collaborate@writecrow.org</a>.
-      </p>
+    <div class="col-md-7 light-panel">
+      <h2>Sign In</h2>
+      <p>The Crow corpus & repository components require additional permission to view. If you have been given credentials by Crow maintainers, enter them below.</p>
       <p class="status" *ngIf="statusMessage">&#9888; {{ statusMessage }}</p>
       <form id="authorize" class="form-inline">
         <input #userBox id="user" name="pass" class="form-control" placeholder="Username" aria-label="Username" autofocus />
-        <input #passBox id="pass" name="pass" class="form-control" placeholder="Password" aria-label="Password" />
+        <input #passBox type="password" id="pass" name="pass" class="form-control" placeholder="Password" aria-label="Password" />
+        <input #additional type="text" id="additional" name="additional_information" tabindex="-1" autocomplete="off">
         <label for="authSubmit">
-          <button name="authSubmit" class="secondary" (click)="authorize(userBox.value, passBox.value)">Authorize</button>
+          <button name="authSubmit" class="secondary" (click)="authorize(userBox.value, passBox.value, additional.value)">Authorize</button>
         </label>
       </form>
+    </div>
+    <div class="col-md-4 panel">
+      <h3>How to request access</h3>
+      <p>If you are interested in research access, contact us via <a href="mailto:collaborate@writecrow.org">collaborate@writecrow.org</a>.
+      </p>
     </div>
   </div>
 </div>

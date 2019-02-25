@@ -1,5 +1,6 @@
 <div class="row">
 	<div class="col-lg-7" *ngIf="isLoaded">
+		<div *ngIf="statusMessage" class="panel" [innerHTML]="statusMessage | keepHtml"></div>
 		<div class="panel bigger" *ngIf="content.concordance_views_field">
 			<h2>Sentences containing search term</h2>
 			<p>A maximum of 5 sentences will be shown.</p>

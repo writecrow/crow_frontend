@@ -15,6 +15,7 @@ export class CorpusDetailComponent implements OnInit {
   drafts: any[] = [];
   repositoryResources: any[] = [];
   isLoaded: boolean;
+  statusMessage: string = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -68,6 +69,15 @@ export class CorpusDetailComponent implements OnInit {
         }
         else {
           this.router.navigateByUrl('404', { skipLocationChange: true });
+        }
+      },
+      err => {
+        if (err == "403") {
+          this.router.navigate(['/authorize']);
+        }
+        else {
+          this.isLoaded = true;
+          this.statusMessage = 'There was a problem retrieving this resource. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
         }
       });
     });

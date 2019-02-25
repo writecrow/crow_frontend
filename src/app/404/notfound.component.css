@@ -5,6 +5,9 @@ div.col-lg-8 {
   padding: 2rem;
   border-radius: 5px;
 }
+p {
+  font-size: 1.3rem;
+}
 img {
   float:right;
 }

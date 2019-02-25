@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { share, map, retry, catchError } from 'rxjs/operators';
+import { share, map } from 'rxjs/operators';
 
 // Defines the REST endpoint URL per environment.
 import { environment } from '../../environments/environment';
@@ -84,7 +83,7 @@ export class APIService {
   }
 
   searchCorpus(path) {
-    return this.getResponseFromPath('corpus_search?');
+    return this.getResponseFromPath(path);
   }
 
   getCorpusSearchApiUrl(params) {

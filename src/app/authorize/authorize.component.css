@@ -1,5 +1,5 @@
-p {
-  font-size:1.2rem;
+.light-panel, .panel, button {
+  font-size:1.3rem;
 }
 input {
   padding:0.25rem;
@@ -9,4 +9,7 @@ input {
 .status {
   border:1px solid #ddd;
   font-weight:bold;
+}
+input#additional {
+  display:none;
 }

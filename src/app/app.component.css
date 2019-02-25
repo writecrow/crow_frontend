@@ -22,10 +22,13 @@ header .title h2 {
 }
 
 /* Navigation */
-nav a {
+nav a, nav form {
   font-size: 1.3rem;
   padding-left: 1rem;
   display: inline-block;
+}
+nav form {
+	float: right;
 }
 
 /* Adjustments for small displays */
@@ -34,6 +37,10 @@ nav a {
 	  float:unset;
 	  text-align:center;
 	}
+	nav form {
+		display:block;
+		width:100%;
+	}
 	nav a {
 		font-size:0.9rem;
 		padding: 0.5em 0.5em;
@@ -41,7 +48,7 @@ nav a {
 	.logo {
     width:175px;
 	}
-	.title {
-		text-align:center;
+	.logo-wrapper {
+		text-align: center;
 	}
 }

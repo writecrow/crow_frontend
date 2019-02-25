@@ -45,12 +45,8 @@ export class CorpusSearchComponent {
     private API: APIService,
     private sanitizer: DomSanitizer,
     private courses: CourseDescriptionService,
-    private assignments: AssignmentDescriptionService,
+    private assignments: AssignmentDescriptionService
   ) {
-    var authenticated = localStorage.getItem('crowAuthenticate');
-    if (authenticated != 'yes') {
-      this.router.navigate(['/authorize']);
-    }
 
     // Additional filters.
     this.filters = <any>[];

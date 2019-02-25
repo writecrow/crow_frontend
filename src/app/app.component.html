@@ -11,7 +11,13 @@
         <a routerLink="page/students">Students</a>
         <a routerLink="page/researchers">Researchers</a>
         <a routerLink="page/developers">Developers</a>
-        <a routerLink="page/how-to">How to...</a>
+        <a routerLink="page/how-to">Help</a>
+        <form id="authentication" class="form-inline">
+          <label for="authSubmit">
+            <button *ngIf="globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signOut()">Sign out</button>
+            <button *ngIf="!globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signIn()">Sign in</button>
+          </label>
+        </form> 
       </nav>
     </div>
   </div>
