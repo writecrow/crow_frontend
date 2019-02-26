@@ -1,17 +1,16 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { authorizeService } from './authorize/authorize.service';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { authorizeService } from './services/authorize.service';
 import { LoginService } from './services/login.service';
 import { Globals } from './globals';
 
 declare var require: any;
-// declare google analytics
 declare const ga: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [authorizeService, LoginService, Globals],
+  providers: [authorizeService, LoginService],
 })
 export class AppComponent implements AfterViewInit {
   public LOGO = require("../assets/logo.svg");
@@ -21,9 +20,16 @@ export class AppComponent implements AfterViewInit {
     public authorizeService: authorizeService,
     public LoginService: LoginService,
     private globals: Globals,
-  ) { }
+  ) { 
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.globals.statusMessage = "";
+      } 
+    });
+  }
 
   ngOnInit(): void {
+    this.globals.statusMessage = "";
     if (this.authorizeService.isAuthenticated()) {
       this.globals.isAuthenticated = true;
     }
@@ -35,13 +41,16 @@ export class AppComponent implements AfterViewInit {
     this.router.navigate(['/authorize']);
   }
   signOut(): void {
-    this.globals.isAuthenticated = false;
     this.LoginService.logout();
+    this.router.navigate(['/']);
+    this.globals.isAuthenticated = false;
+  }
+  exitStatus(): void {
+    this.globals.statusMessage = "";
   }
   ngAfterViewInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // console.log(ga); // Just to make sure it's actually the ga function
         ga('set', 'page', event.urlAfterRedirects);
         ga('send', 'pageview');
       }

@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { Token } from '../services/tokenSchema';
 import { HandleErrorService } from './handle-error.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RequestCache } from '../services/request-cache.service';
 
 @Injectable()
 export class LoginService {
@@ -18,7 +19,9 @@ export class LoginService {
     private http: HttpClient,
     private handleError: HandleErrorService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private requestCache: RequestCache 
+  ) { }
 
   login(user, pass): Observable<Token> {
     const url = `${this.mainUrl}oauth/token`;
@@ -31,15 +34,16 @@ export class LoginService {
     return this.http.post(url, body).pipe(map((token: Token) => {
       localStorage.setItem('token', JSON.stringify(token.access_token));
       localStorage.setItem('refresh_token', JSON.stringify(token.refresh_token));
-      return <Token> token.access_token
+      return token
     }), 
-    catchError(this.handleError.handleError));
+    catchError(
+      this.handleError.handleError));
   }
 
   logout() {
+    this.requestCache.clearAll();
     localStorage.removeItem('token');
     localStorage.removeItem('refresh_token'); 
-    this.router.navigate(['/']);
     return empty();
   }
 

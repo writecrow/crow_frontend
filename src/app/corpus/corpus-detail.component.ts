@@ -72,13 +72,9 @@ export class CorpusDetailComponent implements OnInit {
         }
       },
       err => {
-        if (err == "403") {
-          this.router.navigate(['/authorize']);
-        }
-        else {
-          this.isLoaded = true;
-          this.statusMessage = 'There was a problem retrieving this resource. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
-        }
+        // Handle 500s.
+        this.isLoaded = true;
+        this.statusMessage = 'There was a problem retrieving this resource. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
       });
     });
   }

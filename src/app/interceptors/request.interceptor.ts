@@ -1,36 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent, HttpErrorResponse } from "@angular/common/http";
 
-// import 'rxjs/add/operator/do';
-// import 'rxjs/add/operator/map'
-// import 'rxjs/add/observable/throw';
-// import 'rxjs/add/operator/switchMap';
-// import 'rxjs/add/operator/finalize';
-// import 'rxjs/add/operator/filter';
-// import 'rxjs/add/operator/take';
-
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, empty, throwError } from 'rxjs';
 import { catchError, finalize, switchMap, filter, take } from 'rxjs/operators';
 
 import { RefreshTokenService } from '../services/refresh-token.service'
-import { authorizeService } from '../authorize/authorize.service';
+import { authorizeService } from '../services/authorize.service';
 import { LoginService } from '../services/login.service';
+import { Globals } from '../globals';
 
 @Injectable()
 // HttpInterceptor interface. 
 export class RequestInterceptor implements HttpInterceptor {
 
-
   isRefreshingToken: boolean = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  constructor(private authService: authorizeService, public login: LoginService, private refreshToken: RefreshTokenService) { }
-  // addToken will add the Bearer token to the Authorization header
-  addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
-    return req.clone({ setHeaders: { Authorization: 'Bearer ' + token } })
-  }
-  // The RequestInterceptorService will implement HttpInterceptor which has only one method:  
-  // intercept.  It will add a token to the header on each call and catch any errors that might occur.
+  constructor(
+    private authService: authorizeService,
+    public login: LoginService,
+    private refreshToken: RefreshTokenService,
+    private globals: Globals
+  ) { }
+  // Add a token to the header on each call and catch HTTP response errors.
+  // Note: the backend must be set to allow such headers.
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
     // In the intercept method, we return next.handle and pass in the cloned request with a header added.
     return next.handle(this.addToken(req, this.authService.getToken())).pipe(
@@ -38,20 +31,27 @@ export class RequestInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse) {
           switch ((<HttpErrorResponse>error).status) {
             case 401:
-              console.log('error 401');
               return this.handle401Error(error);
             case 403:
-              console.log('error 403');
               return this.handle403Error(req, next);
+            case 500:
+              return this.handle500Error(error);
           }
         } else {
-          return Observable.throw(error);
+          return throwError(error);
         }
       }));
   }
+  // Add the Bearer token to the Authorization header
+  addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
+    return req.clone({ setHeaders: { Authorization: 'Bearer ' + token } })
+  }
 
-  // The code to handle the 401 error is the most important.
   handle403Error(req: HttpRequest<any>, next: HttpHandler) {
+    if (this.authService.isAuthenticated()) {
+      this.globals.statusMessage = "Your account does not have access to this content.";
+      return empty();
+    }
     // If isRefreshingToken is false (which it is by default) we will 
     // enter the code section that calls authService.refreshToken
     if (!this.isRefreshingToken) {
@@ -82,7 +82,7 @@ export class RequestInterceptor implements HttpInterceptor {
           return this.login.logout();
         }),
         finalize(() => {
-          // When the call to refreshToken completes, in the finally block, 
+          // When the call to refreshToken completes, in the finalize block, 
           // reset the isRefreshingToken to false for the next time the token needs to be refreshed
           this.isRefreshingToken = false;
         }));
@@ -92,7 +92,6 @@ export class RequestInterceptor implements HttpInterceptor {
     // If isRefreshingToken is true, we will wait until tokenSubject has a non-null value 
     // – which means the new token is ready 
     else {
-
       return this.tokenSubject.pipe(
         filter(token => token != null)
         // Only take 1 here to avoid returning two – which will cancel the request
@@ -105,21 +104,21 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   handle401Error(error) {
-    console.log('outside conditional');
-    // Some may be wondering at this point what would happen if the refresh token times out.  
+    this.globals.statusMessage = "The username/password combination was not accepted.";
     // Usually caused by not making any API calls for whatever the timeout is configured for.  
-    // Well, what happens is that you should see a 400 error with an ‘invalid_grant’ message.  
-    // So the handle401Error code should most likely log out the user and direct them to the login page.
     if (error && error.status === 401 || error.error && error.error.error === 'invalid_grant') {
-      // If we get a 400 and the error message is 'invalid_grant', the token is no longer valid so logout.
-      console.log('inside the conditional');
+      // If 401 and the error message is 'invalid_grant', 
+      // the token is no longer valid so logout.
       return this.login.logout();
     }
-
-    return Observable.throw(error);
+    return throwError(error);
   }
 
-
+  handle500Error(error) {
+    // Usually caused by a server-side error.
+    this.globals.statusMessage = 'There was a problem completing this request. You can wait a moment and try again; if the problem persists, please report it to <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a> and we will look into it.'; 
+    return throwError(error);
+  }
 
 
 }

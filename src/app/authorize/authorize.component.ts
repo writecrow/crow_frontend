@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { authorizeService } from '../authorize/authorize.service';
+import { authorizeService } from '../services/authorize.service';
 import { LoginService} from '../services/login.service';
-import { AppComponent } from '../app.component';
 import { Globals } from '../globals';
 @Component({
   templateUrl: '../authorize/authorize.component.html',
@@ -12,32 +11,30 @@ import { Globals } from '../globals';
 
 export class AuthorizeComponent {
 
-  public statusMessage: string = '';
-  private text: string;
-
   constructor(
     private router: Router,
     public authorizeService: authorizeService,
     public LoginService: LoginService,
-    public app: AppComponent,
-    private globals: Globals,
+    private globals: Globals
   ) { }
 
   ngOnInit(): void {
-    this.statusMessage = '';
+    // There is no reason for currently authenticated users to see this route.
+    if (this.authorizeService.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
   }
 
   authorize(name: string, pass: string, additional: string): void {
     name = name.trim();
-    console.log(additional);
     if (!name || additional !== "" ) { return; }
     let user: any = { name, pass };
     this.LoginService.login(user.name, user.pass).subscribe(
       data => {
+        // data returned is the Token object.
         this.globals.isAuthenticated = true;
         this.router.navigate(['/']); 
-      },
-      error => this.statusMessage = error
+      }
     );
   }
 }

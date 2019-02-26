@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { share, map } from 'rxjs/operators';
-
-// Defines the REST endpoint URL per environment.
 import { environment } from '../../environments/environment';
 
 @Injectable()

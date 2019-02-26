@@ -1,11 +1,11 @@
 <header class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="logo-wrapper">
         <a routerLink="/" routerLinkActive="active"><img class="logo" [src]="LOGO" alt="Silhouette of a crow" /></a>
       </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <nav>
         <a routerLink="page/teachers">Instructors</a>
         <a routerLink="page/students">Students</a>
@@ -14,6 +14,7 @@
         <a routerLink="page/how-to">Help</a>
         <form id="authentication" class="form-inline">
           <label for="authSubmit">
+            <span *ngIf="globals.isAuthenticated"><em>Signed in</em>&nbsp;&nbsp;</span>
             <button *ngIf="globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signOut()">Sign out</button>
             <button *ngIf="!globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signIn()">Sign in</button>
           </label>
@@ -22,6 +23,16 @@
     </div>
   </div>
 </header>
+<div *ngIf="globals.statusMessage" class="container status">
+  <div class="row">
+    <div class="col-md-12 panel">
+      {{ globals.statusMessage }}
+      <button type="button" class="close" aria-label="Close" (click)="exitStatus()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+</div>
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>

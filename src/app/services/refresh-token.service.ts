@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 import { Token } from '../services/tokenSchema';
 
 import { HandleErrorService } from '../services/handle-error.service';
-import { authorizeService } from '../authorize/authorize.service';
+import { authorizeService } from './authorize.service';
 import { Router } from '@angular/router';
 
 @Injectable()

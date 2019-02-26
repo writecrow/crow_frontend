@@ -216,14 +216,10 @@ export class CorpusSearchComponent {
         this.searchInProgress = false;
       }, 
       err => {
+        // Handle 500s.
         this.isLoaded = true;
         this.searchInProgress = false;
-        if (err == "403") {
-          this.router.navigate(['/authorize']);
-        }
-        else {
-          this.statusMessage = 'There was a problem completing the search. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
-        }
+        this.statusMessage = 'There was a problem completing the search. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
       });
     });
 

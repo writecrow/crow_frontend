@@ -21,18 +21,20 @@ import { AppRoutingModule } from './app-routing.module';
 // Services : helper classes for advanced logic.
 import { APIService } from './services/api.service';
 import { RequestCache } from './services/request-cache.service';
-import { CachingInterceptor } from './services/caching-interceptor.service';
-import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { CachingInterceptor } from './interceptors/caching-interceptor.service';
+
 import { RequestInterceptor } from './interceptors/request.interceptor';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
+
 import { AssignmentDescriptionService } from './services/assignmentDescription.service';
+import { authorizeService } from './services/authorize.service';
 import { CourseDescriptionService } from './services/courseDescription.service';
-import { authorizeService} from './authorize/authorize.service';
-import { LoginService } from './services/login.service';
 import { HandleErrorService } from './services/handle-error.service';
+import { LoginService } from './services/login.service';
 import { RefreshTokenService } from './services/refresh-token.service';
+import { Globals } from './globals';
 
 // Pipes : Helper methods to alter behavior.
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
@@ -67,21 +69,12 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
     authorizeService,
     AssignmentDescriptionService,
     CourseDescriptionService,
+    Globals,
     HandleErrorService,
     LoginService,
     RefreshTokenService,
     RequestCache,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true
-    },
-    RefreshTokenService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RequestInterceptor,
-      multi: true
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
