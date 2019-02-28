@@ -31,11 +31,11 @@ export class RequestInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse) {
           switch ((<HttpErrorResponse>error).status) {
             case 401:
-              return this.handle401Error(error);
+              return this.handle401(error);
             case 403:
-              return this.handle403Error(req, next);
+              return this.handle403(error, req, next);
             case 500:
-              return this.handle500Error(error);
+              return this.handle500(error);
           }
         } else {
           return throwError(error);
@@ -47,11 +47,12 @@ export class RequestInterceptor implements HttpInterceptor {
     return req.clone({ setHeaders: { Authorization: 'Bearer ' + token } })
   }
 
-  handle403Error(req: HttpRequest<any>, next: HttpHandler) {
-    if (this.authService.isAuthenticated()) {
+  handle403(error, req: HttpRequest<any>, next: HttpHandler) {
+    if (this.authService.isAuthenticated() && this.authService.isCurrent()) {
       this.globals.statusMessage = "Your account does not have access to this content.";
       return empty();
     }
+    console.log('Attempting to re-authenticate');
     // If isRefreshingToken is false (which it is by default) we will 
     // enter the code section that calls authService.refreshToken
     if (!this.isRefreshingToken) {
@@ -73,13 +74,14 @@ export class RequestInterceptor implements HttpInterceptor {
             // Return next.handle using the new token
             return next.handle(this.addToken(req, newToken));
           }
-
           // If we don't get a new token, we are in trouble so logout.
           return this.login.logout();
         }),
         catchError(error => {
-          // If there is an exception calling 'refreshToken', bad news so logout.
-          return this.login.logout();
+          // If there is an exception calling 'refreshToken', so assume
+          // the user is authenticated but still doesn't have access.
+          this.globals.statusMessage = "Your account does not have access to this content.";
+          return empty();
         }),
         finalize(() => {
           // When the call to refreshToken completes, in the finalize block, 
@@ -103,7 +105,7 @@ export class RequestInterceptor implements HttpInterceptor {
     }
   }
 
-  handle401Error(error) {
+  handle401(error) {
     this.globals.statusMessage = "The username/password combination was not accepted.";
     // Usually caused by not making any API calls for whatever the timeout is configured for.  
     if (error && error.status === 401 || error.error && error.error.error === 'invalid_grant') {
@@ -114,7 +116,7 @@ export class RequestInterceptor implements HttpInterceptor {
     return throwError(error);
   }
 
-  handle500Error(error) {
+  handle500(error) {
     // Usually caused by a server-side error.
     this.globals.statusMessage = 'There was a problem completing this request. You can wait a moment and try again; if the problem persists, please report it to <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a> and we will look into it.'; 
     return throwError(error);

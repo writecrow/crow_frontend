@@ -7,6 +7,7 @@ import { Token } from '../services/tokenSchema';
 import { HandleErrorService } from './handle-error.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestCache } from '../services/request-cache.service';
+import { Globals } from '../globals';
 
 @Injectable()
 export class LoginService {
@@ -20,7 +21,8 @@ export class LoginService {
     private handleError: HandleErrorService,
     private router: Router,
     private route: ActivatedRoute,
-    private requestCache: RequestCache 
+    private requestCache: RequestCache,
+    private globals: Globals
   ) { }
 
   login(user, pass): Observable<Token> {
@@ -33,6 +35,7 @@ export class LoginService {
     body.append("password", pass);
     return this.http.post(url, body).pipe(map((token: Token) => {
       localStorage.setItem('token', JSON.stringify(token.access_token));
+      localStorage.setItem('expiration', JSON.stringify(token.expires_in * 1000 + Date.now()))
       localStorage.setItem('refresh_token', JSON.stringify(token.refresh_token));
       return token
     }), 
@@ -41,6 +44,7 @@ export class LoginService {
   }
 
   logout() {
+    this.globals.isAuthenticated = false;
     this.requestCache.clearAll();
     localStorage.removeItem('token');
     localStorage.removeItem('refresh_token'); 

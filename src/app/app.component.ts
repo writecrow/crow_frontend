@@ -43,7 +43,6 @@ export class AppComponent implements AfterViewInit {
   signOut(): void {
     this.LoginService.logout();
     this.router.navigate(['/']);
-    this.globals.isAuthenticated = false;
   }
   exitStatus(): void {
     this.globals.statusMessage = "";

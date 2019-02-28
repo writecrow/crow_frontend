@@ -14,11 +14,21 @@ export class authorizeService {
     return JSON.parse(refresh_token);
   }
 
+  public getExpiration(): number {
+    const expiration = localStorage.getItem('expiration');
+    return JSON.parse(expiration);
+  }
+
+  public isCurrent(): boolean {
+    const expiration = this.getExpiration();
+    if (expiration < Date.now()) {
+      return false;
+    }
+    return true;
+  }
+
   public isAuthenticated(): boolean {
-    // console.log (localStorage['token']);
     const token = this.getToken();
-    // Check whether the token is expired and return true or false
-    // @todo.
     if (token === null) {
       return false;
     }
