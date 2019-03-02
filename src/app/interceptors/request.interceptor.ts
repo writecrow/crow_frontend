@@ -35,6 +35,7 @@ export class RequestInterceptor implements HttpInterceptor {
             case 403:
               return this.handle403(error, req, next);
             case 500:
+            case 0:
               return this.handle500(error);
           }
         } else {
@@ -118,7 +119,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
   handle500(error) {
     // Usually caused by a server-side error.
-    this.globals.statusMessage = 'There was a problem completing this request. You can wait a moment and try again; if the problem persists, please report it to <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a> and we will look into it.'; 
+    this.globals.statusMessage = 'There was a problem completing this request. You can wait a moment and try again; if the problem persists, please report it to <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a> and we will look into it.';
     return throwError(error);
   }
 

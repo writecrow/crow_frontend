@@ -37,7 +37,7 @@ export class CorpusSearchComponent {
   searchInProgress: boolean = false;;
   toeflShow: boolean = false;
   showMetadata: boolean = true;
-  statusMessage: string = "";
+  exportButton: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -162,6 +162,7 @@ export class CorpusSearchComponent {
       this.keywordMode = "or";
       this.subcorpusWordcount = 0;
       this.searchInProgress = true;
+      this.exportButton = false;
       this.frequencyData = [];
       this.frequencyTotals = [];
       this.searchResults = [];
@@ -186,16 +187,16 @@ export class CorpusSearchComponent {
         this.filters['toeflTotalMax'].value = routeParams.toefl_total_max;
       }
       let searchUrl = this.API.getCorpusSearchApiUrl(routeParams);
-      this.exportUrl = environment.backend + searchUrl + "&_format=csv";
       this.API.searchCorpus(searchUrl).subscribe(response => {
+        console.log(response);
         if (response && response.search_results) {
           this.searchResults = this.prepareSearchResults(response.search_results);
           this.isLoaded = true;
         }
-        if (response && response.facets) {
+        if (response && typeof response.facets !== 'undefined') {
           this.preparefacets(response.facets);
         }
-        if (response && response.frequency.tokens) {
+        if (response && typeof response.frequency.tokens !== 'undefined') {
           let tokenKeys = Object.keys(response.frequency.tokens);
           let tokenValues = Object.values(response.frequency.tokens);
           for (let key in tokenKeys) {
@@ -214,16 +215,41 @@ export class CorpusSearchComponent {
         this.resultCount = response.pager['total_items'];
         this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
         this.searchInProgress = false;
+        if (typeof response.exportable !== 'undefined') {
+          this.exportButton = true;
+        }
       }, 
       err => {
         // Handle 500s.
         this.isLoaded = true;
         this.searchInProgress = false;
-        this.statusMessage = 'There was a problem completing the search. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
       });
     });
 
   }
+  exportResults() {
+    let data = "1,2,3";
+    let filename = "crow-export.csv";
+
+    var blob = data.constructor !== Blob
+      ? new Blob([data], { type: 'text/csv' || 'application/octet-stream' })
+      : data;
+
+    if (navigator.msSaveBlob) {
+      navigator.msSaveBlob(blob, filename);
+      return;
+    }
+
+    var lnk = document.createElement('a'),
+      url = window.URL,
+      objectURL;
+      lnk.type = 'text/csv';
+    lnk.download = filename;
+    lnk.href = objectURL = url.createObjectURL(blob);
+    lnk.dispatchEvent(new MouseEvent('click'));
+    setTimeout(url.revokeObjectURL.bind(url, objectURL));
+  }
+
   prepareSearchResults(results) {
     for (let r in results) {
       results[r]["course_description"] = this.courses.getDescription(results[r].course);
@@ -247,7 +273,6 @@ export class CorpusSearchComponent {
     this.filters['toeflTotalMin'].value = "";
     this.filters['toeflTotalMax'].value = "";
     this.router.navigate(['/corpus']);
-    this.exportUrl = "";
   }
   setOperation(i) {
     this.keywordMode = i;

@@ -69,6 +69,12 @@ button.secondary:hover, button.secondary:focus {
   color:#fff;
   background-color: #3e454d;
 }
+.btn-disabled {
+  cursor: unset;
+  color: #303030;
+  border-color: #D3D3D3;
+  background-color: #D3D3D3;
+}
 
 a, a:hover, a:focus {
   color:#5c5c80;
