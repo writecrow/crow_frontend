@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { authorizeService } from '../services/authorize.service';
 import { LoginService} from '../services/login.service';
 import { Globals } from '../globals';
+import { APIService } from '../services/api.service';
 @Component({
   templateUrl: '../authorize/authorize.component.html',
   styleUrls: ['../authorize/authorize.component.css'],
@@ -14,6 +15,7 @@ export class AuthorizeComponent {
   constructor(
     private router: Router,
     public authorizeService: authorizeService,
+    private api : APIService,
     public LoginService: LoginService,
     private globals: Globals
   ) { }
@@ -31,9 +33,11 @@ export class AuthorizeComponent {
     let user: any = { name, pass };
     this.LoginService.login(user.name, user.pass).subscribe(
       data => {
-        // data returned is the Token object.
-        this.globals.isAuthenticated = true;
-        this.router.navigate(['/']); 
+        // 'data' is the Token object.
+        this.api.getDefaultCorpusSearchResults().subscribe(response => {
+          this.globals.isAuthenticated = true;
+          this.router.navigate(['/']); 
+        });
       }
     );
   }

@@ -41,7 +41,7 @@ export class APIService {
   }
 
   getDefaultCorpusSearchResults() {
-    return this.getResponseFromPath('corpus_search?');
+    return this.getResponseFromPath('corpus?');
   }
 
   getFrequencyData(attributes) {
@@ -99,12 +99,7 @@ export class APIService {
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');
-    if (typeof params.method !== "undefined" && params.method == "lemma") {
-      return 'corpus_search?' + query;
-    }
-    else {
-      return 'corpus_search?' + query;
-    }
+    return 'corpus?' + query;
   }
 
   searchRepository(params) {

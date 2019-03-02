@@ -20,6 +20,10 @@ header .title h2 {
 .logo {
 	width:350px;
 }
+img.avatar {
+	height: 25px;
+  padding-right: 0.5rem;
+}
 
 /* Navigation */
 nav a, nav form {

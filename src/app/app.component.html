@@ -14,7 +14,7 @@
         <a routerLink="page/how-to">Help</a>
         <form id="authentication" class="form-inline">
           <label for="authSubmit">
-            <span *ngIf="globals.isAuthenticated"><em>Signed in</em>&nbsp;&nbsp;</span>
+            <span *ngIf="globals.isAuthenticated"><img class="avatar" [src]="SHIELD" alt="Avatar of a crow" /><em>Signed in</em>&nbsp;&nbsp;</span>
             <button *ngIf="globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signOut()">Sign out</button>
             <button *ngIf="!globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signIn()">Sign in</button>
           </label>
