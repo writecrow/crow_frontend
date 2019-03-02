@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.total_words = 7287456;
-    this.total_texts = 700;
+    this.total_words = 7283469;
+    this.total_texts = 8254;
     // @todo: reimplement URL-based sign in.
     // if (typeof this.route.snapshot.queryParams.auth !== 'undefined') {
     //   var auth = this.route.snapshot.queryParams.auth.split(":");
@@ -38,12 +38,12 @@ export class HomeComponent implements OnInit {
     // Pre-load the corpus search data, in part to get the total
     // number of texts, and also for faster perceived loading when
     // users navigate to the corpus (results already cached).
-    this.API.getDefaultCorpusSearchResults().subscribe((response) => {
-      if (typeof response !== 'undefined' && response.pager) {
-        this.total_texts = response.pager.total_items;
-        this.total_words = response.pager.subcorpus_wordcount;
-      }
-    });
+    // this.API.getDefaultCorpusSearchResults().subscribe((response) => {
+    //   if (typeof response !== 'undefined' && response.pager) {
+    //     this.total_texts = response.pager.total_items;
+    //     this.total_words = response.pager.subcorpus_wordcount;
+    //   }
+    // });
   }
 }
 

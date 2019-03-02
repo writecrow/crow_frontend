@@ -19,10 +19,12 @@ export class AppComponent implements AfterViewInit {
     private router: Router,
     public authorizeService: authorizeService,
     public LoginService: LoginService,
-    private globals: Globals,
+    public globals: Globals,
   ) { 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
+        // When a new page is navigated to, 
+        // clear out the status message.
         this.globals.statusMessage = "";
       } 
     });
