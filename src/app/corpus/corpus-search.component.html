@@ -35,10 +35,10 @@
           <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
         </label>
 
-        <ng-container *ngIf="exportButton && searchInProgress == false">
-          <button (click)="exportResults()" class="btn btn-dark">Export</button><div class="tooltip-toggle" aria-label="Export search results to comma-separated value (CSV) format">&nbsp;&#9432;</div>
+        <ng-container *ngIf="exportUrl && searchInProgress == false">
+          <button (click)="exportResults(exportUrl)" class="btn btn-dark">Export</button><div class="tooltip-toggle" aria-label="Export search results to comma-separated value (CSV) format">&nbsp;&#9432;</div>
         </ng-container>
-        <ng-container *ngIf="!exportButton && searchInProgress == false">
+        <ng-container *ngIf="!exportUrl && searchInProgress == false">
           <button class="btn btn-disabled" disabled>Export</button><div class="tooltip-toggle" aria-label="To inquire about access to data exports, contact us at collaborate@writecrow.org">&nbsp;&#9432;</div>
         </ng-container>
         

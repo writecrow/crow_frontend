@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { share, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { empty } from 'rxjs';
 
 @Injectable()
 export class APIService {
@@ -41,7 +42,7 @@ export class APIService {
   }
 
   getDefaultCorpusSearchResults() {
-    return this.getResponseFromPath('corpus?');
+    return this.getResponseFromPath('corpus?', 'json');
   }
 
   getFrequencyData(attributes) {
@@ -76,15 +77,19 @@ export class APIService {
     return this.getResponseFromPath('repository/metadata?' + query);
   }
 
-  getTotalWords() {
-    return this.getResponseFromPath('frequency/total?');
+  getRoles() {
+    return this.getResponseFromPath('user/roles?');
   }
 
   searchCorpus(path) {
-    return this.getResponseFromPath(path);
+    return this.getResponseFromPath('corpus?' + path);
   }
 
-  getCorpusSearchApiUrl(params) {
+  exportCorpus(path) {
+    return this.getResponseFromPath('corpus/export?' + path, 'csv');
+  }
+
+  getCorpusSearchApiQuery(params) {
     const queryParameters = [];
     let nonFacets = ["method", "search", "id", "op", "toefl_total_min", "toefl_total_max"];
     let inc = 0;
@@ -99,7 +104,7 @@ export class APIService {
     const query = Object.keys(queryParameters)
       .map(k => queryParameters[k])
       .join('&');
-    return 'corpus?' + query;
+    return query;
   }
 
   searchRepository(params) {
@@ -126,17 +131,34 @@ export class APIService {
   }
 
   // The abstracted method that all http requests use.
-  getResponseFromPath(path) {
-    this.observable = this.http.get(environment.backend + path + '&_format=json', {
-      observe: 'response'
-    })
-      .pipe(map(response => {
-        this.observable = null;
-        if (response.status === 200) {
-          return response.body;
-        }
+  getResponseFromPath(path, format = 'json') {
+    if (format == 'csv') {
+      this.observable = this.http.get(environment.backend + path + '&_format=' + format, {
+        observe: 'response', responseType: 'text'
       })
-      ).pipe(share());
-    return this.observable;
+        .pipe(map(response => {
+          this.observable = null;
+          if (response.status === 200) {
+            return response.body;
+          }
+        })
+        ).pipe(share());
+      return this.observable;
+    }
+    else {
+      this.observable = this.http.get(environment.backend + path + '&_format=' + format, {
+        observe: 'response'
+      })
+        .pipe(map(response => {
+          this.observable = null;
+          if (response.status === 200) {
+            return response.body;
+          }
+        })
+        ).pipe(share());
+      return this.observable;
+    }
+
   }
+
 }

@@ -37,7 +37,6 @@ export class CorpusSearchComponent {
   searchInProgress: boolean = false;;
   toeflShow: boolean = false;
   showMetadata: boolean = true;
-  exportButton: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -162,7 +161,6 @@ export class CorpusSearchComponent {
       this.keywordMode = "or";
       this.subcorpusWordcount = 0;
       this.searchInProgress = true;
-      this.exportButton = false;
       this.frequencyData = [];
       this.frequencyTotals = [];
       this.searchResults = [];
@@ -186,9 +184,8 @@ export class CorpusSearchComponent {
       if (typeof routeParams.toefl_total_max != 'undefined' && routeParams.toefl_total_max != "") {
         this.filters['toeflTotalMax'].value = routeParams.toefl_total_max;
       }
-      let searchUrl = this.API.getCorpusSearchApiUrl(routeParams);
+      let searchUrl = this.API.getCorpusSearchApiQuery(routeParams);
       this.API.searchCorpus(searchUrl).subscribe(response => {
-        console.log(response);
         if (response && response.search_results) {
           this.searchResults = this.prepareSearchResults(response.search_results);
           this.isLoaded = true;
@@ -215,39 +212,27 @@ export class CorpusSearchComponent {
         this.resultCount = response.pager['total_items'];
         this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
         this.searchInProgress = false;
-        if (typeof response.exportable !== 'undefined') {
-          this.exportButton = true;
-        }
       }, 
       err => {
         // Handle 500s.
         this.isLoaded = true;
         this.searchInProgress = false;
       });
+      // Determine how to display the export button.
+      // Note: this does not actually authorize folks to
+      // retrieve data via the export.
+      this.API.getRoles().subscribe(response => {
+        if (response) {
+          if (response.includes('export_access')) {
+            if (searchUrl == '') {
+              searchUrl = '?';
+            }
+            this.exportUrl = searchUrl;
+          }
+        }
+      });
     });
 
-  }
-  exportResults() {
-    let data = "1,2,3";
-    let filename = "crow-export.csv";
-
-    var blob = data.constructor !== Blob
-      ? new Blob([data], { type: 'text/csv' || 'application/octet-stream' })
-      : data;
-
-    if (navigator.msSaveBlob) {
-      navigator.msSaveBlob(blob, filename);
-      return;
-    }
-
-    var lnk = document.createElement('a'),
-      url = window.URL,
-      objectURL;
-      lnk.type = 'text/csv';
-    lnk.download = filename;
-    lnk.href = objectURL = url.createObjectURL(blob);
-    lnk.dispatchEvent(new MouseEvent('click'));
-    setTimeout(url.revokeObjectURL.bind(url, objectURL));
   }
 
   prepareSearchResults(results) {
@@ -292,5 +277,32 @@ export class CorpusSearchComponent {
   evaluateToggle(i) {
     return this[i];
   }
+  exportResults(exportUrl) {
+    this.API.exportCorpus(exportUrl).subscribe(response => {
+      if (response) {
+        // Based on https://fullstacktips.blogspot.com/2018/06/generate-downloadable-csv-file-from.html
+        let data = response;
+        let filename = "crow-export.csv";
 
+        var blob = data.constructor !== Blob
+          ? new Blob([data], { type: 'text/csv' || 'application/octet-stream' })
+          : data;
+
+        if (navigator.msSaveBlob) {
+          navigator.msSaveBlob(blob, filename);
+          return;
+        }
+
+        var lnk = document.createElement('a'),
+          url = window.URL,
+          objectURL;
+        lnk.type = 'text/csv';
+        lnk.download = filename;
+        lnk.href = objectURL = url.createObjectURL(blob);
+        lnk.dispatchEvent(new MouseEvent('click'));
+        setTimeout(url.revokeObjectURL.bind(url, objectURL));
+        return;
+      }
+    });
+  }
 }
