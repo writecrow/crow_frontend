@@ -212,24 +212,24 @@ export class CorpusSearchComponent {
         this.resultCount = response.pager['total_items'];
         this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
         this.searchInProgress = false;
+        // Determine how to display the export button.
+        // Note: this does not actually authorize folks to
+        // retrieve data via the export.
+        this.API.getRoles().subscribe(response => {
+          if (response) {
+            if (response.includes('export_access')) {
+              if (searchUrl == '') {
+                searchUrl = '?';
+              }
+              this.exportUrl = searchUrl;
+            }
+          }
+        });
       }, 
       err => {
         // Handle 500s.
         this.isLoaded = true;
         this.searchInProgress = false;
-      });
-      // Determine how to display the export button.
-      // Note: this does not actually authorize folks to
-      // retrieve data via the export.
-      this.API.getRoles().subscribe(response => {
-        if (response) {
-          if (response.includes('export_access')) {
-            if (searchUrl == '') {
-              searchUrl = '?';
-            }
-            this.exportUrl = searchUrl;
-          }
-        }
       });
     });
 
