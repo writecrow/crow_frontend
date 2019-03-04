@@ -81,6 +81,9 @@ export class CorpusSearchComponent {
       if (this.filters[filter].value !== "") {
         currentParams[key] = this.filters[filter].value;
       }
+      else {
+        currentParams[key] = null;
+      }
     }
     if (terms != "") {
       currentParams.search = this.sanitizer.sanitize(SecurityContext.URL, terms);
