@@ -33,8 +33,6 @@ export class LoginService {
     body.append("client_secret", this.client_uuid);
     body.append("username", user);
     body.append("password", pass);
-    console.log(this.client_text);
-    console.log(this.client_uuid);
     return this.http.post(url, body).pipe(map((token: Token) => {
       localStorage.setItem('token', JSON.stringify(token.access_token));
       localStorage.setItem('expiration', JSON.stringify(token.expires_in * 1000 + Date.now()))
