@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   backend: 'https://api.lndo.site/',
-  alt_text: '649fb3ca-784d-4aff-b18e-0b9fd2130bac',
+  alt_text: 'e791d06b-20a8-41cb-801a-023893c71563',
   alt_uuid: 'test',
 };
 
