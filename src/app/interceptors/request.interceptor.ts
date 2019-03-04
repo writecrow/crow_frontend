@@ -29,6 +29,7 @@ export class RequestInterceptor implements HttpInterceptor {
     return next.handle(this.addToken(req, this.authService.getToken())).pipe(
       catchError(error => {
         if (error instanceof HttpErrorResponse) {
+          this.globals.authenticating = false;
           switch ((<HttpErrorResponse>error).status) {
             case 401:
               return this.handle401(error);

@@ -15,7 +15,6 @@ declare const ga: any;
 export class AppComponent implements AfterViewInit {
   public LOGO = require("../assets/logo.svg");
   public SHIELD = require("../assets/black-crow-shield.svg");
-  private isAuthenticated: boolean = false;
   constructor(
     private router: Router,
     public authorizeService: authorizeService,
@@ -32,6 +31,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.globals.authenticating = false;
     this.globals.statusMessage = "";
     if (this.authorizeService.isAuthenticated()) {
       this.globals.isAuthenticated = true;

@@ -4,4 +4,5 @@ import { Injectable } from '@angular/core';
 export class Globals {
   isAuthenticated: boolean = false;
   statusMessage: string = "";
+  authenticating: boolean = false;
 }

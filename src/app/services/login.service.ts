@@ -39,8 +39,7 @@ export class LoginService {
       localStorage.setItem('refresh_token', JSON.stringify(token.refresh_token));
       return token
     }), 
-    catchError(
-      this.handleError.handleError));
+    catchError(this.handleError.handleError));
   }
 
   logout() {

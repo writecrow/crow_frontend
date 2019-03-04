@@ -28,16 +28,22 @@ export class AuthorizeComponent {
   }
 
   authorize(name: string, pass: string, additional: string): void {
+    this.globals.authenticating = true;
     name = name.trim();
     if (!name || additional !== "" ) { return; }
     let user: any = { name, pass };
     this.LoginService.login(user.name, user.pass).subscribe(
       data => {
-        // 'data' is the Token object.
+        // 'data' is the Token object
+        this.router.navigate(['/']);
+        this.globals.isAuthenticated = true;
+        this.globals.authenticating = false; 
         this.api.getDefaultCorpusSearchResults().subscribe(response => {
-          this.globals.isAuthenticated = true;
-          this.router.navigate(['/']); 
         });
+      },
+      err => {
+        this.globals.isAuthenticated = false;
+        this.globals.authenticating = false;
       }
     );
   }
