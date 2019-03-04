@@ -12,9 +12,9 @@ import { Globals } from '../globals';
 @Injectable()
 export class LoginService {
   private mainUrl = environment.backend;  // URL to web api
-  private grant_type = environment.grant_type;
-  private client_id = environment.client_id;
-  private client_secret = environment.client_secret;
+  private grant_type = "password"
+  private client_text = environment.alt_text;
+  private client_uuid = environment.alt_uuid;
 
   constructor(
     private http: HttpClient,
@@ -29,10 +29,12 @@ export class LoginService {
     const url = `${this.mainUrl}oauth/token`;
     let body = new FormData();
     body.append("grant_type", this.grant_type);
-    body.append("client_id", this.client_id);
-    body.append("client_secret", this.client_secret);
+    body.append("client_id", this.client_text);
+    body.append("client_secret", this.client_uuid);
     body.append("username", user);
     body.append("password", pass);
+    console.log(this.client_text);
+    console.log(this.client_uuid);
     return this.http.post(url, body).pipe(map((token: Token) => {
       localStorage.setItem('token', JSON.stringify(token.access_token));
       localStorage.setItem('expiration', JSON.stringify(token.expires_in * 1000 + Date.now()))

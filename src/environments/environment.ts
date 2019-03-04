@@ -5,9 +5,8 @@
 export const environment = {
   production: false,
   backend: 'https://api.lndo.site/',
-  grant_type: 'password',
-  client_id: '649fb3ca-784d-4aff-b18e-0b9fd2130bac',
-  client_secret: 'test',
+  alt_text: '649fb3ca-784d-4aff-b18e-0b9fd2130bac',
+  alt_uuid: 'test',
 };
 
 /*

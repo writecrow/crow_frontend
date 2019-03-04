@@ -16,9 +16,8 @@ import { Router } from '@angular/router';
 export class RefreshTokenService {
   // Enviroment variables from drupal site and client
   private mainUrl = environment.backend;
-  private grant_type = environment.grant_type;
-  private client_id = environment.client_id;
-  private client_secret = environment.client_secret;
+  private client_text = environment.alt_text;
+  private client_uuid = environment.alt_uuid;
 
   constructor(
     private http: HttpClient, 
@@ -38,9 +37,9 @@ export class RefreshTokenService {
 
     let body = new FormData();
     body.append("grant_type", "refresh_token");
-    body.append("refresh_token", refreshAuth)
-    body.append("client_id", this.client_id);
-    body.append("client_secret", this.client_secret);
+    body.append("refresh_token", refreshAuth);
+    body.append("client_id", this.client_text);
+    body.append("client_secret", this.client_uuid);
 
     return this.http.post(url, body).pipe(map((token: Token) => {
         localStorage.setItem('token', JSON.stringify(token.access_token));
