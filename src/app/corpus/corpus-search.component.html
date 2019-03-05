@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-lg-3" *ngIf="isLoaded">
+<div class="row" *ngIf="isLoaded">
+  <div class="col-lg-3">
     <div class="facet-wrapper" *ngFor="let key of facetKeys">
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ facets[key].label }}</div>
         <ul class="facet-items" [hidden]="!facets[key].show">

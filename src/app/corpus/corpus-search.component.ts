@@ -88,6 +88,9 @@ export class CorpusSearchComponent {
     if (terms != "") {
       currentParams.search = this.sanitizer.sanitize(SecurityContext.URL, terms);
     }
+    else {
+      currentParams.search = null;
+    }
     if (this.keywordMode !== "undefined" && this.validKeywordModes.includes(this.keywordMode)) {
       currentParams.op = this.keywordMode;
     }
@@ -158,6 +161,7 @@ export class CorpusSearchComponent {
   }
   querySearch() {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
+    this.isLoaded = false;
     this.route.queryParams.subscribe((routeParams) => {
       this.resultCount = 0;
       this.method = "word";
@@ -190,8 +194,8 @@ export class CorpusSearchComponent {
       let searchUrl = this.API.getCorpusSearchApiQuery(routeParams);
       this.API.searchCorpus(searchUrl).subscribe(response => {
         if (response && response.search_results) {
-          this.searchResults = this.prepareSearchResults(response.search_results);
           this.isLoaded = true;
+          this.searchResults = this.prepareSearchResults(response.search_results);
         }
         if (response && typeof response.facets !== 'undefined') {
           this.preparefacets(response.facets);
@@ -231,7 +235,6 @@ export class CorpusSearchComponent {
       }, 
       err => {
         // Handle 500s.
-        this.isLoaded = true;
         this.searchInProgress = false;
       });
     });

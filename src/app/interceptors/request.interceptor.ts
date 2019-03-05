@@ -50,7 +50,11 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   handle403(error, req: HttpRequest<any>, next: HttpHandler) {
-    if (this.authService.isAuthenticated() && this.authService.isCurrent()) {
+    if (this.authService.isCurrent()) {
+      this.globals.statusMessage = "Your account does not have access to this content.";
+      return empty();
+    }
+    if (!this.authService.isAuthenticated()) {
       this.globals.statusMessage = "Your account does not have access to this content.";
       return empty();
     }
