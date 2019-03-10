@@ -11,6 +11,8 @@ import { RepositoryDetail } from '../repository/repository-detail';
 export class RepositoryDetailComponent implements OnInit {
   content : RepositoryDetail;
   isLoaded : boolean;
+  relatedTexts: any[] = [];
+  relatedResources: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +26,36 @@ export class RepositoryDetailComponent implements OnInit {
         if (response && response[0]) {
           this.content = response[0];
           this.isLoaded = true;
+          let relatedTexts = {
+            'course': this.content.course,
+            'assignment': this.content.assignment,
+            'institution': this.content.institution
+          };
+          if (this.content.assignment == '') {
+            let relatedTexts = {
+              'course': this.content.course,
+              'year': this.content.year,
+              'semester': this.content.semester,
+              'institution': this.content.institution
+            };
+          }
+          // Retrieve all texts with similar metadata
+          this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
+            if (response && response != '') {
+              this.relatedTexts = response;
+            }
+          });
+          let repositoryParameters = {
+            'course': this.content.course,
+            'assignment': this.content.assignment,
+            'institution': this.content.institution
+          };
+          this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
+            if (response && response != '') {
+              console.log(response);
+              this.relatedResources = response;
+            }
+          }); 
         }
         else {
           this.router.navigateByUrl('404', { skipLocationChange: true });

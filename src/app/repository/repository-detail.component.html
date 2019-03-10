@@ -56,5 +56,18 @@
         </tr>
       </tbody>
     </table>
+		<div *ngIf="relatedTexts.length">
+			<h3>Related corpus texts</h3>
+			<ul *ngFor="let result of relatedTexts">
+				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }} from {{ result.semester }} {{ result.year }}</a></li>
+			</ul>
+    </div>
+		<div *ngIf="relatedResources.length">
+			<h3>Related repository materials</h3>
+			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment (all instructors)
+			<ul *ngFor="let result of relatedResources">
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}} from {{ result.course}}, {{ result.semester }} {{ result.year }}</a></li>
+			</ul>
+		</div>
   </div>
 </div>
