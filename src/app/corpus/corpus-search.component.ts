@@ -3,10 +3,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
-import { environment } from '../../environments/environment';
 import { CourseDescriptionService } from '../services/courseDescription.service';
 import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
-import { courseDescriptionSchema } from '../services/courseDescriptionSchema';
+import { Globals } from '../globals';
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
   styleUrls: ['../corpus/corpus-search.component.css']
@@ -44,7 +43,8 @@ export class CorpusSearchComponent {
     private API: APIService,
     private sanitizer: DomSanitizer,
     private courses: CourseDescriptionService,
-    private assignments: AssignmentDescriptionService
+    private assignments: AssignmentDescriptionService,
+    public globals: Globals,
   ) {
 
     // Additional filters.
@@ -55,19 +55,17 @@ export class CorpusSearchComponent {
 
     // The order in which these are pushed into the "facets" object determine their order in the sidebar.
     this.facets = <any>[];
-    this.facets['institution'] = { label: 'Institution', show: true, index: '6' };
-    this.facets['year'] = { label: 'Year', show: false, index: '10' };
-    this.facets['semester'] = { label: 'Semester', show: false, index: '9' };
-    this.facets['course'] = { label: 'Course', show: false, index: '3' };
-    this.facets['assignment'] = { label: 'Assignment', show: false, index: '0' };
-    this.facets['draft'] = { label: 'Draft', show: false, index: '4' };
-
-    this.facets['college'] = { label: 'College', show: false, index: '1' };
-    this.facets['country'] = { label: 'Country', show: false, index: '2' };
-    this.facets['gender'] = { label: 'Gender', show: false, index: '5' };
-    // this.facets['instructor'] = { label: 'Instructor', show: true, index: '7' };
-    this.facets['program'] = { label: 'Program', show: false, index: '8' };
-    this.facets['year_in_school'] = { label: 'Year in School', show: false, index: '11' };
+    this.facets['institution'] = { label: 'Institution', index: '6' };
+    this.facets['year'] = { label: 'Year', index: '10' };
+    this.facets['semester'] = { label: 'Semester', index: '9' };
+    this.facets['course'] = { label: 'Course', index: '3' };
+    this.facets['assignment'] = { label: 'Assignment', index: '0' };
+    this.facets['draft'] = { label: 'Draft', index: '4' };
+    this.facets['college'] = { label: 'College', index: '1' };
+    this.facets['country'] = { label: 'Country', index: '2' };
+    this.facets['gender'] = { label: 'Gender', index: '5' };
+    this.facets['program'] = { label: 'Program', index: '8' };
+    this.facets['year_in_school'] = { label: 'Year in School', index: '11' };
     this.querySearch();
   }
 
@@ -251,10 +249,14 @@ export class CorpusSearchComponent {
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037
-    if (this.facets[i].show === false) {
-      this.facets[i].show = true;
+    if (this.globals.corpusFacets[i] === undefined) {
+      console.log("heere");
+      this.globals.corpusFacets[i] = true;
+    }
+    else if (this.globals.corpusFacets[i] === false) {
+      this.globals.corpusFacets[i] = true;
     } else {
-      this.facets[i].show = false;
+      this.globals.corpusFacets[i] = false;
     }
   }
   reset() {

@@ -2,7 +2,7 @@
   <div class="col-lg-3">
     <div class="facet-wrapper" *ngFor="let key of facetKeys">
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ facets[key].label }}</div>
-        <ul class="facet-items" [hidden]="!facets[key].show">
+        <ul class="facet-items" [hidden]="!globals.corpusFacets[key]">
           <li *ngFor="let item of facets[key].values">
             <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} 
               <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>

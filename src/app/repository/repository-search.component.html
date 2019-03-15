@@ -42,7 +42,7 @@
   <div class="col-lg-4 order-1 order-xl-2" *ngIf="isLoaded">
     <div class="facet-wrapper" *ngFor="let key of FacetKeys">
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ Facets[key].label }}</div>
-        <ul class="facet-items" [hidden]="!Facets[key].show">
+        <ul class="facet-items" [hidden]="!globals.repositoryFacets[key]">
           <li *ngFor="let item of Facets[key].values">
             <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
           </li>

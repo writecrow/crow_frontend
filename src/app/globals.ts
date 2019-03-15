@@ -5,4 +5,6 @@ export class Globals {
   isAuthenticated: boolean = false;
   statusMessage: string = "";
   authenticating: boolean = false;
+  corpusFacets: any[] = [];
+  repositoryFacets: any[] = [];
 }

@@ -7,6 +7,10 @@
     padding: .5rem;
 }
 
+:host ::ng-deep .search-result p strong {
+  background-color: yellow;
+}
+
 .search-result a {
   text-decoration:none;
   color:#303030;

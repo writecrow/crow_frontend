@@ -95,7 +95,11 @@ table, tr {
   width:100%
 }
 th, td {
-	padding:0.5rem;
+  padding:0.5rem;
+}
+
+td {
+  word-break: break-all;
 }
 
 dl, ol, ul {

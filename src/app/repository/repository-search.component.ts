@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
+import { Globals } from '../globals';
 
 @Component({
   templateUrl: '../repository/repository-search.component.html',
@@ -20,18 +21,19 @@ export class RepositorySearchComponent {
     private route: ActivatedRoute,
     private router: Router,
     private API: APIService,
+    public globals: Globals,
   ) {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
-    this.Facets['document_type'] = { label: 'Type', show: true, index: '3' };
-    this.Facets['assignment'] = { label: 'Assignment', show: true, index: '0' };
-    this.Facets['institution'] = { label: 'Institution', show: false, index: '5' };
-    this.Facets['year'] = { label: 'Year', show: false, index: '9' };
-    this.Facets['semester'] = { label: 'Semester', show: false, index: '8' };
-    this.Facets['course'] = { label: 'Course', show: false, index: '1' };
-    this.Facets['mode'] = { label: 'Mode', show: false, index: '7' };
-    this.Facets['course_length'] = { label: 'Length', show: false, index: '2' };
-    this.Facets['file_type'] = { label: 'File Type', show: false, index: '4' };
+    this.Facets['document_type'] = { label: 'Type', index: '3' };
+    this.Facets['assignment'] = { label: 'Assignment', index: '0' };
+    this.Facets['institution'] = { label: 'Institution', index: '5' };
+    this.Facets['year'] = { label: 'Year', index: '9' };
+    this.Facets['semester'] = { label: 'Semester', index: '8' };
+    this.Facets['course'] = { label: 'Course', index: '1' };
+    this.Facets['mode'] = { label: 'Mode', index: '7' };
+    this.Facets['course_length'] = { label: 'Length', index: '2' };
+    this.Facets['file_type'] = { label: 'File Type', index: '4' };
     this.querySearch(); 
    }
 
@@ -138,10 +140,13 @@ export class RepositorySearchComponent {
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037
-    if (this.Facets[i].show === false) {
-      this.Facets[i].show = true;
+    if (this.globals.repositoryFacets[i] === undefined) {
+      this.globals.repositoryFacets[i] = true;
+    }
+    else if (this.globals.repositoryFacets[i] === false) {
+      this.globals.repositoryFacets[i] = true;
     } else {
-      this.Facets[i].show = false;
+      this.globals.repositoryFacets[i] = false;
     }
   }
 
