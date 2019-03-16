@@ -72,7 +72,7 @@
           <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
         </label>
       </form>
-      <table *ngIf="frequencyData.length > 0">
+      <table class="frequency" *ngIf="frequencyData.length > 0">
         <thead>
           <tr>
             <th>Search query</th>
@@ -86,20 +86,23 @@
             <tr>
               <th>{{ i.token }}</th>
               <td>{{ i.raw | number}}</td>
-              <td>{{ i.normed | number:'1.0-0' }}</td>
+              <td>{{ i.normed | number:'1.2-2' }}</td>
               <td>{{ i.texts | number }}</td>
             </tr>
         </ng-container>
         <ng-container *ngIf="frequencyTotals">
             <tr class="border-top">
-              <th></th>
+              <th class="no-bold">(combined)</th>
               <td>{{ frequencyTotals.raw | number}}</td>
-              <td>{{ frequencyTotals.normed | number:'1.0-0' }}</td>
+              <td>{{ frequencyTotals.normed | number:'1.2-2' }}</td>
               <td>{{ frequencyTotals.texts | number }}</td>
             </tr>
         </ng-container>
       </tbody>
       </table>
+      
+      <p *ngIf="excerptCount > 0 && excerptCount < resultCount"><br />Showing matching texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</p>
+      <p *ngIf="excerptCount > 0 && excerptCount > resultCount"><br />Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</p>
       <div class="search-result" *ngFor="let result of searchResults">
         <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
@@ -118,6 +121,7 @@
           </div>
         </a>
       </div>
+      <p class="centered" *ngIf="resultCount > 20 && offset < resultCount"><button (click)="nextPage(offset)" class="btn primary">Next Page &#x2192;</button></p>
     </div>
   </div>
 </div>

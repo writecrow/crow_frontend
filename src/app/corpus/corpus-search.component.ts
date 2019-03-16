@@ -6,6 +6,7 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 import { CourseDescriptionService } from '../services/courseDescription.service';
 import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
 import { Globals } from '../globals';
+import { NoSubstitutionTemplateLiteral } from 'typescript';
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
   styleUrls: ['../corpus/corpus-search.component.css']
@@ -19,6 +20,8 @@ export class CorpusSearchComponent {
   frequencyTotals: any[] = [];
   searchResults: CorpusDetail[];
   resultCount: number;
+  excerptCount: number;
+  offset: number = 0;
   subcorpusWordcount: number;
   filters: any[] = [];
 
@@ -95,6 +98,7 @@ export class CorpusSearchComponent {
     if (typeof this.method !== "undefined" && this.validMethods.includes(this.method)) {
       currentParams.method = this.method;
     }
+    currentParams.offset = 0;
     this.router.navigate(['/corpus'], { queryParams: currentParams, queryParamsHandling: 'merge' });
   }
 
@@ -127,7 +131,7 @@ export class CorpusSearchComponent {
       facetString = null;
     }
 
-    this.router.navigate(['/corpus'], { queryParams: { [facetgroup]: facetString }, queryParamsHandling: 'merge' });
+    this.router.navigate(['/corpus'], { queryParams: { [facetgroup]: facetString, offset : 0 }, queryParamsHandling: 'merge' });
   }
 
   preparefacets(facets) {
@@ -162,6 +166,7 @@ export class CorpusSearchComponent {
     this.isLoaded = false;
     this.route.queryParams.subscribe((routeParams) => {
       this.resultCount = 0;
+      this.excerptCount = 0;
       this.method = "word";
       this.keywordMode = "or";
       this.subcorpusWordcount = 0;
@@ -183,6 +188,9 @@ export class CorpusSearchComponent {
       if (typeof routeParams.id != 'undefined' && routeParams.id != "") {
         this.filters['searchByID'].value = routeParams.id;
       }
+      if (typeof routeParams.offset != 'undefined' && routeParams.offset != "") {
+        this.offset = routeParams.offset;
+      }
       if (typeof routeParams.toefl_total_min != 'undefined' && routeParams.toefl_total_min != "") {
         this.filters['toeflTotalMin'].value = routeParams.toefl_total_min;
       }
@@ -194,6 +202,7 @@ export class CorpusSearchComponent {
         if (response && response.search_results) {
           this.isLoaded = true;
           this.searchResults = this.prepareSearchResults(response.search_results);
+          this.excerptCount = parseInt(this.offset) + parseInt(this.searchResults.length);
         }
         if (response && typeof response.facets !== 'undefined') {
           this.preparefacets(response.facets);
@@ -250,7 +259,6 @@ export class CorpusSearchComponent {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037
     if (this.globals.corpusFacets[i] === undefined) {
-      console.log("heere");
       this.globals.corpusFacets[i] = true;
     }
     else if (this.globals.corpusFacets[i] === false) {
@@ -272,6 +280,10 @@ export class CorpusSearchComponent {
   }
   setMethod(i) {
     this.method = i;
+  }
+  nextPage(current) {
+    this.offset = parseInt(current) + 20;
+    this.router.navigate(['/corpus'], { queryParams: { offset : this.offset }, queryParamsHandling: 'merge' });
   }
   toggle(i) {
     // Used to show/hide visualizations in an Angular way.
