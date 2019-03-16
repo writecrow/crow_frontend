@@ -102,7 +102,7 @@
       </table>
       
       <p *ngIf="excerptCount > 0 && excerptCount < resultCount"><br />Showing matching texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</p>
-      <p *ngIf="excerptCount > 0 && excerptCount > resultCount"><br />Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</p>
+      <p *ngIf="excerptCount > 0 && excerptCount >= resultCount"><br />Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</p>
       <div class="search-result" *ngFor="let result of searchResults">
         <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
@@ -121,7 +121,7 @@
           </div>
         </a>
       </div>
-      <p class="centered" *ngIf="resultCount > 20 && offset < resultCount"><button (click)="nextPage(offset)" class="btn primary">Next Page &#x2192;</button></p>
+      <p class="centered" *ngIf="resultCount > 20 && (offset * 1 + 1) < resultCount"><button (click)="nextPage(offset)" class="btn primary">Next Page &#x2192;</button></p>
     </div>
   </div>
 </div>

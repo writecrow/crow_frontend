@@ -33,8 +33,11 @@
 .search-results-top label {
   float: right;
 }
-.border-top, hr {
+.border-top {
   border-top: 2px solid rgb(114, 114, 114);
+}
+hr {
+  border-top: 1px solid rgb(114, 114, 114);
 }
 table thead {
   border-bottom: 2px solid rgb(114, 114, 114);

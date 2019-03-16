@@ -202,7 +202,7 @@ export class CorpusSearchComponent {
         if (response && response.search_results) {
           this.isLoaded = true;
           this.searchResults = this.prepareSearchResults(response.search_results);
-          this.excerptCount = parseInt(this.offset) + parseInt(this.searchResults.length);
+          this.excerptCount = Number(this.offset) + Number(this.searchResults.length);
         }
         if (response && typeof response.facets !== 'undefined') {
           this.preparefacets(response.facets);
@@ -271,6 +271,7 @@ export class CorpusSearchComponent {
     this.searchString = "";
     this.method = "word";
     this.filters['searchByID'].value = "";
+    this.offset = 0;
     this.filters['toeflTotalMin'].value = "";
     this.filters['toeflTotalMax'].value = "";
     this.router.navigate(['/corpus']);
