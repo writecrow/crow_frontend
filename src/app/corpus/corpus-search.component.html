@@ -116,7 +116,9 @@
               <strong>Assignment:</strong> {{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;
               <strong>Draft:</strong> {{result.draft }}&nbsp;&nbsp;
               <strong>Gender:</strong> {{ result.gender }}&nbsp;&nbsp;
-              <span *ngIf="result.toefl_total != 0 && result.toefl_total"><strong>TOEFL:</strong> {{result.toefl_total}}</span>
+              <strong>TOEFL:</strong>
+                <span *ngIf="result.toefl_total != 0 && result.toefl_total"> {{ result.toefl_total }}</span>
+                <span *ngIf="result.toefl_total == 0 || !result.toefl_total">&nbsp;N/A</span>
             </div>
           </div>
         </a>
