@@ -108,12 +108,12 @@
           <div *ngIf="showMetadata" class="row">
             <div class="col search-metadata">
               <hr />
-              <strong>Term:</strong> {{result.semester}} {{result.year}},  
-              <strong>Course:</strong> {{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}">&nbsp;&#9432;</div>,
-              <strong>Assignment:</strong> {{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>, 
-              <strong>Draft:</strong> {{result.draft }}, 
-              <strong>Gender:</strong> {{ result.gender }}, 
-              <strong>TOEFL:</strong> {{result.toefl_total}}
+              <strong>Term:</strong> {{result.semester}} {{result.year}}&nbsp;&nbsp; 
+              <strong>Course:</strong> {{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;
+              <strong>Assignment:</strong> {{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;
+              <strong>Draft:</strong> {{result.draft }}&nbsp;&nbsp;
+              <strong>Gender:</strong> {{ result.gender }}&nbsp;&nbsp;
+              <span *ngIf="result.toefl_total != 0 && result.toefl_total"><strong>TOEFL:</strong> {{result.toefl_total}}</span>
             </div>
           </div>
         </a>
