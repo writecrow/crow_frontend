@@ -10,10 +10,10 @@
   </div>
 </div>
 <div *ngIf="isLoaded" class="row">
-  <div class="col order-2 order-2 order-xl-1 panel bigger">
+  <div class="col-md-7 order-2 order-2 order-xl-1 panel bigger">
     <div [innerHTML]="content.raw_text | keepHtml"></div>       
   </div>
-  <div class="order-1 order-xl-2 panel bigger">
+  <div class="col-md-4 order-1 order-xl-2 panel bigger">
     <h2>Download</h2>
     <p *ngIf="content.filename">
       <a href="{{ content.uri }}">
