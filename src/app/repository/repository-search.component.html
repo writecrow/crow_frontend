@@ -18,7 +18,7 @@
       <a routerLink="/repository/{{result.id}}">
         <div class="row">
           <div class="col-md-12">
-            <h4>{{ result.document_type}}</h4>
+            <h4>{{ result.material_type}}</h4>
           </div>
         </div>
         <div class="row">
@@ -44,7 +44,12 @@
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ Facets[key].label }}</div>
         <ul class="facet-items" [hidden]="!globals.repositoryFacets[key]">
           <li *ngFor="let item of Facets[key].values">
-            <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
+            <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" indeterminate="{{ item.values.indeterminate }}"  attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
+            <ul *ngIf="item.children">
+              <li *ngFor="let child of item.children[0]">
+                <input (click)="facetSearch(key, child.values.value, child.values.active)" name="{{ key }}_{{ child.values.value }}" id="{{ key }}_{{ child.values.value }}" type="checkbox" checked="{{ child.values.active }}" attr.aria-label="{{ key }} {{ child.values.value }}" /> {{ child.values.value }} ({{child.values.count }})
+              </li>
+            </ul>
           </li>
         </ul>
     </div>

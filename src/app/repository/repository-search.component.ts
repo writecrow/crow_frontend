@@ -25,7 +25,7 @@ export class RepositorySearchComponent {
   ) {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
-    this.Facets['document_type'] = { label: 'Type', index: '3' };
+    this.Facets['material_type'] = { label: 'Type', index: '3' };
     this.Facets['assignment'] = { label: 'Assignment', index: '0' };
     this.Facets['institution'] = { label: 'Institution', index: '5' };
     this.Facets['year'] = { label: 'Year', index: '9' };
@@ -110,6 +110,17 @@ export class RepositorySearchComponent {
       let i = this.Facets[name].index;
       if (typeof facets[i][0] !== 'undefined') {
         this.Facets[name].values = facets[i][0][name];
+        for (let j in this.Facets[name].values) {
+          if (typeof this.Facets[name].values[j].children !== "undefined") {
+            for (let k in this.Facets[name].values[j].children) {
+              for (let l in this.Facets[name].values[j].children[k]) {
+                if (this.Facets[name].values[j].children[k][l].values.active) {
+                  this.Facets[name].values[j].values.indeterminate = true;
+                }
+              }
+            }
+          }
+        }
       }
       else {
         this.Facets[name].values = [];
@@ -120,18 +131,36 @@ export class RepositorySearchComponent {
   adjustLabels(searchResults) {
     // Append additional information to title for clarity.
     for (let i in searchResults) {
-      if (searchResults[i].document_type == 'Syllabus') {
-        this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].course);
+      if (searchResults[i].material_type == 'Syllabus') {
+        if (searchResults[i].material_type == 'Syllabus') {
+          if (searchResults[i].material_type == 'Syllabus') {
+            this.searchResults[i].material_type = this.searchResults[i].material_type.concat(': ' + searchResults[i].course);
+          }
+        }
       }
-      if (['Assignment Sheet', 'Checklist', 'Peer Review Form', 'Rubric', 'Sample Work'].includes(searchResults[i].document_type)) {
-        this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].assignment);
+      if (searchResults[i].material_type == 'Syllabus') {
+        if (['Assignment Sheet', 'Checklist', 'Peer Review Form', 'Rubric', 'Sample Work'].includes(searchResults[i].material_type)) {
+          if (searchResults[i].material_type == 'Syllabus') {
+            if (searchResults[i].material_type == 'Syllabus') {
+              this.searchResults[i].material_type = this.searchResults[i].material_type.concat(': ' + searchResults[i].assignment);
+            }
+          }
+        }
       }
-      if (searchResults[i].document_type == 'Handout') {
-        if (searchResults[i].assignment != '') {
-          this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].assignment);
+      if (searchResults[i].material_type == 'Syllabus') {
+        if (searchResults[i].material_type == 'Handout') {
+          if (searchResults[i].assignment != '') {
+            if (searchResults[i].material_type == 'Syllabus') {
+              if (searchResults[i].material_type == 'Syllabus') {
+                this.searchResults[i].material_type = this.searchResults[i].material_type.concat(': ' + searchResults[i].assignment);
+              }
+            }
+          }
         }
         else if (searchResults[i].course != '') {
-          this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].course);
+          if (searchResults[i].material_type == 'Syllabus') {
+            this.searchResults[i].material_type = this.searchResults[i].material_type.concat(': ' + searchResults[i].course);
+          }
         }  
       }
     }
