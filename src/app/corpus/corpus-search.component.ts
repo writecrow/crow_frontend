@@ -6,7 +6,7 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 import { CourseDescriptionService } from '../services/courseDescription.service';
 import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
 import { Globals } from '../globals';
-import { NoSubstitutionTemplateLiteral } from 'typescript';
+
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
   styleUrls: ['../corpus/corpus-search.component.css']
@@ -178,6 +178,12 @@ export class CorpusSearchComponent {
       // @todo -- move this to a callback function?
       if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
         this.searchString = routeParams.search;
+        if (/[^a-zA-Z0-9_ \s]/.test(this.searchString) && !/"/.test(this.searchString)) {
+          this.globals.statusMessage = "It looks like you're trying a search that includes punctuation. You may need to wrap your search string in quotes.";
+        }
+        else {
+          this.globals.statusMessage = "";
+        }
       }
       if (typeof routeParams.method != 'undefined' && this.validMethods.includes(routeParams.method)) {
         this.method = routeParams.method;

@@ -42,6 +42,9 @@ hr {
 table thead {
   border-bottom: 2px solid rgb(114, 114, 114);
 }
+table.frequency td {
+  font-weight: bold;
+}
 .no-bold {
   font-weight: normal;
 }
