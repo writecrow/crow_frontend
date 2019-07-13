@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
+import { RepositoryHelper } from '../repository/repository-helper';
 
 @Component({
   templateUrl: '../repository/repository-detail.component.html',
@@ -18,6 +20,8 @@ export class RepositoryDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private API: APIService,
+    private sanitizer: DomSanitizer,
+    private repositoryHelper: RepositoryHelper,
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +29,8 @@ export class RepositoryDetailComponent implements OnInit {
       this.API.getRepositoryDetailById(routeParams.id).subscribe(response => {
         if (response && response[0]) {
           this.content = response[0];
+          this.content.label = this.repositoryHelper.getLabel(this.content.document_type, this.content.course, this.content.assignment);
+          this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl( "http://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
           this.isLoaded = true;
           let relatedTexts = {
             'course': this.content.course,
@@ -52,7 +58,6 @@ export class RepositoryDetailComponent implements OnInit {
           };
           this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
             if (response && response != '') {
-              console.log(response);
               this.relatedResources = response;
             }
           }); 

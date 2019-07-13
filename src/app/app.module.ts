@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Components : the business logic for different page types.
@@ -12,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
 import { CorpusSearchComponent } from './corpus/corpus-search.component';
 import { CorpusDetailComponent } from './corpus/corpus-detail.component';
+import { RepositoryHelper } from './repository/repository-helper';
 import { RepositorySearchComponent } from './repository/repository-search.component';
 import { RepositoryDetailComponent } from './repository/repository-detail.component';
 
@@ -38,6 +41,7 @@ import { Globals } from './globals';
 
 // Pipes : Helper methods to alter behavior.
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Declarations are to make directives (including components and pipes)
 // from the current module available to other directives in the current module.
@@ -63,12 +67,16 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatNativeDateModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     APIService,
     authorizeService,
     AssignmentDescriptionService,
     CourseDescriptionService,
+    RepositoryHelper,
     Globals,
     HandleErrorService,
     LoginService,

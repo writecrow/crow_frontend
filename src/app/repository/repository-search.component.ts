@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
+import { RepositoryHelper } from '../repository/repository-helper';
 import { Globals } from '../globals';
 
 @Component({
@@ -22,6 +23,7 @@ export class RepositorySearchComponent {
     private router: Router,
     private API: APIService,
     public globals: Globals,
+    private repositoryHelper: RepositoryHelper,
   ) {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
@@ -120,20 +122,11 @@ export class RepositorySearchComponent {
   adjustLabels(searchResults) {
     // Append additional information to title for clarity.
     for (let i in searchResults) {
-      if (searchResults[i].document_type == 'Syllabus') {
-        this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].course);
-      }
-      if (['Assignment Sheet', 'Checklist', 'Peer Review Form', 'Rubric', 'Sample Work'].includes(searchResults[i].document_type)) {
-        this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].assignment);
-      }
-      if (searchResults[i].document_type == 'Handout') {
-        if (searchResults[i].assignment != '') {
-          this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].assignment);
-        }
-        else if (searchResults[i].course != '') {
-          this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].course);
-        }  
-      }
+      searchResults[i].label = this.repositoryHelper.getLabel(
+        searchResults[i].document_type,
+        searchResults[i].course,
+        searchResults[i].assignment,
+      );
     }
   }
 
