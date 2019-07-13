@@ -4,6 +4,7 @@ export class RepositoryDetail {
   course: string;
   document_type: string;
   embed_uri: any;
+  file: string;
   file_type: string;
   filename: string;
   file_size: string;

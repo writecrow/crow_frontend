@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIService } from '../services/api.service';
+import { environment } from '../../environments/environment';
 import { RepositoryDetail } from '../repository/repository-detail';
 import { RepositoryHelper } from '../repository/repository-helper';
 import { combineLatest } from 'rxjs';
@@ -38,6 +39,7 @@ export class RepositoryDetailComponent implements OnInit {
           if (response && response[0]) {
             this.content = response[0];
             this.content.label = this.repositoryHelper.getLabel(this.content.document_type, this.content.course, this.content.assignment);
+            this.content.uri = environment.backend + this.content.file;
             this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("http://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
             this.isLoaded = true;
             let relatedTexts = {
