@@ -15,7 +15,7 @@
       </span>
     </form>
     <div class="search-result" *ngFor="let result of searchResults">
-      <a routerLink="/repository/{{result.id}}">
+      <a routerLink="/repository/{{result.id}}" [queryParams]="{ search: searchString }">
         <div class="row">
           <div class="col-md-12">
             <h4>{{ result.label }}</h4>
