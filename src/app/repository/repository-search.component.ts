@@ -28,6 +28,7 @@ export class RepositorySearchComponent {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
     this.Facets['document_type'] = { label: 'Type', index: '3' };
+    this.Facets['topic'] = { label: 'Topic', index: '10' };
     this.Facets['assignment'] = { label: 'Assignment', index: '0' };
     this.Facets['institution'] = { label: 'Institution', index: '5' };
     this.Facets['year'] = { label: 'Year', index: '9' };

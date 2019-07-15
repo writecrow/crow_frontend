@@ -16,6 +16,7 @@ import { map } from 'rxjs/operators';
 export class RepositoryDetailComponent implements OnInit {
   content : RepositoryDetail;
   isLoaded : boolean;
+  exactTexts: any[] = [];
   relatedTexts: any[] = [];
   relatedResources: any[] = [];
 
@@ -42,29 +43,35 @@ export class RepositoryDetailComponent implements OnInit {
             this.content.uri = environment.backend + this.content.file;
             this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("http://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
             this.isLoaded = true;
-            let relatedTexts = {
+            let exactTexts = {
               'course': this.content.course,
               'assignment': this.content.assignment,
-              'institution': this.content.institution
+              'institution': this.content.institution,
+              'instructor': this.content.instructor,
+              'year': this.content.year,
             };
             if (this.content.assignment == '') {
               let relatedTexts = {
                 'course': this.content.course,
-                'year': this.content.year,
+                'institution': this.content.institution,
+                'instructor': this.content.instructor,
                 'semester': this.content.semester,
-                'institution': this.content.institution
+                'year': this.content.year,
               };
             }
             // Retrieve all texts with similar metadata
-            this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
+            this.API.getCorpusReferenceByMetadata(exactTexts).subscribe(response => {
               if (response && response != '') {
-                this.relatedTexts = response;
+                this.exactTexts = response;
               }
             });
             let repositoryParameters = {
               'course': this.content.course,
               'assignment': this.content.assignment,
-              'institution': this.content.institution
+              'institution': this.content.institution,
+              'instructor': this.content.instructor,
+              'semester': this.content.semester,              
+              'year': this.content.year,
             };
             this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
               if (response && response != '') {

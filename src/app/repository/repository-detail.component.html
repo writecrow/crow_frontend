@@ -22,6 +22,10 @@
           <th scope="row">Document type</th>
           <td>{{ content.document_type }}</td>
         </tr>
+        <tr *ngIf="content.topic">
+          <th scope="row">Topic</th>
+          <td>{{ content.topic }}</td>
+        </tr>
         <tr *ngIf="content.assignment">
           <th scope="row">Assignment</th>
           <td>{{ content.assignment }}</td>
@@ -52,17 +56,17 @@
         </tr>
       </tbody>
     </table>
-		<div *ngIf="relatedTexts.length">
-			<h3>Related corpus texts</h3>
-			<ul *ngFor="let result of relatedTexts">
-				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }} from {{ result.semester }} {{ result.year }}</a></li>
+		<div *ngIf="exactTexts.length">
+			<h3>Texts produced from this material</h3>
+			<ul *ngFor="let result of exactTexts">
+				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
 			</ul>
     </div>
 		<div *ngIf="relatedResources.length">
-			<h3>Related repository materials</h3>
-			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment (all instructors)
+			<h3>Correlated materials by this instructor</h3>
+			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}
 			<ul *ngFor="let result of relatedResources">
-				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}} from {{ result.course}}, {{ result.semester }} {{ result.year }}</a></li>
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
 			</ul>
 		</div>
   </div>

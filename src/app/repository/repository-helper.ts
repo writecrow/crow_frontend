@@ -4,7 +4,7 @@ export class RepositoryHelper {
     if (type == 'Syllabus') {
       return type.concat(': ' + course);
     }
-    if (['Assignment Sheet', 'Checklist', 'Peer Review Form', 'Rubric', 'Sample Work'].includes(type)) {
+    if (['Assignment Sheet', 'Checklist', 'Peer Review Form', 'Rubric', 'Sample Work', 'Lesson Plan', 'Activity'].includes(type)) {
       return type.concat(': ' + assignment);
     }
     if (type == 'Handout') {
