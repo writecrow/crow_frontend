@@ -25,8 +25,8 @@
           <div class="col-md-12"><p *ngIf="result.excerpt" [innerHTML]="result.excerpt"></p></div>
         </div>
         <div class="row">
-          <div *ngIf="result.course" class="col-md-6"><strong>Course:</strong> {{ result.course }} ({{ result.institution }})</div>
-          <div *ngIf="result.assignment" class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }}</div>
+          <div *ngIf="result.course" class="col-md-6"><strong>Course:</strong> {{ result.course }} ({{ result.institution }}) <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;</div>
+          <div *ngIf="result.assignment" class="col-md-6"><strong>Assignment:</strong> {{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;</div>
         </div>
         <div class="row">
           <div *ngIf="result.semester" class="col-md-6"><strong>Term:</strong> {{ result.semester }} {{ result.year }}</div>
@@ -41,11 +41,12 @@
     </div>
   </div><!-- End SearchResults -->
   <div class="col-lg-4 order-1 order-xl-2" *ngIf="isLoaded">
-    <div class="facet-wrapper" *ngFor="let key of FacetKeys">
+    <div class="facet-wrapper" *ngFor="let key of facetKeys">
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ Facets[key].label }}</div>
         <ul class="facet-items" [hidden]="!globals.repositoryFacets[key]">
           <li *ngFor="let item of Facets[key].values">
-            <input (click)="facetSearch(key, item.values.value, item.values.active)" name="{{ key }}_{{ item.values.value }}" id="{{ key }}_{{ item.values.value }}" type="checkbox" checked="{{ item.values.active }}" attr.aria-label="{{ key }} {{ item.values.value }}" /> {{ item.values.value }} ({{item.values.count }})
+            <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} ({{item.count }})
+            <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
           </li>
         </ul>
     </div>

@@ -15,7 +15,7 @@ import { AssignmentDescriptionService } from '../services/assignmentDescription.
 export class RepositorySearchComponent {
   searchResults: RepositoryDetail[];
   Facets: any[] = [];
-  FacetKeys: any[] = [];
+  facetKeys: any[] = [];
   isLoaded: boolean;
   searchInProgress: boolean;
   searchString: string;
@@ -53,16 +53,14 @@ export class RepositorySearchComponent {
         this.searchString = routeParams.search;
       }
       this.API.searchRepository(routeParams).subscribe(response => {
+        if (response && response.facets) {
+          this.Facets = this.prepareFacets(response.facets);
+        }
         if (response && response.search_results) {
-          this.searchResults = response.search_results;
+          this.searchResults = this.prepareSearchResults(response.search_results);
           this.isLoaded = true;
           // Do additional modifications on the returned API data.
           this.adjustLabels(this.searchResults);
-        }
-        else {
-        }
-        if (response && response.facets) {
-          this.prepareFacets(response.facets);
         }
         this.searchInProgress = false;
       });
@@ -110,18 +108,31 @@ export class RepositorySearchComponent {
   }
 
   prepareFacets(facets) {
-    this.FacetKeys = Object.keys(this.Facets);
+    this.facetKeys = Object.keys(this.Facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
     for (let name in this.Facets) {
       let i = this.Facets[name].index;
+      let facetOutput = [];
       if (typeof facets[i][0] !== 'undefined') {
-        this.Facets[name].values = facets[i][0][name];
+        for (let delta in facets[i][0][name]) {
+          let values = facets[i][0][name][delta].values;
+          let data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': '' };
+          if (name == 'course') {
+            data.description = this.courses.getDescription(values.value);
+          }
+          if (name == 'assignment') {
+            data.description = this.assignments.getDescription(values.value, "Purdue  University");
+          }
+          facetOutput.push(data);
+        }
+        this.Facets[name].values = facetOutput;
       }
       else {
         this.Facets[name].values = [];
       }
     }
+    return this.Facets;
   }
 
   adjustLabels(searchResults) {
@@ -133,6 +144,14 @@ export class RepositorySearchComponent {
         searchResults[i].assignment,
       );
     }
+  }
+
+  prepareSearchResults(results) {
+    for (let r in results) {
+      results[r]["course_description"] = this.courses.getDescription(results[r].course);
+      results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
+    }
+    return results;
   }
 
   toggleFacet(i) {

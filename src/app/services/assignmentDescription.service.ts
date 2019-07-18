@@ -6,7 +6,7 @@ export class AssignmentDescriptionService {
 
   getDescription(name, institution): string {
     for (var i in mockAssignmentDescriptions) {
-      if (mockAssignmentDescriptions[i].name == name && mockAssignmentDescriptions[i].institution == institution ) {
+      if (mockAssignmentDescriptions[i].name == name) {
         return mockAssignmentDescriptions[i].description;
       }
     }
