@@ -44,7 +44,7 @@ export class RepositoryDetailComponent implements OnInit {
             this.content = response[0];
             this.content.label = this.repositoryHelper.getLabel(this.content.document_type, this.content.course, this.content.assignment);
             this.content.uri = environment.backend + this.content.file;
-            this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("http://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
+            this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("https://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
             this.isLoaded = true;
             let exactTexts = {
               'course': this.content.course,
