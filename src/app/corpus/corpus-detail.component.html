@@ -20,13 +20,24 @@
 				</a></li>
 			</ul>
 		</div>
-		<div *ngIf="repositoryResources.length">
-			<h3>Related repository materials</h3>
-			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment (all instructors)
-			<ul *ngFor="let result of repositoryResources">
-				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}} from {{ result.course}}, {{ result.semester }} {{ result.year }}</a></li>
-			</ul>
+    <div *ngIf="exactResources.length">
+      <div class="facet-wrapper">
+      <div class="facet-header" (click)="toggleFacet('corpusExactResources')">&#9654; Instructor materials related to this text</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['corpusExactResources']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
+    	<ul [hidden]="!globals.repositoryFacets['corpusExactResources']" *ngFor="let result of exactResources">
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
+      </ul>
+      </div>
 		</div>
+    <div *ngIf="relatedTexts.length">
+      <div class="facet-wrapper">
+      <div class="facet-header" (click)="toggleFacet('corpusRelatedTexts')">&#9654; Similar texts by other students</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['corpusRelatedTexts']">Also from this instructor's {{ content.course }} {{ content.assignment }} assignment</p>
+    	<ul [hidden]="!globals.repositoryFacets['corpusRelatedTexts']" *ngFor="let result of relatedTexts">
+				<li><a routerLink="/corpus/{{result.filename}}" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
+      </ul>
+      </div>
+    </div>
 		<div *ngIf="isLoaded">
 			<h3>Course Data</h3>
 			<table>
@@ -53,7 +64,7 @@
 					</tr>
 					<tr *ngIf="content.assignment">
 						<th scope="row">Assignment</th>
-						<td>{{ content.assignment }}<br />{{ content.assignment_description }}</td>	
+						<td>{{ content.assignment }}<br /><em>{{ content.assignment_description }}</em></td>	
 					</tr>
 				</tbody>
 			</table>
@@ -107,10 +118,6 @@
 			<h3>Text Data</h3>
 			<table>
 				<tbody>
-					<tr *ngIf="content.filename">
-						<th scope="row">Corpus Filename</th>
-						<td>{{ content.filename }}</td>
-					</tr>
 					<tr *ngIf="content.draft">
 						<th scope="row">Draft</th>
 						<td>{{ content.draft }}</td>

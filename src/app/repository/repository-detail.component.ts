@@ -7,6 +7,7 @@ import { RepositoryDetail } from '../repository/repository-detail';
 import { RepositoryHelper } from '../repository/repository-helper';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Globals } from '../globals';
 
 @Component({
   templateUrl: '../repository/repository-detail.component.html',
@@ -18,12 +19,14 @@ export class RepositoryDetailComponent implements OnInit {
   isLoaded : boolean;
   exactTexts: any[] = [];
   relatedTexts: any[] = [];
+  exactResources: any[] = [];
   relatedResources: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private API: APIService,
+    public globals: Globals,
     private sanitizer: DomSanitizer,
     private repositoryHelper: RepositoryHelper,
   ) { }
@@ -48,21 +51,32 @@ export class RepositoryDetailComponent implements OnInit {
               'assignment': this.content.assignment,
               'institution': this.content.institution,
               'instructor': this.content.instructor,
+              'semester': this.content.semester,
               'year': this.content.year,
+            };
+            // Retrieve all texts with similar metadata
+            this.API.getCorpusReferenceByMetadata(exactTexts).subscribe(response => {
+              if (response && response != '') {
+                this.exactTexts = response;
+              }
+            });
+            let relatedTexts = {
+              'course': this.content.course,
+              'assignment': this.content.assignment,
+              'institution': this.content.institution,
+              'instructor': this.content.instructor,
             };
             if (this.content.assignment == '') {
               let relatedTexts = {
                 'course': this.content.course,
                 'institution': this.content.institution,
                 'instructor': this.content.instructor,
-                'semester': this.content.semester,
-                'year': this.content.year,
               };
             }
             // Retrieve all texts with similar metadata
-            this.API.getCorpusReferenceByMetadata(exactTexts).subscribe(response => {
+            this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
               if (response && response != '') {
-                this.exactTexts = response;
+                this.relatedTexts = response;
               }
             });
             let repositoryParameters = {
@@ -72,8 +86,20 @@ export class RepositoryDetailComponent implements OnInit {
               'instructor': this.content.instructor,
               'semester': this.content.semester,              
               'year': this.content.year,
+              'exclude_id': this.content.id,
             };
             this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
+              if (response && response != '') {
+                this.exactResources = response;
+              }
+            });
+            let relatedRepositoryParameters = {
+              'course': this.content.course,
+              'assignment': this.content.assignment,
+              'institution': this.content.institution,
+              'exclude_id': this.content.id,
+            };
+            this.API.getRepositoryReferenceByMetadata(relatedRepositoryParameters).subscribe(response => {
               if (response && response != '') {
                 this.relatedResources = response;
               }
@@ -84,6 +110,19 @@ export class RepositoryDetailComponent implements OnInit {
           }
         });
       });
+  }
+
+  toggleFacet(i) {
+    // Used to show/hide elements in an Angular way.
+    // See https://stackoverflow.com/a/35163037
+    if (this.globals.repositoryFacets[i] === undefined) {
+      this.globals.repositoryFacets[i] = true;
+    }
+    else if (this.globals.repositoryFacets[i] === false) {
+      this.globals.repositoryFacets[i] = true;
+    } else {
+      this.globals.repositoryFacets[i] = false;
+    }
   }
 
 }

@@ -4,7 +4,7 @@ import { APIService } from '../services/api.service';
 import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
 import { CourseDescriptionService } from '../services/courseDescription.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
-
+import { Globals } from '../globals';
 @Component({
   templateUrl: '../corpus/corpus-detail.component.html',
   styleUrls: ['../corpus/corpus-detail.component.css']
@@ -13,7 +13,9 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 export class CorpusDetailComponent implements OnInit {
   content: CorpusDetail;
   drafts: any[] = [];
-  repositoryResources: any[] = [];
+  exactResources: any[] = [];
+  relatedRepositoryResources: any[] = [];
+  relatedTexts: any[] = [];
   isLoaded: boolean;
   statusMessage: string = "";
 
@@ -23,12 +25,13 @@ export class CorpusDetailComponent implements OnInit {
     private API: APIService,
     private assignments: AssignmentDescriptionService,
     private courses: CourseDescriptionService,
+    public globals: Globals,
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
       this.drafts = [];
-      this.repositoryResources = [];
+      this.exactResources = [];
       // Pass 2 parameters to API: the route path, and any query parameters.
       this.API.getCorpusDetailById(routeParams.id, this.route.snapshot.queryParams).subscribe(response => {
         if (response && response[0]) {
@@ -41,7 +44,7 @@ export class CorpusDetailComponent implements OnInit {
           let draftParameters = {
             'id' : this.content.id,
             'assignment' : this.content.assignment,
-            'institution' : this.content.institution
+            'institution' : this.content.institution,
           };
           // Retrieve all texts with same ID (i.e., drafts).
           this.API.getCorpusReferenceByMetadata(draftParameters).subscribe(response => {
@@ -54,16 +57,31 @@ export class CorpusDetailComponent implements OnInit {
               this.drafts = this.sortByKey(this.drafts, "draft");
             }
           });
-          // Retrieve any repository resources that have matching metadata.
-          // @todo: narrow the criteria when we have more materials.
+          let relatedTexts = {
+            'course': this.content.course,
+            'assignment': this.content.assignment,
+            'institution': this.content.institution,
+            'instructor': this.content.instructor,
+            'exclude_id': this.content.filename,
+          };
+          // Retrieve all texts with similar metadata
+          this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
+            if (response && response != '') {
+              this.relatedTexts = response;
+            }
+          });
+          // Retrieve repository resources that have matching metadata.
           let repositoryParameters = { 
             'course': this.content.course,
             'assignment': this.content.assignment,
-            'institution': this.content.institution
+            'institution': this.content.institution,
+            'instructor': this.content.instructor,
+            'year': this.content.year,
+            'semester': this.content.semester,
           };
           this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
             if (response && response != '') {
-              this.repositoryResources = response;
+              this.exactResources = response;
             }
           });  
         }
@@ -85,6 +103,19 @@ export class CorpusDetailComponent implements OnInit {
       var x = a[key]; var y = b[key];
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
+  }
+
+  toggleFacet(i) {
+    // Used to show/hide elements in an Angular way.
+    // See https://stackoverflow.com/a/35163037
+    if (this.globals.repositoryFacets[i] === undefined) {
+      this.globals.repositoryFacets[i] = true;
+    }
+    else if (this.globals.repositoryFacets[i] === false) {
+      this.globals.repositoryFacets[i] = true;
+    } else {
+      this.globals.repositoryFacets[i] = false;
+    }
   }
 
 }

@@ -4,6 +4,8 @@ import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
 import { RepositoryHelper } from '../repository/repository-helper';
 import { Globals } from '../globals';
+import { CourseDescriptionService } from '../services/courseDescription.service';
+import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
 
 @Component({
   templateUrl: '../repository/repository-search.component.html',
@@ -24,6 +26,8 @@ export class RepositorySearchComponent {
     private API: APIService,
     public globals: Globals,
     private repositoryHelper: RepositoryHelper,
+    private courses: CourseDescriptionService,
+    private assignments: AssignmentDescriptionService,
   ) {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];

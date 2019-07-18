@@ -16,6 +16,41 @@
       <a href="{{ content.uri }}">
         <img class="download" src="assets/download.svg" alt="Download icon" /> {{ content.filename }}</a> ({{ content.filesize }})
     </p>
+    <div *ngIf="exactTexts.length">
+      <div class="facet-wrapper">
+      <div class="facet-header" (click)="toggleFacet('repositoryExactTexts')">&#9654; Student texts associated with this material</div>
+    	<ul [hidden]="!globals.repositoryFacets['repositoryExactTexts']" *ngFor="let result of exactTexts">
+    		<li><a routerLink="/corpus/{{ result.filename }}" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
+      </ul>
+      </div>
+    </div>
+    <div *ngIf="exactResources.length">
+      <div class="facet-wrapper">
+      <div class="facet-header" (click)="toggleFacet('repositoryExactResources')">&#9654; Instructor materials related to this resource</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryExactResources']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
+    	<ul [hidden]="!globals.repositoryFacets['repositoryExactResources']" *ngFor="let result of exactResources">
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
+      </ul>
+      </div>
+    </div>
+    <div *ngIf="relatedTexts.length">
+      <div class="facet-wrapper">
+      <div class="facet-header" (click)="toggleFacet('repositoryRelatedTexts')">&#9654; Related student texts</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']">From other {{ content.institution }} instructors' {{ content.course }} courses</p>
+    	<ul [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']" *ngFor="let result of relatedTexts">
+				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
+      </ul>
+      </div>
+    </div>
+    <div *ngIf="relatedResources.length">
+      <div class="facet-wrapper">
+      <div class="facet-header" (click)="toggleFacet('repositoryRelatedResources')">&#9654; Related course materials</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryRelatedResources']">From other {{ content.institution }} instructors' {{ content.course }} courses</p>
+    	<ul [hidden]="!globals.repositoryFacets['repositoryRelatedResources']" *ngFor="let result of relatedResources">
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
+      </ul>
+      </div>
+    </div>
     <table>
       <tbody>
         <tr *ngIf="content.document_type">
@@ -56,18 +91,5 @@
         </tr>
       </tbody>
     </table>
-		<div *ngIf="exactTexts.length">
-			<h3>Texts produced from this material</h3>
-			<ul *ngFor="let result of exactTexts">
-				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
-			</ul>
-    </div>
-		<div *ngIf="relatedResources.length">
-			<h3>Correlated materials by this instructor</h3>
-			From the {{ content.institution }} {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}
-			<ul *ngFor="let result of relatedResources">
-				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
-			</ul>
-		</div>
   </div>
 </div>
