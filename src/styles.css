@@ -175,6 +175,9 @@ dl, ol, ul {
     padding-left: 1rem;
     padding-bottom: 1rem;
 }
+p.details-description {
+  margin: 10px 10px;
+}
 
 /* Search inputs */
 .search-progress {
@@ -264,3 +267,4 @@ footer a, footer a:hover, footer a:focus {
 .embed-responsive-4by3 {
   padding-bottom: 75%;
 }
+html, body { height: 100%; }

@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
+import { RepositoryHelper } from '../repository/repository-helper';
 import { Globals } from '../globals';
+import { CourseDescriptionService } from '../services/courseDescription.service';
+import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
 
 @Component({
   templateUrl: '../repository/repository-search.component.html',
@@ -12,7 +15,7 @@ import { Globals } from '../globals';
 export class RepositorySearchComponent {
   searchResults: RepositoryDetail[];
   Facets: any[] = [];
-  FacetKeys: any[] = [];
+  facetKeys: any[] = [];
   isLoaded: boolean;
   searchInProgress: boolean;
   searchString: string;
@@ -22,10 +25,14 @@ export class RepositorySearchComponent {
     private router: Router,
     private API: APIService,
     public globals: Globals,
+    private repositoryHelper: RepositoryHelper,
+    private courses: CourseDescriptionService,
+    private assignments: AssignmentDescriptionService,
   ) {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
     this.Facets['document_type'] = { label: 'Type', index: '3' };
+    this.Facets['topic'] = { label: 'Topic', index: '10' };
     this.Facets['assignment'] = { label: 'Assignment', index: '0' };
     this.Facets['institution'] = { label: 'Institution', index: '5' };
     this.Facets['year'] = { label: 'Year', index: '9' };
@@ -46,16 +53,14 @@ export class RepositorySearchComponent {
         this.searchString = routeParams.search;
       }
       this.API.searchRepository(routeParams).subscribe(response => {
+        if (response && response.facets) {
+          this.Facets = this.prepareFacets(response.facets);
+        }
         if (response && response.search_results) {
-          this.searchResults = response.search_results;
+          this.searchResults = this.prepareSearchResults(response.search_results);
           this.isLoaded = true;
           // Do additional modifications on the returned API data.
           this.adjustLabels(this.searchResults);
-        }
-        else {
-        }
-        if (response && response.facets) {
-          this.prepareFacets(response.facets);
         }
         this.searchInProgress = false;
       });
@@ -103,38 +108,50 @@ export class RepositorySearchComponent {
   }
 
   prepareFacets(facets) {
-    this.FacetKeys = Object.keys(this.Facets);
+    this.facetKeys = Object.keys(this.Facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
     for (let name in this.Facets) {
       let i = this.Facets[name].index;
+      let facetOutput = [];
       if (typeof facets[i][0] !== 'undefined') {
-        this.Facets[name].values = facets[i][0][name];
+        for (let delta in facets[i][0][name]) {
+          let values = facets[i][0][name][delta].values;
+          let data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': '' };
+          if (name == 'course') {
+            data.description = this.courses.getDescription(values.value);
+          }
+          if (name == 'assignment') {
+            data.description = this.assignments.getDescription(values.value, "Purdue  University");
+          }
+          facetOutput.push(data);
+        }
+        this.Facets[name].values = facetOutput;
       }
       else {
         this.Facets[name].values = [];
       }
     }
+    return this.Facets;
   }
 
   adjustLabels(searchResults) {
     // Append additional information to title for clarity.
     for (let i in searchResults) {
-      if (searchResults[i].document_type == 'Syllabus') {
-        this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].course);
-      }
-      if (['Assignment Sheet', 'Checklist', 'Peer Review Form', 'Rubric', 'Sample Work'].includes(searchResults[i].document_type)) {
-        this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].assignment);
-      }
-      if (searchResults[i].document_type == 'Handout') {
-        if (searchResults[i].assignment != '') {
-          this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].assignment);
-        }
-        else if (searchResults[i].course != '') {
-          this.searchResults[i].document_type = this.searchResults[i].document_type.concat(': ' + searchResults[i].course);
-        }  
-      }
+      searchResults[i].label = this.repositoryHelper.getLabel(
+        searchResults[i].document_type,
+        searchResults[i].course,
+        searchResults[i].assignment,
+      );
     }
+  }
+
+  prepareSearchResults(results) {
+    for (let r in results) {
+      results[r]["course_description"] = this.courses.getDescription(results[r].course);
+      results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
+    }
+    return results;
   }
 
   toggleFacet(i) {
