@@ -9,11 +9,11 @@ declare const ga: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css', './macaws.overrides.css'],
   providers: [authorizeService, LoginService],
 })
 export class AppComponent implements AfterViewInit {
-  public LOGO = require("../assets/logo.svg");
+  public LOGO = require("../assets/logo.png");
   public SHIELD = require("../assets/black-crow-shield.svg");
   constructor(
     private router: Router,
