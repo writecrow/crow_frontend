@@ -1,5 +1,6 @@
 <div class="row">
-	<div class="col-lg-7" *ngIf="isLoaded">
+	<div class="col-lg-7 panel" *ngIf="isLoaded">
+		<h1>{{ content.field_macro_genre }}: {{ content.field_assignment_name }} ({{ content.field_target_language }})</h1>
 		<div class="panel bigger" *ngIf="content.concordance">
 			<h2>Sentences containing search term</h2>
 			<p>A maximum of 5 sentences will be shown.</p>
@@ -7,7 +8,7 @@
 		</div>
 		<div class="panel">
       <h2>Original Text</h2>
-      <div class="bigger" [innerHTML]="content.body | keepHtml"></div>
+      <div class="bigger" [innerHTML]="content.corpus_text | keepHtml"></div>
     </div>
 	</div>
   <div *ngIf="content" class="col-lg-4 panel bigger">
@@ -20,51 +21,33 @@
 				</a></li>
 			</ul>
 		</div>
-    <div *ngIf="exactResources.length">
-      <div class="facet-wrapper">
-      <div class="facet-header" (click)="toggleFacet('corpusExactResources')">&#9654; Instructor materials related to this text</div>
-      <p class="details-description" [hidden]="!globals.repositoryFacets['corpusExactResources']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
-    	<ul [hidden]="!globals.repositoryFacets['corpusExactResources']" *ngFor="let result of exactResources">
-				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
-      </ul>
-      </div>
-		</div>
-    <div *ngIf="relatedTexts.length">
-      <div class="facet-wrapper">
-      <div class="facet-header" (click)="toggleFacet('corpusRelatedTexts')">&#9654; Similar texts by other students</div>
-      <p class="details-description" [hidden]="!globals.repositoryFacets['corpusRelatedTexts']">Also from this instructor's {{ content.course }} {{ content.assignment }} assignment</p>
-    	<ul [hidden]="!globals.repositoryFacets['corpusRelatedTexts']" *ngFor="let result of relatedTexts">
-				<li><a routerLink="/corpus/{{result.filename}}" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
-      </ul>
-      </div>
-    </div>
 		<div *ngIf="isLoaded">
 			<h3>Course Data</h3>
 			<table>
 				<tbody>
-					<tr *ngIf="content.institution">
+					<tr *ngIf="content.field_institution">
 						<th scope="row">Institution</th>
-						<td>{{ content.institution }}</td>
+						<td>{{ content.field_institution }}</td>
 					</tr>
-					<tr *ngIf="content.semester">
-						<th scope="row">Semester</th>
-						<td>{{ content.semester }}</td>
+					<tr *ngIf="content.field_course_year">
+						<th scope="row">Term</th>
+						<td>{{ content.field_course_semester }} {{ content.field_course_year }}</td>
 					</tr>
-					<tr *ngIf="content.year">
-						<th scope="row">Year</th>
-						<td>{{ content.year }}</td>
-					</tr>
-					<tr *ngIf="content.course_description">
+					<tr *ngIf="content.field_course">
 						<th scope="row">Course</th>
-						<td>{{ content.course_description }}</td>
+						<td>{{ content.field_course }}</td>
 					</tr>
-					<tr *ngIf="content.instructor">
-						<th scope="row">Instructor</th>
-						<td>{{ content.instructor }}</td>
+					<tr *ngIf="content.field_section">
+						<th scope="row">Section</th>
+						<td>{{ content.field_section }}</td>
 					</tr>
-					<tr *ngIf="content.assignment">
-						<th scope="row">Assignment</th>
-						<td>{{ content.assignment }}<br /><em>{{ content.assignment_description }}</em></td>	
+					<tr *ngIf="content.field_length_of_course">
+						<th scope="row">Length of Course</th>
+						<td>{{ content.field_length_of_course }}</td>
+					</tr>
+					<tr *ngIf="content.field_credit_hours">
+						<th scope="row">Credit Hours</th>
+						<td>{{ content.field_credit_hours }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -72,45 +55,49 @@
 			<h3>Student Data</h3>
 			<table>
 				<tbody>
-					<tr *ngIf="content.program">
-						<th scope="row">Program</th>
-						<td>{{ content.program }}</td>	
+					<tr *ngIf="content.field_l1">
+						<th scope="row">L1</th>
+						<td>{{ content.field_l1 }}</td>	
 					</tr>
-					<tr *ngIf="content.college">
-						<th scope="row">College</th>
-						<td>{{ content.college }}</td>
+					<tr *ngIf="content.field_courses_currently_enrolled">
+						<th scope="row">Courses Currently Enrolled</th>
+						<td>{{ content.field_courses_currently_enrolled }}</td>
 					</tr>
-					<tr *ngIf="content.gender">
-						<th scope="row">Gender</th>
-						<td>{{ content.gender }}</td>
+					<tr *ngIf="content.field_courses_previously_enrolle">
+						<th scope="row">Courses Previously Enrolled</th>
+						<td>{{ content.field_courses_previously_enrolle }}</td>
 					</tr>
-					<tr *ngIf="content.year_in_school">
+					<tr *ngIf="content.field_began_formal_education">
+						<th scope="row">Began Formal Education in Target Language</th>
+						<td>{{ content.field_began_formal_education }}</td>
+					</tr>
+					<tr *ngIf="content.field_experience_abroad">
+						<th scope="row">Experience Abroad</th>
+						<td>{{ content.field_experience_abroad }}</td>
+					</tr>
+					<tr *ngIf="content.field_year_in_school">
 						<th scope="row">Year in School</th>
-						<td>{{ content.year_in_school }}</td>	
+						<td>{{ content.field_year_in_school }}</td>	
 					</tr>
-					<tr *ngIf="content.country">
-						<th scope="row">Country of Origin</th>
-						<td>{{ content.country }}</td>	
+					<tr *ngIf="content.field_major">
+						<th scope="row">Major</th>
+						<td>{{ content.field_major }}</td>	
 					</tr>
-					<tr *ngIf="content.toefl_listening">
-						<th scope="row">TOEFL Listening</th>
-						<td>{{ content.toefl_listening }}</td>
+					<tr *ngIf="content.field_minor">
+						<th scope="row">Minor</th>
+						<td>{{ content.field_minor }}</td>	
 					</tr>
-					<tr *ngIf="content.toefl_reading">
-						<th scope="row">TOEFL Reading</th>
-						<td>{{ content.toefl_reading }}</td>
+					<tr *ngIf="content.field_proficiency_exam">
+						<th scope="row">Proficiency Exam</th>
+						<td>{{ content.field_proficiency_exam }}: {{ content.field_proficiency_exam_score }}</td>	
 					</tr>
-					<tr *ngIf="content.toefl_writing">
-						<th scope="row">TOEFL Writing</th>
-						<td>{{ content.toefl_writing }}</td>
+					<tr *ngIf="content.field_target_language_practice">
+						<th scope="row">Target Language Practice</th>
+						<td>{{ content.field_target_language_practice }}</td>	
 					</tr>
-					<tr *ngIf="content.toefl_speaking">
-						<th scope="row">TOEFL Speaking</th>
-						<td>{{ content.toefl_speaking }}</td>
-					</tr>
-					<tr *ngIf="content.toefl_total">
-						<th scope="row">TOEFL Total</th>
-						<td>{{ content.toefl_total }}</td>
+					<tr *ngIf="content.field_heritage_of_target_languag">
+						<th scope="row">Heritage of Target Language</th>
+						<td>{{ content.field_heritage_of_target_languag }}</td>	
 					</tr>
 				</tbody>
 			</table>
@@ -118,13 +105,33 @@
 			<h3>Text Data</h3>
 			<table>
 				<tbody>
-					<tr *ngIf="content.draft">
-						<th scope="row">Draft</th>
-						<td>{{ content.draft }}</td>
+					<tr *ngIf="content.field_assignment_code">
+						<th scope="row">Assignment Code</th>
+						<td>{{ content.field_assignment_code }}</td>
 					</tr>
-					<tr *ngIf="content.wordcount">
+					<tr *ngIf="content.field_assignment_mode">
+						<th scope="row">Assignment Mode</th>
+						<td>{{ content.field_assignment_mode }}</td>
+					</tr>
+					<tr *ngIf="content.field_macro_genre">
+						<th scope="row">Macro Genre</th>
+						<td>{{ content.field_macro_genre }}</td>
+					</tr>
+					<tr *ngIf="content.field_assignment_topic">
+						<th scope="row">Assignment Topic</th>
+						<td>{{ content.field_assignment_topic }}</td>
+					</tr>
+					<tr *ngIf="content.field_assignment_name">
+						<th scope="row">Assignment Name</th>
+						<td>{{ content.field_assignment_name }}</td>
+					</tr>
+					<tr *ngIf="content.field_draft">
+						<th scope="row">Draft</th>
+						<td>{{ content.field_draft }}</td>
+					</tr>
+					<tr *ngIf="content.field_wordcount">
 						<th scope="row">Wordcount</th>
-						<td>{{ content.wordcount }}</td>
+						<td>{{ content.field_wordcount }}</td>
 					</tr>
 				</tbody>
 			</table>

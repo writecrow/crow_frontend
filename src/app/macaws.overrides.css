@@ -47,8 +47,20 @@ header .title h1 {
   letter-spacing: 1rem;
   font-family: 'Oswald', monospace;
 }
+
 header .title h1 a {
   text-decoration:none;
+}
+
+footer {
+  font-weight:bold;
+  flex-shrink:0;
+  width:100%;
+  background-color: navy;
+	padding-top:0.5rem;
+	padding-bottom:0.5rem;
+  color:#fff;
+  text-align:center;
 }
 
 /* Logo */

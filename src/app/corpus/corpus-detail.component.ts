@@ -36,54 +36,7 @@ export class CorpusDetailComponent implements OnInit {
       this.API.getCorpusDetailById(routeParams.id, this.route.snapshot.queryParams).subscribe(response => {
         if (response && response[0]) {
           this.content = response[0];
-          // Add assignment description.
-          this.content.assignment_description = this.assignments.getDescription(this.content.assignment, this.content.institution);
-          this.content.course_description = this.courses.getDescription(this.content.course);
           this.isLoaded = true;
-          // Retrieve all drafts for this ID, institution, & assignment.
-          let draftParameters = {
-            'id' : this.content.id,
-            'assignment' : this.content.assignment,
-            'institution' : this.content.institution,
-          };
-          // Retrieve all texts with same ID (i.e., drafts).
-          this.API.getCorpusReferenceByMetadata(draftParameters).subscribe(response => {
-            if (response && response != '') {
-              for (const i of Object.keys(response)) {
-                const element = {};
-                let draftno = response[i].draft;
-                this.drafts.push({ draft: draftno, data: response[i] });
-              }
-              this.drafts = this.sortByKey(this.drafts, "draft");
-            }
-          });
-          let relatedTexts = {
-            'course': this.content.course,
-            'assignment': this.content.assignment,
-            'institution': this.content.institution,
-            'instructor': this.content.instructor,
-            'exclude_id': this.content.filename,
-          };
-          // Retrieve all texts with similar metadata
-          this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
-            if (response && response != '') {
-              this.relatedTexts = response;
-            }
-          });
-          // Retrieve repository resources that have matching metadata.
-          let repositoryParameters = { 
-            'course': this.content.course,
-            'assignment': this.content.assignment,
-            'institution': this.content.institution,
-            'instructor': this.content.instructor,
-            'year': this.content.year,
-            'semester': this.content.semester,
-          };
-          this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
-            if (response && response != '') {
-              this.exactResources = response;
-            }
-          });  
         }
         else {
           this.router.navigateByUrl('404', { skipLocationChange: true });

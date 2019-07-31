@@ -58,17 +58,13 @@ export class CorpusSearchComponent {
 
     // The order in which these are pushed into the "facets" object determine their order in the sidebar.
     this.facets = <any>[];
-    this.facets['institution'] = { label: 'Institution', index: '6' };
-    this.facets['year'] = { label: 'Year', index: '10' };
-    this.facets['semester'] = { label: 'Semester', index: '9' };
-    this.facets['course'] = { label: 'Course', index: '3' };
-    this.facets['assignment'] = { label: 'Assignment', index: '0' };
-    this.facets['draft'] = { label: 'Draft', index: '4' };
-    this.facets['college'] = { label: 'College', index: '1' };
-    this.facets['country'] = { label: 'Country', index: '2' };
-    this.facets['gender'] = { label: 'Gender', index: '5' };
-    this.facets['program'] = { label: 'Program', index: '8' };
-    this.facets['year_in_school'] = { label: 'Year in School', index: '11' };
+    this.facets['target_language'] = { label: 'Target Language' };
+    this.facets['course'] = { label: 'Course' };
+    this.facets['macro_genre'] = { label: 'Macro Genre' };
+    this.facets['assignment_topic'] = { label: 'Topic' };
+    this.facets['draft'] = { label: 'Draft' };
+    this.facets['assignment_mode'] = { label: 'Mode of Assignment' };
+    this.facets['grouped_l1'] = { label: 'L1' };
     this.querySearch();
   }
 
@@ -174,17 +170,9 @@ export class CorpusSearchComponent {
       this.frequencyData = [];
       this.frequencyTotals = [];
       this.searchResults = [];
-      // Populate the interface from the URL.
-      // @todo -- move this to a callback function?
-      if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
+      if (typeof routeParams.search != 'undefined') {
         this.searchString = routeParams.search;
-        if (/[^a-zA-Z0-9_ \s]/.test(this.searchString) && !/"/.test(this.searchString)) {
-          this.globals.statusMessage = "It looks like you're trying a search that includes punctuation. You may need to wrap your search string in quotes.";
-        }
-        else {
-          this.globals.statusMessage = "";
-        }
-      }
+      }      
       if (typeof routeParams.method != 'undefined' && this.validMethods.includes(routeParams.method)) {
         this.method = routeParams.method;
       }

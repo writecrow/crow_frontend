@@ -11,17 +11,6 @@
           </li>
         </ul>
     </div>
-    <div class="details-wrapper">
-      <div class="facet-header" (click)="toggle('toeflShow')">&#9654; TOEFL Score</div>
-      <div class="details-body" [hidden]="!evaluateToggle('toeflShow')">
-        <strong>Filter by TOEFL total score between:</strong>
-        <label for="toeflTotalMin">Minimum:</label>
-        <input type="number" min="0" max="120" id="toeflTotalMin" name="toeflTotalMin" [(ngModel)]="filters['toeflTotalMin'].value" aria-label="TOEFL Total (minimum)" />
-        <label for="toeflTotalMax">Maximum:</label>
-        <input type="number" min="0" max="120" id="toeflTotalMax" name="toeflTotalMax" [(ngModel)]="filters['toeflTotalMax'].value" aria-label="TOEFL Total (maximum)" /><br />
-        (TOEFL scores range from 0-120)
-      </div>
-    </div>
   </div>
   <div class="col-lg-8 search-wrapper">
     <div class="row">
@@ -53,21 +42,16 @@
         <div class="details-header" (click)="toggle('advancedSearch')">&#9654; Advanced Search</div>
         <div class="details-body" [hidden]="!advancedSearch">
           <p><strong>Tip:</strong> To search by phrase, place multiple words in quotation marks</p>
-          <strong>Word form handling: </strong>
-          <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word
-          <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms (e.g., begin, began, begun, beginning"> Lemma<br />
-          <br />
           <strong>Multiple word handling: </strong>
           <input type="radio" name="or" (click)="setOperation('or')" [checked]="keywordMode == 'or'"  aria-label="or"> Contains any word
           <input type="radio" name="and" (click)="setOperation('and')" [checked]="keywordMode == 'and'"  aria-label="and"> Contains all words<br /><br />
-          <input id="searchByID" name="searchByID" placeholder="Filter by ID..." [(ngModel)]="filters['searchByID'].value" aria-label="Search by ID" />
         </div>
       </div>
     </div>
     <div class="row search-results">
       <form *ngIf="searchInProgress != true" class="search-results-top">
         <h3>Matching texts: {{ resultCount | number }}</h3>
-        <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
+        <h3 *ngIf="subcorpusWordcount != 0">Word count of subcorpus: {{ subcorpusWordcount | number }}<div class="tooltip-toggle" aria-label="Wordcount of all texts matching any filters applied.">&nbsp;&#9432;</div></h3>
         <label>
           <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
         </label>
@@ -106,19 +90,16 @@
       <div class="search-result" *ngFor="let result of searchResults">
         <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
-            <div class="col result" [innerHTML]="result.excerpt"></div>
+            <div class="col result" [innerHTML]="result.text"></div>
           </div>
           <div *ngIf="showMetadata" class="row">
             <div class="col search-metadata">
               <hr />
-              <strong>Term:</strong> {{result.semester}} {{result.year}}&nbsp;&nbsp; 
+              <strong>Term:</strong> {{result.course_semester}} {{result.course_year}}&nbsp;&nbsp; 
               <strong>Course:</strong> {{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;
-              <strong>Assignment:</strong> {{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;
+              <strong>Assignment:</strong> {{ result.assignment_topic }} ({{ result.assignment_mode }})&nbsp;&nbsp;
               <strong>Draft:</strong> {{result.draft }}&nbsp;&nbsp;
-              <strong>Gender:</strong> {{ result.gender }}&nbsp;&nbsp;
-              <strong>TOEFL:</strong>
-                <span *ngIf="result.toefl_total != 0 && result.toefl_total"> {{ result.toefl_total }}</span>
-                <span *ngIf="result.toefl_total == 0 || !result.toefl_total">&nbsp;N/A</span>
+              <strong>Wordcount:</strong> {{result.wordcount }}&nbsp;&nbsp;
             </div>
           </div>
         </a>

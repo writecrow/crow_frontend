@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  backend: 'https://api.lndo.site/',
-  alt_text: 'e791d06b-20a8-41cb-801a-023893c71563',
+  backend: 'https://macaws.lndo.site/',
+  alt_text: '2427f8ce-f19a-4d66-b199-50eb1471928c',
   alt_uuid: 'test',
 };
 
