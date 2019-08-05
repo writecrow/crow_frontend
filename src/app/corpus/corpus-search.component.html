@@ -52,6 +52,7 @@
       <form *ngIf="searchInProgress != true" class="search-results-top">
         <h3>Matching texts: {{ resultCount | number }}</h3>
         <h3 *ngIf="subcorpusWordcount != 0">Word count of subcorpus: {{ subcorpusWordcount | number }}<div class="tooltip-toggle" aria-label="Wordcount of all texts matching any filters applied.">&nbsp;&#9432;</div></h3>
+        <button (click)="openDialog()">Embed &lt;/&gt;</button>
         <label>
           <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
         </label>

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Components : the business logic for different page types.
@@ -12,7 +13,7 @@ import { AuthorizeComponent } from './authorize/authorize.component';
 import { NotFoundComponent } from './404/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
-import { CorpusSearchComponent } from './corpus/corpus-search.component';
+import { CorpusSearchComponent, DialogEmbed } from './corpus/corpus-search.component';
 import { CorpusDetailComponent } from './corpus/corpus-detail.component';
 import { RepositoryHelper } from './repository/repository-helper';
 import { RepositorySearchComponent } from './repository/repository-search.component';
@@ -58,9 +59,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PageComponent,
     CorpusSearchComponent,
     CorpusDetailComponent,
+    DialogEmbed,
     RepositorySearchComponent,
     RepositoryDetailComponent,
     NotFoundComponent,
+  ],
+  entryComponents: [
+    CorpusSearchComponent,
+    DialogEmbed,
+  ],
+  exports: [
+    MatDialogModule,
   ],
   imports: [
     BrowserModule,
