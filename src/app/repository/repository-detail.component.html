@@ -11,7 +11,7 @@
     </mat-tab-group>      
   </div>
   <div class="col-md-4 order-1 order-xl-2 panel bigger">
-    <h2>Download</h2>
+    <h2>Download Original</h2>
     <p *ngIf="content.filename">
       <a href="{{ content.uri }}">
         <img class="download" src="assets/download.svg" alt="Download icon" /> {{ content.filename }}</a> ({{ content.filesize }})
@@ -19,8 +19,9 @@
     <div *ngIf="exactTexts.length">
       <div class="facet-wrapper">
       <div class="facet-header" (click)="toggleFacet('repositoryExactTexts')">&#9654; Student texts associated with this material</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryExactTexts']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
     	<ul [hidden]="!globals.repositoryFacets['repositoryExactTexts']" *ngFor="let result of exactTexts">
-    		<li><a routerLink="/corpus/{{ result.filename }}" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
+    		<li><a routerLink="/corpus/{{ result.filename }}" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id }})</a></li>
       </ul>
       </div>
     </div>
@@ -38,7 +39,7 @@
       <div class="facet-header" (click)="toggleFacet('repositoryRelatedTexts')">&#9654; Related student texts</div>
       <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']">From other {{ content.institution }} instructors' {{ content.course }} courses</p>
     	<ul [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']" *ngFor="let result of relatedTexts">
-				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
+				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id }})</a></li>
       </ul>
       </div>
     </div>
@@ -84,10 +85,6 @@
         <tr *ngIf="content.mode">
             <th scope="row">Mode</th>
             <td>{{ content.mode }}</td>
-        </tr>
-        <tr *ngIf="content.file_type">
-            <th scope="row">File type</th>
-            <td>{{ content.file_type }}</td>
         </tr>
       </tbody>
     </table>

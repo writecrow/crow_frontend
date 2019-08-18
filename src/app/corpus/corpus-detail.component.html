@@ -34,7 +34,7 @@
       <div class="facet-header" (click)="toggleFacet('corpusRelatedTexts')">&#9654; Similar texts by other students</div>
       <p class="details-description" [hidden]="!globals.repositoryFacets['corpusRelatedTexts']">Also from this instructor's {{ content.course }} {{ content.assignment }} assignment</p>
     	<ul [hidden]="!globals.repositoryFacets['corpusRelatedTexts']" *ngFor="let result of relatedTexts">
-				<li><a routerLink="/corpus/{{result.filename}}" routerLinkActive="active">{{ result.assignment }} ({{ result.filename }})</a></li>
+				<li><a routerLink="/corpus/{{result.filename}}" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id}})</a></li>
       </ul>
       </div>
     </div>

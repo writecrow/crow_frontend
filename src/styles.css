@@ -84,9 +84,17 @@ button.secondary:hover, button.secondary:focus {
   background-color: #D3D3D3;
 }
 
-a, a:hover, a:focus {
-  color:#5c5c80;
+a {
+  color:#000080;
   font-weight:600;
+}
+a:focus, a:hover {
+  text-decoration:underline;
+}
+
+a:visited {
+  color:#9090AD;
+  font-weight:normal;
 }
 
 img.download {

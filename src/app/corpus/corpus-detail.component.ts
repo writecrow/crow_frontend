@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
-import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
-import { CourseDescriptionService } from '../services/courseDescription.service';
+import { assignmentDescriptionService } from '../services/description.service';
+import { courseDescriptionService } from '../services/description.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
 import { Globals } from '../globals';
 @Component({
@@ -23,8 +23,8 @@ export class CorpusDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private API: APIService,
-    private assignments: AssignmentDescriptionService,
-    private courses: CourseDescriptionService,
+    private assignments: assignmentDescriptionService,
+    private courses: courseDescriptionService,
     public globals: Globals,
   ) { }
 

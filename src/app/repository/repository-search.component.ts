@@ -3,9 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { RepositoryDetail } from '../repository/repository-detail';
 import { RepositoryHelper } from '../repository/repository-helper';
+import { assignmentDescriptionService } from '../services/description.service';
+import { courseDescriptionService } from '../services/description.service';
+import { typeDescriptionService } from '../services/description.service';
+import { topicDescriptionService } from '../services/description.service';
 import { Globals } from '../globals';
-import { CourseDescriptionService } from '../services/courseDescription.service';
-import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
 
 @Component({
   templateUrl: '../repository/repository-search.component.html',
@@ -26,8 +28,10 @@ export class RepositorySearchComponent {
     private API: APIService,
     public globals: Globals,
     private repositoryHelper: RepositoryHelper,
-    private courses: CourseDescriptionService,
-    private assignments: AssignmentDescriptionService,
+    private courses: courseDescriptionService,
+    private assignments: assignmentDescriptionService,
+    private topics: topicDescriptionService,
+    private types: typeDescriptionService,
   ) {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
@@ -40,7 +44,6 @@ export class RepositorySearchComponent {
     this.Facets['course'] = { label: 'Course', index: '1' };
     this.Facets['mode'] = { label: 'Mode', index: '7' };
     this.Facets['course_length'] = { label: 'Length', index: '2' };
-    this.Facets['file_type'] = { label: 'File Type', index: '4' };
     this.querySearch(); 
    }
 
@@ -121,6 +124,12 @@ export class RepositorySearchComponent {
           if (name == 'course') {
             data.description = this.courses.getDescription(values.value);
           }
+          if (name == 'document_type') {
+            data.description = this.types.getDescription(values.value);
+          }
+          if (name == 'topic') {
+            data.description = this.topics.getDescription(values.value);
+          }
           if (name == 'assignment') {
             data.description = this.assignments.getDescription(values.value, "Purdue  University");
           }
@@ -142,6 +151,7 @@ export class RepositorySearchComponent {
         searchResults[i].document_type,
         searchResults[i].course,
         searchResults[i].assignment,
+        searchResults[i].topic,
       );
     }
   }
