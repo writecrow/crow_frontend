@@ -42,43 +42,45 @@ export class RepositoryDetailComponent implements OnInit {
         this.API.getRepositoryReferenceByMetadata(repositoryRequest).subscribe(response => {
           if (response && response[0]) {
             this.content = response[0];
-            this.content.label = this.repositoryHelper.getLabel(this.content.document_type, this.content.course, this.content.assignment);
+            this.content.label = this.repositoryHelper.getLabel(
+              this.content.document_type,
+              this.content.course,
+              this.content.assignment,
+              this.content.topic
+            );
             this.content.uri = environment.backend + this.content.file;
             this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("https://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
             this.isLoaded = true;
-            let exactTexts = {
-              'course': this.content.course,
-              'assignment': this.content.assignment,
-              'institution': this.content.institution,
-              'instructor': this.content.instructor,
-              'semester': this.content.semester,
-              'year': this.content.year,
-            };
-            // Retrieve all texts with similar metadata
-            this.API.getCorpusReferenceByMetadata(exactTexts).subscribe(response => {
-              if (response && response != '') {
-                this.exactTexts = response;
-              }
-            });
-            let relatedTexts = {
-              'course': this.content.course,
-              'assignment': this.content.assignment,
-              'institution': this.content.institution,
-              'instructor': this.content.instructor,
-            };
-            if (this.content.assignment == '') {
+            if (this.content.assignment != '') {
+              let exactTexts = {
+                'course': this.content.course,
+                'assignment': this.content.assignment,
+                'institution': this.content.institution,
+                'instructor': this.content.instructor,
+                'semester': this.content.semester,
+                'year': this.content.year,
+              };
+              // Retrieve all texts with similar metadata
+              this.API.getCorpusReferenceByMetadata(exactTexts).subscribe(response => {
+                if (response && response != '') {
+                  this.exactTexts = response;
+                }
+              });
               let relatedTexts = {
                 'course': this.content.course,
+                'assignment': this.content.assignment,
                 'institution': this.content.institution,
                 'instructor': this.content.instructor,
               };
+              // Retrieve all texts with similar metadata
+              this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
+                if (response && response != '') {
+                  this.relatedTexts = response;
+                }
+              });
             }
-            // Retrieve all texts with similar metadata
-            this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
-              if (response && response != '') {
-                this.relatedTexts = response;
-              }
-            });
+            
+
             let repositoryParameters = {
               'course': this.content.course,
               'assignment': this.content.assignment,

@@ -31,9 +31,11 @@ export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
-import { AssignmentDescriptionService } from './services/assignmentDescription.service';
+import { assignmentDescriptionService } from './services/description.service';
+import { courseDescriptionService } from './services/description.service';
+import { topicDescriptionService } from './services/description.service';
+import { typeDescriptionService } from './services/description.service';
 import { authorizeService } from './services/authorize.service';
-import { CourseDescriptionService } from './services/courseDescription.service';
 import { HandleErrorService } from './services/handle-error.service';
 import { LoginService } from './services/login.service';
 import { RefreshTokenService } from './services/refresh-token.service';
@@ -74,8 +76,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     APIService,
     authorizeService,
-    AssignmentDescriptionService,
-    CourseDescriptionService,
+    assignmentDescriptionService,
+    courseDescriptionService,
+    topicDescriptionService,
+    typeDescriptionService,
     RepositoryHelper,
     Globals,
     HandleErrorService,

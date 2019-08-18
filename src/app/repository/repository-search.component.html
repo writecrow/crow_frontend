@@ -3,7 +3,7 @@
     <form id="search-box" class="form-inline">
       <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
       <label for="searchSubmit">
-        <button name="searchSubmit" class="secondary" (click)="textSearch(searchBox.value)">Search</button>
+        <button name="searchSubmit" class="primary" (click)="textSearch(searchBox.value)">Search</button>
       </label>
       <label for="resetSubmit">        
         <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
@@ -30,7 +30,6 @@
         </div>
         <div class="row">
           <div *ngIf="result.semester" class="col-md-6"><strong>Term:</strong> {{ result.semester }} {{ result.year }}</div>
-          <div *ngIf="result.file_type" class="col-md-6"><strong>File type:</strong> {{ result.file_type }}</div>
         </div> 
         <div class="row">
           <div *ngIf="result.mode" class="col-md-6"><strong>Mode:</strong> {{ result.mode }}</div>

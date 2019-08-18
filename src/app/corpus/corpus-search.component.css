@@ -55,6 +55,9 @@ table.frequency td {
   font-weight:normal;
   font-size:1rem;
 }
+.search-result:hover, .search-result:focus {
+  background-color: rgb(240, 235, 235);
+}
 
 /* Wrap long filenames. */
 .search-result div div {

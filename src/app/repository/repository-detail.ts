@@ -15,6 +15,7 @@ export class RepositoryDetail {
   mode: string;
   raw_text: string;
   semester: string;
+  topic: string;
   uri: string;
   year: string;
 }

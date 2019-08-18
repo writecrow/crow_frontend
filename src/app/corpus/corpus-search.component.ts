@@ -3,8 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
-import { CourseDescriptionService } from '../services/courseDescription.service';
-import { AssignmentDescriptionService } from '../services/assignmentDescription.service';
+import { courseDescriptionService } from '../services/description.service';
+import { assignmentDescriptionService } from '../services/description.service';
 import { Globals } from '../globals';
 
 @Component({
@@ -45,8 +45,8 @@ export class CorpusSearchComponent {
     private router: Router,
     private API: APIService,
     private sanitizer: DomSanitizer,
-    private courses: CourseDescriptionService,
-    private assignments: AssignmentDescriptionService,
+    private courses: courseDescriptionService,
+    private assignments: assignmentDescriptionService,
     public globals: Globals,
   ) {
 

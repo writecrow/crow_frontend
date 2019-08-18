@@ -1,6 +1,9 @@
-import { assignmentDescriptionSchema } from '../services/assignmentDescriptionSchema';
+import { assignmentDescriptionSchema } from './descriptionSchema';
+import { courseDescriptionSchema } from './descriptionSchema';
+import { topicDescriptionSchema } from './descriptionSchema';
+import { typeDescriptionSchema } from './descriptionSchema';
 
-export const mockAssignmentDescriptions: assignmentDescriptionSchema[] = [
+export const assignmentDescriptions: assignmentDescriptionSchema[] = [
   { name: 'Interview Report', institution: 'Purdue University', description: "An interview report on experts' opinions on students' research topics for synthesis and argument paper" },
   { name: 'Argumentative Paper', institution: 'Purdue University', description: 'An argumentative paper with a clear position supported by credible sources in a sequenced writing project' },
   { name: 'Literature Review', institution: 'Purdue University', description: 'An organized review and/or synthesis of several articles on a related topic' },
@@ -13,7 +16,6 @@ export const mockAssignmentDescriptions: assignmentDescriptionSchema[] = [
   { name: 'Film Analysis', institution: 'Purdue University', description: "An analysis of how a film achieves its purpose through rhetorical features such as, plot design, character development, setting, and visual aspects" },
   { name: 'Genre Analysis', institution: 'Purdue University', description: "An analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements" },
   { name: 'Genre Redesign', institution: 'Purdue University', description: "An adaptation of a previous writing project for a new genre. This project is sometimes accompanied by a reflective essay" },
-
   { name: 'Memo', institution: 'Purdue University', description: "A short summary of an article or topic intended for a professional (non-academic) audience" },
   { name: 'Narrative (Place-based)', institution: 'Purdue University', description: "A narrative reflecting on personal growth connected to experiences in a particular place" },
   { name: 'Open Letter', institution: 'Purdue University', description: "A letter intending to persuade a broad audience about a particular viewpoint on a contested topic" },
@@ -30,10 +32,26 @@ export const mockAssignmentDescriptions: assignmentDescriptionSchema[] = [
   { name: 'Variation Analysis', institution: 'Purdue University', description: "A comparative analysis of register differences between an academic article and an informal text" },
 ];
 
+export const courseDescriptions: courseDescriptionSchema[] = [
+  { course: 'ENGL 106', institution: 'University of Arizona', description: 'ENGL 106: 3-credit Foundations Writing Course for International Students (1 of 3) at UA' },
+  { course: 'ENGL 107', institution: 'University of Arizona', description: 'ENGL 107: 3-credit Foundations Writing Course for International Students (2 of 3) at UA' },
+  { course: 'ENGL 108', institution: 'University of Arizona', description: 'ENGL 108: 3-credit Foundations Writing Course for International Students (3 of 3) at UA' },
+  { course: 'ENGL 106i', institution: 'Purdue University', description: 'ENGL 106i: 4-credit foundations writing course for international students at Purdue' },
+];
+
+export const topicDescriptions: topicDescriptionSchema[] = [
+  { topic: 'Digital Composition', description: 'Includes directions and models for digital and multimodal composition' },
+  { topic: 'Language Awareness', description: 'Includes language related materials (e.g., grammar, word choice, register awareness)' },
+  { topic: 'Peer Review', description: 'Includes peer review activities, directions, and examples, as well as materials for peer conferences' },
+];
 
 
-
-
-
-
-
+export const typeDescriptions: typeDescriptionSchema[] = [
+  { type: 'Syllabus', description: 'Includes course syllabi, schedules, and policies' },
+  { type: 'Lesson Plan', description: 'Includes presentations slides and class activities within those presentations' },
+  { type: 'Assignment Sheet/Prompt', description: 'Assignment sheets/prompts for major writing assignments' },
+  { type: 'Rubric', description: 'Grading rubrics (scales) and draft expectations for major assignments' },
+  { type: 'Activity', description: 'Includes in-class activities, homework assignments, and peer review activities' },
+  { type: 'Supporting Material', description: 'Materials intended to be used as a guide' },
+  { type: 'Sample Paper', description: 'Sample work that may or may not have been written by students' },
+];
