@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-8 order-2 order-xl-1 search-wrapper" *ngIf="isLoaded">
     <form id="search-box" class="form-inline">
-      <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />
+      <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search document text..." [(ngModel)]="searchString" aria-label="Search" autofocus />
       <label for="searchSubmit">
         <button name="searchSubmit" class="primary" (click)="textSearch(searchBox.value)">Search</button>
       </label>

@@ -6,6 +6,9 @@
     border: 1px solid #a9a9a9;
     padding: .5rem;
 }
+.search-result:hover, .search-result:focus {
+  background-color: rgb(240, 235, 235);
+}
 
 :host ::ng-deep .search-result p strong {
   background-color: yellow;
