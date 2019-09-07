@@ -63,6 +63,7 @@ export class CorpusSearchComponent {
   searchInProgress: boolean = false;;
   toeflShow: boolean = false;
   showMetadata: boolean = true;
+  dialogToggle: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -346,15 +347,18 @@ export class CorpusSearchComponent {
     });
   }
   openDialog(): void {
+    this.dialogToggle = true;
     this.route.queryParams.subscribe((routeParams) => {
-      let uri = this.API.getCorpusSearchApiQuery(routeParams);
-      const dialogRef = this.dialog.open(DialogEmbed, {
-        width: '350px',
-        data: { url: environment.backend + 'corpus/excerpts?' + uri }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-      });
+      if (this.dialogToggle) {
+        let uri = this.API.getCorpusSearchApiQuery(routeParams);
+        const dialogRef = this.dialog.open(DialogEmbed, {
+          width: '350px',
+          data: { url: environment.backend + 'corpus/excerpts?' + uri }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+        });
+      }
     });
+    this.dialogToggle = false;
   }
 }

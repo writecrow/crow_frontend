@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Share search results</h2>
 <div mat-dialog-content>
   Use the following embed code to render these search results in on a web page.
-  <textarea #embedcode readonly><iframe src="{{ data.url }}" title="MACAWS Search Excerpts" style="width:100%"></iframe></textarea>
+  <textarea #embedcode readonly><iframe src="{{ data.url }}" title="MACAWS Search Excerpts" style="width:100%;height:300px;"></iframe></textarea>
 </div>
 <div mat-dialog-actions>
   <button cdkFocusInitial (click)="copyEmbedCode(embedcode)" value="Share excerpt" >Copy to clipboard</button>
