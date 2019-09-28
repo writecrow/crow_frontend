@@ -70,4 +70,5 @@ table.frequency td {
 
 table.frequency {
   text-align: right;
+  margin-top: 1rem;
 }

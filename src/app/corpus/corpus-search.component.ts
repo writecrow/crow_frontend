@@ -1,4 +1,4 @@
-import { Component, SecurityContext } from '@angular/core';
+import { Component, Inject, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
@@ -6,6 +6,30 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 import { courseDescriptionService } from '../services/description.service';
 import { assignmentDescriptionService } from '../services/description.service';
 import { Globals } from '../globals';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from '../../environments/environment';
+export interface DialogData {
+  url: string;
+}
+
+@Component({
+  selector: 'dialog-embed',
+  templateUrl: 'dialog-embed.html',
+  styleUrls: ['../corpus/dialog-embed.css'],
+})
+export class DialogEmbed {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogEmbed>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  copyEmbedCode(inputElement) {
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    this.dialogRef.close();
+  }
+
+}
 
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
@@ -39,6 +63,7 @@ export class CorpusSearchComponent {
   searchInProgress: boolean = false;;
   toeflShow: boolean = false;
   showMetadata: boolean = true;
+  dialogToggle: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +73,7 @@ export class CorpusSearchComponent {
     private courses: courseDescriptionService,
     private assignments: assignmentDescriptionService,
     public globals: Globals,
+    public dialog: MatDialog,
   ) {
 
     // Additional filters.
@@ -331,5 +357,20 @@ export class CorpusSearchComponent {
         return;
       }
     });
+  }
+  openDialog(): void {
+    this.dialogToggle = true;
+    this.route.queryParams.subscribe((routeParams) => {
+      if (this.dialogToggle) {
+        let uri = this.API.getCorpusSearchApiQuery(routeParams);
+        const dialogRef = this.dialog.open(DialogEmbed, {
+          width: '350px',
+          data: { url: environment.backend + 'corpus/excerpts?' + uri }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+        });
+      }
+    });
+    this.dialogToggle = false;
   }
 }

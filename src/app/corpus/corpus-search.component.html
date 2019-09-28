@@ -68,6 +68,7 @@
       <form *ngIf="searchInProgress != true" class="search-results-top">
         <h3>Matching texts: {{ resultCount | number }}</h3>
         <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
+        <button (click)="openDialog()">Embed &lt;/&gt;</button>
         <label>
           <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
         </label>
@@ -106,7 +107,7 @@
       <div class="search-result" *ngFor="let result of searchResults">
         <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
-            <div class="col result" [innerHTML]="result.excerpt"></div>
+            <div class="col result" [innerHTML]="result.text"></div>
           </div>
           <div *ngIf="showMetadata" class="row">
             <div class="col search-metadata">
