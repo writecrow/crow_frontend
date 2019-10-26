@@ -17,7 +17,7 @@ export const assignmentDescriptions: assignmentDescriptionSchema[] = [
   { name: 'Genre Analysis', institution: 'Purdue University', description: "An analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements" },
   { name: 'Genre Redesign', institution: 'Purdue University', description: "An adaptation of a previous writing project for a new genre. This project is sometimes accompanied by a reflective essay" },
   { name: 'Memo', institution: 'Purdue University', description: "A short summary of an article or topic intended for a professional (non-academic) audience" },
-  { name: 'Narrative (Place-based)', institution: 'Purdue University', description: "A narrative reflecting on personal growth connected to experiences in a particular place" },
+  { name: 'Narrative', institution: 'Purdue University', description: "A narrative reflecting on personal growth connected to experiences in a particular place" },
   { name: 'Open Letter', institution: 'Purdue University', description: "A letter intending to persuade a broad audience about a particular viewpoint on a contested topic" },
   { name: 'Public Argument', institution: 'Purdue University', description: "An argument intending to persuade a broad audience about a particular viewpoint on a contested topic, often in the form of a powerpoint or other digital format" },
   { name: 'Profile', institution: 'Purdue University', description: "A focused overview of a specific person or organization" },
@@ -37,6 +37,7 @@ export const courseDescriptions: courseDescriptionSchema[] = [
   { course: 'ENGL 107', institution: 'University of Arizona', description: 'ENGL 107: 3-credit Foundations Writing Course for International Students (2 of 3) at UA' },
   { course: 'ENGL 108', institution: 'University of Arizona', description: 'ENGL 108: 3-credit Foundations Writing Course for International Students (3 of 3) at UA' },
   { course: 'ENGL 106i', institution: 'Purdue University', description: 'ENGL 106i: 4-credit foundations writing course for international students at Purdue' },
+  { course: 'ENGL 102', institution: 'University of Arizona', description: 'ENGL 102: 3-credit Foundations Writing Course for Domestic Students (2 of 2) at UA'}
 ];
 
 export const topicDescriptions: topicDescriptionSchema[] = [
