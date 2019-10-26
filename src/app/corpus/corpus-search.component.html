@@ -4,10 +4,12 @@
       <div class="facet-header" (click)="toggleFacet(key)">&#9654; {{ facets[key].label }}</div>
         <ul class="facet-items" [hidden]="!globals.corpusFacets[key]">
           <li *ngFor="let item of facets[key].values">
-            <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} 
+            <label>
+              <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} 
               <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>
               <ng-container *ngIf="item.count == 1">({{item.count }} text)</ng-container>
               <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
+            </label>
           </li>
         </ul>
     </div>
@@ -54,12 +56,21 @@
         <div class="details-body" [hidden]="!advancedSearch">
           <p><strong>Tip:</strong> To search by phrase, place multiple words in quotation marks</p>
           <strong>Word form handling: </strong>
-          <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word
-          <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms (e.g., begin, began, begun, beginning"> Lemma<br />
+          <label>
+            <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </label>
+          <label>
+            <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms (e.g., begin, began, begun, beginning"> Word family (leave/leaves/leaving/left)<br />
+          </label>
           <br />
           <strong>Multiple word handling: </strong>
-          <input type="radio" name="or" (click)="setOperation('or')" [checked]="keywordMode == 'or'"  aria-label="or"> Contains any word
-          <input type="radio" name="and" (click)="setOperation('and')" [checked]="keywordMode == 'and'"  aria-label="and"> Contains all words<br /><br />
+          <label>
+            <input type="radio" name="or" (click)="setOperation('or')" [checked]="keywordMode == 'or'"  aria-label="or"> Contains any word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </label>
+          <label>
+            <input type="radio" name="and" (click)="setOperation('and')" [checked]="keywordMode == 'and'"  aria-label="and"> Contains all words
+          </label>
+          <br />
           <input id="searchByID" name="searchByID" placeholder="Filter by ID..." [(ngModel)]="filters['searchByID'].value" aria-label="Search by ID" />
         </div>
       </div>

@@ -72,3 +72,6 @@ table.frequency {
   text-align: right;
   margin-top: 1rem;
 }
+.facet-wrapper label {
+  margin-bottom: 0;
+}
