@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
+import { authorizeService } from '../services/authorize.service';
 import { RepositoryDetail } from '../repository/repository-detail';
 import { RepositoryHelper } from '../repository/repository-helper';
 import { assignmentDescriptionService } from '../services/description.service';
@@ -24,6 +25,7 @@ export class RepositorySearchComponent {
 
   constructor(
     private route: ActivatedRoute,
+    public authorizeService: authorizeService,
     private router: Router,
     private API: APIService,
     public globals: Globals,
@@ -33,6 +35,12 @@ export class RepositorySearchComponent {
     private topics: topicDescriptionService,
     private types: typeDescriptionService,
   ) {
+    // First check whether there is an authorization token present.
+    if (!this.authorizeService.isAuthenticated()) {
+      // If not, redirect to the login page.
+      this.router.navigate(['/authorize']);
+    }
+    else {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
     this.Facets['document_type'] = { label: 'Type', index: '3' };
@@ -44,8 +52,9 @@ export class RepositorySearchComponent {
     this.Facets['course'] = { label: 'Course', index: '1' };
     this.Facets['mode'] = { label: 'Mode', index: '7' };
     this.Facets['course_length'] = { label: 'Length', index: '2' };
-    this.querySearch(); 
-   }
+    this.querySearch();
+    }
+  }
 
   querySearch() {
     // The main search function. Looks for the current URL parameters & sends those to the backend.

@@ -2,35 +2,13 @@ import { Component, Inject, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
+import { authorizeService } from '../services/authorize.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
 import { courseDescriptionService } from '../services/description.service';
 import { assignmentDescriptionService } from '../services/description.service';
 import { Globals } from '../globals';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from '../../environments/environment';
-export interface DialogData {
-  url: string;
-}
-
-@Component({
-  selector: 'dialog-embed',
-  templateUrl: 'dialog-embed.html',
-  styleUrls: ['../corpus/dialog-embed.css'],
-})
-export class DialogEmbed {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogEmbed>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-  copyEmbedCode(inputElement) {
-    inputElement.select();
-    document.execCommand('copy');
-    inputElement.setSelectionRange(0, 0);
-    this.dialogRef.close();
-  }
-
-}
-
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
   styleUrls: ['../corpus/corpus-search.component.css']
@@ -67,6 +45,7 @@ export class CorpusSearchComponent {
 
   constructor(
     private route: ActivatedRoute,
+    public authorizeService: authorizeService,
     private router: Router,
     private API: APIService,
     private sanitizer: DomSanitizer,
@@ -75,13 +54,17 @@ export class CorpusSearchComponent {
     public globals: Globals,
     public dialog: MatDialog,
   ) {
-
+  // First check whether there is an authorization token present.
+  if(!this.authorizeService.isAuthenticated()) {
+    // If not, redirect to the login page.
+    this.router.navigate(['/authorize']);
+  }
+  else {
     // Additional filters.
     this.filters = <any>[];
     this.filters['searchByID'] = { backend_key: 'id', value: '' };
     this.filters['toeflTotalMin'] = { backend_key: 'toefl_total_min', value: '' };
     this.filters['toeflTotalMax'] = { backend_key: 'toefl_total_max', value: '' };
-
     // The order in which these are pushed into the "facets" object determine their order in the sidebar.
     this.facets = <any>[];
     this.facets['institution'] = { label: 'Institution', index: '6' };
@@ -97,6 +80,7 @@ export class CorpusSearchComponent {
     this.facets['year_in_school'] = { label: 'Year in School', index: '11' };
     this.querySearch();
   }
+}
 
   textSearch(terms: string): void {
     // Called on click of search button.
@@ -373,4 +357,26 @@ export class CorpusSearchComponent {
     });
     this.dialogToggle = false;
   }
+}
+
+export interface DialogData {
+  url: string;
+}
+@Component({
+  selector: 'dialog-embed',
+  templateUrl: 'dialog-embed.html',
+  styleUrls: ['../corpus/dialog-embed.css'],
+})
+export class DialogEmbed {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogEmbed>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  copyEmbedCode(inputElement) {
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    this.dialogRef.close();
+  }
+
 }
