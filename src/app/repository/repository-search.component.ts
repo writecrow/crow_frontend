@@ -35,26 +35,26 @@ export class RepositorySearchComponent {
     private topics: topicDescriptionService,
     private types: typeDescriptionService,
   ) {
-  // First check whether there is an authorization token present.
-  if (!this.authorizeService.isAuthenticated()) {
-    // If not, redirect to the login page.
-    this.router.navigate(['/authorize']);
+    // First check whether there is an authorization token present.
+    if (!this.authorizeService.isAuthenticated()) {
+      // If not, redirect to the login page.
+      this.router.navigate(['/authorize']);
+    }
+    else {
+    // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
+    this.Facets = <any>[];
+    this.Facets['document_type'] = { label: 'Type', index: '3' };
+    this.Facets['topic'] = { label: 'Topic', index: '10' };
+    this.Facets['assignment'] = { label: 'Assignment', index: '0' };
+    this.Facets['institution'] = { label: 'Institution', index: '5' };
+    this.Facets['year'] = { label: 'Year', index: '9' };
+    this.Facets['semester'] = { label: 'Semester', index: '8' };
+    this.Facets['course'] = { label: 'Course', index: '1' };
+    this.Facets['mode'] = { label: 'Mode', index: '7' };
+    this.Facets['course_length'] = { label: 'Length', index: '2' };
+    this.querySearch();
+    }
   }
-  else {
-  // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
-  this.Facets = <any>[];
-  this.Facets['document_type'] = { label: 'Type', index: '3' };
-  this.Facets['topic'] = { label: 'Topic', index: '10' };
-  this.Facets['assignment'] = { label: 'Assignment', index: '0' };
-  this.Facets['institution'] = { label: 'Institution', index: '5' };
-  this.Facets['year'] = { label: 'Year', index: '9' };
-  this.Facets['semester'] = { label: 'Semester', index: '8' };
-  this.Facets['course'] = { label: 'Course', index: '1' };
-  this.Facets['mode'] = { label: 'Mode', index: '7' };
-  this.Facets['course_length'] = { label: 'Length', index: '2' };
-  this.querySearch();
-  }
-}
 
   querySearch() {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
