@@ -6,33 +6,27 @@ labels: ''
 assignees: ''
 
 ---
+<!--- Provide a general summary of the issue in the Title above -->
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Expected behavior
+<!--- Tell us what should happen -->
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## Current behavior
+<!--- Tell us what happens instead of the expected behavior -->
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Possible solution
+<!--- Not obligatory, but suggest a fix/reason for the bug, -->
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Steps to reproduce
+<!--- Provide a link to a live example, or an unambiguous set of steps to -->
+<!--- reproduce this bug. Include code to reproduce, if relevant -->
+1.
+2.
+3.
+4.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Context
+<!--- How has this issue affected you? What are you trying to accomplish? -->
+<!--- Does it only happen in certain browsers? Certain operating systems? -->
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+<!--- Provide a general summary of the issue in the Title above -->
