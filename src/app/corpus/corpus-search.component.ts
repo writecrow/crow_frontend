@@ -124,7 +124,7 @@ export class CorpusSearchComponent {
     } else {
       currentParams.search = null;
     }
-    if (this.keywordMode !== "undefined" && this.validKeywordModes.includes(this.keywordMode)) {
+    if (typeof this.keywordMode !== "undefined" && this.validKeywordModes.includes(this.keywordMode)) {
       currentParams.op = this.keywordMode;
     }
     if (typeof this.method !== "undefined" && this.validMethods.includes(this.method)) {
@@ -297,7 +297,7 @@ export class CorpusSearchComponent {
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037
-    if (this.globals.corpusFacets[i] === undefined) {
+    if (typeof this.globals.corpusFacets[i] === "undefined") {
       this.globals.corpusFacets[i] = true;
     } else if (this.globals.corpusFacets[i] === false) {
       this.globals.corpusFacets[i] = true;
