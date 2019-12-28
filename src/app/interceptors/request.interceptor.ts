@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent, HttpErrorResponse } from "@angular/common/http";
 
-import { Observable, BehaviorSubject, empty, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, EMPTY, throwError } from 'rxjs';
 import { catchError, finalize, switchMap, filter, take } from 'rxjs/operators';
 
 import { RefreshTokenService } from '../services/refresh-token.service';
@@ -52,11 +52,11 @@ export class RequestInterceptor implements HttpInterceptor {
   handle403(error, req: HttpRequest<any>, next: HttpHandler) {
     if (this.authService.isCurrent()) {
       this.globals.statusMessage = "Your account does not have access to this content.";
-      return empty();
+      return EMPTY;
     }
     if (!this.authService.isAuthenticated()) {
       this.globals.statusMessage = "Your account does not have access to this content.";
-      return empty();
+      return EMPTY;
     }
     console.log('Attempting to re-authenticate');
     // If isRefreshingToken is false (which it is by default) we will
@@ -87,7 +87,7 @@ export class RequestInterceptor implements HttpInterceptor {
           // If there is an exception calling 'refreshToken', so assume
           // the user is authenticated but still doesn't have access.
           this.globals.statusMessage = "Your account does not have access to this content.";
-          return empty();
+          return EMPTY;
         }),
         finalize(() => {
           // When the call to refreshToken completes, in the finalize block,

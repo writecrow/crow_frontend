@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { RequestOptions } from '@angular/http';
 
-import { Observable, empty } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -30,7 +30,7 @@ export class RefreshTokenService {
     const refreshAuth = this.auth.getrefreshToken();
     if (refreshAuth === null) {
       this.router.navigate(['/authorize']);
-      return empty();
+      return EMPTY;
     }
     const url: string = this.mainUrl + "oauth/token";
     // console.log('refresh ' + JSON.stringify(refreshAuth));

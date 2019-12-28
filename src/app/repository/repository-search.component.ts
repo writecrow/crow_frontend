@@ -60,7 +60,7 @@ export class RepositorySearchComponent {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
     this.searchInProgress = true;
     this.route.queryParams.subscribe((routeParams) => {
-      if (routeParams.search != 'undefined') {
+      if (routeParams.search !== 'undefined') {
         // Set the text input to the query provided in the URL.
         this.searchString = routeParams.search;
       }
@@ -123,23 +123,25 @@ export class RepositorySearchComponent {
     this.facetKeys = Object.keys(this.Facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
+    // tslint:disable-next-line: forin
     for (const name in this.Facets) {
       const i = this.Facets[name].index;
       const facetOutput = [];
       if (typeof facets[i][0] !== 'undefined') {
+        // tslint:disable-next-line: forin
         for (const delta in facets[i][0][name]) {
           const values = facets[i][0][name][delta].values;
           const data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': '' };
-          if (name == 'course') {
+          if (name === 'course') {
             data.description = this.courses.getDescription(values.value);
           }
-          if (name == 'document_type') {
+          if (name === 'document_type') {
             data.description = this.types.getDescription(values.value);
           }
-          if (name == 'topic') {
+          if (name === 'topic') {
             data.description = this.topics.getDescription(values.value);
           }
-          if (name == 'assignment') {
+          if (name === 'assignment') {
             data.description = this.assignments.getDescription(values.value, "Purdue  University");
           }
           facetOutput.push(data);
@@ -154,6 +156,7 @@ export class RepositorySearchComponent {
 
   adjustLabels(searchResults) {
     // Append additional information to title for clarity.
+    // tslint:disable-next-line: forin
     for (const i in searchResults) {
       searchResults[i].label = this.repositoryHelper.getLabel(
         searchResults[i].document_type,
@@ -165,6 +168,7 @@ export class RepositorySearchComponent {
   }
 
   prepareSearchResults(results) {
+    // tslint:disable-next-line: forin
     for (const r in results) {
       results[r]["course_description"] = this.courses.getDescription(results[r].course);
       results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");

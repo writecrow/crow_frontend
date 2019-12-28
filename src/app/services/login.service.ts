@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
-import { Observable, empty } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Token } from '../services/tokenSchema';
@@ -47,7 +47,7 @@ export class LoginService {
     this.requestCache.clearAll();
     localStorage.removeItem('token');
     localStorage.removeItem('refresh_token');
-    return empty();
+    return EMPTY;
   }
 
 }

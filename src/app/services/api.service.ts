@@ -15,11 +15,11 @@ export class APIService {
     const queryElements = [];
     queryElements.push('filename=' + filename);
     // Determine whether the back-end should be sent search string query parameters.
-    if (typeof queryParams.search !== 'undefined' && queryParams.search != '') {
+    if (typeof queryParams.search !== 'undefined' && queryParams.search !== '') {
       queryElements.push('search=' + queryParams.search);
     }
-    if (typeof queryParams.method !== 'undefined' && queryParams.method != '') {
-      if (queryParams.method == 'lemma') {
+    if (typeof queryParams.method !== 'undefined' && queryParams.method !== '') {
+      if (queryParams.method === 'lemma') {
         queryElements.push('method=lemma');
       }
     }
@@ -131,7 +131,7 @@ export class APIService {
 
   // The abstracted method that all http requests use.
   getResponseFromPath(path, format = 'json') {
-    if (format == 'csv') {
+    if (format === 'csv') {
       this.observable = this.http.get(environment.backend + path + '&_format=' + format, {
         observe: 'response', responseType: 'text'
       })

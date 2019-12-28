@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { authorizeService } from './services/authorize.service';
 import { LoginService } from './services/login.service';
@@ -12,7 +12,7 @@ declare const ga: any;
   styleUrls: ['./app.component.css'],
   providers: [authorizeService, LoginService],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   public LOGO = require("../assets/logo.svg");
   public SHIELD = require("../assets/black-crow-shield.svg");
   constructor(

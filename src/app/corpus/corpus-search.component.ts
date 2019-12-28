@@ -9,6 +9,30 @@ import { assignmentDescriptionService } from '../services/description.service';
 import { Globals } from '../globals';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from '../../environments/environment';
+
+export interface DialogData {
+  url: string;
+}
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-embed',
+  templateUrl: 'dialog-embed.html',
+  styleUrls: ['../corpus/dialog-embed.css'],
+})
+// tslint:disable-next-line: component-class-suffix
+export class DialogEmbed {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogEmbed>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  copyEmbedCode(inputElement) {
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    this.dialogRef.close();
+  }
+}
+
 @Component({
   templateUrl: '../corpus/corpus-search.component.html',
   styleUrls: ['../corpus/corpus-search.component.css']
@@ -86,6 +110,7 @@ export class CorpusSearchComponent {
     // Merge user-supplied search parameters into existing URL & call querySearch().
     const currentParams = <any>[];
     // Evaluate additional filters (search by ID, TOEFL scores).
+    // tslint:disable-next-line: forin
     for (const filter in this.filters) {
       const key = this.filters[filter].backend_key;
       if (this.filters[filter].value !== "") {
@@ -94,7 +119,7 @@ export class CorpusSearchComponent {
         currentParams[key] = null;
       }
     }
-    if (terms != "") {
+    if (terms !== "") {
       currentParams.search = this.sanitizer.sanitize(SecurityContext.URL, terms);
     } else {
       currentParams.search = null;
@@ -144,18 +169,20 @@ export class CorpusSearchComponent {
     this.facetKeys = Object.keys(this.facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
+    // tslint:disable-next-line: forin
     for (const name in this.facets) {
       const i = this.facets[name].index;
       if (typeof facets[name] !== 'undefined') {
         const facetKeys = Object.keys(facets[name]);
         const facetOutput = [];
+        // tslint:disable-next-line: forin
         for (const key in facetKeys) {
           const id = facetKeys[key];
           const data = { 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active, 'description': '' };
-          if (name == 'course') {
+          if (name === 'course') {
             data.description = this.courses.getDescription(facetKeys[key]);
           }
-          if (name == 'assignment') {
+          if (name === 'assignment') {
             data.description = this.assignments.getDescription(facetKeys[key], "Purdue University");
           }
           facetOutput.push(data);
@@ -181,7 +208,7 @@ export class CorpusSearchComponent {
       this.searchResults = [];
       // Populate the interface from the URL.
       // @todo -- move this to a callback function?
-      if (typeof routeParams.search != 'undefined' && routeParams.search != "") {
+      if (typeof routeParams.search !== 'undefined' && routeParams.search !== "") {
         this.searchString = routeParams.search;
         if (/[^a-zA-Z0-9_ \s]/.test(this.searchString) && !/"/.test(this.searchString)) {
           this.globals.statusMessage = "It looks like you're trying a search that includes punctuation. You may need to wrap your search string in quotes.";
@@ -189,22 +216,22 @@ export class CorpusSearchComponent {
           this.globals.statusMessage = "";
         }
       }
-      if (typeof routeParams.method != 'undefined' && this.validMethods.includes(routeParams.method)) {
+      if (typeof routeParams.method !== 'undefined' && this.validMethods.includes(routeParams.method)) {
         this.method = routeParams.method;
       }
-      if (typeof routeParams.op != 'undefined' && this.validKeywordModes.includes(routeParams.op)) {
+      if (typeof routeParams.op !== 'undefined' && this.validKeywordModes.includes(routeParams.op)) {
         this.keywordMode = routeParams.op;
       }
-      if (typeof routeParams.id != 'undefined' && routeParams.id != "") {
+      if (typeof routeParams.id !== 'undefined' && routeParams.id !== "") {
         this.filters['searchByID'].value = routeParams.id;
       }
-      if (typeof routeParams.offset != 'undefined' && routeParams.offset != "") {
+      if (typeof routeParams.offset !== 'undefined' && routeParams.offset !== "") {
         this.offset = routeParams.offset;
       }
-      if (typeof routeParams.toefl_total_min != 'undefined' && routeParams.toefl_total_min != "") {
+      if (typeof routeParams.toefl_total_min !== 'undefined' && routeParams.toefl_total_min !== "") {
         this.filters['toeflTotalMin'].value = routeParams.toefl_total_min;
       }
-      if (typeof routeParams.toefl_total_max != 'undefined' && routeParams.toefl_total_max != "") {
+      if (typeof routeParams.toefl_total_max !== 'undefined' && routeParams.toefl_total_max !== "") {
         this.filters['toeflTotalMax'].value = routeParams.toefl_total_max;
       }
       let searchUrl = this.API.getCorpusSearchApiQuery(routeParams);
@@ -220,6 +247,7 @@ export class CorpusSearchComponent {
         if (response && typeof response.frequency.tokens !== 'undefined') {
           const tokenKeys = Object.keys(response.frequency.tokens);
           const tokenValues = Object.values(response.frequency.tokens);
+          // tslint:disable-next-line: forin
           for (const key in tokenKeys) {
             const id = tokenKeys[key];
             this.frequencyData.push({
@@ -229,7 +257,7 @@ export class CorpusSearchComponent {
               'texts': tokenValues[key]["texts"],
             });
           }
-          if (typeof response.frequency.totals != undefined) {
+          if (typeof response.frequency.totals !== "undefined") {
             this.frequencyTotals = response.frequency.totals;
           }
         }
@@ -242,7 +270,7 @@ export class CorpusSearchComponent {
         this.API.getRoles().subscribe(response => {
           if (response) {
             if (response.includes('export_access')) {
-              if (searchUrl == '') {
+              if (searchUrl === '') {
                 searchUrl = '?';
               }
               this.exportUrl = searchUrl;
@@ -259,6 +287,7 @@ export class CorpusSearchComponent {
   }
 
   prepareSearchResults(results) {
+    // tslint:disable-next-line: forin
     for (const r in results) {
       results[r]["course_description"] = this.courses.getDescription(results[r].course);
       results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
@@ -292,7 +321,7 @@ export class CorpusSearchComponent {
     this.method = i;
   }
   nextPage(current) {
-    this.offset = parseInt(current) + 20;
+    this.offset = parseInt(current, 10) + 20;
     this.router.navigate(['/corpus'], { queryParams: { offset : this.offset }, queryParamsHandling: 'merge' });
   }
   toggle(i) {
@@ -323,7 +352,9 @@ export class CorpusSearchComponent {
           return;
         }
 
+        // tslint:disable-next-line: prefer-const
         let lnk = document.createElement('a'),
+          // tslint:disable-next-line: prefer-const
           url = window.URL,
           objectURL;
         lnk.type = 'text/csv';
@@ -352,24 +383,3 @@ export class CorpusSearchComponent {
   }
 }
 
-export interface DialogData {
-  url: string;
-}
-@Component({
-  selector: 'dialog-embed',
-  templateUrl: 'dialog-embed.html',
-  styleUrls: ['../corpus/dialog-embed.css'],
-})
-export class DialogEmbed {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogEmbed>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-  copyEmbedCode(inputElement) {
-    inputElement.select();
-    document.execCommand('copy');
-    inputElement.setSelectionRange(0, 0);
-    this.dialogRef.close();
-  }
-
-}

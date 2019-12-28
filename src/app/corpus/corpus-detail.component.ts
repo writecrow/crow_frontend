@@ -48,7 +48,7 @@ export class CorpusDetailComponent implements OnInit {
           };
           // Retrieve all texts with same ID (i.e., drafts).
           this.API.getCorpusReferenceByMetadata(draftParameters).subscribe(response => {
-            if (response && response != '') {
+            if (response && response !== '') {
               for (const i of Object.keys(response)) {
                 const element = {};
                 const draftno = response[i].draft;
@@ -66,7 +66,7 @@ export class CorpusDetailComponent implements OnInit {
           };
           // Retrieve all texts with similar metadata
           this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
-            if (response && response != '') {
+            if (response && response !== '') {
               this.relatedTexts = response;
             }
           });
@@ -80,7 +80,7 @@ export class CorpusDetailComponent implements OnInit {
             'semester': this.content.semester,
           };
           this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
-            if (response && response != '') {
+            if (response && response !== '') {
               this.exactResources = response;
             }
           });
