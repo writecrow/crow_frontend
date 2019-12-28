@@ -15,7 +15,7 @@ export class RequestCache {
 
     if (!cached) {
       if (environment.production === false) {
-        console.log('New request:' + url)
+        console.log('New request:' + url);
       }
       return undefined;
     }

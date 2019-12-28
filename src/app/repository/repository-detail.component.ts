@@ -15,8 +15,8 @@ import { Globals } from '../globals';
 })
 
 export class RepositoryDetailComponent implements OnInit {
-  content : RepositoryDetail;
-  isLoaded : boolean;
+  content: RepositoryDetail;
+  isLoaded: boolean;
   exactTexts: any[] = [];
   relatedTexts: any[] = [];
   exactResources: any[] = [];
@@ -35,7 +35,7 @@ export class RepositoryDetailComponent implements OnInit {
     combineLatest(this.route.params, this.route.queryParams)
       .pipe(map(routes => ({ params: routes[0], query: routes[1] })))
       .subscribe(routes => {
-        let repositoryRequest = {
+        const repositoryRequest = {
           'id': routes.params.id,
           'search': routes.query.search
         };
@@ -52,7 +52,7 @@ export class RepositoryDetailComponent implements OnInit {
             this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("https://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
             this.isLoaded = true;
             if (this.content.assignment != '') {
-              let exactTexts = {
+              const exactTexts = {
                 'course': this.content.course,
                 'assignment': this.content.assignment,
                 'institution': this.content.institution,
@@ -66,7 +66,7 @@ export class RepositoryDetailComponent implements OnInit {
                   this.exactTexts = response;
                 }
               });
-              let relatedTexts = {
+              const relatedTexts = {
                 'course': this.content.course,
                 'assignment': this.content.assignment,
                 'institution': this.content.institution,
@@ -79,14 +79,14 @@ export class RepositoryDetailComponent implements OnInit {
                 }
               });
             }
-            
 
-            let repositoryParameters = {
+
+            const repositoryParameters = {
               'course': this.content.course,
               'assignment': this.content.assignment,
               'institution': this.content.institution,
               'instructor': this.content.instructor,
-              'semester': this.content.semester,              
+              'semester': this.content.semester,
               'year': this.content.year,
               'exclude_id': this.content.id,
             };
@@ -95,7 +95,7 @@ export class RepositoryDetailComponent implements OnInit {
                 this.exactResources = response;
               }
             });
-            let relatedRepositoryParameters = {
+            const relatedRepositoryParameters = {
               'course': this.content.course,
               'assignment': this.content.assignment,
               'institution': this.content.institution,
@@ -106,8 +106,7 @@ export class RepositoryDetailComponent implements OnInit {
                 this.relatedResources = response;
               }
             });
-          }
-          else {
+          } else {
             this.router.navigateByUrl('404', { skipLocationChange: true });
           }
         });
@@ -119,8 +118,7 @@ export class RepositoryDetailComponent implements OnInit {
     // See https://stackoverflow.com/a/35163037
     if (this.globals.repositoryFacets[i] === undefined) {
       this.globals.repositoryFacets[i] = true;
-    }
-    else if (this.globals.repositoryFacets[i] === false) {
+    } else if (this.globals.repositoryFacets[i] === false) {
       this.globals.repositoryFacets[i] = true;
     } else {
       this.globals.repositoryFacets[i] = false;

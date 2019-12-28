@@ -17,7 +17,7 @@ export class CorpusDetailComponent implements OnInit {
   relatedRepositoryResources: any[] = [];
   relatedTexts: any[] = [];
   isLoaded: boolean;
-  statusMessage: string = "";
+  statusMessage = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +41,7 @@ export class CorpusDetailComponent implements OnInit {
           this.content.course_description = this.courses.getDescription(this.content.course);
           this.isLoaded = true;
           // Retrieve all drafts for this ID, institution, & assignment.
-          let draftParameters = {
+          const draftParameters = {
             'id' : this.content.id,
             'assignment' : this.content.assignment,
             'institution' : this.content.institution,
@@ -51,13 +51,13 @@ export class CorpusDetailComponent implements OnInit {
             if (response && response != '') {
               for (const i of Object.keys(response)) {
                 const element = {};
-                let draftno = response[i].draft;
+                const draftno = response[i].draft;
                 this.drafts.push({ draft: draftno, data: response[i] });
               }
               this.drafts = this.sortByKey(this.drafts, "draft");
             }
           });
-          let relatedTexts = {
+          const relatedTexts = {
             'course': this.content.course,
             'assignment': this.content.assignment,
             'institution': this.content.institution,
@@ -71,7 +71,7 @@ export class CorpusDetailComponent implements OnInit {
             }
           });
           // Retrieve repository resources that have matching metadata.
-          let repositoryParameters = { 
+          const repositoryParameters = {
             'course': this.content.course,
             'assignment': this.content.assignment,
             'institution': this.content.institution,
@@ -83,9 +83,8 @@ export class CorpusDetailComponent implements OnInit {
             if (response && response != '') {
               this.exactResources = response;
             }
-          });  
-        }
-        else {
+          });
+        } else {
           this.router.navigateByUrl('404', { skipLocationChange: true });
         }
       },
@@ -100,7 +99,7 @@ export class CorpusDetailComponent implements OnInit {
   // Used to sort drafts alphanumerically (final at end).
   sortByKey(array, key) {
     return array.sort(function (a, b) {
-      var x = a[key]; var y = b[key];
+      const x = a[key]; const y = b[key];
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
@@ -110,8 +109,7 @@ export class CorpusDetailComponent implements OnInit {
     // See https://stackoverflow.com/a/35163037
     if (this.globals.repositoryFacets[i] === undefined) {
       this.globals.repositoryFacets[i] = true;
-    }
-    else if (this.globals.repositoryFacets[i] === false) {
+    } else if (this.globals.repositoryFacets[i] === false) {
       this.globals.repositoryFacets[i] = true;
     } else {
       this.globals.repositoryFacets[i] = false;

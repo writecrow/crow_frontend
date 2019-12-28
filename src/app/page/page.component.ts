@@ -25,8 +25,7 @@ export class PageComponent implements OnInit {
           this.title = response[0].title;
           this.body = response[0].body;
           this.isLoaded = true;
-        }
-        else {
+        } else {
           this.router.navigateByUrl('404', { skipLocationChange: true });
         }
       });

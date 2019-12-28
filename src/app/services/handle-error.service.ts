@@ -20,7 +20,7 @@ export class HandleErrorService {
     if (err.error instanceof Error) {
       // A client-side or network error occurred.
       errorMessage = `An error occurred: ${err.error.message}`;
-    } else {   
+    } else {
       if (err.status == 401) {
         errorMessage = `Invalid credentials, ${err.error.message}`;
       }

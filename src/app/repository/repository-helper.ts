@@ -1,5 +1,5 @@
 export class RepositoryHelper {
- 
+
   getLabel(type, course, assignment, topic) {
     if (type == 'Syllabus') {
       return type.concat(': ' + course);
@@ -15,8 +15,7 @@ export class RepositoryHelper {
     if (type == 'Handout') {
       if (assignment != '') {
         return type.concat(': ' + assignment);
-      }
-      else if (course != '') {
+      } else if (course != '') {
         return type.concat(': ' + course);
       }
     }
