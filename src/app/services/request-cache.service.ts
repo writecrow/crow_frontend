@@ -33,7 +33,7 @@ export class RequestCache {
 
   put(req: HttpRequest<any>, response: HttpResponse<any>): void {
     // Do not cache authorizations.
-    if (typeof response.body.access_token === "undefined" && response.status == 200) {
+    if (typeof response.body.access_token === "undefined" && response.status === 200) {
       const url = req.url;
       const entry = { url, response, lastRead: Date.now() };
       this.cache.set(url, entry);

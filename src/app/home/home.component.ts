@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     this.total_words = 7283469;
     this.total_texts = 8254;
     if (typeof this.route.snapshot.queryParams.auth !== 'undefined') {
-      let auth = this.route.snapshot.queryParams.auth.split(":");
+      const auth = this.route.snapshot.queryParams.auth.split(":");
       if (auth[1]) {
         this.authComponent.authorize(auth[0].toLowerCase(), auth[1], '');
       }

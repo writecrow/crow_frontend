@@ -51,7 +51,7 @@ export class RepositoryDetailComponent implements OnInit {
             this.content.uri = environment.backend + this.content.file;
             this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("https://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
             this.isLoaded = true;
-            if (this.content.assignment != '') {
+            if (this.content.assignment !== '') {
               const exactTexts = {
                 'course': this.content.course,
                 'assignment': this.content.assignment,
@@ -62,7 +62,7 @@ export class RepositoryDetailComponent implements OnInit {
               };
               // Retrieve all texts with similar metadata
               this.API.getCorpusReferenceByMetadata(exactTexts).subscribe(response => {
-                if (response && response != '') {
+                if (response && response !== '') {
                   this.exactTexts = response;
                 }
               });
@@ -74,7 +74,7 @@ export class RepositoryDetailComponent implements OnInit {
               };
               // Retrieve all texts with similar metadata
               this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
-                if (response && response != '') {
+                if (response && response !== '') {
                   this.relatedTexts = response;
                 }
               });
@@ -91,7 +91,7 @@ export class RepositoryDetailComponent implements OnInit {
               'exclude_id': this.content.id,
             };
             this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
-              if (response && response != '') {
+              if (response && response !== '') {
                 this.exactResources = response;
               }
             });
@@ -102,7 +102,7 @@ export class RepositoryDetailComponent implements OnInit {
               'exclude_id': this.content.id,
             };
             this.API.getRepositoryReferenceByMetadata(relatedRepositoryParameters).subscribe(response => {
-              if (response && response != '') {
+              if (response && response !== '') {
                 this.relatedResources = response;
               }
             });
