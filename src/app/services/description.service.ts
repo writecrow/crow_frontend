@@ -6,7 +6,7 @@ import { typeDescriptions } from '../services/description.mock';
 export class assignmentDescriptionService {
   constructor() { }
   getDescription(name, institution): string {
-    for (var i in assignmentDescriptions) {
+    for (let i in assignmentDescriptions) {
       if (assignmentDescriptions[i].name == name) {
         return assignmentDescriptions[i].description;
       }
@@ -18,7 +18,7 @@ export class assignmentDescriptionService {
 export class courseDescriptionService {
   constructor() { }
   getDescription(course): string {
-    for (var i in courseDescriptions) {
+    for (let i in courseDescriptions) {
       if (courseDescriptions[i].course == course) {
         return courseDescriptions[i].description;
       }
@@ -30,7 +30,7 @@ export class courseDescriptionService {
 export class topicDescriptionService {
   constructor() { }
   getDescription(key): string {
-    for (var i in topicDescriptions) {
+    for (let i in topicDescriptions) {
       if (topicDescriptions[i].topic == key) {
         return topicDescriptions[i].description;
       }
@@ -42,7 +42,7 @@ export class topicDescriptionService {
 export class typeDescriptionService {
   constructor() { }
   getDescription(type): string {
-    for (var i in typeDescriptions) {
+    for (let i in typeDescriptions) {
       if (typeDescriptions[i].type == type) {
         return typeDescriptions[i].description;
       }

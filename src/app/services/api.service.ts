@@ -31,7 +31,7 @@ export class APIService {
 
   getCorpusReferenceByMetadata(attributes) {
     const queryElements = [];
-    for (let key of Object.keys(attributes)) {
+    for (const key of Object.keys(attributes)) {
       // It's important to encode, as there may be spaces.
       queryElements.push(key + '=' + encodeURIComponent(attributes[key]));
     }
@@ -47,7 +47,7 @@ export class APIService {
 
   getFrequencyData(attributes) {
     const queryElements = [];
-    for (let key of Object.keys(attributes)) {
+    for (const key of Object.keys(attributes)) {
       // It's important to encode, as there may be spaces.
       queryElements.push(key + '=' + encodeURIComponent(attributes[key]));
     }
@@ -67,7 +67,7 @@ export class APIService {
 
   getRepositoryReferenceByMetadata(attributes) {
     const queryElements = [];
-    for (let key of Object.keys(attributes)) {
+    for (const key of Object.keys(attributes)) {
       // It's important to encode, as there may be spaces.
       queryElements.push(key + '=' + encodeURIComponent(attributes[key]));
     }
@@ -91,13 +91,12 @@ export class APIService {
 
   getCorpusSearchApiQuery(params) {
     const queryParameters = [];
-    let nonFacets = ["method", "search", "id", "op", "toefl_total_min", "toefl_total_max"];
-    let inc = 0;
+    const nonFacets = ["method", "search", "id", "op", "toefl_total_min", "toefl_total_max"];
+    const inc = 0;
     for (const key in params) {
-      if (nonFacets.includes(key)){
+      if (nonFacets.includes(key)) {
         queryParameters.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
-      }
-      else {
+      } else {
         queryParameters.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
       }
     }
@@ -144,8 +143,7 @@ export class APIService {
         })
         ).pipe(share());
       return this.observable;
-    }
-    else {
+    } else {
       this.observable = this.http.get(environment.backend + path + '&_format=' + format, {
         observe: 'response'
       })

@@ -4,6 +4,8 @@ import { HttpRequest } from '@angular/common/http';
 @Injectable()
 export class authorizeService {
 
+  cachedRequests: Array<HttpRequest<any>> = [];
+
   public getToken(): string {
     const token = localStorage.getItem('token');
     return JSON.parse(token);
@@ -34,8 +36,6 @@ export class authorizeService {
     }
     return true;
   }
-
-  cachedRequests: Array<HttpRequest<any>> = [];
 
   public collectFailedRequest(request): void {
     this.cachedRequests.push(request);

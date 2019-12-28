@@ -20,13 +20,13 @@ export class AppComponent implements AfterViewInit {
     public authorizeService: authorizeService,
     public LoginService: LoginService,
     public globals: Globals,
-  ) { 
+  ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        // When a new page is navigated to, 
+        // When a new page is navigated to,
         // clear out the status message.
         this.globals.statusMessage = "";
-      } 
+      }
     });
   }
 
@@ -35,8 +35,7 @@ export class AppComponent implements AfterViewInit {
     this.globals.statusMessage = "";
     if (this.authorizeService.isAuthenticated()) {
       this.globals.isAuthenticated = true;
-    }
-    else {
+    } else {
       this.globals.isAuthenticated = false;
     }
   }

@@ -40,8 +40,7 @@ export class RepositorySearchComponent {
     if (!this.authorizeService.isAuthenticated()) {
       // If not, redirect to the login page.
       this.router.navigate(['/authorize']);
-    }
-    else {
+    } else {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];
     this.Facets['document_type'] = { label: 'Type', index: '3' };
@@ -103,8 +102,7 @@ export class RepositorySearchComponent {
       if (typeof selections[facet] === 'undefined') {
         selections.push(facet);
       }
-    }
-    else {
+    } else {
       // The clicked facet had been selected.
       // Remove it from the list of selected items for the given facetgroup.
       for (const i in selections) {
@@ -125,13 +123,13 @@ export class RepositorySearchComponent {
     this.facetKeys = Object.keys(this.Facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
-    for (let name in this.Facets) {
-      let i = this.Facets[name].index;
-      let facetOutput = [];
+    for (const name in this.Facets) {
+      const i = this.Facets[name].index;
+      const facetOutput = [];
       if (typeof facets[i][0] !== 'undefined') {
-        for (let delta in facets[i][0][name]) {
-          let values = facets[i][0][name][delta].values;
-          let data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': '' };
+        for (const delta in facets[i][0][name]) {
+          const values = facets[i][0][name][delta].values;
+          const data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': '' };
           if (name == 'course') {
             data.description = this.courses.getDescription(values.value);
           }
@@ -147,8 +145,7 @@ export class RepositorySearchComponent {
           facetOutput.push(data);
         }
         this.Facets[name].values = facetOutput;
-      }
-      else {
+      } else {
         this.Facets[name].values = [];
       }
     }
@@ -157,7 +154,7 @@ export class RepositorySearchComponent {
 
   adjustLabels(searchResults) {
     // Append additional information to title for clarity.
-    for (let i in searchResults) {
+    for (const i in searchResults) {
       searchResults[i].label = this.repositoryHelper.getLabel(
         searchResults[i].document_type,
         searchResults[i].course,
@@ -168,7 +165,7 @@ export class RepositorySearchComponent {
   }
 
   prepareSearchResults(results) {
-    for (let r in results) {
+    for (const r in results) {
       results[r]["course_description"] = this.courses.getDescription(results[r].course);
       results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
     }
@@ -180,8 +177,7 @@ export class RepositorySearchComponent {
     // See https://stackoverflow.com/a/35163037
     if (this.globals.repositoryFacets[i] === undefined) {
       this.globals.repositoryFacets[i] = true;
-    }
-    else if (this.globals.repositoryFacets[i] === false) {
+    } else if (this.globals.repositoryFacets[i] === false) {
       this.globals.repositoryFacets[i] = true;
     } else {
       this.globals.repositoryFacets[i] = false;

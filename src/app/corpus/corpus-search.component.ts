@@ -23,25 +23,25 @@ export class CorpusSearchComponent {
   searchResults: CorpusDetail[];
   resultCount: number;
   excerptCount: number;
-  offset: number = 0;
+  offset = 0;
   subcorpusWordcount: number;
   filters: any[] = [];
 
   // Used for constructing the search
-  public keywordMode: string = 'or';
+  public keywordMode = 'or';
   public validKeywordModes: any[] = ['and', 'or'];
-  public method: string = 'word';
+  public method = 'word';
   public validMethods: any[] = ['word', 'lemma'];
-  public searchString: string = "";
-  public exportUrl: string = "";
+  public searchString = "";
+  public exportUrl = "";
 
   // Display toggles.
-  advancedSearch: boolean = false;
-  isLoaded: boolean = false;
-  searchInProgress: boolean = false;;
-  toeflShow: boolean = false;
-  showMetadata: boolean = true;
-  dialogToggle: boolean = false;
+  advancedSearch = false;
+  isLoaded = false;
+  searchInProgress = false;
+  toeflShow = false;
+  showMetadata = true;
+  dialogToggle = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,11 +55,10 @@ export class CorpusSearchComponent {
     public dialog: MatDialog,
   ) {
   // First check whether there is an authorization token present.
-  if(!this.authorizeService.isAuthenticated()) {
+  if (!this.authorizeService.isAuthenticated()) {
     // If not, redirect to the login page.
     this.router.navigate(['/authorize']);
-  }
-  else {
+  } else {
     // Additional filters.
     this.filters = <any>[];
     this.filters['searchByID'] = { backend_key: 'id', value: '' };
@@ -85,21 +84,19 @@ export class CorpusSearchComponent {
   textSearch(terms: string): void {
     // Called on click of search button.
     // Merge user-supplied search parameters into existing URL & call querySearch().
-    let currentParams = <any>[];
+    const currentParams = <any>[];
     // Evaluate additional filters (search by ID, TOEFL scores).
-    for (let filter in this.filters) {
-      let key = this.filters[filter].backend_key;
+    for (const filter in this.filters) {
+      const key = this.filters[filter].backend_key;
       if (this.filters[filter].value !== "") {
         currentParams[key] = this.filters[filter].value;
-      }
-      else {
+      } else {
         currentParams[key] = null;
       }
     }
     if (terms != "") {
       currentParams.search = this.sanitizer.sanitize(SecurityContext.URL, terms);
-    }
-    else {
+    } else {
       currentParams.search = null;
     }
     if (this.keywordMode !== "undefined" && this.validKeywordModes.includes(this.keywordMode)) {
@@ -126,8 +123,7 @@ export class CorpusSearchComponent {
       if (typeof selections[facet] === 'undefined') {
         selections.push(facet);
       }
-    }
-    else {
+    } else {
       // The clicked facet had been selected.
       // Remove it from the list of selected items for the given facetgroup.
       for (const i in selections) {
@@ -148,14 +144,14 @@ export class CorpusSearchComponent {
     this.facetKeys = Object.keys(this.facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
-    for (let name in this.facets) {
-      let i = this.facets[name].index;
+    for (const name in this.facets) {
+      const i = this.facets[name].index;
       if (typeof facets[name] !== 'undefined') {
-        let facetKeys = Object.keys(facets[name]);
-        let facetOutput = [];
-        for (let key in facetKeys) {
-          let id = facetKeys[key];
-          let data = { 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active, 'description': '' };
+        const facetKeys = Object.keys(facets[name]);
+        const facetOutput = [];
+        for (const key in facetKeys) {
+          const id = facetKeys[key];
+          const data = { 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active, 'description': '' };
           if (name == 'course') {
             data.description = this.courses.getDescription(facetKeys[key]);
           }
@@ -165,8 +161,7 @@ export class CorpusSearchComponent {
           facetOutput.push(data);
         }
         this.facets[name].values = facetOutput;
-      }
-      else {
+      } else {
         this.facets[name].values = [];
       }
     }
@@ -190,8 +185,7 @@ export class CorpusSearchComponent {
         this.searchString = routeParams.search;
         if (/[^a-zA-Z0-9_ \s]/.test(this.searchString) && !/"/.test(this.searchString)) {
           this.globals.statusMessage = "It looks like you're trying a search that includes punctuation. You may need to wrap your search string in quotes.";
-        }
-        else {
+        } else {
           this.globals.statusMessage = "";
         }
       }
@@ -224,11 +218,11 @@ export class CorpusSearchComponent {
           this.preparefacets(response.facets);
         }
         if (response && typeof response.frequency.tokens !== 'undefined') {
-          let tokenKeys = Object.keys(response.frequency.tokens);
-          let tokenValues = Object.values(response.frequency.tokens);
-          for (let key in tokenKeys) {
-            let id = tokenKeys[key];
-            this.frequencyData.push({ 
+          const tokenKeys = Object.keys(response.frequency.tokens);
+          const tokenValues = Object.values(response.frequency.tokens);
+          for (const key in tokenKeys) {
+            const id = tokenKeys[key];
+            this.frequencyData.push({
               'token': id,
               'raw': tokenValues[key]["raw"],
               'normed': tokenValues[key]["normed"],
@@ -255,7 +249,7 @@ export class CorpusSearchComponent {
             }
           }
         });
-      }, 
+      },
       err => {
         // Handle 500s.
         this.searchInProgress = false;
@@ -265,19 +259,18 @@ export class CorpusSearchComponent {
   }
 
   prepareSearchResults(results) {
-    for (let r in results) {
+    for (const r in results) {
       results[r]["course_description"] = this.courses.getDescription(results[r].course);
       results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
     }
-    return results;    
+    return results;
   }
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037
     if (this.globals.corpusFacets[i] === undefined) {
       this.globals.corpusFacets[i] = true;
-    }
-    else if (this.globals.corpusFacets[i] === false) {
+    } else if (this.globals.corpusFacets[i] === false) {
       this.globals.corpusFacets[i] = true;
     } else {
       this.globals.corpusFacets[i] = false;
@@ -318,10 +311,10 @@ export class CorpusSearchComponent {
     this.API.exportCorpus(exportUrl).subscribe(response => {
       if (response) {
         // Based on https://fullstacktips.blogspot.com/2018/06/generate-downloadable-csv-file-from.html
-        let data = response;
-        let filename = "crow-export.csv";
+        const data = response;
+        const filename = "crow-export.csv";
 
-        var blob = data.constructor !== Blob
+        const blob = data.constructor !== Blob
           ? new Blob([data], { type: 'text/csv' || 'application/octet-stream' })
           : data;
 
@@ -330,7 +323,7 @@ export class CorpusSearchComponent {
           return;
         }
 
-        var lnk = document.createElement('a'),
+        let lnk = document.createElement('a'),
           url = window.URL,
           objectURL;
         lnk.type = 'text/csv';
@@ -346,7 +339,7 @@ export class CorpusSearchComponent {
     this.dialogToggle = true;
     this.route.queryParams.subscribe((routeParams) => {
       if (this.dialogToggle) {
-        let uri = this.API.getCorpusSearchApiQuery(routeParams);
+        const uri = this.API.getCorpusSearchApiQuery(routeParams);
         const dialogRef = this.dialog.open(DialogEmbed, {
           width: '350px',
           data: { url: environment.backend + 'corpus/excerpts?' + uri }

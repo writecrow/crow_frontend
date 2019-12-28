@@ -1,6 +1,6 @@
-// This file is based on the canonical example from 
+// This file is based on the canonical example from
 // https://github.com/angular/angular/blob/master/aio/content/examples/http/src/app/http-interceptors/caching-interceptor.ts
-// as well as a simplified version in 
+// as well as a simplified version in
 // https://fullstack-developer.academy/caching-http-requests-with-angular/
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpRequest, HttpResponse, HttpInterceptor, HttpHandler } from '@angular/common/http';
