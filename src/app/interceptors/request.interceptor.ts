@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent, HttpErrorResponse } from "@angular/common/http";
-
+import { environment } from '../../environments/environment';
 import { Observable, BehaviorSubject, EMPTY, throwError } from 'rxjs';
 import { catchError, finalize, switchMap, filter, take } from 'rxjs/operators';
 
@@ -13,6 +13,7 @@ import { Globals } from '../globals';
 // HttpInterceptor interface.
 export class RequestInterceptor implements HttpInterceptor {
 
+  password_reset_url = environment.backend + 'user/password';
   isRefreshingToken = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
@@ -109,7 +110,7 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   handle401(error) {
-    this.globals.statusMessage = "The username/password combination was not accepted.";
+    this.globals.statusMessage = 'The username/password combination was not accepted. <a href="' + this.password_reset_url + '">Forgot your password</a>?';
     // Usually caused by not making any API calls for whatever the timeout is configured for.
     if (error && error.status === 401 || error.error && error.error.error === 'invalid_grant') {
       // If 401 and the error message is 'invalid_grant',

@@ -40,6 +40,12 @@ nav form {
 .status button {
 	float: right;
 }
+.status-message-text {
+	display: inline;
+}
+:host ::ng-deep .status-message-text a {
+	text-decoration: underline;
+}
 
 /* Adjustments for small displays */
 @media (max-width: 992px) {

@@ -13,3 +13,7 @@ input {
 input#additional {
   display:none;
 }
+
+.panel a:visited {
+	color: #0056b3;
+}
