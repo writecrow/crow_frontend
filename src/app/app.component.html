@@ -28,7 +28,7 @@
 <div *ngIf="globals.statusMessage" class="container status">
   <div class="row">
     <div class="col-md-12 panel">
-      <div [innerHTML]="globals.statusMessage | keepHtml"></div>
+      <div class="status-message-text" [innerHTML]="globals.statusMessage | keepHtml"></div>
       <button type="button" class="close" aria-label="Close" (click)="exitStatus()">
         <span aria-hidden="true">&times;</span>
       </button>

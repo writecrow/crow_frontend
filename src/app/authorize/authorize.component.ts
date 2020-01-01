@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { authorizeService } from '../services/authorize.service';
+import { environment } from '../../environments/environment';
 import { LoginService} from '../services/login.service';
 import { Globals } from '../globals';
 import { APIService } from '../services/api.service';
@@ -11,6 +12,8 @@ import { APIService } from '../services/api.service';
 })
 
 export class AuthorizeComponent implements OnInit {
+
+  public registration_url = environment.backend + 'user/register';
 
   constructor(
     private router: Router,
