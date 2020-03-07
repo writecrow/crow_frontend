@@ -14,6 +14,7 @@
         </span>
       </span>
     </form>
+    <h3 *ngIf="noResults == true">No results match the search criteria</h3>
     <div class="search-result" *ngFor="let result of searchResults">
       <a routerLink="/repository/{{result.id}}" [queryParams]="{ search: searchString }">
         <div class="row">

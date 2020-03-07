@@ -20,6 +20,7 @@ export class RepositorySearchComponent {
   Facets: any[] = [];
   facetKeys: any[] = [];
   isLoaded: boolean;
+  noResults: boolean;
   searchInProgress: boolean;
   searchString: string;
 
@@ -65,14 +66,15 @@ export class RepositorySearchComponent {
         this.searchString = routeParams.search;
       }
       this.API.searchRepository(routeParams).subscribe(response => {
-        if (response && response.facets) {
-          this.Facets = this.prepareFacets(response.facets);
-        }
-        if (response && response.search_results) {
-          this.searchResults = this.prepareSearchResults(response.search_results);
-          this.isLoaded = true;
-          // Do additional modifications on the returned API data.
-          this.adjustLabels(this.searchResults);
+        this.Facets = this.prepareFacets(response.facets);
+        this.searchResults = this.prepareSearchResults(response.search_results);
+        this.isLoaded = true;
+        this.noResults = false;
+        // Do additional modifications on the returned API data.
+        this.adjustLabels(this.searchResults);
+        // If no results, tell the user.
+        if (typeof response.search_results === "undefined") {
+          this.noResults = true;
         }
         this.searchInProgress = false;
       });
