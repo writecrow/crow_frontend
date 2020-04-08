@@ -252,12 +252,12 @@ footer h1 {
 	border-bottom:2px solid white;
 	letter-spacing: 1rem;
 }
-footer, footer a, footer a:hover, footer a:focus {
+footer, footer a, footer a:hover, footer a:focus, footer a:visited {
   color:#fff;
   font-size:1.1rem;
 }
 
-footer a, footer a:hover, footer a:focus {
+footer a, footer a:hover, footer a:focus, footer a:visited {
   padding-left:1rem;
   padding-right:1rem;
 }
