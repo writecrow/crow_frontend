@@ -170,6 +170,13 @@ dl, ol, ul {
   padding-left: 1rem;
   padding-bottom:1rem;
 }
+.facet-items label,
+.facet-items input {
+  cursor: pointer;
+}
+.facet-items label:hover {
+  border-bottom: 1px dotted rgb(77, 76, 76);
+}
 
 .facet-wrapper {
   box-shadow: 1px 1px 1px 1px #ddd;
