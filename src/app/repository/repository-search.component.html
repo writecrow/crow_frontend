@@ -45,8 +45,10 @@
       <div class="facet-header" [ngClass]="(globals.repositoryFacets[key])?'open':'closed'" (click)="toggleFacet(key)">{{ Facets[key].label }}</div>
         <ul class="facet-items" [hidden]="!globals.repositoryFacets[key]">
           <li *ngFor="let item of Facets[key].values">
-            <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} ({{item.count }})
-            <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
+            <label>
+              <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} ({{item.count }})
+              <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
+            </label>
           </li>
         </ul>
     </div>
