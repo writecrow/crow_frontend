@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { authorizeService } from './services/authorize.service';
 import { LoginService } from './services/login.service';
@@ -13,13 +14,13 @@ declare const ga: any;
   providers: [authorizeService, LoginService],
 })
 export class AppComponent implements AfterViewInit, OnInit {
-  public LOGO = require("../assets/logo.svg");
-  public SHIELD = require("../assets/black-crow-shield.svg");
+
   constructor(
     private router: Router,
     public authorizeService: authorizeService,
     public LoginService: LoginService,
     public globals: Globals,
+    private sanitizer: DomSanitizer,
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {

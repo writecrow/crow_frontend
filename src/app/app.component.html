@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="logo-wrapper">
-        <a routerLink="/" routerLinkActive="active"><img class="logo" [src]="LOGO" alt="Silhouette of a crow" /></a>
+        <a routerLink="/" routerLinkActive="active"><img class="logo" src="/assets/logo.svg" alt="Silhouette of a crow" /></a>
       </div>
     </div>
     <div class="col-md-7">
@@ -15,7 +15,7 @@
         <a href="https://github.com/writecrow">Source code</a>
         <form id="authentication" class="form-inline">
           <label for="authSubmit">
-            <span *ngIf="globals.isAuthenticated && !globals.authenticating"><img class="avatar" [src]="SHIELD" alt="Avatar of a crow" /><em>Signed in</em>&nbsp;&nbsp;</span>
+            <span *ngIf="globals.isAuthenticated && !globals.authenticating"><img class="avatar" src="/assets/black-crow-shield.svg" alt="Avatar of a crow" /><em>Signed in</em>&nbsp;&nbsp;</span>
             <button *ngIf="globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signOut()">Sign out</button>
             <button *ngIf="!globals.isAuthenticated && !globals.authenticating" name="authSubmit" class="secondary" (click)="signIn()">Sign in</button>
             <span *ngIf="globals.authenticating">Authenticating...</span>
