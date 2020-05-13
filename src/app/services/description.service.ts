@@ -2,7 +2,9 @@ import { assignmentDescriptions } from '../services/description.mock';
 import { courseDescriptions } from '../services/description.mock';
 import { topicDescriptions } from '../services/description.mock';
 import { typeDescriptions } from '../services/description.mock';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class assignmentDescriptionService {
   constructor() { }
   getDescription(name, institution): string {
@@ -15,6 +17,7 @@ export class assignmentDescriptionService {
   }
 }
 
+@Injectable()
 export class courseDescriptionService {
   constructor() { }
   getDescription(course): string {
@@ -27,6 +30,7 @@ export class courseDescriptionService {
   }
 }
 
+@Injectable()
 export class topicDescriptionService {
   constructor() { }
   getDescription(key): string {
@@ -39,6 +43,7 @@ export class topicDescriptionService {
   }
 }
 
+@Injectable()
 export class typeDescriptionService {
   constructor() { }
   getDescription(type): string {
