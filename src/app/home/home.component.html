@@ -32,35 +32,16 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6 pad-bottom">
+  <div *ngIf="homeFirstTitle" class="col-md-6 pad-bottom">
     <div class="feature secondary">
-    <h2>What's new?</h2>
-      <ul>
-        <li>November 2: Arizona Teachers of English to Speakers of Other Languages, "<a href="https://sched.co/WSnI">Bridging L2 writing and academic vocabulary through corpus-based activities</a>"</li>
-        <li>November 15: Symposium on Second Language Writing, "<a href="https://sched.co/TKQ0"
-      >Using a learner corpus and a repository of pedagogical materials for L2 writing research and teaching</a>"</li>
-        <li>March 31, 2020: <a href="https://www.tesol.org/convention-2020/schedule-at-a-glance">TESOL 2020</a></li>
-    </ul>
+      <h2 [innerHTML]="homeFirstTitle | keepHtml"></h2>
+      <div [innerHTML]="homeFirstBody | keepHtml"></div>
     </div>
   </div>
-  <div class="col-md-6 pad-bottom">
+  <div *ngIf="homeSecondTitle" class="col-md-6 pad-bottom">
     <div class="feature secondary">
-    <h2>Resources & Tutorials</h2>
-      Writing Models
-        <ul><li><a routerLink="/page/students" fragment="idiom" routerLinkActive="active">Compare how other writers use an English idiom</a></li></ul>
-      Lesson Planning
-        <ul>
-          <li><a routerLink="/page/teachers" fragment="passive" routerLinkActive="active">Find sample sentences for a lesson on signal phrases</a></li>
-        </ul>
-      Research & Analysis
-        <ul>
-          <li><a routerLink="/page/researchers" fragment="export" routerLinkActive="active">Export Crow data for statistical analysis in R</a></li>
-          <li><a routerLink="/page/researchers/" fragment="api" routerLinkActive="active">Perform machine-driven queries with the API</a></li>
-          </ul>
-      Corpus Building
-        <ul>
-          <li><a routerLink="/page/developers" routerLinkActive="active">Develop a similar corpus using the source code</a></li>
-        </ul>
+      <h2 [innerHTML]="homeSecondTitle | keepHtml"></h2>
+      <div [innerHTML]="homeSecondBody | keepHtml"></div>
     </div>
   </div>
 </div>
