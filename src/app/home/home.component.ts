@@ -12,10 +12,10 @@ import { AuthorizeComponent } from '../authorize/authorize.component';
 export class HomeComponent implements OnInit {
   total_words: number;
   total_texts: number;
-  homeFirstTitle: '';
-  homeFirstBody: '';
-  homeSecondTitle: '';
-  homeSecondBody: '';
+  homeFirstTitle: string;
+  homeFirstBody: string;
+  homeSecondTitle: string;
+  homeSecondBody: string;
 
   constructor(
     private API: APIService,

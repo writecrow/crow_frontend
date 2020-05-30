@@ -92,11 +92,6 @@ a:focus, a:hover {
   text-decoration:underline;
 }
 
-a:visited {
-  color:#9090AD;
-  font-weight:normal;
-}
-
 img.download {
 	width:40px;
 	color:#5c5c80;
@@ -140,6 +135,7 @@ dl, ol, ul {
   padding: 0.5rem;
   border-radius: 5px 5px 0px 0px;
   cursor:pointer;
+  font-size: 1.1rem;
 }
 .facet-wrapper label {
   margin-bottom: 0;
