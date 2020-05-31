@@ -32,6 +32,7 @@ export class RepositoryDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.globals.inProgress = true;
     combineLatest(this.route.params, this.route.queryParams)
       .pipe(map(routes => ({ params: routes[0], query: routes[1] })))
       .subscribe(routes => {
@@ -102,6 +103,7 @@ export class RepositoryDetailComponent implements OnInit {
               'exclude_id': this.content.id,
             };
             this.API.getRepositoryReferenceByMetadata(relatedRepositoryParameters).subscribe(response => {
+              this.globals.inProgress = false;
               if (response && response !== '') {
                 this.relatedResources = response;
               }

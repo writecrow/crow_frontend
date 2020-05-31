@@ -58,7 +58,7 @@ export class RepositorySearchComponent {
 
   querySearch() {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
-    this.searchInProgress = true;
+    this.globals.inProgress = true;
     this.route.queryParams.subscribe((routeParams) => {
       if (routeParams.search !== 'undefined') {
         // Set the text input to the query provided in the URL.
@@ -75,20 +75,20 @@ export class RepositorySearchComponent {
         if (typeof response.search_results === "undefined") {
           this.noResults = true;
         }
-        this.searchInProgress = false;
+        this.globals.inProgress = false;
       });
     });
   }
 
   textSearch(terms: string): void {
-    this.searchInProgress = true;
+    this.globals.inProgress = true;
     // Called on click of search button.
     // Merges user-supplied search term into existing URL and calls querySearch().
     this.router.navigate(['/repository'], { queryParams: { search: terms }, queryParamsHandling: 'merge' });
   }
 
   facetSearch(facetgroup, facet, active) {
-    this.searchInProgress = true;
+    this.globals.inProgress = true;
     // First, retrieve the current facetgroup & split its choices into an array.
     let selections = [];
     if (typeof this.route.snapshot.queryParams[facetgroup] !== 'undefined') {

@@ -32,6 +32,7 @@ export class AuthorizeComponent implements OnInit {
 
   authorize(name: string, pass: string, additional: string): void {
     this.globals.authenticating = true;
+    this.globals.inProgress = true;
     name = name.trim();
     if (!name || additional !== "" ) { return; }
     const user: any = { name, pass };
@@ -41,11 +42,13 @@ export class AuthorizeComponent implements OnInit {
         this.router.navigate(['/']);
         this.globals.isAuthenticated = true;
         this.globals.authenticating = false;
+        this.globals.inProgress = false;
         this.api.getDefaultCorpusSearchResults().subscribe(response => {
         });
       },
       err => {
         this.globals.isAuthenticated = false;
+        this.globals.inProgress = false;
         this.globals.authenticating = false;
       }
     );

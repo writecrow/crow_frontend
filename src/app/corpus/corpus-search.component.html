@@ -42,12 +42,6 @@
         <ng-container *ngIf="!exportUrl && searchInProgress == false">
           <button class="btn btn-disabled" disabled>Export</button><div class="tooltip-toggle" aria-label="To inquire about access to data exports, contact us at collaborate@writecrow.org">&nbsp;&#9432;</div>
         </ng-container>
-        
-        <span class="search-progress">
-          <span *ngIf="searchInProgress == true">
-            <img class="loading" src="/assets/loading.svg" alt="Loading icon" height="50px" />
-          </span>
-        </span>
       </form>
     </div>
     <div class="row">

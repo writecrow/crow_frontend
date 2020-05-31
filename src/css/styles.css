@@ -311,3 +311,8 @@ footer a, footer a:hover, footer a:focus, footer a:visited {
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+.loading-message {
+  font-weight: bold;
+  padding-left: 1rem;
+}

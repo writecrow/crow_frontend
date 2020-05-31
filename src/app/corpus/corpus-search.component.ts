@@ -62,7 +62,6 @@ export class CorpusSearchComponent {
   // Display toggles.
   advancedSearch = false;
   isLoaded = false;
-  searchInProgress = false;
   toeflShow = false;
   showMetadata = true;
   dialogToggle = false;
@@ -197,12 +196,12 @@ export class CorpusSearchComponent {
     // The main search function. Looks for the current URL parameters & sends those to the backend.
     this.isLoaded = false;
     this.route.queryParams.subscribe((routeParams) => {
+      this.globals.inProgress = true;
       this.resultCount = 0;
       this.excerptCount = 0;
       this.method = "word";
       this.keywordMode = "or";
       this.subcorpusWordcount = 0;
-      this.searchInProgress = true;
       this.frequencyData = [];
       this.frequencyTotals = [];
       this.searchResults = [];
@@ -263,7 +262,7 @@ export class CorpusSearchComponent {
         }
         this.resultCount = response.pager['total_items'];
         this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
-        this.searchInProgress = false;
+        this.globals.inProgress = false;
         // Determine how to display the export button.
         // Note: this does not actually authorize folks to
         // retrieve data via the export.
@@ -280,7 +279,7 @@ export class CorpusSearchComponent {
       },
       err => {
         // Handle 500s.
-        this.searchInProgress = false;
+        this.globals.inProgress = false;
       });
     });
 

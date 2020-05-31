@@ -30,6 +30,7 @@ export class CorpusDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
+      this.globals.inProgress = true;
       this.drafts = [];
       this.exactResources = [];
       // Pass 2 parameters to API: the route path, and any query parameters.
@@ -80,6 +81,7 @@ export class CorpusDetailComponent implements OnInit {
             'semester': this.content.semester,
           };
           this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
+            this.globals.inProgress = false;
             if (response && response !== '') {
               this.exactResources = response;
             }
@@ -91,6 +93,7 @@ export class CorpusDetailComponent implements OnInit {
       err => {
         // Handle 500s.
         this.isLoaded = true;
+        this.globals.inProgress = false;
         this.statusMessage = 'There was a problem retrieving this resource. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
       });
     });
