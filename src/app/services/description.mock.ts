@@ -24,6 +24,7 @@ export const assignmentDescriptions: assignmentDescriptionSchema[] = [
   { name: 'Position Argument', institution: 'Purdue University', description: "An argumentative paper with a clear position related to World Englishes supported by a mix of scholarly references and personal experiences" },
   { name: 'Rhetorical Analysis', institution: 'Purdue University', description: "A breakdown of a text into rhetorical components to better understand how an author achieves their purpose" },
   { name: 'Response', institution: 'Purdue University', description: "A summary and response to an article or other course text/video" },
+  { name: 'Portfolio', institution: 'Purdue University', description: "Course-level reflective writing, sometimes completed as part of a final portfolio" },
   { name: 'Reflection/Portfolio', institution: 'Purdue University', description: "Course-level reflective writing, sometimes completed as part of a final portfolio" },
   { name: 'Research Proposal', institution: 'Purdue University', description: "A proposal for a research-based argument, based on preliminary research and research question(s)" },
   { name: 'Register Rewrite', institution: 'Purdue University', description: "A transformed version of a formal academic article into an informal register/genre" },
@@ -37,7 +38,8 @@ export const courseDescriptions: courseDescriptionSchema[] = [
   { course: 'ENGL 107', institution: 'University of Arizona', description: 'ENGL 107: 3-credit Foundations Writing Course for International Students (2 of 3) at UA' },
   { course: 'ENGL 108', institution: 'University of Arizona', description: 'ENGL 108: 3-credit Foundations Writing Course for International Students (3 of 3) at UA' },
   { course: 'ENGL 106i', institution: 'Purdue University', description: 'ENGL 106i: 4-credit foundations writing course for international students at Purdue' },
-  { course: 'ENGL 102', institution: 'University of Arizona', description: 'ENGL 102: 3-credit Foundations Writing Course for Domestic Students (2 of 2) at UA'}
+  { course: 'ENGL 102', institution: 'University of Arizona', description: 'ENGL 102: 3-credit Foundations Writing Course for Domestic Students (2 of 2) at UA'},
+  { course: 'ENGL 101', institution: 'University of Arizona', description: 'ENGL 101: 3-credit Foundations Writing Course for Domestic Students (1 of 2) at UA'}
 ];
 
 export const topicDescriptions: topicDescriptionSchema[] = [
