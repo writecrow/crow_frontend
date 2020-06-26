@@ -288,6 +288,9 @@ export class CorpusSearchComponent {
   prepareSearchResults(results) {
     // tslint:disable-next-line: forin
     for (const r in results) {
+      if (results[r].gender == null) {
+        results[r].gender = "N/A";
+      }
       results[r]["course_description"] = this.courses.getDescription(results[r].course);
       results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
     }

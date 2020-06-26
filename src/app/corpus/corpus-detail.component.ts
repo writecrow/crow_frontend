@@ -36,10 +36,7 @@ export class CorpusDetailComponent implements OnInit {
       // Pass 2 parameters to API: the route path, and any query parameters.
       this.API.getCorpusDetailById(routeParams.id, this.route.snapshot.queryParams).subscribe(response => {
         if (response && response[0]) {
-          this.content = response[0];
-          // Add assignment description.
-          this.content.assignment_description = this.assignments.getDescription(this.content.assignment, this.content.institution);
-          this.content.course_description = this.courses.getDescription(this.content.course);
+          this.content = this.prepareDisplayOutput(response[0]);
           this.isLoaded = true;
           // Retrieve all drafts for this ID, institution, & assignment.
           const draftParameters = {
@@ -97,6 +94,22 @@ export class CorpusDetailComponent implements OnInit {
         this.statusMessage = 'There was a problem retrieving this resource. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
       });
     });
+  }
+
+  prepareDisplayOutput(data): CorpusDetail {
+    if (data.gender === null || data.gender === "") {
+      data.gender = "N/A";
+    }
+    if (data.program === null || data.program === "") {
+      data.program = "N/A";
+    }
+    if (data.college === null || data.college === "") {
+      data.college = "N/A";
+    }
+    // Add assignment description.
+    data.assignment_description = this.assignments.getDescription(data.assignment, data.institution);
+    data.course_description = this.courses.getDescription(data.course);
+    return data;
   }
 
   // Used to sort drafts alphanumerically (final at end).

@@ -92,6 +92,10 @@
 						<th scope="row">Country of Origin</th>
 						<td>{{ content.country }}</td>	
 					</tr>
+					<tr *ngIf="content.l1">
+						<th scope="row">L1 (first language)</th>
+						<td>{{ content.l1 }}</td>
+					</tr>
 					<tr *ngIf="content.toefl_listening">
 						<th scope="row">TOEFL Listening</th>
 						<td>{{ content.toefl_listening }}</td>
