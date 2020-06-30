@@ -42,3 +42,9 @@ h2 {
 		padding-bottom:0.5rem;
 	}
 }
+.news-item {
+	margin-bottom:1rem;
+}
+.news-summary {
+	font-weight:100;
+}

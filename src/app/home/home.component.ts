@@ -12,6 +12,7 @@ import { AuthorizeComponent } from '../authorize/authorize.component';
 export class HomeComponent implements OnInit {
   total_words: number;
   total_texts: number;
+  newsItems = [];
   homeFirstTitle: string;
   homeFirstBody: string;
   homeSecondTitle: string;
@@ -32,13 +33,34 @@ export class HomeComponent implements OnInit {
     this.homeSecondTitle = 'Resources & Tutorials';
     this.homeSecondBody = '';
     this.route.params.subscribe(() => {
-      this.API.getPage('home-first').subscribe(response => {
+      this.API.getWriteCrowNews().subscribe(response => {
         if (response && response[0]) {
-          this.homeFirstTitle = response[0].title;
-          this.homeFirstBody = response[0].body;
+          let count = 0;
+          for (const i of response) {
+            console.log(i);
+            const date = this.formatDate(i.date);
+            this.newsItems.push({
+              'title': i.title.rendered,
+              'link': i.link,
+              'date': date,
+              'summary': this.shorten(i.excerpt.rendered.replace(/(<([^>]+)>)/ig, "").replace("Read more &#8250;", ""), 100, " "),
+            });
+            count = count + 1;
+            if (count === 5) {
+              break;
+            }
+          }
         }
       });
     });
+    // this.route.params.subscribe(() => {
+    //   this.API.getPage('home-first').subscribe(response => {
+    //     if (response && response[0]) {
+    //       this.homeFirstTitle = response[0].title;
+    //       this.homeFirstBody = response[0].body;
+    //     }
+    //   });
+    // });
     this.route.params.subscribe(() => {
       this.API.getPage('home-second').subscribe(response => {
         if (response && response[0]) {
@@ -53,6 +75,25 @@ export class HomeComponent implements OnInit {
         this.authComponent.authorize(auth[0].toLowerCase(), auth[1], '');
       }
     }
+  }
+
+  // Shorten a string to less than maxLen characters without truncating words.
+  shorten(str, maxLen, separator = ' ') {
+    if (str.length <= maxLen) {
+      return str;
+    }
+    return str.substr(0, str.lastIndexOf(separator, maxLen)) + '...';
+  }
+
+  formatDate(date) {
+    const d = new Date(date);
+    const month = d.toLocaleString('default', { month: 'long' });
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+    if (day.length < 2) {
+      day = '0' + day;
+    }
+    return month + ' ' + day + ', ' + year;
   }
 }
 

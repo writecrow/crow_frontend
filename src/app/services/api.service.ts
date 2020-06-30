@@ -130,6 +130,21 @@ export class APIService {
   }
 
   // The abstracted method that all http requests use.
+  getWriteCrowNews() {
+    this.observable = this.http.get("https://writecrow.org/wp-json/wp/v2/posts?categories=84", {
+      observe: 'response', responseType: 'json'
+    })
+      .pipe(map(response => {
+        this.observable = null;
+        if (response.status === 200) {
+          return response.body;
+        }
+      })
+      ).pipe(share());
+    return this.observable;
+  }
+
+  // The abstracted method that all http requests use.
   getResponseFromPath(path, format = 'json') {
     if (format === 'csv') {
       this.observable = this.http.get(environment.backend + path + '&_format=' + format, {
