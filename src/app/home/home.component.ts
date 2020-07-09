@@ -28,10 +28,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.total_words = 7283469;
     this.total_texts = 8254;
-    this.homeFirstTitle = "What's New";
-    this.homeFirstBody = '';
-    this.homeSecondTitle = 'Resources & Tutorials';
-    this.homeSecondBody = '';
     this.route.params.subscribe(() => {
       this.API.getWriteCrowNews().subscribe(response => {
         if (response && response[0]) {
