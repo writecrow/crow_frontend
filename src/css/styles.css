@@ -86,7 +86,7 @@ button.secondary:hover, button.secondary:focus {
 
 a {
   color:#000080;
-  font-weight:600;
+  font-weight: normal;
 }
 a:focus, a:hover {
   text-decoration:underline;

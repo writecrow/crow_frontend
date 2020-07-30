@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
         if (response && response[0]) {
           let count = 0;
           for (const i of response) {
-            console.log(i);
             const date = this.formatDate(i.date);
             this.newsItems.push({
               'title': i.title.rendered,
