@@ -182,7 +182,7 @@ export class CorpusSearchComponent {
             data.description = this.courses.getDescription(facetKeys[key]);
           }
           if (name === 'assignment') {
-            data.description = this.assignments.getDescription(facetKeys[key], "Purdue University");
+            data.description = this.assignments.getDescription(facetKeys[key]);
           }
           facetOutput.push(data);
         }
@@ -292,7 +292,7 @@ export class CorpusSearchComponent {
         results[r].gender = "N/A";
       }
       results[r]["course_description"] = this.courses.getDescription(results[r].course);
-      results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
+      results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, results[r].institution);
     }
     return results;
   }

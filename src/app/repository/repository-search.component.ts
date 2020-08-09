@@ -142,7 +142,7 @@ export class RepositorySearchComponent {
             data.description = this.topics.getDescription(values.value);
           }
           if (name === 'assignment') {
-            data.description = this.assignments.getDescription(values.value, "Purdue  University");
+            data.description = this.assignments.getDescription(values.value);
           }
           facetOutput.push(data);
         }

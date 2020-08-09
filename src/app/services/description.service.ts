@@ -7,13 +7,33 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class assignmentDescriptionService {
   constructor() { }
-  getDescription(name, institution): string {
+  getDescription(name, institution = null): string {
+    let output = [];
+    let concatenatedOutput = [];
     for (const i in assignmentDescriptions) {
-      if (assignmentDescriptions[i].name === name) {
-        return assignmentDescriptions[i].description;
+      if (institution != null) {
+        // An institution parameter has been specified.
+        // This would be used for individual search results.
+        if (assignmentDescriptions[i].name === name && assignmentDescriptions[i].institution === institution) {
+          output.push(assignmentDescriptions[i]);
+        }
+      }
+      else if (assignmentDescriptions[i].name === name) {
+        // No institution parameter has been specified.
+        // This would be used for faceted filters.
+        output.push(assignmentDescriptions[i]);
       }
     }
-    return '';
+    if (output.length === 1) {
+      return output[0].description;
+    }
+    else {
+      // Handle multiple matching institutions.
+      for (const i of output) {
+        concatenatedOutput.push(i.institution + ": " + i.description);
+      }
+      return concatenatedOutput.join('; ');
+    }
   }
 }
 
