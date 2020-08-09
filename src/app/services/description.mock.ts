@@ -40,7 +40,7 @@ export const assignmentDescriptions: assignmentDescriptionSchema[] = [
 ];
 
 export const courseDescriptions: courseDescriptionSchema[] = [
-  { course: 'ENGL 105', institution: 'Northern Arizona University', description: 'ENGL 105: 4-credit Foundations Writing course for domestic and international students at NAU' },
+  { course: 'ENG 105', institution: 'Northern Arizona University', description: 'ENG 105: 4-credit Foundations Writing course for domestic and international students at NAU' },
   { course: 'ENGL 106', institution: 'University of Arizona', description: 'ENGL 106: 3-credit Foundations Writing Course for International Students (1 of 3) at UA' },
   { course: 'ENGL 107', institution: 'University of Arizona', description: 'ENGL 107: 3-credit Foundations Writing Course for International Students (2 of 3) at UA' },
   { course: 'ENGL 108', institution: 'University of Arizona', description: 'ENGL 108: 3-credit Foundations Writing Course for International Students (3 of 3) at UA' },
