@@ -14,7 +14,7 @@ export class assignmentDescriptionService {
       if (institution != null) {
         // An institution parameter has been specified.
         // This would be used for individual search results.
-        if (assignmentDescriptions[i].name === name && assignmentDescriptions[i].institution === institution) {
+        if (assignmentDescriptions[i].name === name && (assignmentDescriptions[i].institution === institution || assignmentDescriptions[i].institution === '')) {
           output.push(assignmentDescriptions[i]);
         }
       }
@@ -22,6 +22,7 @@ export class assignmentDescriptionService {
         // No institution parameter has been specified.
         // This would be used for faceted filters.
         output.push(assignmentDescriptions[i]);
+        break;
       }
     }
     if (output.length === 1) {
@@ -30,6 +31,9 @@ export class assignmentDescriptionService {
     else {
       // Handle multiple matching institutions.
       for (const i of output) {
+        if (i.institution === '') {
+          concatenatedOutput.push(i.description);
+        }
         concatenatedOutput.push(i.institution + ": " + i.description);
       }
       return concatenatedOutput.join('; ');
