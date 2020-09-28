@@ -4,10 +4,6 @@ import { APIService } from '../services/api.service';
 import { authorizeService } from '../services/authorize.service';
 import { RepositoryDetail } from '../repository/repository-detail';
 import { RepositoryHelper } from '../repository/repository-helper';
-import { assignmentDescriptionService } from '../services/description.service';
-import { courseDescriptionService } from '../services/description.service';
-import { typeDescriptionService } from '../services/description.service';
-import { topicDescriptionService } from '../services/description.service';
 import { Globals } from '../globals';
 
 @Component({
@@ -31,10 +27,6 @@ export class RepositorySearchComponent {
     private API: APIService,
     public globals: Globals,
     private repositoryHelper: RepositoryHelper,
-    private courses: courseDescriptionService,
-    private assignments: assignmentDescriptionService,
-    private topics: topicDescriptionService,
-    private types: typeDescriptionService,
   ) {
     // First check whether there is an authorization token present.
     if (!this.authorizeService.isAuthenticated()) {
@@ -66,7 +58,7 @@ export class RepositorySearchComponent {
       }
       this.API.searchRepository(routeParams).subscribe(response => {
         this.Facets = this.prepareFacets(response.facets);
-        this.searchResults = this.prepareSearchResults(response.search_results);
+        this.searchResults = response.search_results;
         this.isLoaded = true;
         this.noResults = false;
         // Do additional modifications on the returned API data.
@@ -131,19 +123,7 @@ export class RepositorySearchComponent {
         // tslint:disable-next-line: forin
         for (const delta in facets[i][0][name]) {
           const values = facets[i][0][name][delta].values;
-          const data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': '' };
-          if (name === 'course') {
-            data.description = this.courses.getDescription(values.value);
-          }
-          if (name === 'document_type') {
-            data.description = this.types.getDescription(values.value);
-          }
-          if (name === 'topic') {
-            data.description = this.topics.getDescription(values.value);
-          }
-          if (name === 'assignment') {
-            data.description = this.assignments.getDescription(values.value, "Purdue  University");
-          }
+          const data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': values.description };
           facetOutput.push(data);
         }
         this.Facets[name].values = facetOutput;
@@ -167,14 +147,6 @@ export class RepositorySearchComponent {
     }
   }
 
-  prepareSearchResults(results) {
-    // tslint:disable-next-line: forin
-    for (const r in results) {
-      results[r]["course_description"] = this.courses.getDescription(results[r].course);
-      results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, "Purdue University");
-    }
-    return results;
-  }
 
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.

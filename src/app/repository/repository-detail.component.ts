@@ -33,7 +33,7 @@ export class RepositoryDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.globals.inProgress = true;
-    combineLatest(this.route.params, this.route.queryParams)
+    combineLatest([this.route.params, this.route.queryParams])
       .pipe(map(routes => ({ params: routes[0], query: routes[1] })))
       .subscribe(routes => {
         const repositoryRequest = {
@@ -80,7 +80,6 @@ export class RepositoryDetailComponent implements OnInit {
                 }
               });
             }
-
 
             const repositoryParameters = {
               'course': this.content.course,
