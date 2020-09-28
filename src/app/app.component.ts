@@ -32,6 +32,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+    //this.globals.currentUrl = this.router.url;
     this.globals.authenticating = false;
     this.globals.statusMessage = "";
     if (this.authorizeService.isAuthenticated()) {

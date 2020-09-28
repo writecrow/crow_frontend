@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="col-md-8">
-      <nav>
+      <nav class="row justify-content-end">
         <a routerLink="page/teachers">Instructors</a>
         <a routerLink="page/students">Students</a>
         <a routerLink="page/researchers">Researchers</a>
@@ -20,8 +20,11 @@
             <button *ngIf="!globals.isAuthenticated && !globals.authenticating" name="authSubmit" class="secondary" (click)="signIn()">Sign in</button>
             <span *ngIf="globals.authenticating">Authenticating...</span>
           </label>
-        </form> 
+        </form>
       </nav>
+      <!-- <div class="row justify-content-end supplementary">
+        <a href="https://forms.google.com?url={{ globals.currentUrl }}">Report a problem on this page</a>
+      </div> -->
       <span class="loading-message" *ngIf="globals.inProgress == true">
         Processing... <img class="loading" src="/assets/loading.svg" alt="Loading icon" height="50px" />
       </span>
