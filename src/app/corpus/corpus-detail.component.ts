@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
-import { assignmentDescriptionService } from '../services/description.service';
-import { courseDescriptionService } from '../services/description.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
 import { Globals } from '../globals';
 @Component({
@@ -23,8 +21,6 @@ export class CorpusDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private API: APIService,
-    private assignments: assignmentDescriptionService,
-    private courses: courseDescriptionService,
     public globals: Globals,
   ) { }
 
@@ -106,9 +102,6 @@ export class CorpusDetailComponent implements OnInit {
     if (data.college === null || data.college === "") {
       data.college = "N/A";
     }
-    // Add assignment description.
-    data.assignment_description = this.assignments.getDescription(data.assignment, data.institution);
-    data.course_description = this.courses.getDescription(data.course);
     return data;
   }
 

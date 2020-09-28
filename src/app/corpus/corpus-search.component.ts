@@ -4,11 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { authorizeService } from '../services/authorize.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
-import { courseDescriptionService } from '../services/description.service';
-import { assignmentDescriptionService } from '../services/description.service';
 import { Globals } from '../globals';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from '../../environments/environment';
+import { empty } from 'rxjs';
 
 export interface DialogData {
   url: string;
@@ -72,8 +71,6 @@ export class CorpusSearchComponent {
     private router: Router,
     private API: APIService,
     private sanitizer: DomSanitizer,
-    private courses: courseDescriptionService,
-    private assignments: assignmentDescriptionService,
     public globals: Globals,
     public dialog: MatDialog,
   ) {
@@ -177,13 +174,7 @@ export class CorpusSearchComponent {
         // tslint:disable-next-line: forin
         for (const key in facetKeys) {
           const id = facetKeys[key];
-          const data = { 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active, 'description': '' };
-          if (name === 'course') {
-            data.description = this.courses.getDescription(facetKeys[key]);
-          }
-          if (name === 'assignment') {
-            data.description = this.assignments.getDescription(facetKeys[key]);
-          }
+          const data = { 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active, 'description': facets[name][id].description };
           facetOutput.push(data);
         }
         this.facets[name].values = facetOutput;
@@ -291,8 +282,6 @@ export class CorpusSearchComponent {
       if (results[r].gender == null) {
         results[r].gender = "N/A";
       }
-      results[r]["course_description"] = this.courses.getDescription(results[r].course);
-      results[r]["assignment_description"] = this.assignments.getDescription(results[r].assignment, results[r].institution);
     }
     return results;
   }
