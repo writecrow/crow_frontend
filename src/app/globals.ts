@@ -7,6 +7,7 @@ export class Globals {
   inProgress = false;
   statusMessage = "";
   authenticating = false;
+  username = '';
   corpusFacets: any[] = [];
   repositoryFacets: any[] = [];
 }

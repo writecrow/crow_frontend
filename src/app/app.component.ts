@@ -1,9 +1,10 @@
+import { authorizeService } from './services/authorize.service';
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { authorizeService } from './services/authorize.service';
-import { LoginService } from './services/login.service';
 import { Globals } from './globals';
+import { environment } from '../environments/environment';
+import { LoginService } from './services/login.service';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 declare var require: any;
 declare const ga: any;
@@ -22,7 +23,9 @@ export class AppComponent implements AfterViewInit, OnInit {
     public globals: Globals,
     private sanitizer: DomSanitizer,
   ) {
+
     this.router.events.subscribe(event => {
+      this.globals.currentUrl = environment.backend.substr(0, environment.backend.length - 1) + this.router.url;
       if (event instanceof NavigationStart) {
         // When a new page is navigated to,
         // clear out the status message.
@@ -32,7 +35,6 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    //this.globals.currentUrl = this.router.url;
     this.globals.authenticating = false;
     this.globals.statusMessage = "";
     if (this.authorizeService.isAuthenticated()) {
