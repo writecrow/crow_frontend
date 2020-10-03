@@ -13,6 +13,7 @@ import { AuthorizeComponent } from './authorize/authorize.component';
 import { NotFoundComponent } from './404/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
+import { ReportBugComponent } from './reportbug/reportbug.component';
 import { CorpusSearchComponent, DialogEmbed } from './corpus/corpus-search.component';
 import { CorpusDetailComponent } from './corpus/corpus-detail.component';
 import { RepositoryHelper } from './repository/repository-helper';
@@ -52,13 +53,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     AuthorizeComponent,
+    DialogEmbed,
     EscapeHtmlPipe,
     HomeComponent,
     PageComponent,
     CorpusSearchComponent,
     CorpusDetailComponent,
+    ReportBugComponent,
     RepositorySearchComponent,
-    DialogEmbed,
     RepositoryDetailComponent,
     NotFoundComponent,
   ],

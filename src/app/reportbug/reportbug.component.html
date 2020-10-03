@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="col-lg-12 panel">
+    <h1>Report an issue</h1>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit(title.value, description.value, contact.checked)" #f="ngForm">
+        <label for="title">Subject line describing the problem <span class="invalid-feedback">*</span></label>
+        <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+          <div *ngIf="title.errors.required">A subject line is required</div>
+        </div>
+        <input type="text" name="title" size="80" autofocus aria-required="true" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+        <label for="description">Description of the problem <span class="invalid-feedback">*</span></label>
+        <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
+          <div *ngIf="description.errors.required">A description is required</div>
+        </div>
+          <textarea id="description" name="description" aria-required="true" rows="6" [(ngModel)]="model.description" #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required></textarea>
+        <label for="contact">
+          <input id="contact" name="contact" #contact type="checkbox" [checked]="contact"> Contact me with updates about this issue.
+        </label>
+        <label for="submit">
+          <button name="submit" class="primary">Submit issue</button>
+        </label>
+      </form>
+  </div>
+</div>

@@ -25,11 +25,13 @@ export class AppComponent implements AfterViewInit, OnInit {
   ) {
 
     this.router.events.subscribe(event => {
-      this.globals.currentUrl = environment.backend.substr(0, environment.backend.length - 1) + this.router.url;
       if (event instanceof NavigationStart) {
-        // When a new page is navigated to,
-        // clear out the status message.
+        // When a new page is navigated to, clear out the status message.
         this.globals.statusMessage = "";
+      }
+      if (event instanceof NavigationEnd) {
+        this.globals.previousUrl = this.globals.currentUrl;
+        this.globals.currentUrl = event.url;
       }
     });
   }
