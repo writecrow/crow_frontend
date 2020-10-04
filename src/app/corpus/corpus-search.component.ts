@@ -168,7 +168,7 @@ export class CorpusSearchComponent {
     // tslint:disable-next-line: forin
     for (const name in this.facets) {
       const i = this.facets[name].index;
-      if (typeof facets[name] !== 'undefined') {
+      if (facets[name]) {
         const facetKeys = Object.keys(facets[name]);
         const facetOutput = [];
         // tslint:disable-next-line: forin
