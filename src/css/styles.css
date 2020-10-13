@@ -312,6 +312,10 @@ footer a, footer a:hover, footer a:focus, footer a:visited {
   border: 0 !important;
 }
 
+p a {
+  text-decoration: underline;
+}
+
 .loading-message {
   font-weight: bold;
   padding-left: 1rem;
