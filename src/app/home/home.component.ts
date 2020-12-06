@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
               'title': i.title.rendered,
               'link': i.link,
               'date': date,
-              'summary': this.shorten(i.excerpt.rendered.replace('&#8217;', "'").replace(/(<([^>]+)>)/ig, "").replace("Read more &#8250;", ""), 300, " "),
+              'summary': this.shorten(i.excerpt.rendered.replace('&#8217;', "'").replace('&#8220;', '"').replace('&#8221;', '"').replace('&hellip;', "...").replace(/(<([^>]+)>)/ig, "").replace("Read more &#8250;", ""), 300, " "),
             });
             count = count + 1;
             if (count === 5) {
