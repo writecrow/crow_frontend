@@ -45,9 +45,14 @@ export class RequestInterceptor implements HttpInterceptor {
         }
       }));
   }
-  // Add the Bearer token to the Authorization header
+  // Add the Bearer token to the Authorization header.
   addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
-    return req.clone({ setHeaders: { Authorization: 'Bearer ' + token } });
+    if (token == null) {
+      return req;
+    }
+    else {
+      return req.clone({ setHeaders: { Authorization: 'Bearer ' + token } });
+    }
   }
 
   handle403(error, req: HttpRequest<any>, next: HttpHandler) {
