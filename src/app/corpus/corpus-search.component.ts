@@ -364,7 +364,7 @@ export class CorpusSearchComponent {
       if (this.dialogToggle) {
         const uri = this.API.getCorpusSearchApiQuery(routeParams);
         const dialogRef = this.dialog.open(DialogEmbed, {
-          width: '550px',
+          width: 'fit-content',
           data: { url: environment.backend + 'corpus/excerpts?' + uri }
         });
         dialogRef.afterClosed().subscribe(result => {

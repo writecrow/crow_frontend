@@ -1,8 +1,10 @@
 <h2 mat-dialog-title>Share search results</h2>
 <div mat-dialog-content>
   Use the following embed code to render these search results in on a web page.
-  <textarea #embedcode readonly><iframe src="{{ data.url }}" title="Crow Search Excerpts" style="width:100%;height:300px"></iframe></textarea>
+  <textarea #embedcode readonly><iframe src="{{ data.url }}" title="Crow Search Excerpts" style="width:100%;height: -webkit-fill-available;"></iframe></textarea>
 </div>
 <div mat-dialog-actions>
   <button cdkFocusInitial (click)="copyEmbedCode(embedcode)" value="Share excerpt" >Copy to clipboard</button>
 </div>
+<h3>Sample output (representative content)</h3>
+<img src="/assets/iddl-example.png" alt="Demonstration of table of concordance lines with highlighted words" />
