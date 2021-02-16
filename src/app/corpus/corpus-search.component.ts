@@ -7,7 +7,7 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 import { Globals } from '../globals';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from '../../environments/environment';
-import * as corpusBase from './corpus-base.json';
+import * as baseData from './corpus-base.json';
 
 export interface DialogData {
   url: string;
@@ -49,6 +49,7 @@ export class CorpusSearchComponent {
   offset = 0;
   subcorpusWordcount: number;
   filters: any[] = [];
+  corpusBase = (baseData as any).default;
 
   // Used for constructing the search
   public keywordMode = 'or';
@@ -228,11 +229,11 @@ export class CorpusSearchComponent {
       let searchUrl = this.API.getCorpusSearchApiQuery(routeParams);
       if (searchUrl == '' || searchUrl == 'op=or&method=word&offset=0') {
         // Handle 'base' data by bypassing the backend API.
-        this.prepareResults(corpusBase.default);
+        this.prepareResults(this.corpusBase, searchUrl);
       }
       else {
         this.API.searchCorpus(searchUrl).subscribe(response => {
-          this.prepareResults(response);
+          this.prepareResults(response, searchUrl);
         },
         err => {
           // Handle 500s.
@@ -244,7 +245,7 @@ export class CorpusSearchComponent {
 
   }
 
-  prepareResults(response) {
+  prepareResults(response, searchUrl) {
     if (response && response.search_results) {
       this.isLoaded = true;
       this.searchResults = this.prepareSearchResults(response.search_results);
