@@ -96,7 +96,7 @@
               <td>{{ i.texts | number }}</td>
             </tr>
         </ng-container>
-        <ng-container *ngIf="frequencyTotals">
+        <ng-container *ngIf="frequencyTotals.raw > 0">
             <tr class="border-top">
               <th class="no-bold">(combined)</th>
               <td>{{ frequencyTotals.raw | number}}</td>

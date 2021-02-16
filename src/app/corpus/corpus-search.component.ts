@@ -7,7 +7,7 @@ import { CorpusDetail } from '../corpus/corpus-detail';
 import { Globals } from '../globals';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from '../../environments/environment';
-import { empty } from 'rxjs';
+import * as corpusBase from './corpus-base.json';
 
 export interface DialogData {
   url: string;
@@ -226,55 +226,66 @@ export class CorpusSearchComponent {
         this.filters['toeflTotalMax'].value = routeParams.toefl_total_max;
       }
       let searchUrl = this.API.getCorpusSearchApiQuery(routeParams);
-      this.API.searchCorpus(searchUrl).subscribe(response => {
-        if (response && response.search_results) {
-          this.isLoaded = true;
-          this.searchResults = this.prepareSearchResults(response.search_results);
-          this.excerptCount = Number(this.offset) + Number(this.searchResults.length);
-        }
-        if (response && typeof response.facets !== 'undefined') {
-          this.preparefacets(response.facets);
-        }
-        if (response && typeof response.frequency.tokens !== 'undefined') {
-          const tokenKeys = Object.keys(response.frequency.tokens);
-          const tokenValues = Object.values(response.frequency.tokens);
-          // tslint:disable-next-line: forin
-          for (const key in tokenKeys) {
-            const id = tokenKeys[key];
-            this.frequencyData.push({
-              'token': id,
-              'raw': tokenValues[key]["raw"],
-              'normed': tokenValues[key]["normed"],
-              'texts': tokenValues[key]["texts"],
-            });
-          }
-          if (typeof response.frequency.totals !== "undefined") {
-            this.frequencyTotals = response.frequency.totals;
-          }
-        }
-        this.resultCount = response.pager['total_items'];
-        this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
-        this.globals.inProgress = false;
-        // Determine how to display the export button.
-        // Note: this does not actually authorize folks to
-        // retrieve data via the export.
-        this.API.getRoles().subscribe(response => {
-          if (response) {
-            if (response.includes('export_access')) {
-              if (searchUrl === '') {
-                searchUrl = '?';
-              }
-              this.exportUrl = searchUrl;
-            }
-          }
+      if (searchUrl == '' || searchUrl == 'op=or&method=word&offset=0') {
+        // Handle 'base' data by bypassing the backend API.
+        this.prepareResults(corpusBase.default);
+      }
+      else {
+        this.API.searchCorpus(searchUrl).subscribe(response => {
+          this.prepareResults(response);
+        },
+        err => {
+          // Handle 500s.
+          this.globals.inProgress = false;
         });
-      },
-      err => {
-        // Handle 500s.
-        this.globals.inProgress = false;
-      });
+      }
+
     });
 
+  }
+
+  prepareResults(response) {
+    if (response && response.search_results) {
+      this.isLoaded = true;
+      this.searchResults = this.prepareSearchResults(response.search_results);
+      this.excerptCount = Number(this.offset) + Number(this.searchResults.length);
+    }
+    if (response && typeof response.facets !== 'undefined') {
+      this.preparefacets(response.facets);
+    }
+    if (response && typeof response.frequency.tokens !== 'undefined') {
+      const tokenKeys = Object.keys(response.frequency.tokens);
+      const tokenValues = Object.values(response.frequency.tokens);
+      // tslint:disable-next-line: forin
+      for (const key in tokenKeys) {
+        const id = tokenKeys[key];
+        this.frequencyData.push({
+          'token': id,
+          'raw': tokenValues[key]["raw"],
+          'normed': tokenValues[key]["normed"],
+          'texts': tokenValues[key]["texts"],
+        });
+      }
+      if (typeof response.frequency.totals !== "undefined") {
+        this.frequencyTotals = response.frequency.totals;
+      }
+    }
+    this.resultCount = response.pager['total_items'];
+    this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
+    this.globals.inProgress = false;
+    // Determine how to display the export button.
+    // Note: this does not actually authorize folks to
+    // retrieve data via the export.
+    this.API.getRoles().subscribe(response => {
+      if (response) {
+        if (response.includes('export_access')) {
+          if (searchUrl === '') {
+            searchUrl = '?';
+          }
+          this.exportUrl = searchUrl;
+        }
+      }
+    });
   }
 
   prepareSearchResults(results) {
