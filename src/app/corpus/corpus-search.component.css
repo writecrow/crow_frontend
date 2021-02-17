@@ -30,8 +30,20 @@
   display: inline-block;
   margin-right: 2rem;
 }
-.search-results-top label {
+.search-display-options label {
+  margin-right: 1.5rem;
+}
+.search-display-options {
+  width: -webkit-fill-available;
+}
+.result-format {
+  padding-top: 10px;
+}
+.copy-table {
   float: right;
+}
+.search-display-options label input {
+  margin-right: 10px;
 }
 .border-top {
   border-top: 2px solid rgb(114, 114, 114);
