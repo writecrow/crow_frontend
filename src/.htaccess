@@ -1,7 +1,6 @@
-#Authtype Basic
-#AuthName "This prototype is protected"
-#AuthUserFile /home/markfull/htpwds/.crow
-#Require valid-user
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
 <IfModule mod_rewrite.c>
   Options Indexes FollowSymLinks
