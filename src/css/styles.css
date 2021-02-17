@@ -52,12 +52,21 @@ button, .btn {
   cursor: pointer;
 }
 
-button.primary {
+button.primary,
+.btn.primary {
   background-color: #5C5C80;
   color:#ffffff;
 }
-button.primary:hover, button.primary:focus {
+button.primary:hover,
+button.primary:focus,
+.btn.primary:hover,
+.btn.primary:focus {
   background-color:rgb(71, 71, 100);
+}
+button:active,
+.btn:active {
+  background-color: #3d3d3d;
+  color: #fff
 }
 button.secondary {
   border:1px solid #555;
@@ -236,6 +245,17 @@ input#search-input {
   line-height: 1.5;
   border-radius: .25rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+input[type=checkbox],
+input[type=radio] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+  padding: 10px;
+  margin: 10px;
 }
 
 /* Footer */

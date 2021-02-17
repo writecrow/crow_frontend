@@ -55,6 +55,7 @@ export class CorpusSearchComponent {
   public keywordMode = 'or';
   public validKeywordModes: any[] = ['and', 'or'];
   public method = 'word';
+  public resultDisplay = 'crowcordance';
   public validMethods: any[] = ['word', 'lemma'];
   public searchString = "";
   public exportUrl = "";
@@ -325,6 +326,9 @@ export class CorpusSearchComponent {
   setMethod(i) {
     this.method = i;
   }
+  setOption(key, value) {
+    this[key] = value;
+  }
   nextPage(current) {
     this.offset = parseInt(current, 10) + 20;
     this.router.navigate(['/corpus'], { queryParams: { offset : this.offset }, queryParamsHandling: 'merge' });
@@ -338,6 +342,16 @@ export class CorpusSearchComponent {
       this[i] = false;
     }
   }
+  copyToClipboard(str) {
+    function listener(e) {
+      e.clipboardData.setData("text/html", str.outerHTML);
+      e.clipboardData.setData("text/plain", str.outerHTML);
+      e.preventDefault();
+    }
+    document.addEventListener("copy", listener);
+    document.execCommand("copy");
+    document.removeEventListener("copy", listener);
+  };
   evaluateToggle(i) {
     return this[i];
   }
