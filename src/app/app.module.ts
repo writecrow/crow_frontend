@@ -85,6 +85,7 @@ import { BarComponent } from './bar/bar.component';
   providers: [
     APIService,
     authorizeService,
+    BarComponent,
     RepositoryHelper,
     Globals,
     HandleErrorService,

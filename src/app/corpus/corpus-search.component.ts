@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { authorizeService } from '../services/authorize.service';
 import { CorpusDetail } from '../corpus/corpus-detail';
+import { BarComponent } from '../bar/bar.component';
 import { Globals } from '../globals';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from '../../environments/environment';
@@ -75,6 +76,7 @@ export class CorpusSearchComponent {
     private sanitizer: DomSanitizer,
     public globals: Globals,
     public dialog: MatDialog,
+    private bar: BarComponent,
   ) {
   // First check whether there is an authorization token present.
   if (!this.authorizeService.isAuthenticated()) {
@@ -267,7 +269,13 @@ export class CorpusSearchComponent {
           'texts': tokenValues[key]["texts"],
         });
       }
+      let wrapper = document.getElementById('bar');
+      if (wrapper !== null) {
+        wrapper.innerHTML = "";
+      }
       if (typeof response.frequency.totals !== "undefined") {
+        this.bar.createSvg();
+        this.bar.drawBars(this.frequencyData, Math.round(response.frequency.totals.normed));
         this.frequencyTotals = response.frequency.totals;
       }
     }
@@ -350,7 +358,7 @@ export class CorpusSearchComponent {
     document.addEventListener("copy", listener);
     document.execCommand("copy");
     document.removeEventListener("copy", listener);
-  };
+  }
   evaluateToggle(i) {
     return this[i];
   }
