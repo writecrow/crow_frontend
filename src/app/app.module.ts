@@ -42,6 +42,7 @@ import { Globals } from './globals';
 // Pipes : Helper methods to alter behavior.
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BarComponent } from './bar/bar.component';
 
 // Declarations are to make directives (including components and pipes)
 // from the current module available to other directives in the current module.
@@ -63,6 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RepositorySearchComponent,
     RepositoryDetailComponent,
     NotFoundComponent,
+    BarComponent,
   ],
   entryComponents: [
     CorpusSearchComponent,
