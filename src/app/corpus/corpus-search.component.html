@@ -36,10 +36,10 @@
           <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
         </label>
 
-        <ng-container *ngIf="exportUrl && globals.inProgress == false">
+        <ng-container *ngIf="exportUrl">
           <button (click)="exportResults(exportUrl)" class="btn btn-dark">Export</button><div class="tooltip-toggle" aria-label="Export search results to comma-separated value (CSV) format">&nbsp;&#9432;</div>
         </ng-container>
-        <ng-container *ngIf="!exportUrl && globals.inProgress == false">
+        <ng-container *ngIf="!exportUrl">
           <button class="btn btn-disabled" disabled>Export</button><div class="tooltip-toggle" aria-label="To inquire about access to data exports, contact us at collaborate@writecrow.org">&nbsp;&#9432;</div>
         </ng-container>
       </form>
@@ -70,7 +70,7 @@
       </div>
     </div>
     <div class="row search-results">
-      <form *ngIf="searchInProgress != true" class="search-results-top">
+      <form *ngIf="globals.inProgress != true" class="search-results-top">
         <h3>Matching texts: {{ resultCount | number }}</h3>
         <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
         <button (click)="openDialog()">Embed &lt;/&gt;</button>
