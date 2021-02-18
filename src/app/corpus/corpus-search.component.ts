@@ -78,7 +78,7 @@ export class CorpusSearchComponent {
   // First check whether there is an authorization token present.
   if (!this.authorizeService.isAuthenticated()) {
     // If not, redirect to the login page.
-    this.router.navigate(['/authorize']);
+    this.router.navigate(['/authorize'], { queryParams: {'destination': 'corpus'}});
   } else {
     // Additional filters.
     this.filters = <any>[];
@@ -226,12 +226,11 @@ export class CorpusSearchComponent {
       if (typeof routeParams.toefl_total_max !== 'undefined' && routeParams.toefl_total_max !== "") {
         this.filters['toeflTotalMax'].value = routeParams.toefl_total_max;
       }
-      let searchUrl = this.API.getCorpusSearchApiQuery(routeParams);
-      if (searchUrl == '' || searchUrl == 'op=or&method=word&offset=0') {
+      const searchUrl = this.API.getCorpusSearchApiQuery(routeParams);
+      if (searchUrl === '' || searchUrl === 'op=or&method=word&offset=0') {
         // Handle 'base' data by bypassing the backend API.
         this.prepareResults(this.corpusBase, searchUrl);
-      }
-      else {
+      } else {
         this.API.searchCorpus(searchUrl).subscribe(response => {
           this.prepareResults(response, searchUrl);
         },
