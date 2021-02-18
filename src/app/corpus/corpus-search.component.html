@@ -104,7 +104,7 @@
             </tr>
         </ng-container>
         </tbody>
-        <tfoot>
+        <tfoot *ngIf="frequencyData.length > 0">
           <tr>
             <td colspan="4">
             1: The total number of instances within texts that match all search criteria<br />
@@ -114,7 +114,6 @@
           </tr>
         </tfoot>
       </table>
-      
       <form class="search-display-options">
         <div class="result-format">
           <strong>Search result format: </strong>
