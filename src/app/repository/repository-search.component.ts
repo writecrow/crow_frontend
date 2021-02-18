@@ -31,7 +31,7 @@ export class RepositorySearchComponent {
     // First check whether there is an authorization token present.
     if (!this.authorizeService.isAuthenticated()) {
       // If not, redirect to the login page.
-      this.router.navigate(['/authorize']);
+    this.router.navigate(['/authorize'], { queryParams: {'destination': 'repository'}});
     } else {
     // The order in which these are pushed into the "Facets" object determine their order in the sidebar.
     this.Facets = <any>[];

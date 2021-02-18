@@ -41,10 +41,6 @@ export class APIService {
     return this.getResponseFromPath('corpus/metadata?' + query);
   }
 
-  getDefaultCorpusSearchResults() {
-    return this.getResponseFromPath('corpus?', 'json');
-  }
-
   getFrequencyData(attributes) {
     const queryElements = [];
     for (const key of Object.keys(attributes)) {
