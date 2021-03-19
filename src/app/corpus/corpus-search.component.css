@@ -23,7 +23,8 @@
 .search-metadata {
   font-size: 0.9rem;
 }
-.result-wrapper-top {
+.result-wrapper-top,
+form {
   width:100%;
 }
 .result-wrapper-top h3 {
@@ -69,8 +70,12 @@ table.frequency td {
 :host ::ng-deep .result strong {
   background-color:yellow;
 }
-
+button.embed {
+  float: right;
+}
 table.frequency {
   text-align: right;
   margin-top: 1rem;
+  background: #f6f6f6;
+  margin-bottom: 1rem;
 }

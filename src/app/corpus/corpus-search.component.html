@@ -121,6 +121,17 @@
           </tr>
         </tfoot>
       </table>
+      <form class="search-display-options">
+        <button class="primary embed" (click)="openDialog()">Embed search results &lt;/&gt;</button>
+        <div>
+          <label for="metadata">
+            <input name="metadata" type="checkbox" (click)="toggle('showMetadata')"
+              aria-label="Display excerpt metadata" [checked]="showMetadata" />
+            Display
+            metadata
+          </label>
+        </div>
+      </form>
       <div class="search-result" *ngFor="let result of searchResults">
         <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
