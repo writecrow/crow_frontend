@@ -70,45 +70,57 @@
       </div>
     </div>
     <div class="row search-results">
-      <form *ngIf="globals.inProgress != true" class="search-results-top">
-        <h3>Matching texts: {{ resultCount | number }}</h3>
-        <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
-        <button (click)="openDialog()">Embed &lt;/&gt;</button>
-        <label>
-          <input type="checkbox" (click)="toggle('showMetadata')" aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
-        </label>
+      <form *ngIf="globals.inProgress != true" class="result-wrapper-top">
+        <div>
+          <h3>Matching texts: {{ resultCount | number }}</h3>
+          <h3 *ngIf="subcorpusWordcount != 0">Word count in search range:
+            {{ subcorpusWordcount | number }}</h3>
+        </div>
+        <span *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing matching
+          texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of
+          {{ resultCount | number }}</span>
+        <span *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing matching
+          texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</span>
       </form>
-      <table class="frequency" *ngIf="frequencyData.length > 0">
-        <thead>
+      <table #frequency class="frequency">
+        <thead *ngIf="frequencyData.length > 0">
           <tr>
             <th>Search query</th>
-            <th>Instances in matching texts<div class="tooltip-toggle" aria-label="The total number of instances within texts that match all search criteria">&nbsp;&#9432;</div></th>
-            <th>Normed (per 1 million)<div class="tooltip-toggle" aria-label="The number of instances per 1 million words in the corpus">&nbsp;&#9432;</div></th>
+            <th>Instances in matching texts <sup>1</sup></th>
+            <th>Normed (per 1 million) <sup>2</sup></th>
             <th>Texts containing term</th>
           </tr>
         </thead>
         <tbody>
-        <ng-container *ngFor="let i of frequencyData">
+          <ng-container *ngFor="let i of frequencyData">
             <tr>
               <th>{{ i.token }}</th>
               <td>{{ i.raw | number}}</td>
               <td>{{ i.normed | number:'1.2-2' }}</td>
               <td>{{ i.texts | number }}</td>
             </tr>
-        </ng-container>
-        <ng-container *ngIf="frequencyTotals.raw > 0">
+          </ng-container>
+          <ng-container *ngIf="frequencyTotals.raw > 0">
             <tr class="border-top">
               <th class="no-bold">(combined)</th>
               <td>{{ frequencyTotals.raw | number}}</td>
               <td>{{ frequencyTotals.normed | number:'1.2-2' }}</td>
-              <td>{{ frequencyTotals.texts | number }}</td>
+              <td>{{ frequencyTotals.texts | number }} (<sup>3</sup>)</td>
             </tr>
-        </ng-container>
-      </tbody>
+          </ng-container>
+        </tbody>
+        <tfoot *ngIf="frequencyData.length > 0">
+          <tr>
+            <td colspan="4">
+              1: The total number of instances within texts that match all search
+              criteria<br />
+              2: The number of instances per 1 million words in the corpus<br />
+              <span *ngIf="frequencyTotals.raw > 0">3: Texts that share multiple terms
+                are counted once in this total</span>
+            </td>
+          </tr>
+        </tfoot>
       </table>
-      
-      <p *ngIf="excerptCount > 0 && excerptCount < resultCount"><br />Showing matching texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</p>
-      <p *ngIf="excerptCount > 0 && excerptCount >= resultCount"><br />Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</p>
       <div class="search-result" *ngFor="let result of searchResults">
         <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
           <div class="row">
