@@ -6,11 +6,23 @@ This front-end is designed for a specific dataset, the Corpus and Repository of 
 For the live version of the site, visit https://crow.corporaproject.org.
 
 # Table of contents
+* [Quickstart](#quickstart)
 * [The architecture of this web-based corpus](#architecture)
 * [Building your own corpus](#building-your-own-corpus)
 * [How to make changes to the code](#usage)
 * [How to construct requests via the API](#the-api)
 * [Test coverage: our commitment to awesomeness](#tests)
+
+# Quickstart
+(This assumes [NodeJS](https://nodejs.org/en/) is installed.)
+1. Adjust the backend host as needed in `src/environments/environment.ts`
+2. Get a local host running:
+```
+git@github.com:writecrow/crow_frontend.git
+npm install
+npm install -g @angular/cli
+ng serve
+```
 
 # Architecture
 Corpora are big-data applications. They must be able to perform complex searches on large datasets. Thanks to the precedents of Google and Amazon, people expect web-based search portals to be fast. Very fast. In order to meet this expectation, a number of contemporary web design patterns must be followed:
