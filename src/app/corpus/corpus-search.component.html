@@ -5,7 +5,7 @@
         <ul class="facet-items" [hidden]="!globals.corpusFacets[key]">
           <li *ngFor="let item of facets[key].values">
             <label>
-              <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }} 
+              <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }}
               <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>
               <ng-container *ngIf="item.count == 1">({{item.count }} text)</ng-container>
               <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
@@ -32,10 +32,9 @@
         <label for="searchSubmit">
           <button name="searchSubmit" class="primary" (click)="textSearch(searchBox.value)">Search</button>
         </label>
-        <label for="resetSubmit">        
+        <label for="resetSubmit">
           <button name="resetSubmit" class="secondary" (click)="reset()">Reset</button>
         </label>
-
         <ng-container *ngIf="exportUrl">
           <button (click)="exportResults(exportUrl)" class="btn btn-dark">Export</button><div class="tooltip-toggle" aria-label="Export search results to comma-separated value (CSV) format">&nbsp;&#9432;</div>
         </ng-container>
@@ -54,7 +53,7 @@
             <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           <label>
-            <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms"> Word family (a search for 'eat' returns results for 'eat/eats/eating/eaten/ate/eaten')<br />
+            <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms (e.g., begin, began, begun, beginning"> Word family (e.g., leave/leaves/leaving/left)<br />
           </label>
           <br />
           <strong>Multiple word handling: </strong>
@@ -69,18 +68,14 @@
         </div>
       </div>
     </div>
-    <div class="row search-results">
+    <div class="row result-wrapper">
       <form *ngIf="globals.inProgress != true" class="result-wrapper-top">
-        <div>
-          <h3>Matching texts: {{ resultCount | number }}</h3>
-          <h3 *ngIf="subcorpusWordcount != 0">Word count in search range:
-            {{ subcorpusWordcount | number }}</h3>
+        <div><h3>Matching texts: {{ resultCount | number }}</h3>
+          <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
         </div>
-        <span *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing matching
-          texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of
-          {{ resultCount | number }}</span>
-        <span *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing matching
-          texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</span>
+        <span *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</span>
+        <span *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</span>
+        <!-- <button *ngIf="frequencyData.length > 0" (click)="copyToClipboard(frequency)" class="copy-table">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
       </form>
       <table #frequency class="frequency">
         <thead *ngIf="frequencyData.length > 0">
@@ -92,66 +87,112 @@
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let i of frequencyData">
+        <ng-container *ngFor="let i of frequencyData">
             <tr>
               <th>{{ i.token }}</th>
               <td>{{ i.raw | number}}</td>
               <td>{{ i.normed | number:'1.2-2' }}</td>
               <td>{{ i.texts | number }}</td>
             </tr>
-          </ng-container>
-          <ng-container *ngIf="frequencyTotals.raw > 0">
+        </ng-container>
+        <ng-container *ngIf="frequencyTotals.raw > 0">
             <tr class="border-top">
               <th class="no-bold">(combined)</th>
               <td>{{ frequencyTotals.raw | number}}</td>
               <td>{{ frequencyTotals.normed | number:'1.2-2' }}</td>
               <td>{{ frequencyTotals.texts | number }} (<sup>3</sup>)</td>
             </tr>
-          </ng-container>
+        </ng-container>
         </tbody>
         <tfoot *ngIf="frequencyData.length > 0">
           <tr>
             <td colspan="4">
-              1: The total number of instances within texts that match all search
-              criteria<br />
-              2: The number of instances per 1 million words in the corpus<br />
-              <span *ngIf="frequencyTotals.raw > 0">3: Texts that share multiple terms
-                are counted once in this total</span>
+            1: The total number of instances within texts that match all search criteria<br />
+            2: The number of instances per 1 million words in the corpus<br />
+            <span *ngIf="frequencyTotals.raw > 0">3: Texts that share multiple terms are counted once in this total</span>
             </td>
           </tr>
         </tfoot>
       </table>
+      <figure id="bar"></figure>
       <form class="search-display-options">
-        <button class="primary embed" (click)="openDialog()">Embed search results &lt;/&gt;</button>
+        <!-- <div class="result-format">
+          <strong>Search result format: </strong>
+          <label for="crowcordance">
+            <input type="radio" name="crowcordance"
+              (click)="setOption('resultDisplay','crowcordance')"
+              [checked]="resultDisplay == 'crowcordance'"
+              aria-label="Contextualized excerpts">Contextualized ('Crowcordance') lines
+          </label>
+          <label for="kwic">
+            <input type="radio" name="kwic" (click)="setOption('resultDisplay', 'kwic')"
+              [checked]="resultDisplay == 'kwic'" aria-label="Concordance lines">Concordance lines (KWIC)
+          </label>
+        </div> -->
         <div>
           <label for="metadata">
             <input name="metadata" type="checkbox" (click)="toggle('showMetadata')"
-              aria-label="Display excerpt metadata" [checked]="showMetadata" />
-            Display
+              aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display
             metadata
           </label>
         </div>
+        <div>
+        <label for="numbering">
+          <input name="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
+            [checked]="numbering == 1" />Number results
+        </label>
+        </div>
+        <!-- <div>
+          <label for="specific">
+            <input name="specific" type="checkbox" (click)="toggle('selectResults')"
+              aria-label="Select specific results"
+              [checked]="selectResults" />Select specific results for embedding
+          </label>
+        </div> -->
+        <div>
+          <button class="primary" (click)="openDialog()">Embed search results &lt;/&gt;</button>
+          <!-- <button class="copy-table" (click)="copyToClipboard(resulttable)">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
+        </div>
       </form>
-      <div class="search-result" *ngFor="let result of searchResults">
-        <a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchString, method: method }" routerLinkActive="active">
-          <div class="row">
-            <div class="col result" [innerHTML]="result.text"></div>
-          </div>
-          <div *ngIf="showMetadata" class="row">
-            <div class="col search-metadata">
-              <hr />
-              <strong>Term:</strong> {{result.semester}} {{result.year}}&nbsp;&nbsp; 
-              <strong>Course:</strong> {{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;
-              <strong>Assignment:</strong> {{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div>&nbsp;&nbsp;
-              <strong>Draft:</strong> {{result.draft }}&nbsp;&nbsp;
-              <strong>Gender:</strong> {{ result.gender }}&nbsp;&nbsp;
-              <strong>TOEFL:</strong>
+      <table #resulttable>
+          <thead class="sr-only">
+            <tr>
+              <th *ngIf="numbering == 1">Number</th>
+              <th>Excerpt</th>
+              <th *ngIf="showMetadata">Term</th>
+              <th *ngIf="showMetadata">Course</th>
+              <th *ngIf="showMetadata">Assignment</th>
+              <th *ngIf="showMetadata">Course</th>
+              <th *ngIf="showMetadata">Gender</th>
+              <th *ngIf="showMetadata">TOEFL</th>
+              <th>Link to text</th>
+          </thead>
+          <tbody>
+          <tr class="search-result" *ngFor="let result of searchResults">
+            <td class="table-cell" *ngIf="selectResults">
+              <label>
+                <input type="checkbox" (click)="toggle(result.filename)"
+                  aria-label="Select specific results" [checked]="result.filename" />
+              </label>
+            </td>
+            <td class="table-cell" *ngIf="numbering == 1">{{ result.number }}</td>
+            <td [innerHTML]="result.text"></td>
+            <td class="semester-prefix" *ngIf="showMetadata">{{result.semester}} {{result.year}}</td>
+            <td class="course-prefix" *ngIf="showMetadata">{{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}"></div></td>
+            <td class="assignment-prefix" *ngIf="showMetadata">{{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div></td>
+            <td class="draft-prefix" *ngIf="showMetadata">{{result.draft }}</td>
+            <td class="gender-prefix" *ngIf="showMetadata">{{ result.gender }}</td>
+            <td class="toefl-prefix" *ngIf="showMetadata">
                 <span *ngIf="result.toefl_total != 0 && result.toefl_total"> {{ result.toefl_total }}</span>
                 <span *ngIf="result.toefl_total == 0 || !result.toefl_total">&nbsp;N/A</span>
-            </div>
-          </div>
-        </a>
-      </div>
+            </td>
+            <td class="link-to-text"><a routerLink="/corpus/{{ result.filename }}"
+                [queryParams]="{ search: searchString, method: method }"
+                routerLinkActive="active">View text &#8594;</a>
+            </td>
+          </tr>
+          </tbody>
+      </table>
       <p class="centered" *ngIf="resultCount > 20 && (offset * 1 + 1) < resultCount"><button (click)="nextPage(offset)" class="btn primary">Next Page &#x2192;</button></p>
     </div>
   </div>

@@ -1,8 +1,7 @@
 .search-result {
   background: #fff;
-  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   border-radius: 5px;
   border: 1px solid #a9a9a9;
   padding: 0.5rem;
@@ -23,18 +22,57 @@
 .search-metadata {
   font-size: 0.9rem;
 }
-.result-wrapper-top,
-form {
+.result-wrapper-top {
   width:100%;
 }
 .result-wrapper-top h3 {
   display: inline-block;
   margin-right: 2rem;
 }
-tfoot tr td {
-  font-weight: normal;
-  text-align: left;
-  font-size: 0.9rem;
+.search-display-options label {
+  margin-right: 1.5rem;
+}
+.search-display-options {
+  width: -webkit-fill-available;
+}
+.search-result td {
+  display: inline-block;
+}
+.search-result td.table-cell {
+  display: table-cell;
+}
+.search-result .semester-prefix::before {
+  content: "Semester: ";
+  font-weight: bold;
+}
+.search-result .course-prefix::before {
+  content: "Course: ";
+  font-weight: bold;
+}
+.search-result .assignment-prefix::before {
+  content: "Assignment: ";
+  font-weight: bold;
+}
+.search-result .gender-prefix::before {
+  content: "Gender: ";
+  font-weight: bold;
+}
+.search-result .toefl-prefix::before {
+  content: "TOEFL: ";
+  font-weight: bold;
+}
+.search-result .draft-prefix::before {
+  content: "Draft: ";
+  font-weight: bold;
+}
+.result-format {
+  padding-top: 10px;
+}
+.copy-table {
+  float: right;
+}
+.search-display-options label input {
+  margin-right: 10px;
 }
 .border-top {
   border-top: 2px solid rgb(114, 114, 114);
@@ -52,30 +90,26 @@ table.frequency td {
   font-weight: normal;
 }
 
-.search-result a {
-  text-decoration:none;
-  color:#303030;
-  font-weight:normal;
-  font-size:1rem;
-}
-.search-result:hover, .search-result:focus {
+tr.search-result:hover,
+tr.search-result:focus {
   background-color: rgb(240, 235, 235);
 }
-
-/* Wrap long filenames. */
-.search-result div div {
-	overflow-wrap:break-word;
+tfoot, tr, td {
+  font-weight: normal;
+  text-align: left;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
 }
-
+.link-to-text {
+  float: right;
+}
+.link-to-text a {
+  font-weight: bold;
+}
 :host ::ng-deep .result strong {
   background-color:yellow;
 }
-button.embed {
-  float: right;
-}
-table.frequency {
-  text-align: right;
+
+table {
   margin-top: 1rem;
-  background: #f6f6f6;
-  margin-bottom: 1rem;
 }

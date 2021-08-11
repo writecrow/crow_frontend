@@ -4,8 +4,8 @@
       <h2>Sign In</h2>
       <p>The Crow corpus & repository components require additional permission to view. If you have been given credentials by Crow maintainers, enter them below.</p>
       <form id="authorize" method="post" class="form-inline">
-        <input #userBox id="user" name="user" class="form-control" placeholder="Username" aria-label="Username" autofocus />
-        <input #passBox type="password" id="pass" name="pass" class="form-control" placeholder="Password" aria-label="Password" />
+        <input #userBox id="user" name="user" class="form-control" placeholder="Username" aria-label="Username" autocomplete="username" autofocus />
+        <input #passBox type="password" id="pass" name="pass" class="form-control" placeholder="Password" aria-label="Password" autocomplete="current-password" />
         <input #additional type="text" id="additional" name="additional_information" tabindex="-1" autocomplete="off">
         <label for="authSubmit">
           <button name="authSubmit" class="secondary" (click)="authorize(userBox.value, passBox.value, additional.value)">Authorize</button>

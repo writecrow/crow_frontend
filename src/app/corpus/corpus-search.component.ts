@@ -47,6 +47,7 @@ export class CorpusSearchComponent {
   resultCount: number;
   excerptCount: number;
   offset = 0;
+  numbering = 0;
   subcorpusWordcount: number;
   filters: any[] = [];
   corpusBase = (baseData as any).default;
@@ -220,6 +221,9 @@ export class CorpusSearchComponent {
       if (typeof routeParams.offset !== 'undefined' && routeParams.offset !== "") {
         this.offset = routeParams.offset;
       }
+      if (typeof routeParams.numbering !== 'undefined' && routeParams.numbering !== "") {
+        this.numbering = routeParams.numbering;
+      }
       if (typeof routeParams.toefl_total_min !== 'undefined' && routeParams.toefl_total_min !== "") {
         this.filters['toeflTotalMin'].value = routeParams.toefl_total_min;
       }
@@ -294,6 +298,7 @@ export class CorpusSearchComponent {
       if (results[r].gender == null) {
         results[r].gender = "N/A";
       }
+      results[r].number = parseInt(r) + 1;
     }
     return results;
   }
@@ -335,6 +340,17 @@ export class CorpusSearchComponent {
     } else {
       this[i] = false;
     }
+  }
+  toggleNumbering() {
+    // Used to show/hide visualizations in an Angular way.
+    // See https://stackoverflow.com/a/35163037
+    if (this.numbering == 1) {
+      this.numbering = 0;
+    }
+    else {
+      this.numbering = 1;
+    }
+    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { numbering: this.numbering }, queryParamsHandling: 'merge' });
   }
   evaluateToggle(i) {
     return this[i];
