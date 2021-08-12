@@ -298,7 +298,7 @@ export class CorpusSearchComponent {
       if (results[r].gender == null) {
         results[r].gender = "N/A";
       }
-      results[r].number = parseInt(r) + 1;
+      results[r].number = parseInt(r) + 1 + Number(this.offset);
     }
     return results;
   }
