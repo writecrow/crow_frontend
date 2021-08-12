@@ -35,6 +35,9 @@
 .search-display-options {
   width: -webkit-fill-available;
 }
+.search-option {
+  display: inline-block;
+}
 .search-result td {
   display: inline-block;
 }

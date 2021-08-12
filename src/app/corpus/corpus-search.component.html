@@ -129,14 +129,14 @@
               [checked]="resultDisplay == 'kwic'" aria-label="Concordance lines">Concordance lines (KWIC)
           </label>
         </div> -->
-        <div>
+        <div class="search-option">
           <label for="metadata">
             <input name="metadata" type="checkbox" (click)="toggle('showMetadata')"
               aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display
             metadata
           </label>
         </div>
-        <div>
+        <div class="search-option">
         <label for="numbering">
           <input name="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
             [checked]="numbering == 1" />Number results
@@ -149,7 +149,7 @@
               [checked]="selectResults" />Select specific results for embedding
           </label>
         </div> -->
-        <div>
+        <div class="search-option">
           <button class="primary" (click)="openDialog()">Embed search results &lt;/&gt;</button>
           <!-- <button class="copy-table" (click)="copyToClipboard(resulttable)">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
         </div>
