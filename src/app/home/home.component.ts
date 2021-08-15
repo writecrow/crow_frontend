@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { APIService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorizeComponent } from '../authorize/authorize.component';
+import * as baseData from '../corpus/corpus-base.json';
 
 @Component({
   templateUrl: '../home/home.component.html',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   homeFirstBody: string;
   homeSecondTitle: string;
   homeSecondBody: string;
+  corpusBase = (baseData as any).default;
 
   constructor(
     private API: APIService,
@@ -26,8 +28,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.total_words = 7283469;
-    this.total_texts = 8254;
+    this.total_words = this.corpusBase.pager.subcorpus_wordcount.toLocaleString();
+    this.total_texts = this.corpusBase.pager.total_items.toLocaleString();
     this.route.params.subscribe(() => {
       this.API.getWriteCrowNews().subscribe(response => {
         if (response && response[0]) {
