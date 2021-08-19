@@ -53,7 +53,7 @@
             <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           <label>
-            <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Results matching all word forms (e.g., begin, began, begun, beginning"> Word family (e.g., leave/leaves/leaving/left)<br />
+            <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Word family (a search for 'eat' returns results for 'eat/eats/eating/eaten/ate/eaten')"> Word family (a search for 'eat' returns results for 'eat/eats/eating/eaten/ate/eaten')<br />
           </label>
           <br />
           <strong>Multiple word handling: </strong>
@@ -131,14 +131,14 @@
         </div> -->
         <div class="search-option">
           <label for="metadata">
-            <input name="metadata" type="checkbox" (click)="toggle('showMetadata')"
+            <input name="metadata" id="metadata" type="checkbox" (click)="toggle('showMetadata')"
               aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display
             metadata
           </label>
         </div>
         <div class="search-option">
         <label for="numbering">
-          <input name="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
+          <input name="numbering" id="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
             [checked]="numbering == 1" />Number results
         </label>
         </div>
