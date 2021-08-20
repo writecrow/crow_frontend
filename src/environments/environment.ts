@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend: 'http://crow-backend.docksal/',
+  backend: 'https://api.lndo.site/',
   alt_text: 'e791d06b-20a8-41cb-801a-023893c71563',
   alt_uuid: 'test',
 };
