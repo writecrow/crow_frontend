@@ -38,6 +38,12 @@
 .search-option {
   display: inline-block;
 }
+.toggle-option label {
+  margin-left: 1rem;
+}
+.toggle-option label input {
+  margin-right: 0.25rem;
+}
 .search-result td {
   display: inline-block;
 }
@@ -116,3 +122,22 @@ tfoot, tr, td {
 table {
   margin-top: 1rem;
 }
+.visualization,
+.visualizations {
+  width: 100%;
+}
+.visualization td {
+  font-weight: bold;
+}
+.visualization td span {
+  background: #3d3d3d;
+  display:inline-block;
+  color: #fff;
+  text-shadow: 1px 1px black;
+  padding: 0.15rem 0.25rem 0.15rem 0.25rem;
+}
+.visualization td:last-child {
+  width: 100%;
+}
+.percentage-0{width:0}
+.percentage-1{width:1%}.percentage-2{width:2%}.percentage-3{width:3%}.percentage-4{width:4%}.percentage-5{width:5%}.percentage-6{width:6%}.percentage-7{width:7%}.percentage-8{width:8%}.percentage-9{width:9%}.percentage-10{width:10%}.percentage-11{width:11%}.percentage-12{width:12%}.percentage-13{width:13%}.percentage-14{width:14%}.percentage-15{width:15%}.percentage-16{width:16%}.percentage-17{width:17%}.percentage-18{width:18%}.percentage-19{width:19%}.percentage-20{width:20%}.percentage-21{width:21%}.percentage-22{width:22%}.percentage-23{width:23%}.percentage-24{width:24%}.percentage-25{width:25%}.percentage-26{width:26%}.percentage-27{width:27%}.percentage-28{width:28%}.percentage-29{width:29%}.percentage-30{width:30%}.percentage-31{width:31%}.percentage-32{width:32%}.percentage-33{width:33%}.percentage-34{width:34%}.percentage-35{width:35%}.percentage-36{width:36%}.percentage-37{width:37%}.percentage-38{width:38%}.percentage-39{width:39%}.percentage-40{width:40%}.percentage-41{width:41%}.percentage-42{width:42%}.percentage-43{width:43%}.percentage-44{width:44%}.percentage-45{width:45%}.percentage-46{width:46%}.percentage-47{width:47%}.percentage-48{width:48%}.percentage-49{width:49%}.percentage-50{width:50%}.percentage-51{width:51%}.percentage-52{width:52%}.percentage-53{width:53%}.percentage-54{width:54%}.percentage-55{width:55%}.percentage-56{width:56%}.percentage-57{width:57%}.percentage-58{width:58%}.percentage-59{width:59%}.percentage-60{width:60%}.percentage-61{width:61%}.percentage-62{width:62%}.percentage-63{width:63%}.percentage-64{width:64%}.percentage-65{width:65%}.percentage-66{width:66%}.percentage-67{width:67%}.percentage-68{width:68%}.percentage-69{width:69%}.percentage-70{width:70%}.percentage-71{width:71%}.percentage-72{width:72%}.percentage-73{width:73%}.percentage-74{width:74%}.percentage-75{width:75%}.percentage-76{width:76%}.percentage-77{width:77%}.percentage-78{width:78%}.percentage-79{width:79%}.percentage-80{width:80%}.percentage-81{width:81%}.percentage-82{width:82%}.percentage-83{width:83%}.percentage-84{width:84%}.percentage-85{width:85%}.percentage-86{width:86%}.percentage-87{width:87%}.percentage-88{width:88%}.percentage-89{width:89%}.percentage-90{width:90%}.percentage-91{width:91%}.percentage-92{width:92%}.percentage-93{width:93%}.percentage-94{width:94%}.percentage-95{width:95%}.percentage-96{width:96%}.percentage-97{width:97%}.percentage-98{width:98%}.percentage-99{width:99%}.percentage-100{width:100%}

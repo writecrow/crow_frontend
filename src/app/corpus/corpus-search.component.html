@@ -68,53 +68,104 @@
         </div>
       </div>
     </div>
+
+    <div class="row" *ngIf="frequencyData.length > 0">
+      <div class="details-wrapper">
+        <div class="details-header" [ngClass]="(visualizations)?'open':'closed'" (click)="toggle('visualizations')">Totals</div>
+          <div class="details-body" [hidden]="!visualizations">
+            <ng-container *ngIf="frequencyData.length > 1">
+            <div class="toggle-option">
+              <strong>Sort order: </strong>
+              <label for="descending">
+                <input type="radio" name="descending"
+                  (click)="setVisualizationSort('descending')"
+                  [checked]="visualizationSort == 'descending'"
+                  aria-label="Sort results in descending frequency">Descending
+              </label>
+              <label for="ascending">
+                <input type="radio" name="ascending"
+                  (click)="setVisualizationSort('ascending')"
+                  [checked]="visualizationSort == 'ascending'"
+                  aria-label="Sort results in ascending frequency">Ascending
+              </label>
+            </div>
+            <div class="toggle-option">
+              <strong>Comparison: </strong>
+              <label for="visualization_raw">
+                <input type="radio" name="visualization_raw"
+                  (click)="setOption('visualizationType', 'raw')"
+                  [checked]="visualizationType == 'raw'"
+                  aria-label="Display raw counts">Raw counts
+              </label>
+              <label for="visualization_normed">
+                <input type="radio" name="visualization_normed"
+                  (click)="setOption('visualizationType', 'normed')"
+                  [checked]="visualizationType == 'normed'"
+                  aria-label="Display normed values">Normed values
+              </label>
+            </div>
+            <table class="visualization">
+              <ng-container *ngFor="let i of frequencyData">
+                <tr>
+                  <td class="label">{{ i.token }}</td>
+                  <td *ngIf="visualizationType == 'normed'"><span class="percentage-{{ i.normed / frequencyTotals.normed *100 | number: '1.0-0' }}">{{ i.normed | number}}</span></td>
+                  <td *ngIf="visualizationType == 'raw'"><span class="percentage-{{ i.raw / frequencyTotals.raw *100 | number: '1.0-0' }}">{{ i.raw | number}}</span></td>
+                </tr>
+              </ng-container>
+            </table>
+            </ng-container>
+
+            <table #frequency class="frequency">
+              <thead>
+                <tr>
+                  <th>Search query</th>
+                  <th>Instances in matching texts <sup>1</sup></th>
+                  <th>Normed (per 1 million) <sup>2</sup></th>
+                  <th>Texts containing term</th>
+                </tr>
+              </thead>
+              <tbody>
+              <ng-container *ngFor="let i of frequencyData">
+                  <tr>
+                    <th>{{ i.token }}</th>
+                    <td>{{ i.raw | number}}</td>
+                    <td>{{ i.normed | number:'1.2-2' }}</td>
+                    <td>{{ i.texts | number }}</td>
+                  </tr>
+              </ng-container>
+              <ng-container *ngIf="frequencyTotals.raw > 0">
+                  <tr class="border-top">
+                    <th class="no-bold">(combined)</th>
+                    <td>{{ frequencyTotals.raw | number}}</td>
+                    <td>{{ frequencyTotals.normed | number:'1.2-2' }}</td>
+                    <td>{{ frequencyTotals.texts | number }} (<sup>3</sup>)</td>
+                  </tr>
+              </ng-container>
+              </tbody>
+              <tfoot *ngIf="frequencyData.length > 0">
+                <tr>
+                  <td colspan="4">
+                  1: The total number of instances within texts that match all search criteria<br />
+                  2: The number of instances per 1 million words in the corpus<br />
+                  <ng-container *ngIf="frequencyTotals.raw > 0">3: Total number of texts with at least one occurence of target term</ng-container>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+       </div>
+    </div>
+
     <div class="row result-wrapper">
       <form *ngIf="globals.inProgress != true" class="result-wrapper-top">
         <div><h3>Matching texts: {{ resultCount | number }}</h3>
           <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
         </div>
-        <span *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</span>
-        <span *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</span>
         <!-- <button *ngIf="frequencyData.length > 0" (click)="copyToClipboard(frequency)" class="copy-table">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
       </form>
-      <table #frequency class="frequency">
-        <thead *ngIf="frequencyData.length > 0">
-          <tr>
-            <th>Search query</th>
-            <th>Instances in matching texts <sup>1</sup></th>
-            <th>Normed (per 1 million) <sup>2</sup></th>
-            <th>Texts containing term</th>
-          </tr>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let i of frequencyData">
-            <tr>
-              <th>{{ i.token }}</th>
-              <td>{{ i.raw | number}}</td>
-              <td>{{ i.normed | number:'1.2-2' }}</td>
-              <td>{{ i.texts | number }}</td>
-            </tr>
-        </ng-container>
-        <ng-container *ngIf="frequencyTotals.raw > 0">
-            <tr class="border-top">
-              <th class="no-bold">(combined)</th>
-              <td>{{ frequencyTotals.raw | number}}</td>
-              <td>{{ frequencyTotals.normed | number:'1.2-2' }}</td>
-              <td>{{ frequencyTotals.texts | number }} (<sup>3</sup>)</td>
-            </tr>
-        </ng-container>
-        </tbody>
-        <tfoot *ngIf="frequencyData.length > 0">
-          <tr>
-            <td colspan="4">
-            1: The total number of instances within texts that match all search criteria<br />
-            2: The number of instances per 1 million words in the corpus<br />
-            <span *ngIf="frequencyTotals.raw > 0">3: Texts that share multiple terms are counted once in this total</span>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-      <figure id="bar"></figure>
+
+      <div *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</div>
+      <div *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</div>
       <form class="search-display-options">
         <!-- <div class="result-format">
           <strong>Search result format: </strong>

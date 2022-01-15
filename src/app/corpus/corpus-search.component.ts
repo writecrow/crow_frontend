@@ -62,10 +62,13 @@ export class CorpusSearchComponent {
 
   // Display toggles.
   advancedSearch = false;
+  visualizations = true;
   isLoaded = false;
   toeflShow = false;
   showMetadata = true;
   dialogToggle = false;
+  visualizationSort = "descending";
+  visualizationType = "raw";
 
   constructor(
     private route: ActivatedRoute,
@@ -258,8 +261,10 @@ export class CorpusSearchComponent {
       this.preparefacets(response.facets);
     }
     if (response && typeof response.frequency.tokens !== 'undefined') {
-      const tokenKeys = Object.keys(response.frequency.tokens);
-      const tokenValues = Object.values(response.frequency.tokens);
+
+      var tokenKeys = Object.keys(response.frequency.tokens);
+      var tokenValues = Object.values(response.frequency.tokens);
+
       // tslint:disable-next-line: forin
       for (const key in tokenKeys) {
         const id = tokenKeys[key];
@@ -270,6 +275,10 @@ export class CorpusSearchComponent {
           'texts': tokenValues[key]["texts"],
         });
       }
+      // Sort by ascending.
+      this.frequencyData = this.sortByKey(this.frequencyData, "raw");
+      this.frequencyData.reverse();
+
       if (typeof response.frequency.totals !== "undefined") {
         this.frequencyTotals = response.frequency.totals;
       }
@@ -289,6 +298,13 @@ export class CorpusSearchComponent {
           this.exportUrl = searchUrl;
         }
       }
+    });
+  }
+
+  sortByKey(array, key) {
+    return array.sort(function (a, b) {
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
 
@@ -324,6 +340,13 @@ export class CorpusSearchComponent {
   }
   setOperation(i) {
     this.keywordMode = i;
+  }
+  setVisualizationSort(value) {
+    this.visualizationSort = value;
+    this.frequencyData.reverse();
+  }
+  setOption(key, value) {
+    this[key] = value;
   }
   setMethod(i) {
     this.method = i;
