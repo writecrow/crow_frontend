@@ -62,6 +62,7 @@ export class CorpusSearchComponent {
 
   // Display toggles.
   advancedSearch = false;
+  selectResults = false;
   visualizations = true;
   isLoaded = false;
   toeflShow = false;
@@ -103,6 +104,7 @@ export class CorpusSearchComponent {
     this.facets['gender'] = { label: 'Gender', index: '5' };
     this.facets['program'] = { label: 'Program', index: '8' };
     this.facets['year_in_school'] = { label: 'Year in School', index: '11' };
+    this.globals.selectedTexts = [];
     this.querySearch();
   }
 }
@@ -336,6 +338,7 @@ export class CorpusSearchComponent {
     this.offset = 0;
     this.filters['toeflTotalMin'].value = "";
     this.filters['toeflTotalMax'].value = "";
+    this.globals.selectedTexts = [];
     this.router.navigate(['/corpus']);
   }
   setOperation(i) {
@@ -351,8 +354,13 @@ export class CorpusSearchComponent {
   setMethod(i) {
     this.method = i;
   }
-  nextPage(current) {
-    this.offset = parseInt(current, 10) + 20;
+  pager(direction, current) {
+    if (direction === 'next') {
+      this.offset = parseInt(current, 10) + 20;
+    }
+    else {
+      this.offset = parseInt(current, 10) - 20;
+    }
     this.router.navigate(['/corpus'], { queryParams: { offset : this.offset }, queryParamsHandling: 'merge' });
   }
   toggle(i) {
@@ -362,6 +370,19 @@ export class CorpusSearchComponent {
       this[i] = true;
     } else {
       this[i] = false;
+    }
+  }
+  textIsSelected(id) {
+    return this.globals.selectedTexts.includes(id);
+  }
+  toggleSelected(id) {
+    if (this.globals.selectedTexts.includes(id)) {
+      this.globals.selectedTexts = this.globals.selectedTexts.filter(function (item) {
+        return item !== id;
+      });
+    }
+    else {
+      this.globals.selectedTexts.push(id);
     }
   }
   toggleNumbering() {
@@ -412,7 +433,7 @@ export class CorpusSearchComponent {
     this.dialogToggle = true;
     this.route.queryParams.subscribe((routeParams) => {
       if (this.dialogToggle) {
-        const uri = this.API.getCorpusSearchApiQuery(routeParams, true);
+        const uri = this.API.getCorpusSearchApiQuery(routeParams, this.globals.selectedTexts, true);
         const dialogRef = this.dialog.open(DialogEmbed, {
           width: 'fit-content',
           data: { url: environment.backend + 'corpus/excerpts?' + uri }

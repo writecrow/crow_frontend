@@ -164,8 +164,8 @@
         <!-- <button *ngIf="frequencyData.length > 0" (click)="copyToClipboard(frequency)" class="copy-table">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
       </form>
 
-      <div *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</div>
-      <div *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing matching texts {{ (offset * 1) + 1 }}-{{ resultCount | number }}</div>
+      <div *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</div>
+      <div *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing {{ (offset * 1) + 1 }}-{{ resultCount | number }}</div>
       <form class="search-display-options">
         <!-- <div class="result-format">
           <strong>Search result format: </strong>
@@ -193,13 +193,13 @@
             [checked]="numbering == 1" />Number results
         </label>
         </div>
-        <!-- <div>
+        <div>
           <label for="specific">
             <input name="specific" type="checkbox" (click)="toggle('selectResults')"
               aria-label="Select specific results"
-              [checked]="selectResults" />Select specific results for embedding
+              [checked]="selectResults" />Select specific results
           </label>
-        </div> -->
+        </div>
         <div class="search-option">
           <button class="primary" (click)="openDialog()">Embed search results &lt;/&gt;</button>
           <!-- <button class="copy-table" (click)="copyToClipboard(resulttable)">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
@@ -222,8 +222,8 @@
           <tr class="search-result" *ngFor="let result of searchResults">
             <td class="table-cell" *ngIf="selectResults">
               <label>
-                <input type="checkbox" (click)="toggle(result.filename)"
-                  aria-label="Select specific results" [checked]="result.filename" />
+                <input type="checkbox" (click)="toggleSelected(result.filename)"
+                  aria-label="Select specific results" [checked]="textIsSelected(result.filename)" />
               </label>
             </td>
             <td class="table-cell" *ngIf="numbering == 1">{{ result.number }}</td>
@@ -244,7 +244,14 @@
           </tr>
           </tbody>
       </table>
-      <p class="centered" *ngIf="resultCount > 20 && (offset * 1 + 1) < resultCount"><button (click)="nextPage(offset)" class="btn primary">Next Page &#x2192;</button></p>
+      <div *ngIf="isLoaded" class="centered">
+        <span *ngIf="offset > 0">
+          <button (click)="pager('previous', offset)" class="btn primary">&#x2190; Previous</button>
+        </span>&nbsp;&nbsp;&nbsp;
+        <span *ngIf="resultCount > 20 && (offset * 1 + 1) < resultCount">
+          <button (click)="pager('next', offset)" class="btn primary">Next &#x2192;</button>
+        </span>
+      </div>
     </div>
   </div>
 </div>

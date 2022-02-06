@@ -8,8 +8,8 @@ export class Globals {
   authenticating = false;
   username = '';
   corpusFacets: any[] = [];
+  selectedTexts: any[] = [];
   currentUrl = '';
   previousUrl = '';
-  threeUrl = '';
   repositoryFacets: any[] = [];
 }
