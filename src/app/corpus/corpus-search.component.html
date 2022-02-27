@@ -114,7 +114,6 @@
               </ng-container>
             </table>
             </ng-container>
-
             <table #frequency class="frequency">
               <thead>
                 <tr>
@@ -152,6 +151,7 @@
                 </tr>
               </tfoot>
             </table>
+            <button class="secondary copy-clipboard" (click)="copyToClipboard(frequency)">Copy to clipboard</button>
           </div>
        </div>
     </div>
@@ -161,7 +161,6 @@
         <div><h3>Matching texts: {{ resultCount | number }}</h3>
           <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
         </div>
-        <!-- <button *ngIf="frequencyData.length > 0" (click)="copyToClipboard(frequency)" class="copy-table">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
       </form>
 
       <div *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</div>
@@ -182,8 +181,7 @@
         </div> -->
         <div class="search-option">
           <label for="metadata">
-            <input name="metadata" id="metadata" type="checkbox" (click)="toggle('showMetadata')"
-              aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display
+            <input name="metadata" id="metadata" type="checkbox" (click)="toggle('showMetadata')"aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display
             metadata
           </label>
         </div>
@@ -202,10 +200,12 @@
         </div>
         <div class="search-option">
           <button class="primary" (click)="openDialog()">Embed search results &lt;/&gt;</button>
-          <!-- <button class="copy-table" (click)="copyToClipboard(resulttable)">Copy table to clipboard <img class="avatar" src="/assets/copy-to-clipboard.svg" alt="" /></button> -->
+        </div>
+        <div class="search-option">
+          <button class="secondary copy-clipboard" (click)="copyToClipboard(resulttable)">Copy to clipboard</button>
         </div>
       </form>
-      <table #resulttable>
+      <table #resulttable class="resulttable">
           <thead class="sr-only">
             <tr>
               <th *ngIf="numbering == 1">Number</th>

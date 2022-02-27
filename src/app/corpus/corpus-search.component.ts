@@ -303,6 +303,17 @@ export class CorpusSearchComponent {
     });
   }
 
+  copyToClipboard(str) {
+    function listener(e) {
+      e.clipboardData.setData("text/html", str.outerHTML);
+      e.clipboardData.setData("text/plain", str.outerHTML);
+      e.preventDefault();
+    }
+    document.addEventListener("copy", listener);
+    document.execCommand("copy");
+    document.removeEventListener("copy", listener);
+  };
+
   sortByKey(array, key) {
     return array.sort(function (a, b) {
       var x = a[key]; var y = b[key];

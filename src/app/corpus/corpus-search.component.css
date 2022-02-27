@@ -38,6 +38,7 @@
 }
 .search-option {
   display: inline-block;
+  margin-right: 0.25rem;
 }
 .toggle-option label {
   margin-left: 1rem;
@@ -93,11 +94,22 @@ hr {
 table thead {
   border-bottom: 2px solid rgb(114, 114, 114);
 }
+table.frequency {
+  margin-bottom: 0.25rem;
+}
 table.frequency td {
   font-weight: bold;
 }
 .no-bold {
   font-weight: normal;
+}
+
+.copy-clipboard:after {
+  padding-left: 0.25rem;
+  content: url('/assets/copy.svg');
+}
+.copy-clipboard:focus:after {
+  content: url('/assets/checkmark.svg');
 }
 
 tr.search-result:hover,
