@@ -104,11 +104,22 @@ table.frequency td {
   font-weight: normal;
 }
 
+.emboss-right {
+  float:right;
+  margin-top:-50px;
+  margin-right: 10px
+}
+.copy-clipboard:before {
+  content: "Copy";
+}
+.copy-clipboard.copied:before {
+  content: "Copied";
+}
 .copy-clipboard:after {
   padding-left: 0.25rem;
   content: url('/assets/copy.svg');
 }
-.copy-clipboard:focus:after {
+.copy-clipboard.copied:after {
   content: url('/assets/checkmark.svg');
 }
 

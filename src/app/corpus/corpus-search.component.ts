@@ -68,6 +68,7 @@ export class CorpusSearchComponent {
   toeflShow = false;
   showMetadata = true;
   dialogToggle = false;
+  activeCopy = "";
   visualizationSort = "descending";
   visualizationType = "raw";
 
@@ -303,7 +304,8 @@ export class CorpusSearchComponent {
     });
   }
 
-  copyToClipboard(str) {
+  copyToClipboard(str, id) {
+    this.activeCopy = id;
     function listener(e) {
       e.clipboardData.setData("text/html", str.outerHTML);
       e.clipboardData.setData("text/plain", str.outerHTML);
@@ -328,9 +330,14 @@ export class CorpusSearchComponent {
         results[r].gender = "N/A";
       }
       results[r].number = parseInt(r) + 1 + Number(this.offset);
+      results[r].url = environment.baseUrl + 'corpus/' + results[r].filename + '?method=' + this.method;
+      if (this.searchString.length != 0) {
+        results[r].url = results[r].url + '&search=' + encodeURIComponent(this.searchString);
+      }
     }
     return results;
   }
+
   toggleFacet(i) {
     // Used to show/hide elements in an Angular way.
     // See https://stackoverflow.com/a/35163037

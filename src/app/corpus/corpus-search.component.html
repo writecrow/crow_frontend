@@ -151,8 +151,8 @@
                 </tr>
               </tfoot>
             </table>
-            <button class="secondary copy-clipboard" (click)="copyToClipboard(frequency)">Copy to clipboard</button>
-          </div>
+            <div class="tooltip-toggle emboss-right" aria-label="Copy the HTML of this frequency data to your clipboard"><button [className]="activeCopy == 'frequency' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(frequency, 'frequency')"></button>
+          </div></div>
        </div>
     </div>
 
@@ -202,7 +202,7 @@
           <button class="primary" (click)="openDialog()">Embed search results &lt;/&gt;</button>
         </div>
         <div class="search-option">
-          <button class="secondary copy-clipboard" (click)="copyToClipboard(resulttable)">Copy to clipboard</button>
+          <div class="tooltip-toggle" tabindex="0" aria-label="Copy the HTML of the search results to your clipboard"><button [className]="activeCopy == 'resulttable' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(resulttable, 'resulttable')"></button></div>
         </div>
       </form>
       <table #resulttable class="resulttable">
@@ -237,9 +237,7 @@
                 <span *ngIf="result.toefl_total != 0 && result.toefl_total"> {{ result.toefl_total }}</span>
                 <span *ngIf="result.toefl_total == 0 || !result.toefl_total">&nbsp;N/A</span>
             </td>
-            <td class="link-to-text"><a routerLink="/corpus/{{ result.filename }}"
-                [queryParams]="{ search: searchString, method: method }"
-                routerLinkActive="active">View text &#8594;</a>
+            <td class="link-to-text"><a href="{{ result.url }}">View text &#8594;</a>
             </td>
           </tr>
           </tbody>
