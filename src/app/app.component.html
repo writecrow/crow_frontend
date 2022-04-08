@@ -28,7 +28,8 @@
             alt="Loading icon" height="50px" />
         </div>
         <div class="col text-right">
-          <a *ngIf="globals.isAuthenticated" routerLink="problems">&#9993; Report a problem on this page</a>
+          <a *ngIf="globals.isAuthenticated" routerLink="problems">&#9993; Report a problem on this page</a>&nbsp;&nbsp;
+          <a *ngIf="downloadUrl" class="button secondary" routerLink="download">Download corpus &#8659;</a>
         </div>
       </div>
     </div>

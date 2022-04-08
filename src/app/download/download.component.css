@@ -1,0 +1,13 @@
+/* Provide a styled display to page content */
+div.col-lg-8 {
+  border: 1px solid #e5e5e5;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+}
+p {
+  font-size: 1.3rem;
+}
+img {
+  float:right;
+}

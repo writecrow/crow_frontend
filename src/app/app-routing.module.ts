@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Components.
 import { AuthorizeComponent } from './authorize/authorize.component';
+import { DownloadComponent } from './download/download.component';
 import { NotFoundComponent } from './404/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'corpus', component: CorpusSearchComponent },
   { path: 'corpus/:id', component: CorpusDetailComponent },
   { path: 'problems', component: ReportBugComponent },
+  { path: 'download', component: DownloadComponent },
   { path: 'repository/:id', component: RepositoryDetailComponent },
   { path: 'repository', component: RepositorySearchComponent },
   { path: '', component: HomeComponent },

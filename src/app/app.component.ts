@@ -1,3 +1,4 @@
+import { APIService } from './services/api.service';
 import { authorizeService } from './services/authorize.service';
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,8 +17,11 @@ declare const ga: any;
 })
 export class AppComponent implements AfterViewInit, OnInit {
 
+  downloadUrl = false;
+  
   constructor(
     private router: Router,
+    private API: APIService,
     public authorizeService: authorizeService,
     public LoginService: LoginService,
     public globals: Globals,
@@ -41,9 +45,17 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.globals.statusMessage = "";
     if (this.authorizeService.isAuthenticated()) {
       this.globals.isAuthenticated = true;
-    } else {
+    }
+    else {
       this.globals.isAuthenticated = false;
     }
+    this.API.getRoles().subscribe(response => {
+      if (response) {
+        if (response.includes('offline_access')) {
+          this.downloadUrl = true;
+        }
+      }
+    });
   }
   signIn(): void {
     this.router.navigate(['/authorize']);
