@@ -84,7 +84,7 @@ export class CorpusSearchComponent {
   // First check whether there is an authorization token present.
   if (!this.authorizeService.isAuthenticated()) {
     // If not, redirect to the login page.
-    this.router.navigate(['/authorize'], { queryParams: {'destination': 'corpus'}});
+    this.router.navigate(['/authorize'], { queryParams: { 'destination': 'corpus' } });
   } else {
     // Additional filters.
     this.filters = <any>[];

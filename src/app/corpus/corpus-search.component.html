@@ -104,17 +104,18 @@
                   aria-label="Display normed values">Normed values
               </label>
             </div>
-            <table class="visualization">
+            </ng-container>
+            <table #visualization class="visualization" border="1">
               <ng-container *ngFor="let i of frequencyData">
                 <tr>
                   <td class="label">{{ i.token }}</td>
-                  <td *ngIf="visualizationType == 'normed'"><span class="percentage-{{ i.normed / frequencyTotals.normed *100 | number: '1.0-0' }}">{{ i.normed | number}}</span></td>
-                  <td *ngIf="visualizationType == 'raw'"><span class="percentage-{{ i.raw / frequencyTotals.raw *100 | number: '1.0-0' }}">{{ i.raw | number}}</span></td>
+                  <td *ngIf="visualizationType == 'normed'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.normed / frequencyTotals.normed *100 | number: '1.0-0' }}%">{{ i.normed | number}}</span></td>
+                  <td *ngIf="visualizationType == 'raw'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.raw / frequencyTotals.raw *100 | number: '1.0-0' }}%">{{ i.raw | number}}</span></td>
                 </tr>
               </ng-container>
             </table>
-            </ng-container>
-            <table #frequency class="frequency">
+            <div class="tooltip-toggle emboss-right" aria-label="Copy the HTML of this chart to your clipboard"><button [className]="activeCopy == 'visualization' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(visualization, 'visualization')"></button></div>
+            <table #frequency class="frequency" border="1">
               <thead>
                 <tr>
                   <th>Search query</th>
@@ -205,7 +206,7 @@
           <div class="tooltip-toggle" tabindex="0" aria-label="Copy the HTML of the search results to your clipboard"><button [className]="activeCopy == 'resulttable' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(resulttable, 'resulttable')"></button></div>
         </div>
       </form>
-      <table #resulttable class="resulttable">
+      <table #resulttable class="resulttable no-border" border="1">
           <thead class="sr-only">
             <tr>
               <th *ngIf="numbering == 1">Number</th>
