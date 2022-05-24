@@ -3,10 +3,8 @@
     <h1>Download Crow corpus for offline use</h1>
     <div *ngIf="downloadUrl">
     (Language about usage and link to terms & conditions goes here...)
-    <br />
-    (Language about usage and link to terms & conditions goes here...)
       <div style="text-align:center;">
-        <button class="primary">Download corpus &#8659;</button>
+        <button (click)="offlineDownload()" class="btn btn-dark">Download corpus &#8659;</button>
       </div>
     </div>
     <div *ngIf="!downloadUrl">

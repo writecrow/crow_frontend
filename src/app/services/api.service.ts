@@ -85,6 +85,20 @@ export class APIService {
     return this.getResponseFromPath('corpus/export?' + path, 'csv');
   }
 
+  offlineCorpus() {
+      this.observable = this.http.get(environment.backend + 'corpus/offline', {
+        observe: 'response', responseType: 'blob'
+      })
+        .pipe(map(response => {
+          this.observable = null;
+          if (response.status === 200) {
+            return response.body;
+          }
+        })
+        ).pipe(share());
+      return this.observable;
+  }
+
   getCorpusSearchApiQuery(params, filenames = [], all = false) {
     const queryParameters = [];
     const nonFacets = ["method", "search", "id", "op", "toefl_total_min", "toefl_total_max"];
@@ -175,7 +189,8 @@ export class APIService {
         })
         ).pipe(share());
       return this.observable;
-    } else {
+    }
+    else {
       this.observable = this.http.get(environment.backend + path + '&_format=' + format, {
         observe: 'response'
       })
