@@ -2,6 +2,7 @@ import { authorizeService } from '../services/authorize.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from '../services/api.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   templateUrl: '../download/download.component.html',
@@ -12,6 +13,7 @@ export class DownloadComponent implements OnInit {
 
   public href = "";
   public downloadUrl = false;
+  public registration_url = environment.backend + 'user/register';
 
   constructor(
     private route: ActivatedRoute,
