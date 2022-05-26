@@ -113,6 +113,14 @@ table, tr {
   border:1px solid #A9A9A9;
   width:100%
 }
+table.no-border,
+table.no-border tr,
+table.no-border td {
+  border: 0px;
+}
+td {
+  border:1px solid #A9A9A9;
+}
 th, td {
   padding:0.5rem;
 }

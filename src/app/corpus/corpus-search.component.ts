@@ -11,6 +11,7 @@ import * as baseData from './corpus-base.json';
 
 export interface DialogData {
   url: string;
+  preview: string;
 }
 @Component({
   // tslint:disable-next-line: component-selector
@@ -21,14 +22,19 @@ export interface DialogData {
 // tslint:disable-next-line: component-class-suffix
 export class DialogEmbed {
 
+  activeCopy = "";
+
   constructor(
     public dialogRef: MatDialogRef<DialogEmbed>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
   copyEmbedCode(inputElement) {
+    this.activeCopy = 'embed';
     inputElement.select();
     document.execCommand('copy');
     inputElement.setSelectionRange(0, 0);
-    this.dialogRef.close();
+    setTimeout(() => {
+      this.dialogRef.close();
+    }, 1000)
   }
 }
 
@@ -454,7 +460,10 @@ export class CorpusSearchComponent {
         const uri = this.API.getCorpusSearchApiQuery(routeParams, this.globals.selectedTexts, true);
         const dialogRef = this.dialog.open(DialogEmbed, {
           width: 'fit-content',
-          data: { url: environment.backend + 'corpus/excerpts?' + uri }
+          data: {
+            url: environment.backend + 'corpus/excerpts?' + uri,
+            preview: this.sanitizer.bypassSecurityTrustResourceUrl(environment.backend + 'corpus/excerpts?' + uri)
+          }
         });
         dialogRef.afterClosed().subscribe(result => {
         });

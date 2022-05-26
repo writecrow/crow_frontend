@@ -4,7 +4,10 @@
   <textarea #embedcode readonly><iframe src="{{ data.url }}" title="Crow Search Excerpts" style="width:100%;height: -webkit-fill-available;"></iframe></textarea>
 </div>
 <div mat-dialog-actions>
-  <button cdkFocusInitial (click)="copyEmbedCode(embedcode)" value="Share excerpt" >Copy to clipboard</button>
+  <button cdkFocusInitial (click)="copyEmbedCode(embedcode)" value="Share excerpt" [className]="activeCopy == 'embed' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'"></button>
 </div>
-<h3>Sample output (representative content)</h3>
-<img src="/assets/iddl-example.png" alt="Demonstration of table of concordance lines with highlighted words" />
+<h3>Preview</h3>
+<div class="iddl-preview-wrapper">
+  <iframe class="iddl-preview" [src]="data.preview" title="Crow Search Excerpts"></iframe>
+</div>
+
