@@ -19,6 +19,9 @@
   border-radius: 5px;
   padding: 1rem;
 }
+.result-count {
+  text-align: center;
+}
 .search-metadata {
   font-size: 0.9rem;
 }
@@ -38,7 +41,10 @@
 }
 .search-option {
   display: inline-block;
-  margin-right: 0.25rem;
+  margin-right: 2rem;
+}
+label:hover {
+  cursor: pointer;
 }
 .toggle-option label {
   margin-left: 1rem;

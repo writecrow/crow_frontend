@@ -160,12 +160,17 @@
       <form *ngIf="globals.inProgress != true" class="result-wrapper-top">
         <div><h3>Matching texts: {{ resultCount | number }}</h3>
           <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
+        <div class="search-option">
+          <button class="primary" (click)="openDialog()">Embed search results
+            &lt;/&gt;</button>
         </div>
-      </form>
-
-      <div *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</div>
-      <div *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing {{ (offset * 1) + 1 }}-{{ resultCount | number }}</div>
-      <form class="search-display-options">
+        <div class="search-option">
+          <div class="tooltip-toggle" tabindex="0"
+            aria-label="Copy the HTML of the search results to your clipboard"><button
+              [className]="activeCopy == 'resulttable' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'"
+              (click)="copyToClipboard(resulttable, 'resulttable')"></button></div>
+        </div>
+        </div>
         <!-- <div class="result-format">
           <strong>Search result format: </strong>
           <label for="crowcordance">
@@ -186,24 +191,20 @@
           </label>
         </div>
         <div class="search-option">
-        <label for="numbering">
-          <input name="numbering" id="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
-            [checked]="numbering == 1" />Number results
-        </label>
+          <label for="numbering">
+            <input name="numbering" id="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
+              [checked]="numbering == 1" />Display numbering
+          </label>
         </div>
-        <div>
+        <div class="search-option">
           <label for="specific">
-            <input name="specific" type="checkbox" (click)="toggle('selectResults')"
+            <input name="specific" id="specific" type="checkbox" (click)="toggle('selectResults')"
               aria-label="Select specific results"
               [checked]="selectResults" />Select specific results
           </label>
         </div>
-        <div class="search-option">
-          <button class="primary" (click)="openDialog()">Embed search results &lt;/&gt;</button>
-        </div>
-        <div class="search-option">
-          <div class="tooltip-toggle" tabindex="0" aria-label="Copy the HTML of the search results to your clipboard"><button [className]="activeCopy == 'resulttable' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(resulttable, 'resulttable')"></button></div>
-        </div>
+        <div class="result-count" *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</div>
+        <div class="result-count" *ngIf="excerptCount > 0 && excerptCount >= resultCount">Showing {{ (offset * 1) + 1 }}-{{ resultCount | number }}</div>
       </form>
       <table #resulttable class="resulttable no-border" border="1">
           <thead class="sr-only">
