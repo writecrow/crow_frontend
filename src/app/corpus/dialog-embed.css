@@ -1,3 +1,38 @@
 textarea {
   width: 100%;
 }
+.iddl-preview-wrapper {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.iddl-preview {
+  width: 125%;
+  -ms-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  -o-transform: scale(0.75);
+  -webkit-transform: scale(0.75);
+  transform: scale(0.75);
+  -ms-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+.copy-clipboard:before {
+  content: "Copy";
+}
+
+.copy-clipboard.copied:before {
+  content: "Copied";
+}
+
+.copy-clipboard:after {
+  padding-left: 0.25rem;
+  content: url('/assets/copy.svg');
+}
+
+.copy-clipboard.copied:after {
+  content: url('/assets/checkmark.svg');
+}
