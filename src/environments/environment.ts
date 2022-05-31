@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend: 'https://api.lndo.site:444/',
+  backend: 'https://api.lndo.site/',
   baseUrl: 'http://localhost:4200/',
   alt_text: 'e791d06b-20a8-41cb-801a-023893c71563',
   alt_uuid: 'test',

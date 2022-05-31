@@ -2,7 +2,13 @@
   <div class="col-lg-8 offset-lg-2">
     <h1>Download Crow corpus for offline use</h1>
     <div *ngIf="downloadUrl">
-    (Language about usage and link to terms & conditions goes here...)
+      <p>Please find the downloadable version of the Crow corpus below. As a reminder from the training:</p>
+      <ul>
+        <li>Do not share this with anyone, including other members of your research team. All team members should go through the training before using the corpus.</li>
+        <li>Do not store the corpus on a portable device (including laptop or flash drive). Make sure to use password protected cloud or institutional servers to store the data.</li>
+        <li>Please cite the corpus when using it in any presentations or publications <em>(Staples, S., & Dilger, B. (2018-). Corpus and repository of writing [Learner corpus articulated with repository]. Available at <a href="https://crow.corporaproject.org">https://crow.corporaproject.org</a>)</em></li>
+        <li>Please notify us of any issues you encounter with the offline corpus, particularly any identifiable information you might find: <a href="https://crow.corporaproject.org/problems">https://crow.corporaproject.org/problems</a></li>
+      </ul>
       <div style="text-align:center;">
         <button (click)="offlineDownload()" class="btn btn-dark">Download corpus &#8659;</button>
       </div>
