@@ -36,7 +36,9 @@ h2, h3, h4, h5, h6 {
 }
 
 /* Buttons */
-button, .btn {
+button,
+.btn, 
+a.button {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -52,20 +54,30 @@ button, .btn {
   cursor: pointer;
 }
 
-button.primary {
+button.primary, 
+a.button.primary {
   background-color: #5C5C80;
   color:#ffffff;
 }
-button.primary:hover, button.primary:focus {
+button.primary:hover,
+button.primary:focus,
+a.button.primary:hover,
+a.button.primary:focus {
   background-color:rgb(71, 71, 100);
 }
-button.secondary {
+button.secondary,
+a.button.secondary {
   border:1px solid #555;
   color:#555;
   background-color:#fff;
 }
-button.secondary:hover, button.secondary:focus {
+button.secondary:hover,
+button.secondary:focus,
+a.button.secondary:hover,
+a.button.secondary:focus {
   background-color:#D3D3D3;
+  text-decoration: none;
+  color: #000;
 }
 .btn-dark {
   color: #fff;

@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   homeSecondTitle: string;
   homeSecondBody: string;
   corpusBase = (baseData as any).default;
+  downloadUrl = false;
 
   constructor(
     private API: APIService,
@@ -50,14 +51,13 @@ export class HomeComponent implements OnInit {
         }
       });
     });
-    // this.route.params.subscribe(() => {
-    //   this.API.getPage('home-first').subscribe(response => {
-    //     if (response && response[0]) {
-    //       this.homeFirstTitle = response[0].title;
-    //       this.homeFirstBody = response[0].body;
-    //     }
-    //   });
-    // });
+    this.API.getRoles().subscribe(response => {
+      if (response) {
+        if (response.includes('offline_access')) {
+          this.downloadUrl = true;
+        }
+      }
+    });
     this.route.params.subscribe(() => {
       this.API.getPage('home-second').subscribe(response => {
         if (response && response[0]) {
