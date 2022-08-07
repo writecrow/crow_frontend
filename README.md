@@ -11,7 +11,6 @@ For the live version of the site, visit https://crow.corporaproject.org.
 * [Building your own corpus](#building-your-own-corpus)
 * [How to make changes to the code](#usage)
 * [How to construct requests via the API](#the-api)
-* [Test coverage: our commitment to awesomeness](#tests)
 
 # Quickstart
 (This assumes [NodeJS](https://nodejs.org/en/) is installed.)
@@ -104,10 +103,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Updating Angular
-Replace `@13` with the target version:
+Replace `@13` with the target version, along with the applicable typescript version specified by the command's output.
 
 ```
-ng update @angular/core@13 @angular/cli@13 @angular-eslint/builder@13 @angular-eslint/schematics@13 @angular/platform-browser-dynamic@13 @angular/router@13 @angular/platform-browser@13 @angular/material@13 @angular/forms@13 @angular/compiler@13 @angular/cdk@13 @angular/animations@13 @angular-devkit/build-angular@13 @angular/compiler-cli@13 @angular/language-service@13 typescript
+ng update @angular/core@13 @angular/cli@13 @angular-eslint/builder@13 @angular-eslint/schematics@13 @angular/platform-browser-dynamic@13 @angular/router@13 @angular/platform-browser@13 @angular/material@13 @angular/forms@13 @angular/compiler@13 @angular/cdk@13 @angular/animations@13 @angular-devkit/build-angular@13 @angular/compiler-cli@13 @angular/language-service@13 typescript@4.4
 ```
 
 ## Further help

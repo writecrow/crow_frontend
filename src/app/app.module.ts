@@ -51,49 +51,45 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // They are added to the root scope and they are injected to other
 // services or directives that have them as dependency.
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthorizeComponent,
-    DialogEmbed,
-    DownloadComponent,
-    EscapeHtmlPipe,
-    HomeComponent,
-    PageComponent,
-    CorpusSearchComponent,
-    CorpusDetailComponent,
-    ReportBugComponent,
-    RepositorySearchComponent,
-    RepositoryDetailComponent,
-    NotFoundComponent,
-  ],
-  entryComponents: [
-    CorpusSearchComponent,
-    DialogEmbed,
-  ],
-  exports: [
-    MatDialogModule,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    MatNativeDateModule,
-    MatTabsModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [
-    APIService,
-    authorizeService,
-    RepositoryHelper,
-    Globals,
-    HandleErrorService,
-    LoginService,
-    RefreshTokenService,
-    RequestCache,
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AuthorizeComponent,
+        DialogEmbed,
+        DownloadComponent,
+        EscapeHtmlPipe,
+        HomeComponent,
+        PageComponent,
+        CorpusSearchComponent,
+        CorpusDetailComponent,
+        ReportBugComponent,
+        RepositorySearchComponent,
+        RepositoryDetailComponent,
+        NotFoundComponent,
+    ],
+    exports: [
+        MatDialogModule,
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        MatNativeDateModule,
+        MatTabsModule,
+        BrowserAnimationsModule,
+    ],
+    providers: [
+        APIService,
+        authorizeService,
+        RepositoryHelper,
+        Globals,
+        HandleErrorService,
+        LoginService,
+        RefreshTokenService,
+        RequestCache,
+        { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
