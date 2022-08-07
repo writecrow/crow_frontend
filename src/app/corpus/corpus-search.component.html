@@ -74,83 +74,83 @@
         <div class="details-header" [ngClass]="(visualizations)?'open':'closed'" (click)="toggle('visualizations')">Totals</div>
           <div class="details-body" [hidden]="!visualizations">
             <ng-container *ngIf="frequencyData.length > 1">
-            <div class="toggle-option">
-              <strong>Sort order: </strong>
-              <label for="descending">
-                <input type="radio" name="descending"
-                  (click)="setVisualizationSort('descending')"
-                  [checked]="visualizationSort === 'descending'"
-                  aria-label="Sort results in descending frequency">Descending
-              </label>
-              <label for="ascending">
-                <input type="radio" name="ascending"
-                  (click)="setVisualizationSort('ascending')"
-                  [checked]="visualizationSort === 'ascending'"
-                  aria-label="Sort results in ascending frequency">Ascending
-              </label>
-            </div>
-            <div class="toggle-option">
-              <strong>Comparison: </strong>
-              <label for="visualization_raw">
-                <input type="radio" name="visualization_raw"
-                  (click)="setOption('visualizationType', 'raw')"
-                  [checked]="visualizationType === 'raw'"
-                  aria-label="Display raw counts">Raw counts
-              </label>
-              <label for="visualization_normed">
-                <input type="radio" name="visualization_normed"
-                  (click)="setOption('visualizationType', 'normed')"
-                  [checked]="visualizationType === 'normed'"
-                  aria-label="Display normed values">Normed values
-              </label>
-            </div>
-            </ng-container>
-            <table #visualization class="visualization" border="1">
-              <ng-container *ngFor="let i of frequencyData">
-                <tr>
-                  <td class="label">{{ i.token }}</td>
-                  <td *ngIf="visualizationType === 'normed'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.normed / frequencyTotals.normed *100 | number: '1.0-0' }}%">{{ i.normed | number}}</span></td>
-                  <td *ngIf="visualizationType === 'raw'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.raw / frequencyTotals.raw *100 | number: '1.0-0' }}%">{{ i.raw | number}}</span></td>
-                </tr>
-              </ng-container>
-            </table>
-            <table #frequency class="frequency" border="1">
-              <thead>
-                <tr>
-                  <th>Search query</th>
-                  <th>Instances in matching texts <sup>1</sup></th>
-                  <th>Normed (per 1 million) <sup>2</sup></th>
-                  <th>Texts containing term</th>
-                </tr>
-              </thead>
-              <tbody>
-              <ng-container *ngFor="let i of frequencyData">
+              <div class="toggle-option">
+                <strong>Sort order: </strong>
+                <label for="descending">
+                  <input type="radio" name="descending"
+                    (click)="setVisualizationSort('descending')"
+                    [checked]="visualizationSort === 'descending'"
+                    aria-label="Sort results in descending frequency">Descending
+                </label>
+                <label for="ascending">
+                  <input type="radio" name="ascending"
+                    (click)="setVisualizationSort('ascending')"
+                    [checked]="visualizationSort === 'ascending'"
+                    aria-label="Sort results in ascending frequency">Ascending
+                </label>
+              </div>
+              <div class="toggle-option">
+                <strong>Comparison: </strong>
+                <label for="visualization_raw">
+                  <input type="radio" name="visualization_raw"
+                    (click)="setOption('visualizationType', 'raw')"
+                    [checked]="visualizationType === 'raw'"
+                    aria-label="Display raw counts">Raw counts
+                </label>
+                <label for="visualization_normed">
+                  <input type="radio" name="visualization_normed"
+                    (click)="setOption('visualizationType', 'normed')"
+                    [checked]="visualizationType === 'normed'"
+                    aria-label="Display normed values">Normed values
+                </label>
+              </div>
+              <table #visualization class="visualization" border="1">
+                <ng-container *ngFor="let i of frequencyData">
                   <tr>
-                    <th>{{ i.token }}</th>
-                    <td>{{ i.raw | number}}</td>
-                    <td>{{ i.normed | number:'1.2-2' }}</td>
-                    <td>{{ i.texts | number }}</td>
+                    <td class="label">{{ i.token }}</td>
+                    <td *ngIf="visualizationType === 'normed'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.normed / frequencyTotals.normed *100 | number: '1.0-0' }}%">{{ i.normed | number}}</span></td>
+                    <td *ngIf="visualizationType === 'raw'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.raw / frequencyTotals.raw *100 | number: '1.0-0' }}%">{{ i.raw | number}}</span></td>
                   </tr>
-              </ng-container>
-              <ng-container *ngIf="frequencyTotals.raw > 0">
-                  <tr class="border-top">
-                    <th class="no-bold">(combined)</th>
-                    <td>{{ frequencyTotals.raw | number}}</td>
-                    <td>{{ frequencyTotals.normed | number:'1.2-2' }}</td>
-                    <td>{{ frequencyTotals.texts | number }} (<sup>3</sup>)</td>
+                </ng-container>
+              </table>
+            </ng-container>
+              <table #frequency class="frequency" border="1">
+                <thead>
+                  <tr>
+                    <th>Search query</th>
+                    <th>Instances in matching texts <sup>1</sup></th>
+                    <th>Normed (per 1 million) <sup>2</sup></th>
+                    <th>Texts containing term</th>
                   </tr>
-              </ng-container>
-              </tbody>
-              <tfoot *ngIf="frequencyData.length > 0">
-                <tr>
-                  <td colspan="4">
-                  1: The total number of instances within texts that match all search criteria<br />
-                  2: The number of instances per 1 million words in the corpus<br />
-                  <ng-container *ngIf="frequencyTotals.raw > 0">3: Total number of texts with at least one occurrence of target term</ng-container>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let i of frequencyData">
+                    <tr>
+                      <th>{{ i.token }}</th>
+                      <td>{{ i.raw | number}}</td>
+                      <td>{{ i.normed | number:'1.2-2' }}</td>
+                      <td>{{ i.texts | number }}</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="frequencyTotals.raw > 0">
+                    <tr class="border-top">
+                      <th class="no-bold">(combined)</th>
+                      <td>{{ frequencyTotals.raw | number}}</td>
+                      <td>{{ frequencyTotals.normed | number:'1.2-2' }}</td>
+                      <td>{{ frequencyTotals.texts | number }} (<sup>3</sup>)</td>
+                    </tr>
+                </ng-container>
+                </tbody>
+                <tfoot *ngIf="frequencyData.length > 0">
+                  <tr>
+                    <td colspan="4">
+                    1: The total number of instances within texts that match all search criteria<br />
+                    2: The number of instances per 1 million words in the corpus<br />
+                    <ng-container *ngIf="frequencyTotals.raw > 0">3: Total number of texts with at least one occurrence of target term</ng-container>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
             <div class="tooltip-toggle emboss-right" aria-label="Copy the HTML of this frequency data to your clipboard"><button [className]="activeCopy === 'frequency' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(frequency, 'frequency')"></button>
           </div></div>
        </div>

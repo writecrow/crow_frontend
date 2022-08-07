@@ -21,6 +21,13 @@ import { RepositoryHelper } from './repository/repository-helper';
 import { RepositorySearchComponent } from './repository/repository-search.component';
 import { RepositoryDetailComponent } from './repository/repository-detail.component';
 
+// See https://stackoverflow.com/a/70390035
+declare global {
+    interface Navigator {
+        msSaveBlob: (blob: Blob, fileName: string) => boolean
+    }
+}
+
 // Define what URL paths map to which components.
 import { AppRoutingModule } from './app-routing.module';
 

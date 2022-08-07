@@ -92,7 +92,9 @@ https://writecrow.corporaproject.org/texts/word?search=friend%20woman&op=and&_fo
 For a systematic explanation of requesting data from the back-end, see https://github.com/writecrow/corpus_backend#performing-search-requests-via-the-api
 
 ## Updating Angular
-Replace `@14` with the target version, along with the applicable typescript version specified by the command's output.
+See [https://update.angular.io/](https://update.angular.io/)
+
+Replace `@14` with the target version, along with the applicable typescript version specified by the command's output:
 
 ```
 ng update @angular/core@14 @angular/cli@14 @angular-eslint/builder@14 @angular-eslint/schematics@14 @angular/platform-browser-dynamic@14 @angular/router@14 @angular/platform-browser@14 @angular/material@14 @angular/forms@14 @angular/compiler@14 @angular/cdk@14 @angular/animations@14 @angular-devkit/build-angular@14 @angular/compiler-cli@14 @angular/language-service@14 typescript@4.6

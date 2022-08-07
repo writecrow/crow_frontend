@@ -8,7 +8,7 @@ import { LoginService } from './services/login.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 declare var require: any;
-declare const ga: any;
+declare const gtag: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -70,8 +70,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        ga('set', 'page', event.urlAfterRedirects);
-        ga('send', 'pageview');
+        gtag('set', 'page', event.urlAfterRedirects);
+        gtag('send', 'pageview');
       }
     });
   }
