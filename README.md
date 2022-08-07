@@ -55,7 +55,7 @@ These instructions also assume a UNIX-like environment (e.g., Linux, Mac), so if
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 # Usage
-This application is built on the [AngularJS](https://angularjs.org/) framework, and follows the best practices of said framework. For those familiar with AngularJS, making modifications to the code should be self-obvious.
+This application is built on the [Angular](https://angularjs.org/) framework, and follows the best practices of said framework. For those familiar with AngularJS, making modifications to the code should be self-obvious.
 
 However, for complete beginners, here are a few orientation tips for making general changes, assuming you have successfully got the site running locally at `http://localhost:4200/`; see above):
 
@@ -89,8 +89,6 @@ https://writecrow.corporaproject.org/texts/word?search=friend%20woman&op=and&_fo
 
 For a systematic explanation of requesting data from the back-end, see https://github.com/writecrow/corpus_backend#performing-search-requests-via-the-api
 
-# Tests
-We proudly ship our code with a series of tests that ensure that functionality will not regress, and that maximum accessibility is maintained. These tests are run via CircleCI, and can be viewed at https://circleci.com/gh/writecrow/corpus_frontend.
 
 ## Development server
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
@@ -105,13 +103,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Updating Angular
+Replace `@13` with the target version:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+ng update @angular/core@13 @angular/cli@13 @angular-eslint/builder@13 @angular-eslint/schematics@13 @angular/platform-browser-dynamic@13 @angular/router@13 @angular/platform-browser@13 @angular/material@13 @angular/forms@13 @angular/compiler@13 @angular/cdk@13 @angular/animations@13 @angular-devkit/build-angular@13 @angular/compiler-cli@13 @angular/language-service@13 typescript
+```
 
 ## Further help
 
