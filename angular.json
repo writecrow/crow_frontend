@@ -162,9 +162,10 @@
       }
     }
   },
-  "defaultProject": "crow",
   "cli": {
     "analytics": "7fe122c0-873c-44e0-9d60-323ded60e483",
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

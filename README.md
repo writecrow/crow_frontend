@@ -11,6 +11,7 @@ For the live version of the site, visit https://crow.corporaproject.org.
 * [Building your own corpus](#building-your-own-corpus)
 * [How to make changes to the code](#usage)
 * [How to construct requests via the API](#the-api)
+* [Updating Angular](#updating-angular)
 
 # Quickstart
 (This assumes [NodeJS](https://nodejs.org/en/) is installed.)
@@ -22,6 +23,8 @@ npm install
 npm install -g @angular/cli
 ng serve
 ```
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 # Architecture
 Corpora are big-data applications. They must be able to perform complex searches on large datasets. Thanks to the precedents of Google and Amazon, people expect web-based search portals to be fast. Very fast. In order to meet this expectation, a number of contemporary web design patterns must be followed:
@@ -88,27 +91,9 @@ https://writecrow.corporaproject.org/texts/word?search=friend%20woman&op=and&_fo
 
 For a systematic explanation of requesting data from the back-end, see https://github.com/writecrow/corpus_backend#performing-search-requests-via-the-api
 
-
-## Development server
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
 ## Updating Angular
-Replace `@13` with the target version, along with the applicable typescript version specified by the command's output.
+Replace `@14` with the target version, along with the applicable typescript version specified by the command's output.
 
 ```
-ng update @angular/core@13 @angular/cli@13 @angular-eslint/builder@13 @angular-eslint/schematics@13 @angular/platform-browser-dynamic@13 @angular/router@13 @angular/platform-browser@13 @angular/material@13 @angular/forms@13 @angular/compiler@13 @angular/cdk@13 @angular/animations@13 @angular-devkit/build-angular@13 @angular/compiler-cli@13 @angular/language-service@13 typescript@4.4
+ng update @angular/core@14 @angular/cli@14 @angular-eslint/builder@14 @angular-eslint/schematics@14 @angular/platform-browser-dynamic@14 @angular/router@14 @angular/platform-browser@14 @angular/material@14 @angular/forms@14 @angular/compiler@14 @angular/cdk@14 @angular/animations@14 @angular-devkit/build-angular@14 @angular/compiler-cli@14 @angular/language-service@14 typescript@4.6
 ```
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
