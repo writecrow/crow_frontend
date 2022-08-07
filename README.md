@@ -54,7 +54,7 @@ These instructions also assume a UNIX-like environment (e.g., Linux, Mac), so if
 
 ## Compiling the code for production
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build --configuration=production` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 # Usage
 This application is built on the [Angular](https://angularjs.org/) framework, and follows the best practices of said framework. For those familiar with AngularJS, making modifications to the code should be self-obvious.
