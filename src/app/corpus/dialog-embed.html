@@ -4,7 +4,7 @@
   <textarea #embedcode readonly><iframe src="{{ data.url }}" title="Crow Search Excerpts" style="width:100%;height: -webkit-fill-available;"></iframe></textarea>
 </div>
 <div mat-dialog-actions>
-  <button cdkFocusInitial (click)="copyEmbedCode(embedcode)" value="Share excerpt" [className]="activeCopy == 'embed' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'"></button>
+  <button cdkFocusInitial (click)="copyEmbedCode(embedcode)" value="Share excerpt" [className]="activeCopy === 'embed' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'"></button>
 </div>
 <h3>Preview</h3>
 <div class="iddl-preview-wrapper">

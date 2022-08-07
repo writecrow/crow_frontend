@@ -50,18 +50,18 @@
           <p><strong>Tip:</strong> To search by phrase, place multiple words in quotation marks</p>
           <strong>Word form handling: </strong>
           <label>
-            <input type="radio" name="word" (click)="setMethod('word')" [checked]="method == 'word'" aria-label="word"> Exact word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="word" (click)="setMethod('word')" [checked]="method === 'word'" aria-label="word"> Exact word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           <label>
-            <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method == 'lemma'" aria-label="Word family (a search for 'eat' returns results for 'eat/eats/eating/eaten/ate/eaten')"> Word family (a search for 'eat' returns results for 'eat/eats/eating/eaten/ate/eaten')<br />
+            <input type="radio" name="lemma" (click)="setMethod('lemma')" [checked]="method === 'lemma'" aria-label="Word family (a search for 'eat' returns results for 'eat/eats/eating/eaten/ate/eaten')"> Word family (a search for 'eat' returns results for 'eat/eats/eating/eaten/ate/eaten')<br />
           </label>
           <br />
           <strong>Multiple word handling: </strong>
           <label>
-            <input type="radio" name="or" (click)="setOperation('or')" [checked]="keywordMode == 'or'"  aria-label="or"> Contains any word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="or" (click)="setOperation('or')" [checked]="keywordMode === 'or'"  aria-label="or"> Contains any word &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           <label>
-            <input type="radio" name="and" (click)="setOperation('and')" [checked]="keywordMode == 'and'"  aria-label="and"> Contains all words
+            <input type="radio" name="and" (click)="setOperation('and')" [checked]="keywordMode === 'and'"  aria-label="and"> Contains all words
           </label>
           <br />
           <input id="searchByID" name="searchByID" placeholder="Filter by ID..." [(ngModel)]="filters['searchByID'].value" aria-label="Search by ID" />
@@ -79,13 +79,13 @@
               <label for="descending">
                 <input type="radio" name="descending"
                   (click)="setVisualizationSort('descending')"
-                  [checked]="visualizationSort == 'descending'"
+                  [checked]="visualizationSort === 'descending'"
                   aria-label="Sort results in descending frequency">Descending
               </label>
               <label for="ascending">
                 <input type="radio" name="ascending"
                   (click)="setVisualizationSort('ascending')"
-                  [checked]="visualizationSort == 'ascending'"
+                  [checked]="visualizationSort === 'ascending'"
                   aria-label="Sort results in ascending frequency">Ascending
               </label>
             </div>
@@ -94,13 +94,13 @@
               <label for="visualization_raw">
                 <input type="radio" name="visualization_raw"
                   (click)="setOption('visualizationType', 'raw')"
-                  [checked]="visualizationType == 'raw'"
+                  [checked]="visualizationType === 'raw'"
                   aria-label="Display raw counts">Raw counts
               </label>
               <label for="visualization_normed">
                 <input type="radio" name="visualization_normed"
                   (click)="setOption('visualizationType', 'normed')"
-                  [checked]="visualizationType == 'normed'"
+                  [checked]="visualizationType === 'normed'"
                   aria-label="Display normed values">Normed values
               </label>
             </div>
@@ -109,8 +109,8 @@
               <ng-container *ngFor="let i of frequencyData">
                 <tr>
                   <td class="label">{{ i.token }}</td>
-                  <td *ngIf="visualizationType == 'normed'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.normed / frequencyTotals.normed *100 | number: '1.0-0' }}%">{{ i.normed | number}}</span></td>
-                  <td *ngIf="visualizationType == 'raw'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.raw / frequencyTotals.raw *100 | number: '1.0-0' }}%">{{ i.raw | number}}</span></td>
+                  <td *ngIf="visualizationType === 'normed'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.normed / frequencyTotals.normed *100 | number: '1.0-0' }}%">{{ i.normed | number}}</span></td>
+                  <td *ngIf="visualizationType === 'raw'" style="width:100%"><span style="display:inline-block;color:#fff;text-shadow: 1px 1px black;padding: 0.15rem 0.25rem 0.15rem 0.25rem;background:#3d3d3d;width:{{ i.raw / frequencyTotals.raw *100 | number: '1.0-0' }}%">{{ i.raw | number}}</span></td>
                 </tr>
               </ng-container>
             </table>
@@ -151,7 +151,7 @@
                 </tr>
               </tfoot>
             </table>
-            <div class="tooltip-toggle emboss-right" aria-label="Copy the HTML of this frequency data to your clipboard"><button [className]="activeCopy == 'frequency' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(frequency, 'frequency')"></button>
+            <div class="tooltip-toggle emboss-right" aria-label="Copy the HTML of this frequency data to your clipboard"><button [className]="activeCopy === 'frequency' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'" (click)="copyToClipboard(frequency, 'frequency')"></button>
           </div></div>
        </div>
     </div>
@@ -167,7 +167,7 @@
         <div class="search-option">
           <div class="tooltip-toggle" tabindex="0"
             aria-label="Copy the HTML of the search results to your clipboard"><button
-              [className]="activeCopy == 'resulttable' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'"
+              [className]="activeCopy === 'resulttable' ? 'copied secondary copy-clipboard' : 'secondary copy-clipboard'"
               (click)="copyToClipboard(resulttable, 'resulttable')"></button></div>
         </div>
         </div>

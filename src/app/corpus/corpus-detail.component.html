@@ -13,8 +13,8 @@
 			<h3>Drafts</h3>
 			<ul *ngFor="let result of drafts">
 				<li><a routerLink="/corpus/{{ result.data.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
-					<span *ngIf="result.draft == 'F'">Final Draft</span>
-					<span *ngIf="result.draft != 'F'">Draft {{result.draft}}</span>
+					<span *ngIf="result.draft === 'F'">Final Draft</span>
+					<span *ngIf="result.draft !== 'F'">Draft {{result.draft}}</span>
 				</a></li>
 			</ul>
 		</div>
