@@ -7,7 +7,7 @@
             <label>
               <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }}
               <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>
-              <ng-container *ngIf="item.count == 1">({{item.count }} text)</ng-container>
+              <ng-container *ngIf="item.count === 1">({{item.count }} text)</ng-container>
               <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
             </label>
           </li>
@@ -157,9 +157,9 @@
     </div>
 
     <div class="row result-wrapper">
-      <form *ngIf="globals.inProgress != true" class="result-wrapper-top">
+      <form *ngIf="globals.inProgress !== true" class="result-wrapper-top">
         <div><h3>Matching texts: {{ resultCount | number }}</h3>
-          <h3 *ngIf="subcorpusWordcount != 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
+          <h3 *ngIf="subcorpusWordcount !== 0">Word count in search range: {{ subcorpusWordcount | number }}</h3>
         <div class="search-option">
           <button class="primary" (click)="openDialog()">Embed search results
             &lt;/&gt;</button>
@@ -186,21 +186,20 @@
         </div> -->
         <div class="search-option">
           <label for="metadata">
-            <input name="metadata" id="metadata" type="checkbox" (click)="toggle('showMetadata')"aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display
-            metadata
+            <input name="metadata" id="metadata" type="checkbox" (click)="toggle('showMetadata')"aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
           </label>
         </div>
         <div class="search-option">
           <label for="numbering">
             <input name="numbering" id="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
-              [checked]="numbering == 1" />Display numbering
+              [checked]="numbering === 1" /> Display numbering
           </label>
         </div>
         <div class="search-option">
           <label for="specific">
             <input name="specific" id="specific" type="checkbox" (click)="toggle('selectResults')"
               aria-label="Select specific results"
-              [checked]="selectResults" />Select specific results
+              [checked]="selectResults" /> Select specific results
           </label>
         </div>
         <div class="result-count" *ngIf="excerptCount > 0 && excerptCount < resultCount">Showing {{ (offset * 1) + 1 }}-{{ excerptCount }} of {{ resultCount | number }}</div>
@@ -209,7 +208,7 @@
       <table #resulttable class="resulttable no-border" border="1">
           <thead class="sr-only">
             <tr>
-              <th *ngIf="numbering == 1">Number</th>
+              <th *ngIf="numbering === 1">Number</th>
               <th>Excerpt</th>
               <th *ngIf="showMetadata">Term</th>
               <th *ngIf="showMetadata">Course</th>
@@ -227,7 +226,7 @@
                   aria-label="Select specific results" [checked]="textIsSelected(result.filename)" />
               </label>
             </td>
-            <td class="table-cell" *ngIf="numbering == 1">{{ result.number }}</td>
+            <td class="table-cell" *ngIf="numbering === 1">{{ result.number }}</td>
             <td [innerHTML]="result.text"></td>
             <td class="semester-prefix" *ngIf="showMetadata">{{result.semester}} {{result.year}}</td>
             <td class="course-prefix" *ngIf="showMetadata">{{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}"></div></td>
@@ -235,8 +234,8 @@
             <td class="draft-prefix" *ngIf="showMetadata">{{result.draft }}</td>
             <td class="gender-prefix" *ngIf="showMetadata">{{ result.gender }}</td>
             <td class="toefl-prefix" *ngIf="showMetadata">
-                <span *ngIf="result.toefl_total != 0 && result.toefl_total"> {{ result.toefl_total }}</span>
-                <span *ngIf="result.toefl_total == 0 || !result.toefl_total">&nbsp;N/A</span>
+                <span *ngIf="result.toefl_total !== 0 && result.toefl_total"> {{ result.toefl_total }}</span>
+                <span *ngIf="result.toefl_total === 0 || !result.toefl_total">&nbsp;N/A</span>
             </td>
             <td class="link-to-text"><a href="{{ result.url }}">View text &#8594;</a>
             </td>

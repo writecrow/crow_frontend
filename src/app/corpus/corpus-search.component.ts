@@ -234,7 +234,7 @@ export class CorpusSearchComponent {
         this.offset = routeParams.offset;
       }
       if (typeof routeParams.numbering !== 'undefined' && routeParams.numbering !== "") {
-        this.numbering = routeParams.numbering;
+        this.numbering = parseInt(routeParams.numbering);
       }
       if (typeof routeParams.toefl_total_min !== 'undefined' && routeParams.toefl_total_min !== "") {
         this.filters['toeflTotalMin'].value = routeParams.toefl_total_min;
