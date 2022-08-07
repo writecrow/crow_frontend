@@ -54,9 +54,9 @@ export class DownloadComponent implements OnInit {
           return;
         }
 
-        // tslint:disable-next-line: prefer-const
+        // eslint-disable-next-line prefer-const
         let lnk = document.createElement('a'),
-          // tslint:disable-next-line: prefer-const
+          // eslint-disable-next-line prefer-const
           url = window.URL,
           objectURL;
         lnk.type = 'text/zip';

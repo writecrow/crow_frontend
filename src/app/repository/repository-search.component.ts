@@ -115,12 +115,12 @@ export class RepositorySearchComponent {
     this.facetKeys = Object.keys(this.Facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
-    // tslint:disable-next-line: forin
+    // eslint-disable-next-line guard-for-in
     for (const name in this.Facets) {
       const i = this.Facets[name].index;
       const facetOutput = [];
       if (typeof facets[i][0] !== 'undefined') {
-        // tslint:disable-next-line: forin
+        // eslint-disable-next-line guard-for-in
         for (const delta in facets[i][0][name]) {
           const values = facets[i][0][name][delta].values;
           const data = { 'name': values.value, 'count': values.count, 'active': values.active, 'description': values.description };
@@ -136,7 +136,7 @@ export class RepositorySearchComponent {
 
   adjustLabels(searchResults) {
     // Append additional information to title for clarity.
-    // tslint:disable-next-line: forin
+    // eslint-disable-next-line guard-for-in
     for (const i in searchResults) {
       searchResults[i].label = this.repositoryHelper.getLabel(
         searchResults[i].document_type,

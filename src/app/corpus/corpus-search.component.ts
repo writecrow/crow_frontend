@@ -14,12 +14,12 @@ export interface DialogData {
   preview: string;
 }
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'dialog-embed',
   templateUrl: 'dialog-embed.html',
   styleUrls: ['../corpus/dialog-embed.css'],
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class DialogEmbed {
 
   activeCopy = "";
@@ -121,7 +121,7 @@ export class CorpusSearchComponent {
     // Merge user-supplied search parameters into existing URL & call querySearch().
     const currentParams = <any>[];
     // Evaluate additional filters (search by ID, TOEFL scores).
-    // tslint:disable-next-line: forin
+    // eslint-disable-next-line guard-for-in
     for (const filter in this.filters) {
       const key = this.filters[filter].backend_key;
       if (this.filters[filter].value !== "") {
@@ -180,13 +180,13 @@ export class CorpusSearchComponent {
     this.facetKeys = Object.keys(this.facets);
     // Loop through each of the defined facets for this repository and assign
     // values returned from the API to their object.
-    // tslint:disable-next-line: forin
+    // eslint-disable-next-line guard-for-in
     for (const name in this.facets) {
       const i = this.facets[name].index;
       if (facets && facets[name]) {
         const facetKeys = Object.keys(facets[name]);
         const facetOutput = [];
-        // tslint:disable-next-line: forin
+        // eslint-disable-next-line guard-for-in
         for (const key in facetKeys) {
           const id = facetKeys[key];
           const data = { 'name': facetKeys[key], 'count': facets[name][id].count, 'active': facets[name][id].active, 'description': facets[name][id].description };
@@ -274,7 +274,7 @@ export class CorpusSearchComponent {
       var tokenKeys = Object.keys(response.frequency.tokens);
       var tokenValues = Object.values(response.frequency.tokens);
 
-      // tslint:disable-next-line: forin
+      // eslint-disable-next-line guard-for-in
       for (const key in tokenKeys) {
         const id = tokenKeys[key];
         this.frequencyData.push({
@@ -330,7 +330,7 @@ export class CorpusSearchComponent {
   }
 
   prepareSearchResults(results) {
-    // tslint:disable-next-line: forin
+    // eslint-disable-next-line guard-for-in
     for (const r in results) {
       if (results[r].gender == null) {
         results[r].gender = "N/A";
@@ -439,9 +439,9 @@ export class CorpusSearchComponent {
           return;
         }
 
-        // tslint:disable-next-line: prefer-const
+        // eslint-disable-next-line prefer-const
         let lnk = document.createElement('a'),
-          // tslint:disable-next-line: prefer-const
+          // eslint-disable-next-line prefer-const
           url = window.URL,
           objectURL;
         lnk.type = 'text/csv';
