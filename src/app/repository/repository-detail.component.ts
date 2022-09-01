@@ -50,7 +50,7 @@ export class RepositoryDetailComponent implements OnInit {
               this.content.topic
             );
             this.content.uri = environment.backend + this.content.file;
-            this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl("https://docs.google.com/gview?url=" + this.content.uri + "&embedded=true");
+            this.content.embed_uri = this.sanitizer.bypassSecurityTrustResourceUrl(this.content.uri);
             this.isLoaded = true;
             if (this.content.assignment !== '') {
               const exactTexts = {
