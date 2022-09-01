@@ -12,7 +12,8 @@ export class CorpusDetailComponent implements OnInit {
   content: CorpusDetail;
   drafts: any[] = [];
   exactResources: any[] = [];
-  relatedRepositoryResources: any[] = [];
+  relatedResources: any[] = [];
+  exactTexts: any[] = [];
   relatedTexts: any[] = [];
   isLoaded: boolean;
   statusMessage = "";
@@ -51,12 +52,25 @@ export class CorpusDetailComponent implements OnInit {
               this.drafts = this.sortByKey(this.drafts, "draft");
             }
           });
-          const relatedTexts = {
+          const exactTexts = {
             'course': this.content.course,
             'assignment': this.content.assignment,
             'institution': this.content.institution,
             'instructor': this.content.instructor,
             'exclude_id': this.content.filename,
+          };
+          // Retrieve all texts with similar metadata
+          this.API.getCorpusReferenceByMetadata(exactTexts).subscribe(response => {
+            if (response && response !== '') {
+              this.exactTexts = response;
+            }
+          });
+          const relatedTexts = {
+            'course': this.content.course,
+            'assignment': this.content.assignment,
+            'institution': this.content.institution,
+            'exclude_id': this.content.filename,
+            'excluded_instructor': this.content.instructor,
           };
           // Retrieve all texts with similar metadata
           this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
@@ -72,11 +86,25 @@ export class CorpusDetailComponent implements OnInit {
             'instructor': this.content.instructor,
             'year': this.content.year,
             'semester': this.content.semester,
+            'or_type': 'Syllabus',
           };
           this.API.getRepositoryReferenceByMetadata(repositoryParameters).subscribe(response => {
             this.globals.inProgress = false;
             if (response && response !== '') {
               this.exactResources = response;
+            }
+          });
+          const relatedRepositoryParameters = {
+            'course': this.content.course,
+            'assignment': this.content.assignment,
+            'institution': this.content.institution,
+            'excluded_instructor': this.content.instructor,
+            'or_type': 'Syllabus',
+          };
+          this.API.getRepositoryReferenceByMetadata(relatedRepositoryParameters).subscribe(response => {
+            this.globals.inProgress = false;
+            if (response && response !== '') {
+              this.relatedResources = response;
             }
           });
         } else {

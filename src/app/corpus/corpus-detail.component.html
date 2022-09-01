@@ -18,24 +18,42 @@
 				</a></li>
 			</ul>
 		</div>
-    <div *ngIf="exactResources.length">
-      <div class="facet-wrapper">
-      <div class="facet-header" [ngClass]="(globals.repositoryFacets['corpusExactResources'])?'open':'closed'" (click)="toggleFacet('corpusExactResources')">Instructor materials related to this text</div>
-      <p class="details-description" [hidden]="!globals.repositoryFacets['corpusExactResources']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
-    	<ul [hidden]="!globals.repositoryFacets['corpusExactResources']" *ngFor="let result of exactResources">
-				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
-      </ul>
-      </div>
+		<div *ngIf="exactTexts.length">
+			<div class="facet-wrapper">
+				<div class="facet-header" (click)="toggleFacet('corpusExactTexts')" [ngClass]="(globals.repositoryFacets['corpusExactTexts'])?'open':'closed'">Similar texts from this instructor's course</div>
+				<p class="details-description" [hidden]="!globals.repositoryFacets['corpusExactTexts']">Also from this instructor's {{ content.course }} {{ content.assignment }} assignment</p>
+				<ul [hidden]="!globals.repositoryFacets['corpusExactTexts']" *ngFor="let result of exactTexts">
+					<li><a routerLink="/corpus/{{result.filename}}" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id}})</a></li>
+				</ul>
+			</div>
 		</div>
     <div *ngIf="relatedTexts.length">
       <div class="facet-wrapper">
-      <div class="facet-header" (click)="toggleFacet('corpusRelatedTexts')" [ngClass]="(globals.repositoryFacets['corpusRelatedTexts'])?'open':'closed'">Similar texts by other students</div>
-      <p class="details-description" [hidden]="!globals.repositoryFacets['corpusRelatedTexts']">Also from this instructor's {{ content.course }} {{ content.assignment }} assignment</p>
+      <div class="facet-header" (click)="toggleFacet('corpusRelatedTexts')" [ngClass]="(globals.repositoryFacets['corpusRelatedTexts'])?'open':'closed'">Similar texts from other instructors' courses</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['corpusRelatedTexts']">{{ content.course }} {{ content.assignment }} assignments from other instructors</p>
     	<ul [hidden]="!globals.repositoryFacets['corpusRelatedTexts']" *ngFor="let result of relatedTexts">
 				<li><a routerLink="/corpus/{{result.filename}}" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id}})</a></li>
       </ul>
       </div>
     </div>
+		<div *ngIf="exactResources.length">
+			<div class="facet-wrapper">
+				<div class="facet-header" [ngClass]="(globals.repositoryFacets['corpusExactResources'])?'open':'closed'" (click)="toggleFacet('corpusExactResources')">Instructor materials related to this assignment</div>
+				<p class="details-description" [hidden]="!globals.repositoryFacets['corpusExactResources']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
+				<ul [hidden]="!globals.repositoryFacets['corpusExactResources']" *ngFor="let result of exactResources">
+					<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div *ngIf="relatedResources.length">
+			<div class="facet-wrapper">
+				<div class="facet-header" [ngClass]="(globals.repositoryFacets['corpusrelatedResources'])?'open':'closed'" (click)="toggleFacet('corpusrelatedResources')">Materials by other instructors</div>
+				<p class="details-description" [hidden]="!globals.repositoryFacets['corpusrelatedResources']">From other instructors' {{ content.course }} {{ content.assignment }} assignment</p>
+				<ul [hidden]="!globals.repositoryFacets['corpusrelatedResources']" *ngFor="let result of relatedResources">
+					<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{ result.assignment}} {{result.document_type}}</a></li>
+				</ul>
+			</div>
+		</div>
 		<div *ngIf="isLoaded">
 			<h3>Course Data</h3>
 			<table>

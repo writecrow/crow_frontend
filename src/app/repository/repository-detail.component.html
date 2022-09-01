@@ -16,40 +16,49 @@
       <a href="{{ content.uri }}">
         <img class="download" src="assets/download.svg" alt="Download icon" /> {{ content.filename }}</a> ({{ content.filesize }})
     </p>
-    <div *ngIf="exactTexts.length">
-      <div class="facet-wrapper">
-      <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryExactTexts'])?'open':'closed'" (click)="toggleFacet('repositoryExactTexts')">Student texts associated with this material</div>
-      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryExactTexts']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
-    	<ul [hidden]="!globals.repositoryFacets['repositoryExactTexts']" *ngFor="let result of exactTexts">
-    		<li><a routerLink="/corpus/{{ result.filename }}" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id }})</a></li>
-      </ul>
-      </div>
-    </div>
     <div *ngIf="exactResources.length">
       <div class="facet-wrapper">
-      <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryExactResources'])?'open':'closed'" (click)="toggleFacet('repositoryExactResources')">Instructor materials related to this resource</div>
+      <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryExactResources'])?'open':'closed'" (click)="toggleFacet('repositoryExactResources')">Instructor materials related to this assignment</div>
       <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryExactResources']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
     	<ul [hidden]="!globals.repositoryFacets['repositoryExactResources']" *ngFor="let result of exactResources">
 				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
       </ul>
       </div>
     </div>
-    <div *ngIf="relatedTexts.length">
+    <div *ngIf="instructorResources.length">
       <div class="facet-wrapper">
-      <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryRelatedTexts'])?'open':'closed'" (click)="toggleFacet('repositoryRelatedTexts')">Related student texts</div>
-      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']">From other {{ content.institution }} instructors' {{ content.course }} courses</p>
-    	<ul [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']" *ngFor="let result of relatedTexts">
-				<li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id }})</a></li>
-      </ul>
+        <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryInstructorResources'])?'open':'closed'" (click)="toggleFacet('repositoryInstructorResources')">Other materials from this instructor</div>
+        <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryInstructorResources']">From this instructor's {{ content.course }} course, {{ content.semester }} {{ content.year }}</p>
+        <ul [hidden]="!globals.repositoryFacets['repositoryInstructorResources']" *ngFor="let result of instructorResources">
+          <li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.assignment }} {{result.document_type}} </a></li>
+        </ul>
       </div>
     </div>
     <div *ngIf="relatedResources.length">
       <div class="facet-wrapper">
-      <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryRelatedResources'])?'open':'closed'" (click)="toggleFacet('repositoryRelatedResources')">Related course materials</div>
-      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryRelatedResources']">From other {{ content.institution }} instructors' {{ content.course }} courses</p>
+      <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryRelatedResources'])?'open':'closed'" (click)="toggleFacet('repositoryRelatedResources')">Materials from other instructors</div>
+      <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryRelatedResources']">Materials from this {{ content.course }} course from other instructors</p>
     	<ul [hidden]="!globals.repositoryFacets['repositoryRelatedResources']" *ngFor="let result of relatedResources">
-				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.document_type}}</a></li>
+				<li><a routerLink="/repository/{{result.id}}" routerLinkActive="active">{{result.assignment}} {{result.document_type}}</a></li>
       </ul>
+      </div>
+    </div>
+    <div *ngIf="exactTexts.length">
+      <div class="facet-wrapper">
+        <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryExactTexts'])?'open':'closed'" (click)="toggleFacet('repositoryExactTexts')">Student texts associated with this material</div>
+        <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryExactTexts']">From this instructor's {{ content.course }} {{ content.assignment }} assignment, {{ content.semester }} {{ content.year }}</p>
+        <ul [hidden]="!globals.repositoryFacets['repositoryExactTexts']" *ngFor="let result of exactTexts">
+          <li><a routerLink="/corpus/{{ result.filename }}" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id }})</a></li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="relatedTexts.length">
+      <div class="facet-wrapper">
+        <div class="facet-header" [ngClass]="(globals.repositoryFacets['repositoryRelatedTexts'])?'open':'closed'" (click)="toggleFacet('repositoryRelatedTexts')">Student texts from other instructors</div>
+        <p class="details-description" [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']">From other {{ content.institution }} instructors' {{ content.course }} courses</p>
+        <ul [hidden]="!globals.repositoryFacets['repositoryRelatedTexts']" *ngFor="let result of relatedTexts">
+          <li><a routerLink="/corpus/{{ result.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">{{ result.assignment }}, Draft {{ result.draft }} ({{ result.id }})</a></li>
+        </ul>
       </div>
     </div>
     <table>

@@ -20,6 +20,7 @@ export class RepositoryDetailComponent implements OnInit {
   exactTexts: any[] = [];
   relatedTexts: any[] = [];
   exactResources: any[] = [];
+  instructorResources: any[] = [];
   relatedResources: any[] = [];
 
   constructor(
@@ -71,7 +72,7 @@ export class RepositoryDetailComponent implements OnInit {
                 'course': this.content.course,
                 'assignment': this.content.assignment,
                 'institution': this.content.institution,
-                'instructor': this.content.instructor,
+                'excluded_instructor': this.content.instructor,
               };
               // Retrieve all texts with similar metadata
               this.API.getCorpusReferenceByMetadata(relatedTexts).subscribe(response => {
@@ -95,11 +96,27 @@ export class RepositoryDetailComponent implements OnInit {
                 this.exactResources = response;
               }
             });
+            const instructorMaterialParameters = {
+              'course': this.content.course,
+              'institution': this.content.institution,
+              'instructor': this.content.instructor,
+              'semester': this.content.semester,
+              'year': this.content.year,
+              'exclude_id': this.content.id,
+              'excluded_assignment': this.content.assignment,
+            };
+            this.API.getRepositoryReferenceByMetadata(instructorMaterialParameters).subscribe(response => {
+              if (response && response !== '') {
+                this.instructorResources = response;
+              }
+            });
             const relatedRepositoryParameters = {
               'course': this.content.course,
               'assignment': this.content.assignment,
               'institution': this.content.institution,
               'exclude_id': this.content.id,
+              'excluded_instructor': this.content.instructor,
+              'or_type': 'Syllabus',
             };
             this.API.getRepositoryReferenceByMetadata(relatedRepositoryParameters).subscribe(response => {
               this.globals.inProgress = false;
