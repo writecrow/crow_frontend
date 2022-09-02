@@ -12,6 +12,7 @@ For the live version of the site, visit https://crow.corporaproject.org.
 * [How to make changes to the code](#usage)
 * [How to construct requests via the API](#the-api)
 * [Updating Angular](#updating-angular)
+* [Linkages between corpus & repository](#linkages)
 
 # Quickstart
 (This assumes [NodeJS](https://nodejs.org/en/) is installed.)
@@ -99,3 +100,39 @@ Replace `@14` with the target version, along with the applicable typescript vers
 ```
 ng update @angular/core@14 @angular/cli@14 @angular-eslint/builder@14 @angular-eslint/schematics@14 @angular/platform-browser-dynamic@14 @angular/router@14 @angular/platform-browser@14 @angular/material@14 @angular/forms@14 @angular/compiler@14 @angular/cdk@14 @angular/animations@14 @angular-devkit/build-angular@14 @angular/compiler-cli@14 @angular/language-service@14 typescript@4.6
 ```
+
+# Linkages
+The corpus & repository show related materials based on common metadata. The current logic of these linkages is summarized below:
+
+### Repository interface
+Examples of all 5 linkages can be seen at https://crow.corporaproject.org/repository/1470
+
+1. "Instructor materials related to this assignment"
+- Filter logic: institution + course + semester + assignment + year + instructor
+
+2. "Other materials from this instructor"
+- Filter logic: institution + course + different assignment or is syllabus + semester + year + instructor
+
+3. "Materials from other instructors"
+- Filter logic:institution + course + semester + assignment or IS syllabus + year + different instructor
+
+4. "Student texts associated with this material"
+- Filter logic: institution + course + assignment + semester + year + instructor
+
+5. "Student texts from other instructors"
+- Filter logic: institution + course + assignment + different instructor
+
+### Corpus interface
+Examples of all 4 linkages can be seen at https://crow.corporaproject.org/corpus/107_LN_3_SAU_1_M_10607_UA_c
+
+1. "Similar texts from this instructor's course"
+- Filter logic: institution + course + instructor + assignment
+
+2. "Similar texts from other instructors' courses"
+- Filter logic: institution + course + assignment + different instructor
+
+3. "Instructor materials related to this assignment"
+- Filter logic: institution + course + instructor + year + semester + assignment OR is a syllabus
+
+4. "Materials by other instructors"
+- Filter logic: institution + course + assignment OR is a syllabus + different instructor
