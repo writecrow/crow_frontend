@@ -344,7 +344,7 @@
   "facets": {
     "assignment": {
       "Annotated Bibliography": {
-        "count": 330,
+        "count": 380,
         "description": "An annotated bibliography with a summary of sources with citations for argumentative papers\r\n"
       },
       "Argumentative Paper": {
@@ -360,11 +360,14 @@
         "description": "A summary of a decided legal case and argument regarding the decision\r\n"
       },
       "Controversy Analysis": {
-        "count": 213,
+        "count": 217,
         "description": "An objective analysis of a controversy in society and the arguments made supporting multiple perspectives. Includes evidence from sources.\r\n"
       },
+      "Counterstory": {
+        "count": 6
+      },
       "Description and Explanation": {
-        "count": 233,
+        "count": 246,
         "description": "\r\n\r\n\r\nA description and explanation of register choices made in a corresponding assignment (\"Register Rewrite\")\r\n"
       },
       "Film Analysis": {
@@ -372,11 +375,11 @@
         "description": "\r\n\r\n\r\nAn analysis of how a film achieves its purpose through rhetorical features such as, plot design, character development, setting, and visual aspects\r\n"
       },
       "Genre Analysis": {
-        "count": 137,
+        "count": 313,
         "description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n"
       },
       "Genre Redesign": {
-        "count": 47,
+        "count": 63,
         "description": "\r\n\r\n\r\nAn adaptation of a previous writing project for a new genre. This project is sometimes accompanied by a reflective essay\r\n"
       },
       "Informative Paper": {
@@ -384,23 +387,23 @@
         "description": "An analysis of a topic with the purpose of informing the reader without taking a side\/position; demonstrates subject knowledge\/control"
       },
       "Interview Report": {
-        "count": 672,
+        "count": 685,
         "description": "\r\n\r\n\r\nAn interview report on experts' opinions on students' research topics for synthesis and argument paper\r\n"
       },
       "Literacy Narrative": {
-        "count": 1699,
-        "description": "A narrative that describes students' literacy and\/or language development in various academic and social contexts"
+        "count": 1904,
+        "description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n"
       },
       "Literature Review": {
         "count": 117,
-        "description": "An organized review and\/or synthesis of several articles on a related topic"
+        "description": "An organized review and\/or synthesis of several articles on a related topic\r\n"
       },
       "Memo": {
         "count": 18,
         "description": "\r\n\r\n\r\nA short summary of an article or topic intended for a professional (non-academic) audience\r\n"
       },
       "Narrative": {
-        "count": 38,
+        "count": 40,
         "description": "\r\n\r\n\r\nA narrative reflecting on personal growth connected to experiences in a particular place\r\n"
       },
       "Open Letter": {
@@ -408,11 +411,11 @@
         "description": "\r\n\r\n\r\nA letter intending to persuade a broad audience about a particular viewpoint on a contested topic\r\n"
       },
       "Position Argument": {
-        "count": 575,
+        "count": 593,
         "description": "An argumentative paper with a clear position related to World Englishes supported by a mix of scholarly references and personal experiences\r\n"
       },
       "Profile": {
-        "count": 107,
+        "count": 377,
         "description": "\r\n\r\n\r\nA focused overview of a specific person or organization\r\n"
       },
       "Public Argument": {
@@ -420,11 +423,11 @@
         "description": "\r\n\r\n\r\nAn argument intending to persuade a broad audience about a particular viewpoint on a contested topic, often in the form of a powerpoint or other digital format\r\n"
       },
       "Reflection": {
-        "count": 621,
+        "count": 853,
         "description": "Course-level reflective writing, sometimes completed as part of a final portfolio\r\n"
       },
       "Register Rewrite": {
-        "count": 255,
+        "count": 274,
         "description": "\r\n\r\n\r\nA transformed version of a formal academic article into an informal register\/genre\r\n"
       },
       "Research Proposal": {
@@ -439,7 +442,7 @@
         "count": 36
       },
       "Rhetorical Analysis": {
-        "count": 334,
+        "count": 342,
         "description": "\r\n\r\n\r\nA breakdown of a text into rhetorical components to better understand how an author achieves their purpose. Typically uses ethos, logos pathos.\r\n"
       },
       "Short Argument": {
@@ -447,7 +450,8 @@
         "description": "\r\n\r\n\r\nA (short) argumentative claim about a topic that is of interest to the student. This is often extended for the Argumentative Paper.\r\n"
       },
       "Summary": {
-        "count": 3
+        "count": 3,
+        "description": "A summary of a single article or media source"
       },
       "Summary and Response": {
         "count": 87,
@@ -456,6 +460,9 @@
       "Synthesis": {
         "count": 1661,
         "description": "A paper that reviews 3 published articles related to a research topic in a sequenced writing project\r\n"
+      },
+      "Synthesized Genre Analysis": {
+        "count": 24
       },
       "Text Analysis": {
         "count": 24,
@@ -471,28 +478,28 @@
     },
     "college": {
       "College of Agriculture": {
-        "count": 54
+        "count": 83
       },
       "College of Agriculture & Life Sciences": {
         "count": 384
       },
       "College of Architecture, Planning & Landscape": {
-        "count": 55
+        "count": 58
       },
       "College of Education": {
         "count": 142
       },
       "College of Engineering": {
-        "count": 248
+        "count": 369
       },
       "College of Fine Arts": {
-        "count": 50
+        "count": 54
       },
       "College of Health & Human Sciences": {
         "count": 533
       },
       "College of Humanities": {
-        "count": 11
+        "count": 31
       },
       "College of Letters Arts & Sciences": {
         "count": 310
@@ -501,25 +508,25 @@
         "count": 1216
       },
       "College of Medicine": {
-        "count": 35
+        "count": 95
       },
       "College of Nursing": {
-        "count": 8
+        "count": 18
       },
       "College of Pharmacy": {
-        "count": 32
+        "count": 39
       },
       "College of Science": {
-        "count": 2758
+        "count": 3204
       },
       "College of Social & Behavioral Sciences": {
-        "count": 475
+        "count": 596
       },
       "Colleges Letters Arts Science": {
         "count": 0
       },
       "Eller College of Management": {
-        "count": 498
+        "count": 682
       },
       "Exploratory Studies": {
         "count": 734
@@ -543,7 +550,7 @@
         "count": 74
       },
       "Zuckerman Coll Public Health": {
-        "count": 26
+        "count": 30
       }
     },
     "country": {
@@ -551,7 +558,7 @@
         "count": 5
       },
       "Bangladesh": {
-        "count": 34
+        "count": 69
       },
       "Belgium": {
         "count": 18
@@ -569,7 +576,7 @@
         "count": 7
       },
       "China": {
-        "count": 6538
+        "count": 6647
       },
       "Colombia": {
         "count": 21
@@ -581,7 +588,7 @@
         "count": 5
       },
       "Czech Republic": {
-        "count": 9
+        "count": 19
       },
       "Denmark": {
         "count": 6
@@ -593,7 +600,7 @@
         "count": 41
       },
       "Egypt": {
-        "count": 3
+        "count": 13
       },
       "Finland": {
         "count": 5
@@ -611,7 +618,7 @@
         "count": 32
       },
       "India": {
-        "count": 627
+        "count": 701
       },
       "Indonesia": {
         "count": 56
@@ -620,7 +627,7 @@
         "count": 15
       },
       "Italy": {
-        "count": 7
+        "count": 8
       },
       "Japan": {
         "count": 17
@@ -631,8 +638,11 @@
       "Kazakhstan": {
         "count": 13
       },
+      "Kenya": {
+        "count": 10
+      },
       "Kuwait": {
-        "count": 117
+        "count": 248
       },
       "Lebanon": {
         "count": 12
@@ -644,13 +654,16 @@
         "count": 14
       },
       "Malaysia": {
-        "count": 517
+        "count": 524
       },
       "Mauritania": {
         "count": 13
       },
+      "Mauritius": {
+        "count": 11
+      },
       "Mexico": {
-        "count": 151
+        "count": 187
       },
       "Mongolia": {
         "count": 15
@@ -659,40 +672,46 @@
         "count": 5
       },
       "Nicaragua": {
-        "count": 10
+        "count": 19
+      },
+      "Nigeria": {
+        "count": 5
       },
       "Norway": {
-        "count": 4
+        "count": 9
       },
       "Oman": {
         "count": 38
       },
       "Pakistan": {
-        "count": 9
+        "count": 18
       },
       "Peru": {
-        "count": 5
+        "count": 14
       },
       "Qatar": {
         "count": 6
       },
       "Russia": {
-        "count": 20
+        "count": 23
       },
       "Saudi Arabia": {
-        "count": 345
+        "count": 408
       },
       "Singapore": {
         "count": 12
       },
       "South Korea": {
-        "count": 577
+        "count": 598
       },
       "Spain": {
         "count": 25
       },
+      "Sweden": {
+        "count": 4
+      },
       "Taiwan": {
-        "count": 119
+        "count": 128
       },
       "Thailand": {
         "count": 73
@@ -710,16 +729,22 @@
         "count": 9
       },
       "United Arab Emirates": {
-        "count": 13
+        "count": 18
       },
       "United States of America": {
-        "count": 1022
+        "count": 1295
+      },
+      "Uzbekistan": {
+        "count": 34
       },
       "Venezuela": {
         "count": 33
       },
       "Vietnam": {
-        "count": 71
+        "count": 110
+      },
+      "Zimbabwe": {
+        "count": 8
       }
     },
     "course": {
@@ -728,15 +753,18 @@
         "description": "\r\n\r\n\r\n\r\n\r\nCritical reading and writing in the academic community.\r\n"
       },
       "ENGL 101": {
-        "count": 31,
+        "count": 147,
         "description": "3-credit Foundations Writing Course for Domestic Students (1 of 2) at UA"
       },
+      "ENGL 101A": {
+        "count": 3
+      },
       "ENGL 102": {
-        "count": 7,
+        "count": 121,
         "description": "3-credit Foundations Writing Course for Domestic Students (2 of 2) at UA"
       },
       "ENGL 106": {
-        "count": 1458,
+        "count": 1503,
         "description": "3-credit Foundations Writing Course for International Students (1 of 3) at UA"
       },
       "ENGL 106INTL": {
@@ -744,26 +772,29 @@
         "description": "\r\n\r\n\r\nENGL&nbsp;106INTL&nbsp;is the standard 4-credit hour composition course for international students at Purdue. The course is designed for and the instructors are carefully prepared to meet the unique cultural and linguistic needs of second-language writers.\r\n"
       },
       "ENGL 107": {
-        "count": 725,
+        "count": 1469,
         "description": "3-credit Foundations Writing Course for International Students (2 of 3) at UA"
       },
       "ENGL 108": {
-        "count": 911,
+        "count": 910,
         "description": "3-credit Foundations Writing Course for International Students (3 of 3) at UA"
+      },
+      "ENGL 109H": {
+        "count": 35
       }
     },
     "draft": {
       "F": {
-        "count": 5298
+        "count": 5806
       },
       "1": {
-        "count": 3566
+        "count": 3947
       },
       "2": {
-        "count": 2713
+        "count": 2829
       },
       "3": {
-        "count": 84
+        "count": 135
       },
       "4": {
         "count": 5
@@ -771,10 +802,10 @@
     },
     "gender": {
       "F": {
-        "count": 4362
+        "count": 4854
       },
       "M": {
-        "count": 6128
+        "count": 6692
       },
       "U": {
         "count": 2
@@ -788,7 +819,7 @@
         "count": 7360
       },
       "University of Arizona": {
-        "count": 3132
+        "count": 4188
       }
     },
     "program": {
@@ -825,23 +856,38 @@
       "Animal Sciences-BS": {
         "count": 45
       },
+      "Anthropology": {
+        "count": 19
+      },
+      "Applied Humanities": {
+        "count": 6
+      },
+      "Arabic": {
+        "count": 5
+      },
+      "Architecture": {
+        "count": 3
+      },
       "Art History": {
         "count": 2
       },
       "Astronomy": {
-        "count": 65
+        "count": 104
       },
       "Aviation Technology-BS": {
         "count": 18
       },
       "Biochemistry": {
-        "count": 37
+        "count": 46
       },
       "Biochemistry-BS": {
         "count": 10
       },
+      "Bioinformatics": {
+        "count": 8
+      },
       "Biology": {
-        "count": 65
+        "count": 106
       },
       "Biology-BS": {
         "count": 277
@@ -849,17 +895,23 @@
       "Build Const Mgmt Tech-BS": {
         "count": 32
       },
+      "Business Administration": {
+        "count": 47
+      },
       "Chemical Engineering": {
         "count": 32
       },
       "Chemistry": {
-        "count": 105
+        "count": 134
       },
       "Chemistry-BS": {
         "count": 61
       },
       "Chemistry-BS CHEM": {
         "count": 30
+      },
+      "Civil Engineering": {
+        "count": 10
       },
       "Classics": {
         "count": 11
@@ -888,6 +940,9 @@
       "Consumer Science-BS": {
         "count": 60
       },
+      "Criminal Justice Studies": {
+        "count": 8
+      },
       "Design Studies-BA": {
         "count": 21
       },
@@ -910,7 +965,7 @@
         "count": 12
       },
       "Electrical & Computer Engineer": {
-        "count": 36
+        "count": 63
       },
       "Electrical Engr Tech-BS": {
         "count": 51
@@ -919,16 +974,19 @@
         "count": 1379
       },
       "English": {
-        "count": 29
+        "count": 37
       },
       "Environmental Engineering": {
-        "count": 15
+        "count": 21
       },
       "Environmental Sciences": {
         "count": 7
       },
       "Environmental Studies": {
-        "count": 4
+        "count": 23
+      },
+      "Family Studies & Human Dev": {
+        "count": 7
       },
       "Film and Video Studies-BA": {
         "count": 21
@@ -943,7 +1001,7 @@
         "count": 12
       },
       "General Studies": {
-        "count": 8
+        "count": 17
       },
       "Geography": {
         "count": 17
@@ -952,13 +1010,13 @@
         "count": 21
       },
       "Geosciences": {
-        "count": 226
+        "count": 314
       },
       "Health Sciences-BS": {
         "count": 20
       },
       "History": {
-        "count": 4
+        "count": 5
       },
       "Horticulture-BS": {
         "count": 15
@@ -969,6 +1027,9 @@
       "Industrial Engineering": {
         "count": 5
       },
+      "Information Science & Arts": {
+        "count": 10
+      },
       "Information Science & Tech": {
         "count": 33
       },
@@ -976,7 +1037,7 @@
         "count": 16
       },
       "Law": {
-        "count": 60
+        "count": 92
       },
       "Management Undecided": {
         "count": 526
@@ -985,7 +1046,7 @@
         "count": 146
       },
       "Mathematics": {
-        "count": 170
+        "count": 178
       },
       "Mathematics-BS": {
         "count": 359
@@ -1002,8 +1063,11 @@
       "Mfg Engineering Technology-BS": {
         "count": 10
       },
+      "Microbiology": {
+        "count": 1
+      },
       "Molecular & Cellular Biology": {
-        "count": 22
+        "count": 40
       },
       "Music": {
         "count": 6
@@ -1012,13 +1076,13 @@
         "count": 15
       },
       "No Major Selected Engineering": {
-        "count": 132
+        "count": 210
       },
       "No Major Selected Ltr Art Sci": {
         "count": 302
       },
       "No Major Selected Science": {
-        "count": 7
+        "count": 33
       },
       "Nutrition Science-BS": {
         "count": 128
@@ -1027,7 +1091,10 @@
         "count": 12
       },
       "Performance": {
-        "count": 20
+        "count": 21
+      },
+      "Pharmaceutical Sciences": {
+        "count": 7
       },
       "Pharmacy-BS": {
         "count": 22
@@ -1036,19 +1103,16 @@
         "count": 8
       },
       "Physics": {
-        "count": 134
+        "count": 149
       },
       "Physics-BS": {
         "count": 155
       },
-      "Physics; No Major Selected Engineering": {
-        "count": 0
-      },
       "Physiology & Medical Sciences": {
-        "count": 16
+        "count": 76
       },
       "Political Science": {
-        "count": 44
+        "count": 63
       },
       "Political Science-BA": {
         "count": 3
@@ -1069,7 +1133,7 @@
         "count": 33
       },
       "Pre-Business": {
-        "count": 391
+        "count": 514
       },
       "Pre-Computer Sci...": {
         "count": 7
@@ -1087,13 +1151,13 @@
         "count": 6
       },
       "Pre-Computer Science, BS": {
-        "count": 25
+        "count": 137
       },
       "Pre-Early Childhood Education": {
         "count": 8
       },
       "Pre-Economics": {
-        "count": 44
+        "count": 58
       },
       "Pre-Education": {
         "count": 8
@@ -1102,10 +1166,13 @@
         "count": 36
       },
       "Pre-Neurosci & Cognitive Sci": {
-        "count": 14
+        "count": 34
       },
       "Pre-Nursing": {
-        "count": 8
+        "count": 18
+      },
+      "Pre-Nutritional Sciences": {
+        "count": 4
       },
       "Pre-Pharmaceutical Sciences": {
         "count": 10
@@ -1120,13 +1187,13 @@
         "count": 22
       },
       "Pre-Public Health": {
-        "count": 26
+        "count": 30
       },
       "Pre-Retailing & Consumer Sci": {
         "count": 10
       },
       "Psychology": {
-        "count": 72
+        "count": 97
       },
       "Psychology Sci-BS": {
         "count": 71
@@ -1136,6 +1203,9 @@
       },
       "Rehabilitation Studies Service": {
         "count": 0
+      },
+      "Russian": {
+        "count": 5
       },
       "Science": {
         "count": 15
@@ -1147,13 +1217,13 @@
         "count": 45
       },
       "Statistics and Data Science": {
-        "count": 16
+        "count": 24
       },
       "Statistics-BS": {
         "count": 5
       },
       "Studio Art": {
-        "count": 22
+        "count": 25
       },
       "Sustainable Built Environments": {
         "count": 22
@@ -1163,6 +1233,9 @@
       },
       "Theatre-BA": {
         "count": 12
+      },
+      "Undecided": {
+        "count": 44
       },
       "Undecided Liberal Arts": {
         "count": 1105
@@ -1174,18 +1247,21 @@
         "count": 700
       },
       "Veterinary Science": {
-        "count": 7
+        "count": 24
+      },
+      "Wildcat Way": {
+        "count": 3
       }
     },
     "semester": {
       "Fall": {
-        "count": 5664
+        "count": 6071
       },
       "Spring": {
-        "count": 5977
+        "count": 6625
       },
       "Summer": {
-        "count": 25
+        "count": 26
       }
     },
     "year": {
@@ -1214,50 +1290,116 @@
         "count": 1159
       },
       "2018": {
-        "count": 728
+        "count": 727
       },
       "2019": {
-        "count": 321
+        "count": 323
       },
       "2020": {
-        "count": 438
+        "count": 845
+      },
+      "2021": {
+        "count": 648
       }
     },
     "year_in_school": {
       "1": {
-        "count": 8330
+        "count": 9248
       },
       "2": {
-        "count": 1396
+        "count": 1478
       },
       "3": {
-        "count": 548
+        "count": 587
       },
       "4": {
-        "count": 218
+        "count": 235
       }
     },
     "l1": {
       "Arabic": {
-        "count": 80
+        "count": 291
+      },
+      "Bangla": {
+        "count": 32
       },
       "Chinese": {
-        "count": 79
+        "count": 168
+      },
+      "Czech": {
+        "count": 10
       },
       "English": {
-        "count": 1015
+        "count": 1139
+      },
+      "Gujarati": {
+        "count": 8
+      },
+      "Hindi": {
+        "count": 8
       },
       "Italian": {
         "count": 4
       },
       "Kannada": {
         "count": 6
+      },
+      "Korean": {
+        "count": 12
+      },
+      "Malay": {
+        "count": 7
+      },
+      "Mandarin": {
+        "count": 29
+      },
+      "Mauritian Creole": {
+        "count": 11
+      },
+      "Norwegian": {
+        "count": 5
+      },
+      "Punjabi": {
+        "count": 10
+      },
+      "Russian": {
+        "count": 11
+      },
+      "Shona": {
+        "count": 8
+      },
+      "Spanish": {
+        "count": 238
+      },
+      "Swedish": {
+        "count": 4
+      },
+      "Tagalog": {
+        "count": 10
+      },
+      "Telugu": {
+        "count": 10
+      },
+      "Turkish": {
+        "count": 3
+      },
+      "Ukrainian": {
+        "count": 5
+      },
+      "Urdu": {
+        "count": 9
+      },
+      "Uzbek": {
+        "count": 10
+      },
+      "Vietnamese": {
+        "count": 20
       }
     }
   },
   "pager": {
-    "total_items": 11666,
-    "subcorpus_wordcount": 10905096
+    "total_items": 12722,
+    "subcorpus_wordcount": 12087053
   },
   "frequency": []
 }
