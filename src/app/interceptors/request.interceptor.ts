@@ -115,6 +115,8 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   handle401(error) {
+    this.globals.authenticating = false;
+    this.globals.inProgress = false;
     this.globals.statusMessage = 'The username/password combination was not accepted. <a href="' + this.password_reset_url + '">Forgot your password</a>?';
     // Usually caused by not making any API calls for whatever the timeout is configured for.
     if (error && error.status === 401 || error.error && error.error.error === 'invalid_grant') {
@@ -126,6 +128,8 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   handle500(error) {
+    this.globals.authenticating = false;
+    this.globals.inProgress = false;
     // Usually caused by a server-side error.
     this.globals.statusMessage = 'There was a problem completing this request. You can wait a moment and try again; if the problem persists, please report it to <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a> and we will look into it.';
     return throwError(error);
