@@ -32,13 +32,18 @@ export class RequestInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse) {
           this.globals.authenticating = false;
           switch ((<HttpErrorResponse>error).status) {
+            case 400:
             case 401:
+              // Response code 400 is also considered invalid username/password. See https://stackoverflow.com/q/22586825
               return this.handle401(error);
             case 403:
               return this.handle403(error, req, next);
             case 500:
             case 0:
               return this.handle500(error);
+            default:
+              // console.log(error);
+              return throwError(error);
           }
         } else {
           return throwError(error);
