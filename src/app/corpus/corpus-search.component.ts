@@ -50,10 +50,13 @@ export class CorpusSearchComponent {
   frequencyData: any[] = [];
   frequencyTotals: any[] = [];
   searchResults: CorpusDetail[];
-  resultCount: number;
   excerptCount: number;
-  offset = 0;
+  isKeywordSearch = false;
+  metadata = 1;
   numbering = 0;
+  offset = 0;
+  resultCount: number;
+  resultDisplay = 'crowcordance';
   subcorpusWordcount: number;
   filters: any[] = [];
   corpusBase = (baseData as any).default;
@@ -71,8 +74,6 @@ export class CorpusSearchComponent {
   selectResults = false;
   visualizations = true;
   isLoaded = false;
-  toeflShow = false;
-  showMetadata = true;
   dialogToggle = false;
   activeCopy = "";
   visualizationSort = "descending";
@@ -132,7 +133,9 @@ export class CorpusSearchComponent {
     }
     if (terms !== "") {
       currentParams.search = this.sanitizer.sanitize(SecurityContext.URL, terms);
-    } else {
+      currentParams.display = this.resultDisplay;
+    }
+    else {
       currentParams.search = null;
     }
     if (typeof this.keywordMode !== "undefined" && this.validKeywordModes.includes(this.keywordMode)) {
@@ -215,11 +218,15 @@ export class CorpusSearchComponent {
       // @todo -- move this to a callback function?
       if (typeof routeParams.search !== 'undefined' && routeParams.search !== "") {
         this.searchString = routeParams.search;
+        this.isKeywordSearch = true;
         if (/[^a-zA-Z0-9_ \s]/.test(this.searchString) && !/"/.test(this.searchString)) {
           this.globals.statusMessage = "It looks like you're trying a search that includes punctuation. You may need to wrap your search string in quotes.";
         } else {
           this.globals.statusMessage = "";
         }
+      }
+      else {
+        this.isKeywordSearch = false;
       }
       if (typeof routeParams.method !== 'undefined' && this.validMethods.includes(routeParams.method)) {
         this.method = routeParams.method;
@@ -233,8 +240,14 @@ export class CorpusSearchComponent {
       if (typeof routeParams.offset !== 'undefined' && routeParams.offset !== "") {
         this.offset = routeParams.offset;
       }
+      if (typeof routeParams.display !== 'undefined' && routeParams.display !== "") {
+        this.resultDisplay = routeParams.display;
+      }
       if (typeof routeParams.numbering !== 'undefined' && routeParams.numbering !== "") {
         this.numbering = parseInt(routeParams.numbering);
+      }
+      if (typeof routeParams.metadata !== 'undefined' && routeParams.metadata !== "") {
+        this.metadata = parseInt(routeParams.metadata);
       }
       if (typeof routeParams.toefl_total_min !== 'undefined' && routeParams.toefl_total_min !== "") {
         this.filters['toeflTotalMin'].value = routeParams.toefl_total_min;
@@ -409,16 +422,20 @@ export class CorpusSearchComponent {
       this.globals.selectedTexts.push(id);
     }
   }
-  toggleNumbering() {
+  setResults(value) {
+    this.resultDisplay = value;
+    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { display: value }, queryParamsHandling: 'merge' });
+  }
+  toggleDisplay(key) {
     // Used to show/hide visualizations in an Angular way.
     // See https://stackoverflow.com/a/35163037
-    if (this.numbering == 1) {
-      this.numbering = 0;
+    if (this[key] == 1) {
+      this[key] = 0;
     }
     else {
-      this.numbering = 1;
+      this[key] = 1;
     }
-    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { numbering: this.numbering }, queryParamsHandling: 'merge' });
+    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { [key]: this[key] }, queryParamsHandling: 'merge' });
   }
   evaluateToggle(i) {
     return this[i];
