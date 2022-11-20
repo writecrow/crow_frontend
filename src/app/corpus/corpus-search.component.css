@@ -148,3 +148,35 @@ tfoot, tr, td {
 table {
   margin-top: 1rem;
 }
+
+:host ::ng-deep .kwic {
+  width: 90%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+}
+:host ::ng-deep .kwic span {
+  display: inline-block;
+}
+:host ::ng-deep .kwic .before {
+  text-align: right;
+  width: 40%;
+  direction: rtl;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+:host ::ng-deep .kwic .target {
+  padding-left: 1ch;
+  padding-right: 1ch;
+  vertical-align: top;
+}
+:host ::ng-deep .kwic .after {
+  text-align: left;
+  width: 40%;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+.link-to-text {
+  width: 10%;
+}

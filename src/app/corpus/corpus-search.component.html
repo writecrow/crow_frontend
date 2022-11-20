@@ -171,27 +171,27 @@
               (click)="copyToClipboard(resulttable, 'resulttable')"></button></div>
         </div>
         </div>
-        <!-- <div class="result-format">
-          <strong>Search result format: </strong>
+        <div *ngIf="searchString !== ''" class="result-format">
+          <strong>Display format: </strong>
           <label for="crowcordance">
             <input type="radio" name="crowcordance"
-              (click)="setOption('resultDisplay','crowcordance')"
-              [checked]="resultDisplay == 'crowcordance'"
-              aria-label="Contextualized excerpts">Contextualized ('Crowcordance') lines
-          </label>
+              (click)="setResults('crowcordance')"
+              [checked]="resultDisplay === 'crowcordance'"
+              aria-label="Contextualized excerpts"> Contextualized in sentence
+          </label>&nbsp;
           <label for="kwic">
-            <input type="radio" name="kwic" (click)="setOption('resultDisplay', 'kwic')"
-              [checked]="resultDisplay == 'kwic'" aria-label="Concordance lines">Concordance lines (KWIC)
+            <input type="radio" name="kwic" (click)="setResults('kwic')"
+              [checked]="resultDisplay === 'kwic'" aria-label="Concordance lines"> Keyword in context
           </label>
-        </div> -->
+        </div>
         <div class="search-option">
           <label for="metadata">
-            <input name="metadata" id="metadata" type="checkbox" (click)="toggle('showMetadata')"aria-label="Display excerpt metadata" [checked]="showMetadata" /> Display metadata
+            <input name="metadata" id="metadata" type="checkbox" (click)="toggleDisplay('metadata')" aria-label="Display excerpt metadata" [checked]="metadata === 1" /> Display metadata
           </label>
         </div>
         <div class="search-option">
           <label for="numbering">
-            <input name="numbering" id="numbering" type="checkbox" (click)="toggleNumbering()" aria-label="Display concordance numbering on results"
+            <input name="numbering" id="numbering" type="checkbox" (click)="toggleDisplay('numbering')" aria-label="Display concordance numbering on results"
               [checked]="numbering === 1" /> Display numbering
           </label>
         </div>
@@ -210,12 +210,12 @@
             <tr>
               <th *ngIf="numbering === 1">Number</th>
               <th>Excerpt</th>
-              <th *ngIf="showMetadata">Term</th>
-              <th *ngIf="showMetadata">Course</th>
-              <th *ngIf="showMetadata">Assignment</th>
-              <th *ngIf="showMetadata">Course</th>
-              <th *ngIf="showMetadata">Gender</th>
-              <th *ngIf="showMetadata">TOEFL</th>
+              <th *ngIf="metadata">Term</th>
+              <th *ngIf="metadata">Course</th>
+              <th *ngIf="metadata">Assignment</th>
+              <th *ngIf="metadata">Course</th>
+              <th *ngIf="metadata">Gender</th>
+              <th *ngIf="metadata">TOEFL</th>
               <th>Link to text</th>
           </thead>
           <tbody>
@@ -227,17 +227,16 @@
               </label>
             </td>
             <td class="table-cell" *ngIf="numbering === 1">{{ result.number }}</td>
-            <td [innerHTML]="result.text"></td>
-            <td class="semester-prefix" *ngIf="showMetadata">{{result.semester}} {{result.year}}</td>
-            <td class="course-prefix" *ngIf="showMetadata">{{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}"></div></td>
-            <td class="assignment-prefix" *ngIf="showMetadata">{{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div></td>
-            <td class="draft-prefix" *ngIf="showMetadata">{{result.draft }}</td>
-            <td class="gender-prefix" *ngIf="showMetadata">{{ result.gender }}</td>
-            <td class="toefl-prefix" *ngIf="showMetadata">
+            <td class="{{ resultDisplay }}" [innerHTML]="result.text"></td>
+            <td class="link-to-text"><a href="{{ result.url }}">View &#8594;</a></td>
+            <td class="semester-prefix" *ngIf="metadata">{{result.semester}} {{result.year}}</td>
+            <td class="course-prefix" *ngIf="metadata">{{ result.course }} <div *ngIf="result.course_description" class="tooltip-toggle" attr.aria-label="{{ result.course_description }}"></div></td>
+            <td class="assignment-prefix" *ngIf="metadata">{{ result.assignment }} <div *ngIf="result.assignment_description" class="tooltip-toggle" attr.aria-label="{{ result.assignment_description }}">&nbsp;&#9432;</div></td>
+            <td class="draft-prefix" *ngIf="metadata">{{result.draft }}</td>
+            <td class="gender-prefix" *ngIf="metadata">{{ result.gender }}</td>
+            <td class="toefl-prefix" *ngIf="metadata">
                 <span *ngIf="result.toefl_total !== 0 && result.toefl_total"> {{ result.toefl_total }}</span>
                 <span *ngIf="result.toefl_total === 0 || !result.toefl_total">&nbsp;N/A</span>
-            </td>
-            <td class="link-to-text"><a href="{{ result.url }}">View text &#8594;</a>
             </td>
           </tr>
           </tbody>
