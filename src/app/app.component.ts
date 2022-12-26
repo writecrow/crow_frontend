@@ -18,7 +18,7 @@ declare const gtag: any;
 export class AppComponent implements AfterViewInit, OnInit {
 
   downloadUrl = false;
-  
+
   constructor(
     private router: Router,
     private API: APIService,
@@ -51,7 +51,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
     this.API.getRoles().subscribe(response => {
       if (response) {
-        if (response.includes('offline_access')) {
+        if (response.includes('offline')) {
           this.downloadUrl = true;
         }
       }

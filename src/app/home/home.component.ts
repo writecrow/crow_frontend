@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     });
     this.API.getRoles().subscribe(response => {
       if (response) {
-        if (response.includes('offline_access')) {
+        if (response.includes('offline')) {
           this.downloadUrl = true;
         }
       }
