@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-8 offset-lg-2">
     <h1>Download Crow corpus for offline use</h1>
-    <div *ngIf="downloadUrl">
+    <div *ngIf="globals.downloadUrl">
       <p>Please find the downloadable version of the Crow corpus below. As a reminder from the training:</p>
       <ul>
         <li>Do not share this with anyone, including other members of your research team. All team members should go through the training before using the corpus.</li>
@@ -13,7 +13,7 @@
         <button (click)="offlineDownload()" class="btn btn-dark">Download corpus &#8659;</button>
       </div>
     </div>
-    <div *ngIf="!downloadUrl">
+    <div *ngIf="!globals.downloadUrl">
       In order to download the corpus for offline use, you will need to <a target="_blank" href="{{ registration_url }}">Request access</a>.
     </div>
   </div>

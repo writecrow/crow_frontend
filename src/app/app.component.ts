@@ -38,6 +38,13 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.globals.currentUrl = event.url;
       }
     });
+    this.API.getRoles().subscribe(response => {
+      if (response) {
+        if (response.includes('offline')) {
+          this.downloadUrl = true;
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -48,14 +55,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
     else {
       this.globals.isAuthenticated = false;
+      this.globals.downloadUrl = false;
     }
-    this.API.getRoles().subscribe(response => {
-      if (response) {
-        if (response.includes('offline')) {
-          this.downloadUrl = true;
-        }
-      }
-    });
   }
   signIn(): void {
     this.router.navigate(['/authorize']);

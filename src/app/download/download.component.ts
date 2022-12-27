@@ -28,13 +28,6 @@ export class DownloadComponent implements OnInit {
   ngOnInit() {
     this.globals.inProgress = false;
     this.href = this.router.url;
-    this.API.getRoles().subscribe(response => {
-      if (response) {
-        if (response.includes('offline')) {
-          this.downloadUrl = true;
-        }
-      }
-    });
   }
 
   offlineDownload() {

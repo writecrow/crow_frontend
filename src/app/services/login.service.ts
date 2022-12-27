@@ -1,3 +1,4 @@
+import { APIService } from '../services/api.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable, EMPTY } from 'rxjs';
@@ -17,6 +18,7 @@ export class LoginService {
   private client_uuid = environment.alt_uuid;
 
   constructor(
+    private API: APIService,
     private http: HttpClient,
     private handleError: HandleErrorService,
     private router: Router,
@@ -44,6 +46,7 @@ export class LoginService {
 
   logout() {
     this.globals.isAuthenticated = false;
+    this.globals.downloadUrl = false;
     this.requestCache.clearAll();
     localStorage.removeItem('token');
     localStorage.removeItem('refresh_token');

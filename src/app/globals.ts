@@ -7,6 +7,8 @@ export class Globals {
   statusMessage = "";
   authenticating = false;
   username = '';
+  downloadUrl = false;
+  userRoles: any[] = [];
   corpusFacets: any[] = [];
   selectedTexts: any[] = [];
   currentUrl = '';

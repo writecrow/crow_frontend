@@ -3,6 +3,7 @@ import { APIService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorizeComponent } from '../authorize/authorize.component';
 import * as baseData from '../corpus/corpus-base.json';
+import { Globals } from '../globals';
 
 @Component({
   templateUrl: '../home/home.component.html',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private API: APIService,
+    public globals: Globals,
     private route: ActivatedRoute,
     private router: Router,
     public authComponent: AuthorizeComponent,
@@ -50,13 +52,6 @@ export class HomeComponent implements OnInit {
           }
         }
       });
-    });
-    this.API.getRoles().subscribe(response => {
-      if (response) {
-        if (response.includes('offline')) {
-          this.downloadUrl = true;
-        }
-      }
     });
     this.route.params.subscribe(() => {
       this.API.getPage('home-second').subscribe(response => {
