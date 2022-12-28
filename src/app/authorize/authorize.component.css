@@ -1,19 +1,25 @@
-.light-panel, .panel, button {
-  font-size:1.3rem;
-}
-input {
-  padding:0.25rem;
-  margin:0.5rem 0 0.5rem 0;
-  display:block;
-}
-.status {
-  border:1px solid #ddd;
-  font-weight:bold;
-}
-input#additional {
-  display:none;
+.light-panel,
+.panel,
+button {
+  font-size: 1.3rem;
 }
 
-.panel a:visited {
-	color: #0056b3;
+input {
+  padding: 0.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: block;
+  width: 100%;
+}
+
+.status {
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+input#additional {
+  display: none;
+}
+
+form.form-inline {
+  width: 300px;
 }

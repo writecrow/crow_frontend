@@ -45,6 +45,7 @@ import { authorizeService } from './services/authorize.service';
 import { HandleErrorService } from './services/handle-error.service';
 import { LoginService } from './services/login.service';
 import { RefreshTokenService } from './services/refresh-token.service';
+import { ToggleDirective } from './authorize/toggle.directive';
 import { Globals } from './globals';
 
 // Pipes : Helper methods to alter behavior.
@@ -72,6 +73,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         RepositorySearchComponent,
         RepositoryDetailComponent,
         NotFoundComponent,
+        ToggleDirective,
     ],
     exports: [
         MatDialogModule,

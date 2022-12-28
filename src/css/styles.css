@@ -26,7 +26,7 @@ h2, h3, h4, h5, h6 {
 }
 
 /* Collapsible elements */
-[hidden] { 
+[hidden] {
   display: none !important;
   opacity: 0;
 }
@@ -37,7 +37,7 @@ h2, h3, h4, h5, h6 {
 
 /* Buttons */
 button,
-.btn, 
+.btn,
 a.button {
   display: inline-block;
   font-weight: 400;
@@ -54,7 +54,7 @@ a.button {
   cursor: pointer;
 }
 
-button.primary, 
+button.primary,
 a.button.primary {
   background-color: #5C5C80;
   color:#ffffff;
@@ -160,7 +160,7 @@ dl, ol, ul {
 .facet-wrapper label {
   margin-bottom: 0;
 }
-.facet-header::before, 
+.facet-header::before,
 .details-header::before {
   content: ' ';
   display: inline-block;
@@ -172,7 +172,7 @@ dl, ol, ul {
   transform: translateY(-2px);
   transition: transform .2s ease-out;
 }
-.facet-header.open::before, 
+.facet-header.open::before,
 .details-header.open::before {
   transform: rotate(90deg) translateX(-3px);
   border-bottom-right-radius: 0;
@@ -239,7 +239,7 @@ p.details-description {
   font-size:1.5rem;
   position:absolute;
 }
-form#search-box button, 
+form#search-box button,
 form#search-box .btn {
   margin-left:1rem;
 }
@@ -377,4 +377,15 @@ p a {
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-input span {
+  position: absolute;
+  cursor: pointer;
+  top: 5px;
+  right: 10px;
 }
