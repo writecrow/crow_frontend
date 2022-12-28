@@ -38,13 +38,10 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.globals.currentUrl = event.url;
       }
     });
-    this.API.getRoles().subscribe(response => {
-      if (response) {
-        if (response.includes('offline')) {
-          this.downloadUrl = true;
-        }
-      }
-    });
+    const roles = localStorage.getItem('user_roles');
+    if (roles !== null && roles.includes('offline')) {
+      this.globals.downloadUrl = true;
+    }
   }
 
   ngOnInit(): void {

@@ -1,4 +1,3 @@
-import { APIService } from '../services/api.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable, EMPTY } from 'rxjs';
@@ -6,7 +5,6 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Token } from '../services/tokenSchema';
 import { HandleErrorService } from './handle-error.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { RequestCache } from '../services/request-cache.service';
 import { Globals } from '../globals';
 
@@ -18,16 +16,14 @@ export class LoginService {
   private client_uuid = environment.alt_uuid;
 
   constructor(
-    private API: APIService,
     private http: HttpClient,
     private handleError: HandleErrorService,
-    private router: Router,
-    private route: ActivatedRoute,
     private requestCache: RequestCache,
     private globals: Globals
   ) { }
 
   login(user, pass): Observable<Token> {
+    this.requestCache.clearAll();
     const url = `${this.mainUrl}oauth/token`;
     const body = new FormData();
     body.append("grant_type", this.grant_type);
@@ -50,6 +46,8 @@ export class LoginService {
     this.requestCache.clearAll();
     localStorage.removeItem('token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('expiration');
+    localStorage.removeItem('user_roles');
     return EMPTY;
   }
 

@@ -45,14 +45,15 @@ export class AuthorizeComponent implements OnInit {
           } else {
             this.router.navigate(['/']);
           }
-          this.globals.isAuthenticated = true;
           this.API.getRoles().subscribe(response => {
             if (response) {
+              localStorage.setItem('user_roles', response);
               if (response.includes('offline')) {
                 this.globals.downloadUrl = true;
               }
             }
           });
+          this.globals.isAuthenticated = true;
           this.globals.authenticating = false;
           this.globals.inProgress = false;
         },
