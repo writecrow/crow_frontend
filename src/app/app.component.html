@@ -5,32 +5,28 @@
         <a routerLink="/" routerLinkActive="active"><img class="logo" src="/assets/logo.svg" alt="Silhouette of a crow" /></a>
       </div>
     </div>
-    <div class="col-md-8">
-      <nav class="row justify-content-end">
+    <div class="col-md-5">
+      <nav class="row">
         <a routerLink="page/teachers">Instructors</a>
         <a routerLink="page/students">Students</a>
         <a routerLink="page/researchers">Researchers</a>
         <a routerLink="page/developers">Developers</a>
         <a routerLink="page/how-to">Search tips</a>
-        <a href="https://github.com/writecrow">Source code</a>
-        <form id="authentication" class="form-inline">
-          <label for="authSubmit">
-            <span *ngIf="globals.isAuthenticated && !globals.authenticating"><img class="avatar" src="/assets/black-crow-shield.svg" alt="Avatar of a crow" /><em>Signed in</em>&nbsp;&nbsp;</span>
-            <button *ngIf="globals.isAuthenticated" name="authSubmit" class="secondary" (click)="signOut()">Sign out</button>
-            <button *ngIf="!globals.isAuthenticated && !globals.authenticating" name="authSubmit" class="secondary" (click)="signIn()">Sign in</button>
-            <span *ngIf="globals.authenticating">Authenticating...</span>
-          </label>
-        </form>
       </nav>
-      <div class="row justify-content-end supplementary">
-        <div class="col loading-message" *ngIf="globals.inProgress === true">
-          Processing... <img class="loading" src="/assets/loading.svg"
-            alt="Loading icon" height="50px" />
-        </div>
-        <div class="col text-right">
-          <a *ngIf="globals.isAuthenticated" routerLink="problems">&#9993; Report a problem on this page</a>&nbsp;&nbsp;
-          <a *ngIf="globals.downloadUrl" class="button secondary" routerLink="download">Download corpus &#8659;</a>
-        </div>
+      <div class="row loading-message justify-content-center" *ngIf="globals.inProgress === true">
+        Processing... <img class="loading" src="/assets/loading.svg"
+          alt="Loading icon" height="50px" />
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row justify-content-end utility-nav">
+        <ul>
+          <li *ngIf="!globals.isAuthenticated && !globals.authenticating"><button name="authSubmit" class="secondary" (click)="signIn()">Sign in</button></li>
+          <li *ngIf="globals.isAuthenticated"><a class="button secondary" routerLink="account">My account</a></li>
+          <li *ngIf="globals.isAuthenticated"><a class="button secondary" routerLink="problems">Report a problem</a></li>
+          <li *ngIf="globals.downloadUrl"><a class="button secondary" routerLink="download">Download corpus</a></li>
+          <li *ngIf="globals.isAuthenticated"><button name="authSubmit" class="secondary" (click)="signOut()">Sign out</button></li>
+        </ul>
       </div>
     </div>
   </div>

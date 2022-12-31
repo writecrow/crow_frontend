@@ -42,7 +42,6 @@ export class RequestInterceptor implements HttpInterceptor {
             case 0:
               return this.handle500(error);
             default:
-              // console.log(error);
               return throwError(error);
           }
         } else {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Components.
+import { AccountComponent } from './account/account.component';
 import { AuthorizeComponent } from './authorize/authorize.component';
 import { DownloadComponent } from './download/download.component';
 import { NotFoundComponent } from './404/notfound.component';
@@ -15,12 +16,13 @@ import { RepositoryDetailComponent } from './repository/repository-detail.compon
 
 // Define the application's available page paths.
 const appRoutes: Routes = [
+  { path: 'account', component: AccountComponent },
   { path: 'authorize', component: AuthorizeComponent},
-  { path: 'page/:id', component: PageComponent },
   { path: 'corpus', component: CorpusSearchComponent },
   { path: 'corpus/:id', component: CorpusDetailComponent },
-  { path: 'problems', component: ReportBugComponent },
   { path: 'download', component: DownloadComponent },
+  { path: 'page/:id', component: PageComponent },
+  { path: 'problems', component: ReportBugComponent },
   { path: 'repository/:id', component: RepositoryDetailComponent },
   { path: 'repository', component: RepositorySearchComponent },
   { path: '', component: HomeComponent },
