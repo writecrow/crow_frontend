@@ -6,8 +6,7 @@ import { environment } from '../../environments/environment';
 import { Globals } from '../globals';
 
 @Component({
-  templateUrl: '../account/account.component.html',
-  styleUrls: ['../account/account.component.css']
+  templateUrl: '../account/account.component.html'
 })
 
 export class AccountComponent implements OnInit {
