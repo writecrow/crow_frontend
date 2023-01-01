@@ -39,7 +39,7 @@ export class AccountComponent implements OnInit {
     this.API.getUser().subscribe(response => {
       if (response[0]) {
         this.full_name = response[0].full_name;
-        this.mail = response[0].mail;
+        this.mail = response[0].email;
         this.name = response[0].name;
         this.roles = response[0].roles.split(',');
         this.created = response[0].created;
