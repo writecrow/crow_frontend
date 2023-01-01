@@ -32,6 +32,10 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.authorizeService.isAuthenticated()) {
+      // If not, redirect to the login page.
+      this.router.navigate(['/authorize'], { queryParams: { 'destination': 'corpus' } });
+    }
     this.API.getUser().subscribe(response => {
       if (response[0]) {
         this.full_name = response[0].full_name;
