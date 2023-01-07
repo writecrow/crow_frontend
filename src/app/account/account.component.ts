@@ -44,6 +44,7 @@ export class AccountComponent implements OnInit {
         this.created = response[0].created;
         this.field_project_complete_date = response[0].field_project_complete_date;
         this.field_project_description = response[0].field_project_description;
+        this.password_reset_url += '?name=' + response[0].email;
       }
     });
   }
