@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+    <h1>My Account</h1>
+    <h4>Full name</h4>
+    {{ full_name }}
+    <h4>Username</h4>
+    {{ name }}
+    <h4>Email</h4>
+    {{ mail }}
+    <h4>Member since</h4>
+    {{ created }}
+    <h4>Project description</h4>
+    {{ field_project_description }}
+    <h4>Expected completion date</h4>
+    {{ field_project_complete_date }}
+    <h4>Password</h4>
+    To update your password, <a target="_blank" href="{{ password_reset_url }}">request a password reset</a> and follow the instructions in the email.
+    <h4>Current Access levels</h4>
+    <table>
+      <thead>
+        <th>Status</th>
+        <th>Access</th>
+        <th>Description</th>
+      </thead>
+      <tr>
+        <td><span *ngIf="roles.includes('Standard')">&#x2713;</span></td>
+        <td>Standard access</td>
+        <td>Search all corpus and repository materials;
+          corpus text viewing is limited to excerpts.</td>
+      </tr>
+      <tr>
+        <td><span *ngIf="roles.includes('Full')">&#x2713;</span></td>
+        <td>Full text access</td>
+        <td>View entire corpus texts in the online interface.</td>
+      </tr>
+      <tr>
+        <td><span *ngIf="roles.includes('Export')">&#x2713;</span></td>
+        <td>Export access</td>
+        <td>Download excerpted search results from the
+        interface to a spreadsheet.</td>
+      </tr>
+      <tr>
+        <td><span *ngIf="roles.includes('Offline')">&#x2713;</span></td>
+        <td>Offline access</td>
+        <td>Download a subset of the texts available in the online corpus.</td>
+      </tr>
+    </table>
+  </div>
+</div>
