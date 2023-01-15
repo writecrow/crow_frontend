@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-lg-8 offset-lg-2">
+<div class="container">
+  <div class="col-lg-12 panel">
     <h1>My Account</h1>
     <h4>Full name</h4>
     {{ full_name }}
@@ -21,28 +21,33 @@
         <th>Status</th>
         <th>Access</th>
         <th>Description</th>
+        <th></th>
       </thead>
       <tr>
         <td><span *ngIf="roles.includes('Standard')">&#x2713;</span></td>
         <td>Standard access</td>
         <td>Search all corpus and repository materials;
           corpus text viewing is limited to excerpts.</td>
+        <td></td>
       </tr>
       <tr>
         <td><span *ngIf="roles.includes('Full')">&#x2713;</span></td>
         <td>Full text access</td>
         <td>View entire corpus texts in the online interface.</td>
+        <td><a *ngIf="roles.includes('Full') !== true" class="button secondary" routerLink="/access/fulltext">Request access</a></td>
       </tr>
       <tr>
         <td><span *ngIf="roles.includes('Export')">&#x2713;</span></td>
         <td>Export access</td>
         <td>Download excerpted search results from the
         interface to a spreadsheet.</td>
+        <td><a *ngIf="roles.includes('Export') !== true" class="button secondary" routerLink="/access/export">Request access</a></td>
       </tr>
       <tr>
         <td><span *ngIf="roles.includes('Offline')">&#x2713;</span></td>
         <td>Offline access</td>
         <td>Download a subset of the texts available in the online corpus.</td>
+        <td><a *ngIf="roles.includes('Offline') !== true" class="button secondary" routerLink="/access/offline">Request access</a></td>
       </tr>
     </table>
   </div>

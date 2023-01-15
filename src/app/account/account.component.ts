@@ -20,7 +20,6 @@ export class AccountComponent implements OnInit {
   public field_project_description = '';
   public password_reset_url = environment.backend + 'user/password';
 
-
   constructor(
     private route: ActivatedRoute,
     public authorizeService: authorizeService,

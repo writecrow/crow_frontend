@@ -1,0 +1,22 @@
+input, label {
+  display:block;
+}
+input, textarea {
+  margin-bottom: 1.5rem;
+}
+label {
+  font-weight: bold;
+}
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+input[type=checkbox] {
+  display: inline;
+}
+#description, #title {
+  width:85%;
+}
+.invalid-feedback {
+  color: #dc3545;
+  font-weight: bold;
+}

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="col-lg-12 panel">
+    <h1>Request {{ role }} access</h1>
+      <p *ngIf="role == 'export'">This provides the ability to export excerpted search results from the interface to a spreadsheet (similar to
+      concordance line output).</p>
+      <p *ngIf="role == 'offline'">This will provide the ability to download a subset of the texts available in the online corpus. This option is
+      intended for users who would like to use the corpus for their own research,
+      particularly if they would like to annotate the corpus, use concordancing
+      software (e.g., Antconc or LancsBox), or create their own programs to analyze
+      the data. The offline corpus has been curated by the Crow team to ensure a
+      representative sample from the first year writing context. <strong>Note: additional
+      training and verification is required.</strong> </p>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit(description.value)" #f="ngForm">
+        <label for="description">Describe how you plan to use the additional access <span class="invalid-feedback">*</span></label>
+        <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
+          <div *ngIf="description.errors.required">A justification for this request is required</div>
+        </div>
+          <textarea id="description" name="description" aria-required="true" rows="6" [(ngModel)]="model.description" #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required></textarea>
+        <label for="submit">
+          <button name="submit" class="primary">Submit request</button>
+        </label>
+      </form>
+  </div>
+</div>
