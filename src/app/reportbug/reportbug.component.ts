@@ -40,7 +40,7 @@ export class ReportBugComponent implements OnInit {
       user_agent: userAgent,
     };
     this.API.postRequest('submit-issue', data).subscribe(response => {
-      if (response === true) {
+      if (response.status == null || response.status == true) {
         if (contact) {
           this.globals.statusMessage = 'Thanks for providing feedback. Expect updates from us about the issue.';
         } else {
