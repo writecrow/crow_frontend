@@ -31,6 +31,7 @@ export class RequestInterceptor implements HttpInterceptor {
       catchError(error => {
         if (error instanceof HttpErrorResponse) {
           this.globals.authenticating = false;
+          console.log(error.error);
           switch ((<HttpErrorResponse>error).status) {
             case 400:
             case 401:

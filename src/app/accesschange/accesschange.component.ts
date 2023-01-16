@@ -40,17 +40,13 @@ export class AccessChangeComponent implements OnInit {
 
   public onSubmit(description) {
     this.API.postRequest('user-change-request', {
-      roles: this.role,
+      role: this.role,
       description: description,
     }).subscribe(response => {
-      if (response === true) {
-        this.globals.statusMessage = 'Your access request has been sent. Expect to hear from us soon.';
+      if (response.status == null) {
         this.router.navigateByUrl(this.globals.previousUrl);
-      }
-      else {
-        this.globals.statusMessage = 'There was a problem completing this request. <a href="/problems">Report this issue?</a>';
+        this.globals.statusMessage = 'Your access request has been sent. Expect to hear from us soon.';
       }
     });
-
   }
 }

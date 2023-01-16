@@ -164,12 +164,7 @@ export class APIService {
   postRequest(url, data) {
     this.observable = this.http.post<any>(environment.backend + url + '?_format=json', data).pipe(map(response => {
       this.observable = null;
-      if (response.status === 200) {
-        return true;
-      }
-      else {
-        return false;
-      }
+      return response;
     })
     ).pipe(share());
     return this.observable;
