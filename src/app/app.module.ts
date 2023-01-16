@@ -9,6 +9,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Components : the business logic for different page types.
 import { AppComponent } from './app.component';
+
+import { AccessChangeComponent } from './accesschange/accesschange.component';
 import { AccountComponent } from './account/account.component';
 import { AuthorizeComponent } from './authorize/authorize.component';
 import { DownloadComponent } from './download/download.component';
@@ -62,6 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
     declarations: [
         AppComponent,
+        AccessChangeComponent,
         AccountComponent,
         AuthorizeComponent,
         DialogEmbed,

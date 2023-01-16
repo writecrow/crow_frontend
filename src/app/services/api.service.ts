@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { share, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { empty } from 'rxjs';
 
 @Injectable()
 export class APIService {
@@ -162,20 +161,12 @@ export class APIService {
     return this.observable;
   }
 
-  submitIssue(title, description, contact, url, userAgent) {
-    this.observable = this.http.post<any>(environment.backend + 'submit-issue?_format=json', {
-        title: title,
-        description: description,
-        contact: contact,
-        url: url,
-        user_agent: userAgent,
-      }).pipe(map(response => {
-        this.observable = null;
-        if (response.status === 200) {
-          return response.body;
-        }
-      })
-      ).pipe(share());
+  postRequest(url, data) {
+    this.observable = this.http.post<any>(environment.backend + url + '?_format=json', data).pipe(map(response => {
+      this.observable = null;
+      return response;
+    })
+    ).pipe(share());
     return this.observable;
   }
 

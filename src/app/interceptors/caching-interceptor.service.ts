@@ -10,7 +10,17 @@ import { RequestCache } from '../services/request-cache.service';
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
-  constructor(private cache: RequestCache) { }
+  private doNotCache = [];
+
+  constructor(private cache: RequestCache) {
+    this.doNotCache = [
+      'user-change-request.+',
+      'submit-issue.+',
+      'api/account.+',
+      'user/roles.+',
+    ];
+  }
+
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const cachedResponse = this.cache.get(req);
@@ -32,10 +42,19 @@ export class CachingInterceptor implements HttpInterceptor {
     cache: RequestCache): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap(event => {
-        if (event instanceof HttpResponse) {
+        if (event instanceof HttpResponse && this.isCacheable(req.url)) {
           cache.put(req, event);
         }
       })
     );
+  }
+
+  private isCacheable(requestUrl: string): boolean {
+    for (let address of this.doNotCache) {
+      if (new RegExp(address).test(requestUrl)) {
+        return false;
+      }
+    }
+    return true;
   }
 }

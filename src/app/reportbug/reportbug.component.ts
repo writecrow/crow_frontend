@@ -32,14 +32,25 @@ export class ReportBugComponent implements OnInit {
 
   public onSubmit(title, description, contact) {
     const userAgent = window.navigator.userAgent;
-    this.API.submitIssue(title, description, contact, location.origin + this.globals.previousUrl, userAgent).subscribe(response => {
-      this.router.navigateByUrl(this.globals.previousUrl);
-      if (contact) {
-        this.globals.statusMessage = 'Thanks for providing feedback. Expect updates from us about the issue.';
-      } else {
-        this.globals.statusMessage = 'Thanks for providing feedback. Our team will work to fix the issue.';
+    let data = {
+      title: title,
+      description: description,
+      contact: contact,
+      url: location.origin + this.globals.previousUrl,
+      user_agent: userAgent,
+    };
+    this.API.postRequest('submit-issue', data).subscribe(response => {
+      if (response.status == null || response.status == true) {
+        if (contact) {
+          this.globals.statusMessage = 'Thanks for providing feedback. Expect updates from us about the issue.';
+        } else {
+          this.globals.statusMessage = 'Thanks for providing feedback. Our team will work to fix the issue.';
+        }
       }
+      else {
+        this.globals.statusMessage = 'There was a problem completing this request';
+      }
+      this.router.navigateByUrl(this.globals.previousUrl);
     });
-
   }
 }
