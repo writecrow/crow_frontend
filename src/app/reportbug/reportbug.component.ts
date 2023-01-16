@@ -41,6 +41,7 @@ export class ReportBugComponent implements OnInit {
     };
     this.API.postRequest('submit-issue', data).subscribe(response => {
       if (response.status == null || response.status == true) {
+        this.router.navigateByUrl(this.globals.previousUrl);
         if (contact) {
           this.globals.statusMessage = 'Thanks for providing feedback. Expect updates from us about the issue.';
         } else {
@@ -50,7 +51,6 @@ export class ReportBugComponent implements OnInit {
       else {
         this.globals.statusMessage = 'There was a problem completing this request';
       }
-      this.router.navigateByUrl(this.globals.previousUrl);
     });
   }
 }
