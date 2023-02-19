@@ -40,10 +40,10 @@ export class HomeComponent implements OnInit {
           for (const i of response) {
             const date = this.formatDate(i.date);
             this.newsItems.push({
-              'title': i.title.rendered.replace('&#8217;', "'").replace('&#8220;', '"').replace('&#8221;', '"').replace('&#8217;', '"').replace('&hellip;', "...").replace('&#038;', '&'),
+              'title': this.decode(i.title.rendered),
               'link': i.link,
               'date': date,
-              'summary': this.shorten(i.excerpt.rendered.replace('&#8217;', "'").replace('&#8220;', '"').replace('&#8221;', '"').replace('&#8217;', '"').replace('&hellip;', "...").replace(/(<([^>]+)>)/ig, "").replace("Read more &#8250;", ""), 300, " "),
+              'summary': this.shorten(this.decode(i.excerpt.rendered))
             });
             count = count + 1;
             if (count === 5) {
@@ -69,8 +69,26 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  decode(text) {
+    return text.replace('&#8217;', "'")
+      .replace('&#8220;', '"')
+      .replace('&#8221;', '"')
+      .replace('&#8217;', '"')
+      .replace('&hellip;', "...")
+      .replace(/(<([^>]+)>)/ig, "")
+      .replace("Read more &#8250;", "")
+      .replace('&raquo;', '')
+      .replace(/&apos;/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/&gt;/g, '>')
+      .replace(/&lt;/g, '<')
+      .replace(/&amp;/g, '&');
+  }
+
   // Shorten a string to less than maxLen characters without truncating words.
-  shorten(str, maxLen, separator = ' ') {
+  shorten(str) {
+    let separator = ' ';
+    let maxLen = 300;
     if (str.length <= maxLen) {
       return str;
     }
