@@ -342,7 +342,8 @@
   "facets": {
     "assignment": {
       "Analytical Memo": {
-        "count": 39
+        "count": 39,
+        "description": "A memo to the instructor that describes progress on a research project plus proposals for further research"
       },
       "Annotated Bibliography": {
         "count": 670,
@@ -385,16 +386,12 @@
         "description": "\r\n\r\n\r\nAn analysis of how a film achieves its purpose through rhetorical features such as, plot design, character development, setting, and visual aspects\r\n"
       },
       "Genre Analysis": {
-        "count": 313,
+        "count": 400,
         "description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n"
       },
       "Genre Redesign": {
         "count": 95,
         "description": "\r\n\r\n\r\nAn adaptation of a previous writing project for a new genre. This project is sometimes accompanied by a reflective essay\r\n"
-      },
-      "Genre analysis-research proposal": {
-        "count": 69,
-        "description": "An analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements"
       },
       "Informative Paper": {
         "count": 135,
@@ -446,10 +443,6 @@
       "Register Rewrite": {
         "count": 274,
         "description": "\r\n\r\n\r\nA transformed version of a formal academic article into an informal register\/genre\r\n"
-      },
-      "Remediation Genre analysis": {
-        "count": 18,
-        "description": "An analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements"
       },
       "Research Proposal": {
         "count": 2894,
