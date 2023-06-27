@@ -104,9 +104,10 @@ export class APIService {
 
   getCorpusSearchApiQuery(params, filenames = [], all = false) {
     const queryParameters = [];
-    const nonFacets = ["method", "search", "id", "op", "toefl_total_min", "toefl_total_max"];
     const localParams = ["numbering"];
-    const inc = 0;
+    if (typeof params["search"] !== "undefined" && typeof params["display"] == "undefined") {
+      queryParameters.push('display=kwic');
+    }
     for (const key in params) {
       if (localParams.includes(key) && all === false) {
         // Do not pass params only used in frontend.
