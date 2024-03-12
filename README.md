@@ -40,7 +40,7 @@ In order to achieve the above, this site was built:
 - Using pre-loading of data from the back-end to predict the data a user may request before it is requested
 
 # Building your own corpus
-Developing a modern web application requires a not insignificant amount of knowledge not only about a given programming language, but also about programming principles, how data is transferred across the internet, and about the specific framework on which an application is built (in this case, [AngularJS](https://angularjs.org/)). 
+Developing a modern web application requires a not insignificant amount of knowledge not only about a given programming language, but also about programming principles, how data is transferred across the internet, and about the specific framework on which an application is built (in this case, [AngularJS](https://angularjs.org/)).
 
 The following section will explain how to get up and running for developing with this application, but be forewarned: it may be daunting for non-developers; at the bare minimum, it assumes a familiarity with the command line, `git`, package management, integrated development environments, and local hosting.
 
@@ -50,12 +50,14 @@ These instructions also assume a UNIX-like environment (e.g., Linux, Mac), so if
 1. If you haven't done so, install `node.js` & `npm` : https://docs.npmjs.com/getting-started/installing-node
 1. Download this repository as you would normally: `git clone https://github.com/writecrow/corpus_frontend.git`
 1. From the directory of the download, run `npm install` to build local components.
-1. Run `ng serve` for a dev server. 
+1. Run `ng serve` for a dev server.
 1. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Compiling the code for production
 
-Run `ng build --configuration=production` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. If not already present, copy the src/environments/environment.dev.ts into `src/environments/environment.prod.ts` and copy values from the "Crow build values" secure note.
+2. Run `ng build --configuration=production` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Deploy with the `deploy` helper bash tool, which will rsync the `dist` directory to the production server.
 
 # Usage
 This application is built on the [Angular](https://angularjs.org/) framework, and follows the best practices of said framework. For those familiar with AngularJS, making modifications to the code should be self-obvious.
@@ -66,7 +68,7 @@ However, for complete beginners, here are a few orientation tips for making gene
 - The file that defines the "pages" (routes) is `src/app/app.module.ts`
 - The back-end base URL is defined in `src/app/api/restAPI.service.ts`. If you have a different back-end, change it here.
 
-Each "component" of the application consists of 
+Each "component" of the application consists of
 - the `.ts` file, which controls the business logic of route, and the dynamic variables available to the template
 - the `.html` file, which defines the markup that will display on the page, and the placeholders for the dynamic data which can be passed from the `.ts` file
 - the `.css` file, which adds display elements to the component
@@ -80,13 +82,13 @@ For example, the following URL:
 
 https://writecrow.corporaproject.org/texts/word?search=friend+woman&op=or&_format=json
 
-will return all texts via a standard word search that include the word "friend" or "woman", returned in JSON format. 
+will return all texts via a standard word search that include the word "friend" or "woman", returned in JSON format.
 
 The same result could be returned in XML format with the URL:
 
 https://writecrow.corporaproject.org/texts/word?search=friend%20woman&op=or&_format=xml
 
-A result set that requires "friend" AND "woman" would be: 
+A result set that requires "friend" AND "woman" would be:
 
 https://writecrow.corporaproject.org/texts/word?search=friend%20woman&op=and&_format=json
 
