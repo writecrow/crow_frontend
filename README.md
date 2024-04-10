@@ -66,7 +66,7 @@ However, for complete beginners, here are a few orientation tips for making gene
 
 - All functional code is located in the `src/app` directory
 - The file that defines the "pages" (routes) is `src/app/app.module.ts`
-- The back-end base URL is defined in `src/app/api/restAPI.service.ts`. If you have a different back-end, change it here.
+- The back-end base URL is defined in `src/environments/environment.ts`. If you have a different back-end, change it here.
 
 Each "component" of the application consists of
 - the `.ts` file, which controls the business logic of route, and the dynamic variables available to the template
