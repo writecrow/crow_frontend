@@ -1,25 +1,74 @@
 {
   "search_results": [
     {
-      "filename": "101_GA_1_USA_1_F_10648_UA",
-      "wordcount": "1250",
+      "filename": "101A_LN_F_USA_2_M_10645_UA",
+      "wordcount": "1359",
+      "institution": "University of Arizona",
+      "course": "ENGL 101A-UA",
+      "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Literacy Narrative",
+      "assignment_description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n",
+      "program": "Law",
+      "college": "College of Social & Behavioral Sciences",
+      "draft": "1",
+      "gender": "M",
+      "semester": "Fall",
+      "year": "2020",
+      "text": "When I was twelve years old, I would cautiously stare out of the windows to see if there were any vehicles with green stripes. Up until this point, the entirety of my life was characterized by the uneasiness in my chest whenever I would be sitting in the backseat of a car. I never knew if I was ever..."
+    },
+    {
+      "filename": "101A_LN_F_USA_1_F_10646_UA",
+      "wordcount": "3793",
+      "institution": "University of Arizona",
+      "course": "ENGL 101A-UA",
+      "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Literacy Narrative",
+      "assignment_description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n",
+      "program": "Undecided",
+      "draft": "1",
+      "gender": "F",
+      "semester": "Fall",
+      "year": "2020",
+      "text": "What seemed like a harmless trip to the observatory turned into something that would change my life. My friend from Southern Arizona, <name> was staying with me for the week, and we had several exciting activities planned. That June evening, we would be faced with unexpected terror and several momen..."
+    },
+    {
+      "filename": "101A_RF_F_USA_1_F_10646_UA",
+      "wordcount": "1585",
+      "institution": "University of Arizona",
+      "course": "ENGL 101A-UA",
+      "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Reflection",
+      "assignment_description": "Course-level reflective writing, sometimes completed as part of a final portfolio\r\n",
+      "program": "Undecided",
+      "draft": "F",
+      "gender": "F",
+      "semester": "Fall",
+      "year": "2020",
+      "text": "The story \"Drinking Chai to Savannah\" was one of my favorite readings. It was very detailed and it helped me with the details in my narrative. I have only had a couple experiences with writing short narrative essays, so I was not as prepared for one that required many details. Before I began writing..."
+    },
+    {
+      "filename": "101_GA_2_USA_1_F_10544_UA",
+      "wordcount": "843",
       "institution": "University of Arizona",
       "course": "ENGL 101-UA",
       "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
       "authorship": "Individually-authored",
       "assignment": "Genre Analysis",
       "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Psychology",
-      "college": "College of Science",
-      "draft": "1",
+      "program": "Physiology & Medical Sciences",
+      "college": "College of Medicine",
+      "draft": "2",
       "gender": "F",
       "semester": "Fall",
-      "year": "2020",
-      "text": "Being in a school environment can be different for everyone, each classroom has its own values that can impact a student or not. In a classroom setting where learning a new language is being taught, many students fear the communication within their peers and the instructor. In a Spanish 1 class, an ..."
+      "year": "2019",
+      "text": "Genre is seen as a means of communication for an author or a creator through any medium that can get across a specific message and achieve a goal. Certain genres differ depending on the \"rules\" that have been agreed on. \"the difference is that the rules change as the genre changes, that no rules app..."
     },
     {
-      "filename": "101_GA_1_NA_1_M_10545_UA",
-      "wordcount": "876",
+      "filename": "101_GA_2_NA_1_M_10545_UA",
+      "wordcount": "1178",
       "institution": "University of Arizona",
       "course": "ENGL 101-UA",
       "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
@@ -28,11 +77,45 @@
       "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
       "program": "Physics",
       "college": "College of Science",
-      "draft": "1",
+      "draft": "2",
       "gender": "M",
       "semester": "Fall",
       "year": "2019",
-      "text": "You may have been scrolling through your You Tube recommendations when you stumble upon those four letters: ASMR. What does that mean? ASMR, which stands for Autonomous Sensory Meridian Response, is the tingling sensation that some people get in their head, neck, and shoulders when listening to cert..."
+      "text": "Lack of enough sleep is a problem that affects about 35.2% of adults in the United States (\"Short Sleep Duration\"). This lack of sleep can be caused by many factors: stress, depression, and insomnia, among many others. What can Americans do to combat these factors and get the sleep they need? One wa..."
+    },
+    {
+      "filename": "101_GA_2_USA_1_F_10648_UA",
+      "wordcount": "1017",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Psychology",
+      "college": "College of Science",
+      "draft": "2",
+      "gender": "F",
+      "semester": "Fall",
+      "year": "2020",
+      "text": "Being in a school environment can be different for everyone, each classroom has its own values that can impact a student or not. In a classroom setting where learning a new language is being taught, many students fear the communication within their peers and the instructor. In a Spanish 1 class, an ..."
+    },
+    {
+      "filename": "101_GA_3_USA_1_F_10544_UA",
+      "wordcount": "872",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Physiology & Medical Sciences",
+      "college": "College of Medicine",
+      "draft": "3",
+      "gender": "F",
+      "semester": "Fall",
+      "year": "2019",
+      "text": "Genre is seen as a means of communication for an author or a creator through any medium that can get across a specific message and achieve a goal. Certain genres differ depending on the \"rules\" that have been previously agreed on. Common situations can be responded to with a certain form of organize..."
     },
     {
       "filename": "101_GA_1_USA_1_F_10544_UA",
@@ -52,6 +135,23 @@
       "text": "Genre is seen as a means of communication for an author or a creator through any medium that can get across a specific message and achieve a goal. Certain genres differ depending on the \"rules\" that have been agreed on. Common situations can be responded to with a common form of organized writing wh..."
     },
     {
+      "filename": "101_GA_1_NA_1_M_10545_UA",
+      "wordcount": "876",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Physics",
+      "college": "College of Science",
+      "draft": "1",
+      "gender": "M",
+      "semester": "Fall",
+      "year": "2019",
+      "text": "You may have been scrolling through your You Tube recommendations when you stumble upon those four letters: ASMR. What does that mean? ASMR, which stands for Autonomous Sensory Meridian Response, is the tingling sensation that some people get in their head, neck, and shoulders when listening to cert..."
+    },
+    {
       "filename": "101_GA_1_NA_1_M_10546_UA",
       "wordcount": "1308",
       "institution": "University of Arizona",
@@ -67,6 +167,91 @@
       "semester": "Fall",
       "year": "2019",
       "text": "To begin this project, I first had to interview someone I looked up to in my field of interest. The individual I interviewed was Dr. <name> <name> He is an Associate Professor of Practice in the Department for Chemistry and Biochemistry at the University of Arizona and the Assistant Dean for Academi..."
+    },
+    {
+      "filename": "101_GA_1_USA_1_F_10648_UA",
+      "wordcount": "1250",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Psychology",
+      "college": "College of Science",
+      "draft": "1",
+      "gender": "F",
+      "semester": "Fall",
+      "year": "2020",
+      "text": "Being in a school environment can be different for everyone, each classroom has its own values that can impact a student or not. In a classroom setting where learning a new language is being taught, many students fear the communication within their peers and the instructor. In a Spanish 1 class, an ..."
+    },
+    {
+      "filename": "101_GA_F_USA_1_F_10656_UA",
+      "wordcount": "771",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Biology",
+      "college": "College of Science",
+      "draft": "F",
+      "gender": "F",
+      "semester": "Fall",
+      "year": "2020",
+      "text": "Chambers, C. L. (n.d.). REPORT OF OSTEOLOGICAL EXAMINATION CASE NUMBER: X88-999 EXAMPLE C. Retrieved October 30, 2020, from https:\/\/ncssm.instructure.com\/courses\/1674\/pages\/forensic-case-report-examples Gest, T. R. (n.d.). Clinical Cases - Heart. Retrieved October 30, 2020, from https:\/\/anatomy.elpa..."
+    },
+    {
+      "filename": "101_GA_F_NA_1_M_10546_UA",
+      "wordcount": "1316",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Physiology & Medical Sciences",
+      "college": "College of Medicine",
+      "draft": "F",
+      "gender": "M",
+      "semester": "Fall",
+      "year": "2019",
+      "text": "We all use documents every day. From notes to worksheets to textbooks to emails to tax forms to instructions to lists and so on, we all use so many different kinds of documents every single day. However, think about it: does anyone really take a second and step back from the documents they look at a..."
+    },
+    {
+      "filename": "101_GA_F_NA_1_M_10545_UA",
+      "wordcount": "1660",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Physics",
+      "college": "College of Science",
+      "draft": "F",
+      "gender": "M",
+      "semester": "Fall",
+      "year": "2019",
+      "text": "You may have been scrolling through your You Tube recommendations when you stumble upon those four letters: ASMR. What does that mean? ASMR, which stands for Autonomous Sensory Meridian Response, is the tingling sensation that some people get in their head, neck, and shoulders when listening to cert..."
+    },
+    {
+      "filename": "101_GA_F_NA_1_M_10548_UA",
+      "wordcount": "1025",
+      "institution": "University of Arizona",
+      "course": "ENGL 101-UA",
+      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
+      "authorship": "Individually-authored",
+      "assignment": "Genre Analysis",
+      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
+      "program": "Pre-Business",
+      "college": "Eller College of Management",
+      "draft": "F",
+      "gender": "M",
+      "semester": "Fall",
+      "year": "2019",
+      "text": "As a business major, it seemed almost imperative to analyze a spreadsheet. Spreadsheets are everywhere, whether organizing information on customers, payments, income, or whatever else that needs to be organized in a grid-like system. And though it seems very specific, spreadsheets can be used for al..."
     },
     {
       "filename": "101_GA_F_USA_1_F_10650_UA",
@@ -103,40 +288,6 @@
       "text": "Genre is seen as a means of communication for an author or a creator through any medium that can get across a specific message and achieve a goal. Certain genres differ depending on the \"rules\" that have been previously agreed on. Common situations can be responded to with a certain form of organize..."
     },
     {
-      "filename": "101_GA_F_NA_1_M_10546_UA",
-      "wordcount": "1316",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Physiology & Medical Sciences",
-      "college": "College of Medicine",
-      "draft": "F",
-      "gender": "M",
-      "semester": "Fall",
-      "year": "2019",
-      "text": "We all use documents every day. From notes to worksheets to textbooks to emails to tax forms to instructions to lists and so on, we all use so many different kinds of documents every single day. However, think about it: does anyone really take a second and step back from the documents they look at a..."
-    },
-    {
-      "filename": "101_GA_F_NA_1_M_10547_UA",
-      "wordcount": "1052",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Pre-Business",
-      "college": "Eller College of Management",
-      "draft": "F",
-      "gender": "M",
-      "semester": "Fall",
-      "year": "2019",
-      "text": "MIS (Management of Information Systems) classes. Dr. <name> has only been teaching here at the university for six going on seven years. While his short career here as a teacher so far has propelled him to the director of BS\/MIS that does not make him any less qualified. Dr. <name> graduated from the..."
-    },
-    {
       "filename": "101_GA_F_USA_1_F_10659_UA",
       "wordcount": "693",
       "institution": "University of Arizona",
@@ -152,23 +303,6 @@
       "semester": "Fall",
       "year": "2020",
       "text": "The Article, Evaluation of antenatal risk factors for postpartum depression: a secondary cohort analysis of the cluster-randomised Geli S trial by Hamimatunnisa Johar, is about the connection between weight relating variables and postpartum depression. This research study shares information about th..."
-    },
-    {
-      "filename": "101_GA_F_NA_1_M_10545_UA",
-      "wordcount": "1660",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Physics",
-      "college": "College of Science",
-      "draft": "F",
-      "gender": "M",
-      "semester": "Fall",
-      "year": "2019",
-      "text": "You may have been scrolling through your You Tube recommendations when you stumble upon those four letters: ASMR. What does that mean? ASMR, which stands for Autonomous Sensory Meridian Response, is the tingling sensation that some people get in their head, neck, and shoulders when listening to cert..."
     },
     {
       "filename": "101_GA_F_USA_1_F_10660_UA",
@@ -188,25 +322,8 @@
       "text": "While researching for genre examples I had to keep in mind the key words I used for doing secondary research. I mainly used \" Bilingual education AND elementary AND teaching.\" These key words helped me find genre examples that connected with the discourse community I am researching in, which is teac..."
     },
     {
-      "filename": "101_GA_F_USA_1_F_10656_UA",
-      "wordcount": "771",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Biology",
-      "college": "College of Science",
-      "draft": "F",
-      "gender": "F",
-      "semester": "Fall",
-      "year": "2020",
-      "text": "Chambers, C. L. (n.d.). REPORT OF OSTEOLOGICAL EXAMINATION CASE NUMBER: X88-999 EXAMPLE C. Retrieved October 30, 2020, from https:\/\/ncssm.instructure.com\/courses\/1674\/pages\/forensic-case-report-examples Gest, T. R. (n.d.). Clinical Cases - Heart. Retrieved October 30, 2020, from https:\/\/anatomy.elpa..."
-    },
-    {
-      "filename": "101_GA_F_NA_1_M_10548_UA",
-      "wordcount": "1025",
+      "filename": "101_GA_F_NA_1_M_10547_UA",
+      "wordcount": "1052",
       "institution": "University of Arizona",
       "course": "ENGL 101-UA",
       "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
@@ -219,124 +336,7 @@
       "gender": "M",
       "semester": "Fall",
       "year": "2019",
-      "text": "As a business major, it seemed almost imperative to analyze a spreadsheet. Spreadsheets are everywhere, whether organizing information on customers, payments, income, or whatever else that needs to be organized in a grid-like system. And though it seems very specific, spreadsheets can be used for al..."
-    },
-    {
-      "filename": "101_GA_3_USA_1_F_10544_UA",
-      "wordcount": "872",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Physiology & Medical Sciences",
-      "college": "College of Medicine",
-      "draft": "3",
-      "gender": "F",
-      "semester": "Fall",
-      "year": "2019",
-      "text": "Genre is seen as a means of communication for an author or a creator through any medium that can get across a specific message and achieve a goal. Certain genres differ depending on the \"rules\" that have been previously agreed on. Common situations can be responded to with a certain form of organize..."
-    },
-    {
-      "filename": "101_GA_2_USA_1_F_10544_UA",
-      "wordcount": "843",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Physiology & Medical Sciences",
-      "college": "College of Medicine",
-      "draft": "2",
-      "gender": "F",
-      "semester": "Fall",
-      "year": "2019",
-      "text": "Genre is seen as a means of communication for an author or a creator through any medium that can get across a specific message and achieve a goal. Certain genres differ depending on the \"rules\" that have been agreed on. \"the difference is that the rules change as the genre changes, that no rules app..."
-    },
-    {
-      "filename": "101_GA_2_USA_1_F_10648_UA",
-      "wordcount": "1017",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Psychology",
-      "college": "College of Science",
-      "draft": "2",
-      "gender": "F",
-      "semester": "Fall",
-      "year": "2020",
-      "text": "Being in a school environment can be different for everyone, each classroom has its own values that can impact a student or not. In a classroom setting where learning a new language is being taught, many students fear the communication within their peers and the instructor. In a Spanish 1 class, an ..."
-    },
-    {
-      "filename": "101_GA_2_NA_1_M_10545_UA",
-      "wordcount": "1178",
-      "institution": "University of Arizona",
-      "course": "ENGL 101-UA",
-      "course_description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Genre Analysis",
-      "assignment_description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n",
-      "program": "Physics",
-      "college": "College of Science",
-      "draft": "2",
-      "gender": "M",
-      "semester": "Fall",
-      "year": "2019",
-      "text": "Lack of enough sleep is a problem that affects about 35.2% of adults in the United States (\"Short Sleep Duration\"). This lack of sleep can be caused by many factors: stress, depression, and insomnia, among many others. What can Americans do to combat these factors and get the sleep they need? One wa..."
-    },
-    {
-      "filename": "101A_RF_F_USA_1_F_10646_UA",
-      "wordcount": "1585",
-      "institution": "University of Arizona",
-      "course": "ENGL 101A-UA",
-      "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Reflection",
-      "assignment_description": "Course-level reflective writing, sometimes completed as part of a final portfolio\r\n",
-      "program": "Undecided",
-      "draft": "F",
-      "gender": "F",
-      "semester": "Fall",
-      "year": "2020",
-      "text": "The story \"Drinking Chai to Savannah\" was one of my favorite readings. It was very detailed and it helped me with the details in my narrative. I have only had a couple experiences with writing short narrative essays, so I was not as prepared for one that required many details. Before I began writing..."
-    },
-    {
-      "filename": "101A_LN_F_USA_1_F_10646_UA",
-      "wordcount": "3793",
-      "institution": "University of Arizona",
-      "course": "ENGL 101A-UA",
-      "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Literacy Narrative",
-      "assignment_description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n",
-      "program": "Undecided",
-      "draft": "1",
-      "gender": "F",
-      "semester": "Fall",
-      "year": "2020",
-      "text": "What seemed like a harmless trip to the observatory turned into something that would change my life. My friend from Southern Arizona, <name> was staying with me for the week, and we had several exciting activities planned. That June evening, we would be faced with unexpected terror and several momen..."
-    },
-    {
-      "filename": "101A_LN_F_USA_2_M_10645_UA",
-      "wordcount": "1359",
-      "institution": "University of Arizona",
-      "course": "ENGL 101A-UA",
-      "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
-      "authorship": "Individually-authored",
-      "assignment": "Literacy Narrative",
-      "assignment_description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n",
-      "program": "Law",
-      "college": "College of Social & Behavioral Sciences",
-      "draft": "1",
-      "gender": "M",
-      "semester": "Fall",
-      "year": "2020",
-      "text": "When I was twelve years old, I would cautiously stare out of the windows to see if there were any vehicles with green stripes. Up until this point, the entirety of my life was characterized by the uneasiness in my chest whenever I would be sitting in the backseat of a car. I never knew if I was ever..."
+      "text": "MIS (Management of Information Systems) classes. Dr. <name> has only been teaching here at the university for six going on seven years. While his short career here as a teacher so far has propelled him to the director of BS\/MIS that does not make him any less qualified. Dr. <name> graduated from the..."
     }
   ],
   "facets": {
@@ -346,20 +346,12 @@
         "description": "A memo to the instructor that describes progress on a research project plus proposals for further research"
       },
       "Annotated Bibliography": {
-        "count": 670,
+        "count": 708,
         "description": "An annotated bibliography with a summary of sources with citations for argumentative papers\r\n"
       },
       "Argumentative Paper": {
         "count": 2804,
         "description": "An argumentative paper with a clear position supported by credible sources in a sequenced writing project\r\n"
-      },
-      "Belief Exploration": {
-        "count": 0,
-        "description": "\r\n\r\n\r\nAn exploration of the author's personal beliefs and experience as related to research or scholarship\r\n"
-      },
-      "Case Study": {
-        "count": 0,
-        "description": "A summary of a decided legal case and argument regarding the decision\r\n"
       },
       "Controversy Analysis": {
         "count": 217,
@@ -370,7 +362,7 @@
         "description": "Counterstory is a multimodal storytelling, research, and reflection project that focuses on power dynamics in all of its intersectional forms and effects within the depicted situations."
       },
       "Description and Explanation": {
-        "count": 246,
+        "count": 312,
         "description": "\r\n\r\n\r\nA description and explanation of register choices made in a corresponding assignment (\"Register Rewrite\")\r\n"
       },
       "Digital Autobiography": {
@@ -386,11 +378,11 @@
         "description": "\r\n\r\n\r\nAn analysis of how a film achieves its purpose through rhetorical features such as, plot design, character development, setting, and visual aspects\r\n"
       },
       "Genre Analysis": {
-        "count": 400,
+        "count": 511,
         "description": "\r\n\r\n\r\nAn analysis of the characteristics of a particular genre, including register choices, organization, development, and multimodal elements\r\n"
       },
       "Genre Redesign": {
-        "count": 95,
+        "count": 156,
         "description": "\r\n\r\n\r\nAn adaptation of a previous writing project for a new genre. This project is sometimes accompanied by a reflective essay\r\n"
       },
       "Informative Paper": {
@@ -402,11 +394,11 @@
         "description": "\r\n\r\n\r\nAn interview report on experts' opinions on students' research topics for synthesis and argument paper\r\n"
       },
       "Literacy Narrative": {
-        "count": 2652,
+        "count": 2710,
         "description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n"
       },
       "Literature Review": {
-        "count": 117,
+        "count": 225,
         "description": "An organized review and\/or synthesis of several articles on a related topic\r\n"
       },
       "Memo": {
@@ -417,31 +409,36 @@
         "count": 105,
         "description": "\r\n\r\n\r\nA narrative reflecting on personal growth connected to experiences in a particular place\r\n"
       },
+      "News Report": {
+        "count": 28,
+        "description": "A report on an issue of interest to a broad audience"
+      },
       "Open Letter": {
         "count": 29,
         "description": "\r\n\r\n\r\nA letter intending to persuade a broad audience about a particular viewpoint on a contested topic\r\n"
       },
       "Photowalk": {
-        "count": 54
+        "count": 54,
+        "description": "An observation, usually with photographic documentation, of spaces\/areas on campus of interest to a research project"
       },
       "Position Argument": {
-        "count": 593,
+        "count": 621,
         "description": "An argumentative paper with a clear position related to World Englishes supported by a mix of scholarly references and personal experiences\r\n"
       },
       "Profile": {
-        "count": 413,
+        "count": 423,
         "description": "\r\n\r\n\r\nA focused overview of a specific person or organization\r\n"
       },
       "Public Argument": {
-        "count": 78,
+        "count": 77,
         "description": "\r\n\r\n\r\nAn argument intending to persuade a broad audience about a particular viewpoint on a contested topic, often in the form of a powerpoint or other digital format\r\n"
       },
       "Reflection": {
-        "count": 949,
+        "count": 1028,
         "description": "Course-level reflective writing, sometimes completed as part of a final portfolio\r\n"
       },
       "Register Rewrite": {
-        "count": 274,
+        "count": 285,
         "description": "\r\n\r\n\r\nA transformed version of a formal academic article into an informal register\/genre\r\n"
       },
       "Research Proposal": {
@@ -449,11 +446,12 @@
         "description": "A proposal of research plans in a sequenced writing project, including working argument, backgrounds, and methods\r\n"
       },
       "Research Report": {
-        "count": 64,
+        "count": 36,
         "description": "\r\n\r\n\r\nA report on empirical research, often including an IMRD format.\r\n"
       },
       "Researcher Beliefs": {
-        "count": 36
+        "count": 36,
+        "description": "An exploration of the author's personal beliefs and experience as related to research or scholarship"
       },
       "Rhetorical Analysis": {
         "count": 390,
@@ -468,27 +466,24 @@
         "description": "A summary of a single article or media source"
       },
       "Summary and Response": {
-        "count": 144,
+        "count": 227,
         "description": "A summary of a single article or media source and response to that source\r\n"
       },
       "Synthesis": {
         "count": 2302,
         "description": "A paper that reviews 3 published articles related to a research topic in a sequenced writing project\r\n"
       },
-      "Synthesized Genre Analysis": {
-        "count": 24,
-        "description": "A reflection on genre analysis that includes primary and secondary research on the genre"
-      },
       "Text Analysis": {
         "count": 24,
         "description": "\r\n\r\n\r\nAn analysis of how literary devices are used to create a particular effect on its target audience\r\n"
       },
       "Variation Analysis": {
-        "count": 210,
+        "count": 207,
         "description": "A comparative analysis of register differences between an academic article and an informal text\r\n"
       },
       "Visual Design Analysis": {
-        "count": 67
+        "count": 67,
+        "description": "An analysis of two to three data visualizations (graphs, charts, etc.)"
       }
     },
     "authorship": {
@@ -496,7 +491,7 @@
         "count": 46
       },
       "Individually-authored": {
-        "count": 17793
+        "count": 18418
       }
     },
     "course": {
@@ -520,7 +515,7 @@
         "count": 608
       },
       "ENGL 106-UA": {
-        "count": 1503,
+        "count": 1587,
         "description": "ENGL 106: 3-credit Foundations Writing Course for English as an Additional Language Students (1 of 3) at UA"
       },
       "ENGL 106INTL-PRD": {
@@ -532,7 +527,7 @@
         "description": "ENGL 106Y: 4-credit Foundations Writing Course at Purdue, Asynchronous Online"
       },
       "ENGL 107-UA": {
-        "count": 1469,
+        "count": 1671,
         "description": "ENGL 107: 3-credit Foundations Writing Course for English as an Additional Language Students (2 of 3) at UA"
       },
       "ENGL 108-PRD": {
@@ -540,7 +535,7 @@
         "description": "ENGL 108: 3-credit Accelerated Writing Course at Purdue, No Required Conferencing"
       },
       "ENGL 108-UA": {
-        "count": 910,
+        "count": 1249,
         "description": "ENGL 108: 3-credit Foundations Writing Course for English as an Additional Language Students (3 of 3) at UA"
       },
       "ENGL 109H-UA": {
@@ -549,20 +544,20 @@
       }
     },
     "draft": {
-      "F": {
-        "count": 8336
-      },
       "1": {
-        "count": 5432
+        "count": 5701
       },
       "2": {
-        "count": 3925
+        "count": 3993
       },
       "3": {
         "count": 141
       },
       "4": {
         "count": 5
+      },
+      "F": {
+        "count": 8624
       }
     },
     "institution": {
@@ -573,18 +568,18 @@
         "count": 12477
       },
       "University of Arizona": {
-        "count": 4188
+        "count": 4813
       }
     },
     "semester": {
       "Fall": {
-        "count": 9527
+        "count": 9584
       },
       "Spring": {
-        "count": 8218
+        "count": 8569
       },
       "Summer": {
-        "count": 94
+        "count": 311
       }
     },
     "year": {
@@ -610,19 +605,22 @@
         "count": 2905
       },
       "2017": {
-        "count": 3101
+        "count": 3108
       },
       "2018": {
-        "count": 2755
+        "count": 2753
       },
       "2019": {
-        "count": 502
+        "count": 501
       },
       "2020": {
-        "count": 845
+        "count": 846
       },
       "2021": {
-        "count": 648
+        "count": 697
+      },
+      "2022": {
+        "count": 571
       }
     },
     "l1": {
@@ -751,6 +749,12 @@
       }
     },
     "country": {
+      "Afghanistan": {
+        "count": 7
+      },
+      "Angola": {
+        "count": 10
+      },
       "Argentina": {
         "count": 13
       },
@@ -782,7 +786,7 @@
         "count": 12
       },
       "China": {
-        "count": 8550
+        "count": 8948
       },
       "Colombia": {
         "count": 57
@@ -827,7 +831,7 @@
         "count": 57
       },
       "India": {
-        "count": 1400
+        "count": 1430
       },
       "Indonesia": {
         "count": 111
@@ -845,7 +849,7 @@
         "count": 53
       },
       "Jordan": {
-        "count": 20
+        "count": 27
       },
       "Kazakhstan": {
         "count": 13
@@ -854,7 +858,7 @@
         "count": 10
       },
       "Kuwait": {
-        "count": 248
+        "count": 287
       },
       "Lebanon": {
         "count": 12
@@ -869,7 +873,7 @@
         "count": 5
       },
       "Malaysia": {
-        "count": 717
+        "count": 716
       },
       "Mauritania": {
         "count": 13
@@ -878,10 +882,13 @@
         "count": 11
       },
       "Mexico": {
-        "count": 245
+        "count": 250
       },
       "Mongolia": {
         "count": 15
+      },
+      "Morocco": {
+        "count": 7
       },
       "Namibia": {
         "count": 5
@@ -899,7 +906,7 @@
         "count": 42
       },
       "Pakistan": {
-        "count": 93
+        "count": 102
       },
       "Panama": {
         "count": 6
@@ -908,7 +915,7 @@
         "count": 3
       },
       "Peru": {
-        "count": 21
+        "count": 30
       },
       "Poland": {
         "count": 11
@@ -923,13 +930,13 @@
         "count": 48
       },
       "Saudi Arabia": {
-        "count": 485
+        "count": 484
       },
       "Singapore": {
         "count": 19
       },
       "South Korea": {
-        "count": 600
+        "count": 608
       },
       "Spain": {
         "count": 94
@@ -938,7 +945,7 @@
         "count": 4
       },
       "Taiwan": {
-        "count": 204
+        "count": 215
       },
       "Thailand": {
         "count": 137
@@ -956,19 +963,22 @@
         "count": 9
       },
       "United Arab Emirates": {
-        "count": 32
+        "count": 40
+      },
+      "United Kingdom": {
+        "count": 6
       },
       "United States of America": {
         "count": 2139
       },
       "Uzbekistan": {
-        "count": 34
+        "count": 71
       },
       "Venezuela": {
         "count": 33
       },
       "Vietnam": {
-        "count": 125
+        "count": 133
       },
       "Zimbabwe": {
         "count": 8
@@ -982,13 +992,13 @@
         "count": 384
       },
       "College of Architecture, Planning & Landscape": {
-        "count": 58
+        "count": 63
       },
       "College of Education": {
-        "count": 161
+        "count": 168
       },
       "College of Engineering": {
-        "count": 369
+        "count": 392
       },
       "College of Fine Arts": {
         "count": 54
@@ -1003,31 +1013,31 @@
         "count": 31
       },
       "College of Letters Arts & Sciences": {
-        "count": 310
+        "count": 309
       },
       "College of Liberal Arts": {
         "count": 1742
       },
       "College of Medicine": {
-        "count": 95
+        "count": 101
       },
       "College of Nursing": {
-        "count": 18
+        "count": 32
       },
       "College of Pharmacy": {
         "count": 67
       },
       "College of Science": {
-        "count": 4307
+        "count": 4406
       },
       "College of Social & Behavioral Sciences": {
-        "count": 596
+        "count": 620
       },
       "Colleges Letters Arts Science": {
         "count": 0
       },
       "Eller College of Management": {
-        "count": 682
+        "count": 759
       },
       "Exploratory Studies": {
         "count": 965
@@ -1080,10 +1090,10 @@
     },
     "gender": {
       "F": {
-        "count": 6626
+        "count": 6918
       },
       "M": {
-        "count": 10025
+        "count": 10358
       },
       "U": {
         "count": 2
@@ -1145,13 +1155,13 @@
         "count": 5
       },
       "Architecture": {
-        "count": 3
+        "count": 9
       },
       "Art History": {
         "count": 2
       },
       "Astronomy": {
-        "count": 104
+        "count": 112
       },
       "Aviation Management-BS": {
         "count": 28
@@ -1172,10 +1182,13 @@
         "count": 14
       },
       "Biology": {
-        "count": 106
+        "count": 117
       },
       "Biology-BS": {
         "count": 359
+      },
+      "Biomedical Engineering": {
+        "count": 7
       },
       "Build Const Mgmt Tech-BS": {
         "count": 32
@@ -1190,7 +1203,7 @@
         "count": 14
       },
       "Chemistry": {
-        "count": 134
+        "count": 144
       },
       "Chemistry-BS": {
         "count": 103
@@ -1223,7 +1236,7 @@
         "count": 97
       },
       "Computer Science": {
-        "count": 11
+        "count": 19
       },
       "Computer Science-BS": {
         "count": 1096
@@ -1268,7 +1281,7 @@
         "count": 2662
       },
       "English": {
-        "count": 37
+        "count": 38
       },
       "English-BA": {
         "count": 24
@@ -1283,7 +1296,7 @@
         "count": 7
       },
       "Environmental Studies": {
-        "count": 23
+        "count": 22
       },
       "Erth, Atmos & Planetry Sci-BS": {
         "count": 20
@@ -1313,7 +1326,7 @@
         "count": 21
       },
       "Geosciences": {
-        "count": 314
+        "count": 313
       },
       "Health & Kinesiology-BS": {
         "count": 28
@@ -1348,11 +1361,14 @@
       "Industrial Engineering Tech-BS": {
         "count": 11
       },
+      "Information Science": {
+        "count": 9
+      },
       "Information Science & Arts": {
         "count": 10
       },
       "Information Science & Tech": {
-        "count": 33
+        "count": 41
       },
       "Languages & Cultures-BA": {
         "count": 15
@@ -1361,7 +1377,7 @@
         "count": 16
       },
       "Law": {
-        "count": 92
+        "count": 100
       },
       "Management Undecided": {
         "count": 759
@@ -1406,13 +1422,16 @@
         "count": 15
       },
       "No Major Selected Engineering": {
-        "count": 210
+        "count": 226
       },
       "No Major Selected Ltr Art Sci": {
-        "count": 302
+        "count": 301
       },
       "No Major Selected Science": {
         "count": 33
+      },
+      "Nondegree Seeking": {
+        "count": 356
       },
       "Nuclear Engr-BSE": {
         "count": 15
@@ -1439,16 +1458,16 @@
         "count": 5
       },
       "Physics": {
-        "count": 149
+        "count": 158
       },
       "Physics-BS": {
         "count": 213
       },
       "Physiology & Medical Sciences": {
-        "count": 76
+        "count": 83
       },
       "Political Science": {
-        "count": 63
+        "count": 62
       },
       "Political Science-BA": {
         "count": 3
@@ -1472,7 +1491,7 @@
         "count": 33
       },
       "Pre-Business": {
-        "count": 514
+        "count": 559
       },
       "Pre-Computer Sci...": {
         "count": 7
@@ -1484,22 +1503,22 @@
         "count": 7
       },
       "Pre-Computer Science BS": {
-        "count": 72
+        "count": 77
       },
       "Pre-Computer Science, BA": {
         "count": 6
       },
       "Pre-Computer Science, BS": {
-        "count": 137
+        "count": 155
       },
       "Pre-Early Childhood Education": {
         "count": 8
       },
       "Pre-Economics": {
-        "count": 58
+        "count": 90
       },
       "Pre-Education": {
-        "count": 8
+        "count": 15
       },
       "Pre-Landscape Arch": {
         "count": 36
@@ -1508,7 +1527,7 @@
         "count": 34
       },
       "Pre-Nursing": {
-        "count": 18
+        "count": 32
       },
       "Pre-Nutritional Sciences": {
         "count": 4
@@ -1520,7 +1539,7 @@
         "count": 62
       },
       "Pre-Physiology": {
-        "count": 19
+        "count": 18
       },
       "Pre-Psychological Science": {
         "count": 22
@@ -1535,7 +1554,7 @@
         "count": 14
       },
       "Psychology": {
-        "count": 97
+        "count": 120
       },
       "Psychology Sci-BS": {
         "count": 165
@@ -1565,7 +1584,7 @@
         "count": 18
       },
       "Statistics and Data Science": {
-        "count": 24
+        "count": 32
       },
       "Statistics-BS": {
         "count": 100
@@ -1574,7 +1593,7 @@
         "count": 25
       },
       "Sustainable Built Environments": {
-        "count": 22
+        "count": 21
       },
       "Sustainable Plant Systems": {
         "count": 6
@@ -1586,7 +1605,7 @@
         "count": 12
       },
       "Undecided": {
-        "count": 44
+        "count": 50
       },
       "Undecided Liberal Arts": {
         "count": 1559
@@ -1609,13 +1628,13 @@
     },
     "year_in_school": {
       "1": {
-        "count": 12170
+        "count": 12704
       },
       "2": {
-        "count": 2952
+        "count": 3010
       },
       "3": {
-        "count": 924
+        "count": 945
       },
       "4": {
         "count": 619
@@ -1623,8 +1642,8 @@
     }
   },
   "pager": {
-    "total_items": 17839,
-    "subcorpus_wordcount": 17823912
+    "total_items": 18464,
+    "subcorpus_wordcount": 18377150
   },
   "frequency": []
 }
