@@ -8,7 +8,7 @@
       "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
       "authorship": "Individually-authored",
       "assignment": "Literacy Narrative",
-      "assignment_description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n",
+      "assignment_description": "A narrative that describes a student's literary and/or language development in various academic and social contexts.\r\n",
       "program": "Law",
       "college": "College of Social & Behavioral Sciences",
       "draft": "1",
@@ -25,7 +25,7 @@
       "course_description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA",
       "authorship": "Individually-authored",
       "assignment": "Literacy Narrative",
-      "assignment_description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n",
+      "assignment_description": "A narrative that describes a student's literary and/or language development in various academic and social contexts.\r\n",
       "program": "Undecided",
       "draft": "1",
       "gender": "F",
@@ -200,7 +200,7 @@
       "gender": "F",
       "semester": "Fall",
       "year": "2020",
-      "text": "Chambers, C. L. (n.d.). REPORT OF OSTEOLOGICAL EXAMINATION CASE NUMBER: X88-999 EXAMPLE C. Retrieved October 30, 2020, from https:\/\/ncssm.instructure.com\/courses\/1674\/pages\/forensic-case-report-examples Gest, T. R. (n.d.). Clinical Cases - Heart. Retrieved October 30, 2020, from https:\/\/anatomy.elpa..."
+      "text": "Chambers, C. L. (n.d.). REPORT OF OSTEOLOGICAL EXAMINATION CASE NUMBER: X88-999 EXAMPLE C. Retrieved October 30, 2020, from https://ncssm.instructure.com/courses/1674/pages/forensic-case-report-examples Gest, T. R. (n.d.). Clinical Cases - Heart. Retrieved October 30, 2020, from https://anatomy.elpa..."
     },
     {
       "filename": "101_GA_F_NA_1_M_10546_UA",
@@ -268,7 +268,7 @@
       "gender": "F",
       "semester": "Fall",
       "year": "2020",
-      "text": "Holmes, C. (2020, June 10). Arizona activists say real change means accountability, transparency in police departments. https:\/\/www.abc15.com\/news\/america-in-crisis\/arizona-activists-say-real-change-meansaccountability-transparency-in-police-departments Mzezewa, T. (2020, June 20). Posting a Black S..."
+      "text": "Holmes, C. (2020, June 10). Arizona activists say real change means accountability, transparency in police departments. https://www.abc15.com/news/america-in-crisis/arizona-activists-say-real-change-meansaccountability-transparency-in-police-departments Mzezewa, T. (2020, June 20). Posting a Black S..."
     },
     {
       "filename": "101_GA_F_USA_1_F_10544_UA",
@@ -336,7 +336,7 @@
       "gender": "M",
       "semester": "Fall",
       "year": "2019",
-      "text": "MIS (Management of Information Systems) classes. Dr. <name> has only been teaching here at the university for six going on seven years. While his short career here as a teacher so far has propelled him to the director of BS\/MIS that does not make him any less qualified. Dr. <name> graduated from the..."
+      "text": "MIS (Management of Information Systems) classes. Dr. <name> has only been teaching here at the university for six going on seven years. While his short career here as a teacher so far has propelled him to the director of BS/MIS that does not make him any less qualified. Dr. <name> graduated from the..."
     }
   ],
   "facets": {
@@ -387,7 +387,7 @@
       },
       "Informative Paper": {
         "count": 135,
-        "description": "An analysis of a topic with the purpose of informing the reader without taking a side\/position; demonstrates subject knowledge\/control"
+        "description": "An analysis of a topic with the purpose of informing the reader without taking a side/position; demonstrates subject knowledge/control"
       },
       "Interview Report": {
         "count": 1726,
@@ -395,11 +395,11 @@
       },
       "Literacy Narrative": {
         "count": 2700,
-        "description": "A narrative that describes a student's literary and\/or language development in various academic and social contexts.\r\n"
+        "description": "A narrative that describes a student's literary and/or language development in various academic and social contexts.\r\n"
       },
       "Literature Review": {
         "count": 225,
-        "description": "An organized review and\/or synthesis of several articles on a related topic\r\n"
+        "description": "An organized review and/or synthesis of several articles on a related topic\r\n"
       },
       "Memo": {
         "count": 18,
@@ -419,7 +419,7 @@
       },
       "Photowalk": {
         "count": 54,
-        "description": "An observation, usually with photographic documentation, of spaces\/areas on campus of interest to a research project"
+        "description": "An observation, usually with photographic documentation, of spaces/areas on campus of interest to a research project"
       },
       "Position Argument": {
         "count": 621,
@@ -439,7 +439,7 @@
       },
       "Register Rewrite": {
         "count": 285,
-        "description": "\r\n\r\n\r\nA transformed version of a formal academic article into an informal register\/genre\r\n"
+        "description": "\r\n\r\n\r\nA transformed version of a formal academic article into an informal register/genre\r\n"
       },
       "Research Proposal": {
         "count": 2949,
@@ -544,9 +544,6 @@
       }
     },
     "draft": {
-      "F": {
-        "count": 8768
-      },
       "1": {
         "count": 5680
       },
@@ -558,6 +555,9 @@
       },
       "4": {
         "count": 5
+      },
+      "F": {
+        "count": 8768
       }
     },
     "institution": {
@@ -1472,7 +1472,7 @@
       "Political Science-BA": {
         "count": 3
       },
-      "Pre Ath Trng\/Pre App Ex & Hlth": {
+      "Pre Ath Trng/Pre App Ex & Hlth": {
         "count": 11
       },
       "Pre Business": {
@@ -1638,9 +1638,6 @@
       },
       "4": {
         "count": 633
-      },
-      "5": {
-        "count": 0
       }
     }
   },
