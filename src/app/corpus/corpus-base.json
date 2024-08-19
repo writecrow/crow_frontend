@@ -346,7 +346,7 @@
         "description": "A memo to the instructor that describes progress on a research project plus proposals for further research"
       },
       "Annotated Bibliography": {
-        "count": 713,
+        "count": 712,
         "description": "An annotated bibliography with a summary of sources with citations for argumentative papers\r\n"
       },
       "Argumentative Paper": {
@@ -374,7 +374,7 @@
         "description": "Emails to professors or other professionals"
       },
       "Film Analysis": {
-        "count": 24,
+        "count": 51,
         "description": "\r\n\r\n\r\nAn analysis of how a film achieves its purpose through rhetorical features such as, plot design, character development, setting, and visual aspects\r\n"
       },
       "Genre Analysis": {
@@ -385,8 +385,11 @@
         "count": 155,
         "description": "\r\n\r\n\r\nAn adaptation of a previous writing project for a new genre. This project is sometimes accompanied by a reflective essay\r\n"
       },
+      "Informative Essay": {
+        "count": 91
+      },
       "Informative Paper": {
-        "count": 135,
+        "count": 0,
         "description": "An analysis of a topic with the purpose of informing the reader without taking a side/position; demonstrates subject knowledge/control"
       },
       "Interview Report": {
@@ -400,6 +403,9 @@
       "Literature Review": {
         "count": 225,
         "description": "An organized review and/or synthesis of several articles on a related topic\r\n"
+      },
+      "MA": {
+        "count": 8
       },
       "Memo": {
         "count": 18,
@@ -454,7 +460,7 @@
         "description": "An exploration of the author's personal beliefs and experience as related to research or scholarship"
       },
       "Rhetorical Analysis": {
-        "count": 390,
+        "count": 391,
         "description": "\r\n\r\n\r\nA breakdown of a text into rhetorical components to better understand how an author achieves their purpose. Typically uses ethos, logos pathos.\r\n"
       },
       "Short Argument": {
@@ -474,7 +480,7 @@
         "description": "A paper that reviews 3 published articles related to a research topic in a sequenced writing project\r\n"
       },
       "Text Analysis": {
-        "count": 24,
+        "count": 32,
         "description": "\r\n\r\n\r\nAn analysis of how literary devices are used to create a particular effect on its target audience\r\n"
       },
       "Variation Analysis": {
@@ -491,261 +497,111 @@
         "count": 46
       },
       "Individually-authored": {
-        "count": 18676
+        "count": 18675
       }
     },
-    "course": {
-      "ENG 105-NAU": {
-        "count": 1174,
-        "description": "ENGL 105: 4-credit Foundations Writing Course (1 of 1) at NAU"
+    "college": {
+      "College of Agriculture": {
+        "count": 308
       },
-      "ENGL 101-UA": {
-        "count": 147,
-        "description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA"
+      "College of Agriculture & Life Sciences": {
+        "count": 398
       },
-      "ENGL 101A-UA": {
-        "count": 3,
-        "description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA"
+      "College of Architecture, Planning & Landscape": {
+        "count": 63
       },
-      "ENGL 102-UA": {
-        "count": 121,
-        "description": "ENGL 102: 3-credit Foundations Writing Course (2 of 2) at UA"
+      "College of Education": {
+        "count": 171
       },
-      "ENGL 106-PRD": {
-        "count": 608
+      "College of Engineering": {
+        "count": 392
       },
-      "ENGL 106-UA": {
-        "count": 1587,
-        "description": "ENGL 106: 3-credit Foundations Writing Course for English as an Additional Language Students (1 of 3) at UA"
+      "College of Fine Arts": {
+        "count": 54
       },
-      "ENGL 106INTL-PRD": {
-        "count": 11725,
-        "description": "ENGL 106i: 4-credit Foundations Writing Course for International Students at Purdue"
+      "College of Health & Human Sci": {
+        "count": 371
       },
-      "ENGL 106Y-PRD": {
-        "count": 129,
-        "description": "ENGL 106Y: 4-credit Foundations Writing Course at Purdue, Asynchronous Online"
+      "College of Health & Human Sciences": {
+        "count": 540
       },
-      "ENGL 107-UA": {
-        "count": 1671,
-        "description": "ENGL 107: 3-credit Foundations Writing Course for English as an Additional Language Students (2 of 3) at UA"
+      "College of Humanities": {
+        "count": 31
       },
-      "ENGL 108-PRD": {
-        "count": 273,
-        "description": "ENGL 108: 3-credit Accelerated Writing Course at Purdue, No Required Conferencing"
+      "College of Letters Arts & Sciences": {
+        "count": 309
       },
-      "ENGL 108-UA": {
-        "count": 1249,
-        "description": "ENGL 108: 3-credit Foundations Writing Course for English as an Additional Language Students (3 of 3) at UA"
+      "College of Liberal Arts": {
+        "count": 1780
       },
-      "ENGL 109H-UA": {
-        "count": 35,
-        "description": "ENGL 109H: 3-credit Foundations Writing Course (1 of 1) at UA"
-      }
-    },
-    "draft": {
-      "1": {
-        "count": 5680
+      "College of Medicine": {
+        "count": 101
       },
-      "2": {
-        "count": 4128
-      },
-      "3": {
-        "count": 141
-      },
-      "4": {
-        "count": 5
-      },
-      "F": {
-        "count": 8768
-      }
-    },
-    "institution": {
-      "Northern Arizona University": {
-        "count": 1174
-      },
-      "Purdue University": {
-        "count": 12735
-      },
-      "University of Arizona": {
-        "count": 4813
-      }
-    },
-    "semester": {
-      "Fall": {
-        "count": 9722
-      },
-      "Spring": {
-        "count": 8689
-      },
-      "Summer": {
-        "count": 311
-      }
-    },
-    "year": {
-      "2009": {
-        "count": 1015
-      },
-      "2010": {
-        "count": 40
-      },
-      "2011": {
-        "count": 73
-      },
-      "2012": {
-        "count": 46
-      },
-      "2014": {
-        "count": 2265
-      },
-      "2015": {
-        "count": 3820
-      },
-      "2016": {
-        "count": 3043
-      },
-      "2017": {
-        "count": 3107
-      },
-      "2018": {
-        "count": 2697
-      },
-      "2019": {
-        "count": 502
-      },
-      "2020": {
-        "count": 846
-      },
-      "2021": {
-        "count": 697
-      },
-      "2022": {
-        "count": 571
-      }
-    },
-    "l1": {
-      "Arabic": {
-        "count": 291
-      },
-      "Arabic - Modern Standard": {
-        "count": 141
-      },
-      "Bahasa Melayu": {
-        "count": 44
-      },
-      "Bangla": {
+      "College of Nursing": {
         "count": 32
       },
-      "Bengali": {
-        "count": 30
+      "College of Pharmacy": {
+        "count": 68
       },
-      "Cantonese": {
-        "count": 21
+      "College of Science": {
+        "count": 4469
       },
-      "Chinese": {
-        "count": 1486
+      "College of Social & Behavioral Sciences": {
+        "count": 620
       },
-      "Chinese - Mandarin": {
-        "count": 157
+      "Colleges Letters Arts Science": {
+        "count": 0
       },
-      "Czech": {
-        "count": 10
+      "Eller College of Management": {
+        "count": 759
       },
-      "English": {
-        "count": 1993
+      "Exploratory Studies": {
+        "count": 991
       },
-      "Gujarati": {
-        "count": 82
+      "First Year Engineering": {
+        "count": 2744
       },
-      "Hindi": {
-        "count": 288
+      "Polytechnic Institute": {
+        "count": 885
       },
-      "Indonesian": {
-        "count": 53
+      "Pre-Pharmacy": {
+        "count": 63
       },
-      "Italian": {
-        "count": 4
+      "School of Aero and Astro Engr": {
+        "count": 28
       },
-      "Japanese": {
+      "School of Agr and Bio Engr": {
+        "count": 59
+      },
+      "School of Chemical Engineering": {
+        "count": 14
+      },
+      "School of Civil Engineering": {
+        "count": 60
+      },
+      "School of Electrical & Computer Engineering": {
+        "count": 125
+      },
+      "School of Industrial Engr": {
         "count": 15
       },
-      "Kannada": {
-        "count": 21
+      "School of Management": {
+        "count": 1387
       },
-      "Konkani": {
-        "count": 15
-      },
-      "Korean": {
-        "count": 223
-      },
-      "Malay": {
-        "count": 71
-      },
-      "Malayalam": {
-        "count": 47
-      },
-      "Mandarin": {
-        "count": 29
-      },
-      "Marathi": {
+      "School of Materials Engr": {
         "count": 19
       },
-      "Mauritian Creole": {
-        "count": 11
+      "School of Mechanical Engineering": {
+        "count": 74
       },
-      "Norwegian": {
-        "count": 6
+      "School of Mechanical Engr": {
+        "count": 141
       },
-      "Panjabi, Eastern": {
+      "School of Nuclear Engineering": {
         "count": 15
       },
-      "Polish": {
-        "count": 13
-      },
-      "Portuguese": {
-        "count": 81
-      },
-      "Punjabi": {
-        "count": 25
-      },
-      "Russian": {
-        "count": 22
-      },
-      "Shona": {
-        "count": 8
-      },
-      "Spanish": {
-        "count": 566
-      },
-      "Swedish": {
-        "count": 4
-      },
-      "Tagalog": {
-        "count": 10
-      },
-      "Tamil": {
-        "count": 50
-      },
-      "Telugu": {
-        "count": 37
-      },
-      "Thai": {
-        "count": 44
-      },
-      "Turkish": {
-        "count": 126
-      },
-      "Ukrainian": {
-        "count": 5
-      },
-      "Urdu": {
-        "count": 89
-      },
-      "Uzbek": {
-        "count": 10
-      },
-      "Vietnamese": {
-        "count": 35
+      "Zuckerman Coll Public Health": {
+        "count": 30
       }
     },
     "country": {
@@ -969,7 +825,7 @@
         "count": 6
       },
       "United States of America": {
-        "count": 2141
+        "count": 2140
       },
       "Uzbekistan": {
         "count": 71
@@ -984,108 +840,70 @@
         "count": 8
       }
     },
-    "college": {
-      "College of Agriculture": {
-        "count": 308
+    "course": {
+      "ENG 105-NAU": {
+        "count": 1173,
+        "description": "ENGL 105: 4-credit Foundations Writing Course (1 of 1) at NAU"
       },
-      "College of Agriculture & Life Sciences": {
-        "count": 398
+      "ENGL 101-UA": {
+        "count": 147,
+        "description": "ENGL 101: 3-credit Foundations Writing Course (1 of 2) at UA"
       },
-      "College of Architecture, Planning & Landscape": {
-        "count": 63
+      "ENGL 101A-UA": {
+        "count": 3,
+        "description": "ENGL 101A: 4-credit Foundations Writing Course (1 of 2) at UA"
       },
-      "College of Education": {
-        "count": 171
+      "ENGL 102-UA": {
+        "count": 121,
+        "description": "ENGL 102: 3-credit Foundations Writing Course (2 of 2) at UA"
       },
-      "College of Engineering": {
-        "count": 392
+      "ENGL 106-PRD": {
+        "count": 608
       },
-      "College of Fine Arts": {
-        "count": 54
+      "ENGL 106-UA": {
+        "count": 1587,
+        "description": "ENGL 106: 3-credit Foundations Writing Course for English as an Additional Language Students (1 of 3) at UA"
       },
-      "College of Health & Human Sci": {
-        "count": 371
+      "ENGL 106INTL-PRD": {
+        "count": 11725,
+        "description": "ENGL 106i: 4-credit Foundations Writing Course for International Students at Purdue"
       },
-      "College of Health & Human Sciences": {
-        "count": 540
+      "ENGL 106Y-PRD": {
+        "count": 129,
+        "description": "ENGL 106Y: 4-credit Foundations Writing Course at Purdue, Asynchronous Online"
       },
-      "College of Humanities": {
-        "count": 31
+      "ENGL 107-UA": {
+        "count": 1671,
+        "description": "ENGL 107: 3-credit Foundations Writing Course for English as an Additional Language Students (2 of 3) at UA"
       },
-      "College of Letters Arts & Sciences": {
-        "count": 309
+      "ENGL 108-PRD": {
+        "count": 273,
+        "description": "ENGL 108: 3-credit Accelerated Writing Course at Purdue, No Required Conferencing"
       },
-      "College of Liberal Arts": {
-        "count": 1780
+      "ENGL 108-UA": {
+        "count": 1249,
+        "description": "ENGL 108: 3-credit Foundations Writing Course for English as an Additional Language Students (3 of 3) at UA"
       },
-      "College of Medicine": {
-        "count": 101
+      "ENGL 109H-UA": {
+        "count": 35,
+        "description": "ENGL 109H: 3-credit Foundations Writing Course (1 of 1) at UA"
+      }
+    },
+    "draft": {
+      "1": {
+        "count": 5680
       },
-      "College of Nursing": {
-        "count": 32
+      "2": {
+        "count": 4128
       },
-      "College of Pharmacy": {
-        "count": 68
-      },
-      "College of Science": {
-        "count": 4469
-      },
-      "College of Social & Behavioral Sciences": {
-        "count": 620
-      },
-      "Colleges Letters Arts Science": {
-        "count": 0
-      },
-      "Eller College of Management": {
-        "count": 759
-      },
-      "Exploratory Studies": {
-        "count": 991
-      },
-      "First Year Engineering": {
-        "count": 2744
-      },
-      "Polytechnic Institute": {
-        "count": 885
-      },
-      "Pre-Pharmacy": {
-        "count": 63
-      },
-      "School of Aero and Astro Engr": {
-        "count": 28
-      },
-      "School of Agr and Bio Engr": {
-        "count": 59
-      },
-      "School of Chemical Engineering": {
-        "count": 14
-      },
-      "School of Civil Engineering": {
-        "count": 60
-      },
-      "School of Electrical & Computer Engineering": {
-        "count": 125
-      },
-      "School of Industrial Engr": {
-        "count": 15
-      },
-      "School of Management": {
-        "count": 1387
-      },
-      "School of Materials Engr": {
-        "count": 19
-      },
-      "School of Mechanical Engineering": {
-        "count": 74
-      },
-      "School of Mechanical Engr": {
+      "3": {
         "count": 141
       },
-      "School of Nuclear Engineering": {
-        "count": 15
+      "4": {
+        "count": 5
       },
-      "Zuckerman Coll Public Health": {
-        "count": 30
+      "F": {
+        "count": 8767
       }
     },
     "gender": {
@@ -1097,6 +915,17 @@
       },
       "U": {
         "count": 2
+      }
+    },
+    "institution": {
+      "Northern Arizona University": {
+        "count": 1173
+      },
+      "Purdue University": {
+        "count": 12735
+      },
+      "University of Arizona": {
+        "count": 4813
       }
     },
     "program": {
@@ -1626,6 +1455,58 @@
         "count": 3
       }
     },
+    "semester": {
+      "Fall": {
+        "count": 9722
+      },
+      "Spring": {
+        "count": 8688
+      },
+      "Summer": {
+        "count": 311
+      }
+    },
+    "year": {
+      "2009": {
+        "count": 1014
+      },
+      "2010": {
+        "count": 40
+      },
+      "2011": {
+        "count": 73
+      },
+      "2012": {
+        "count": 46
+      },
+      "2014": {
+        "count": 2265
+      },
+      "2015": {
+        "count": 3820
+      },
+      "2016": {
+        "count": 3043
+      },
+      "2017": {
+        "count": 3107
+      },
+      "2018": {
+        "count": 2697
+      },
+      "2019": {
+        "count": 502
+      },
+      "2020": {
+        "count": 846
+      },
+      "2021": {
+        "count": 697
+      },
+      "2022": {
+        "count": 571
+      }
+    },
     "year_in_school": {
       "1": {
         "count": 12938
@@ -1639,11 +1520,136 @@
       "4": {
         "count": 633
       }
+    },
+    "l1": {
+      "Arabic": {
+        "count": 291
+      },
+      "Arabic - Modern Standard": {
+        "count": 141
+      },
+      "Bahasa Melayu": {
+        "count": 44
+      },
+      "Bangla": {
+        "count": 32
+      },
+      "Bengali": {
+        "count": 30
+      },
+      "Cantonese": {
+        "count": 21
+      },
+      "Chinese": {
+        "count": 1486
+      },
+      "Chinese - Mandarin": {
+        "count": 157
+      },
+      "Czech": {
+        "count": 10
+      },
+      "English": {
+        "count": 1992
+      },
+      "Gujarati": {
+        "count": 82
+      },
+      "Hindi": {
+        "count": 288
+      },
+      "Indonesian": {
+        "count": 53
+      },
+      "Italian": {
+        "count": 4
+      },
+      "Japanese": {
+        "count": 15
+      },
+      "Kannada": {
+        "count": 21
+      },
+      "Konkani": {
+        "count": 15
+      },
+      "Korean": {
+        "count": 223
+      },
+      "Malay": {
+        "count": 71
+      },
+      "Malayalam": {
+        "count": 47
+      },
+      "Mandarin": {
+        "count": 29
+      },
+      "Marathi": {
+        "count": 19
+      },
+      "Mauritian Creole": {
+        "count": 11
+      },
+      "Norwegian": {
+        "count": 6
+      },
+      "Panjabi, Eastern": {
+        "count": 15
+      },
+      "Polish": {
+        "count": 13
+      },
+      "Portuguese": {
+        "count": 81
+      },
+      "Punjabi": {
+        "count": 25
+      },
+      "Russian": {
+        "count": 22
+      },
+      "Shona": {
+        "count": 8
+      },
+      "Spanish": {
+        "count": 566
+      },
+      "Swedish": {
+        "count": 4
+      },
+      "Tagalog": {
+        "count": 10
+      },
+      "Tamil": {
+        "count": 50
+      },
+      "Telugu": {
+        "count": 37
+      },
+      "Thai": {
+        "count": 44
+      },
+      "Turkish": {
+        "count": 126
+      },
+      "Ukrainian": {
+        "count": 5
+      },
+      "Urdu": {
+        "count": 89
+      },
+      "Uzbek": {
+        "count": 10
+      },
+      "Vietnamese": {
+        "count": 35
+      }
     }
   },
   "pager": {
-    "total_items": 18722,
-    "subcorpus_wordcount": 18612995
+    "total_items": 18721,
+    "subcorpus_wordcount": 18612586
   },
   "frequency": []
 }
