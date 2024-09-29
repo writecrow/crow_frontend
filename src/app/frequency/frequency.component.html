@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+    <h1>Frequency data for {{ category }} "{{ name }}" </h1>
+    <p><strong>Total texts comprising this corpus subset:</strong> {{ total_texts | number }}</p>
+    <p><strong>Total words across this subset of the corpus:</strong> {{ total_words | number }}</p>
+
+    <table #frequency class="frequency" border="1">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Word</th>
+          <th>Instances in matching texts <sup>1</sup></th>
+          <th>Normed (per 1 million) <sup>2</sup></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let i of frequencyData">
+          <tr>
+            <td>{{ i.rank }}</td>
+            <th>{{ i.word }}</th>
+            <td>{{ i.raw | number}}</td>
+            <td>{{ i.normed | number:'1.2-2' }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tfoot *ngIf="frequencyData.length > 0">
+        <tr>
+          <td colspan="4">
+            1: The total number of instances within texts that match all search
+            criteria<br />
+            2: The number of instances per 1 million words in the corpus<br />
+            3: Total number of texts
+              with at least one occurrence of target term
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

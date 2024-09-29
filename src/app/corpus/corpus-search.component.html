@@ -9,6 +9,8 @@
               <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>
               <ng-container *ngIf="item.count === 1">({{item.count }} text)</ng-container>
               <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
+              <a *ngIf="key == 'assignment'" class="frequency-link" routerLink="/frequency"
+                [queryParams]="{ category: key, name: item.name }" routerLinkActive="active">View frequency data</a>
             </label>
           </li>
         </ul>

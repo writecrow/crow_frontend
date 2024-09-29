@@ -180,3 +180,10 @@ table {
 .link-to-text {
   width: 10%;
 }
+.facet-items label {
+  width: 100%;
+}
+.frequency-link {
+  float: right;
+  padding-right: 2rem;
+}
