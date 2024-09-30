@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-lg-8 offset-lg-2">
     <h1>Frequency data for {{ category }} "{{ name }}" </h1>
-    <p><strong>Total texts comprising this corpus subset:</strong> {{ total_texts | number }}</p>
-    <p><strong>Total words across this subset of the corpus:</strong> {{ total_words | number }}</p>
+    <p><strong>Total texts comprising this subcorpus:</strong> {{ total_texts | number }}</p>
+    <p><strong>Total words across this subcorpus:</strong> {{ total_words | number }}</p>
 
     <table #frequency class="frequency" border="1">
       <thead>
@@ -26,11 +26,8 @@
       <tfoot *ngIf="frequencyData.length > 0">
         <tr>
           <td colspan="4">
-            1: The total number of instances within texts that match all search
-            criteria<br />
-            2: The number of instances per 1 million words in the corpus<br />
-            3: Total number of texts
-              with at least one occurrence of target term
+            1: The total number of instances within texts in the subcorpus<br />
+            2: The number of instances per 1 million words in the subcorpus
           </td>
         </tr>
       </tfoot>

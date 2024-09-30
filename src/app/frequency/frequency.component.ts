@@ -5,7 +5,8 @@ import { APIService } from '../services/api.service';
 import { Globals } from '../globals';
 
 @Component({
-  templateUrl: '../frequency/frequency.component.html'
+  templateUrl: '../frequency/frequency.component.html',
+  styleUrls: ['../frequency/frequency.component.css']
 })
 
 export class FrequencyComponent {
