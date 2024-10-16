@@ -16,6 +16,7 @@ export class FrequencyComponent {
   total_words = '';
   category = '';
   name = '';
+  results = 100;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,6 @@ export class FrequencyComponent {
   }
 
   prepareResults(response) {
-    console.log(response);
     this.name = response.name;
     this.category = response.category;
     this.total_words = response.total_words;
@@ -46,6 +46,10 @@ export class FrequencyComponent {
 
   querySearch() {
     this.route.queryParams.subscribe((routeParams) => {
+      this.results = 100;
+      if (routeParams.results !== null && (routeParams.results == 500 || routeParams.results == 1000)) {
+        this.results = routeParams.results;
+      }
       this.globals.inProgress = true;
       this.name = '';
       this.category = '';

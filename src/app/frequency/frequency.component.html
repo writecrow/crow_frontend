@@ -1,36 +1,34 @@
 <div class="row">
   <div class="col-lg-8 offset-lg-2">
-    <h1>Frequency data for {{ category }} "{{ name }}" </h1>
+    <h1>Frequency data for "{{ name }}" {{ category }}</h1>
     <p><strong>Total texts comprising this subcorpus:</strong> {{ total_texts | number }}</p>
     <p><strong>Total words across this subcorpus:</strong> {{ total_words | number }}</p>
-
+    <div class="results"><a routerLink="/frequency" [queryParams]="{ category: category, name: name, results: 100 }">Show first 100 results</a> | <a routerLink="/frequency"
+      [queryParams]="{ category: category, name: name, results: 500 }">Show first
+      500 results</a> | <a routerLink="/frequency"
+      [queryParams]="{ category: category, name: name, results: 1000 }">Show first
+      1,000 results</a></div>
     <table #frequency class="frequency" border="1">
       <thead>
         <tr>
           <th>Rank</th>
           <th>Word</th>
-          <th>Instances in matching texts <sup>1</sup></th>
-          <th>Normed (per 1 million) <sup>2</sup></th>
+          <th>Total instances of word</th>
+          <th>Normed (per 1 million)</th>
+          <th>Texts containing word</th>
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let i of frequencyData">
+        <ng-container *ngFor="let i of frequencyData.slice(0,results)">
           <tr>
             <td>{{ i.rank }}</td>
-            <th>{{ i.word }}</th>
-            <td>{{ i.raw | number}}</td>
+            <th><a routerLink="/corpus" [queryParams]="{ assignment: name, search: i.word }">{{ i.word }}</a></th>
+            <td>{{ i.raw | number }}</td>
             <td>{{ i.normed | number:'1.2-2' }}</td>
+            <td>{{ i.texts | number }}</td>
           </tr>
         </ng-container>
       </tbody>
-      <tfoot *ngIf="frequencyData.length > 0">
-        <tr>
-          <td colspan="4">
-            1: The total number of instances within texts in the subcorpus<br />
-            2: The number of instances per 1 million words in the subcorpus
-          </td>
-        </tr>
-      </tfoot>
     </table>
   </div>
 </div>
