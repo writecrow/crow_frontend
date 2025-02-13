@@ -158,16 +158,12 @@ table {
   display: inline-block;
 }
 :host ::ng-deep .kwic .before {
-  text-align: right;
-  width: 40%;
-  direction: rtl;
   overflow: hidden;
   text-overflow: clip;
   white-space: nowrap;
 }
 :host ::ng-deep .kwic .target {
   padding-left: 1ch;
-  padding-right: 1ch;
   vertical-align: top;
 }
 :host ::ng-deep .kwic .after {
