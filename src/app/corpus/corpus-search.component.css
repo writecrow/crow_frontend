@@ -153,6 +153,7 @@ table {
   width: 90%;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.9rem;
+  padding: 0.2rem 0.5rem 0rem;
 }
 :host ::ng-deep .kwic span {
   display: inline-block;
@@ -164,6 +165,7 @@ table {
 }
 :host ::ng-deep .kwic .target {
   padding-left: 1ch;
+  padding-right: 1ch;
   vertical-align: top;
 }
 :host ::ng-deep .kwic .after {
