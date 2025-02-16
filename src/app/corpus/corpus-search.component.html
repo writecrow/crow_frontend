@@ -8,7 +8,9 @@
               <input (click)="facetSearch(key, item.name, item.active)" name="{{ key }}_{{ item.name }}" id="{{ key }}_{{ item.name }}" type="checkbox" checked="{{ item.active }}" attr.aria-label="{{ key }} {{ item.name }}" /> {{ item.name }}
               <ng-container *ngIf="item.count > 1">({{item.count | number }} texts)</ng-container>
               <ng-container *ngIf="item.count === 1">({{item.count }} text)</ng-container>
-              <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>
+              <div *ngIf="item.description" class="tooltip-toggle" attr.aria-label="{{ item.description }}">&nbsp;&#9432;</div>&nbsp;
+              <a *ngIf="key == 'assignment'" routerLink="/frequency" title="Show frequency data"
+                [queryParams]="{ category: key, name: item.name }" routerLinkActive="active"><span class="sr-only">Frequency data</span>📊</a>
             </label>
           </li>
         </ul>
@@ -25,7 +27,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-8 search-wrapper">
+  <div class="col-lg-9 search-wrapper">
     <div class="row">
       <form id="search-box" class="form-inline">
         <input #searchBox id="search-input" name="keywords" class="form-control" placeholder="Search..." [(ngModel)]="searchString" aria-label="Search" autofocus />

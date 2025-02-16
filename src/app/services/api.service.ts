@@ -124,6 +124,20 @@ export class APIService {
     return query;
   }
 
+  getSubsetFrequency(params) {
+    const queryParameters = [];
+    if (typeof params.category !== 'undefined') {
+      queryParameters.push('category=' + params.category);
+    }
+    if (typeof params.name !== 'undefined') {
+      queryParameters.push('name=' + params.name);
+    }
+    const query = Object.keys(queryParameters)
+      .map(k => queryParameters[k])
+      .join('&');
+    return this.getResponseFromPath('frequency?' + query);
+  }
+
   searchRepository(params) {
     const queryParameters = [];
     if (typeof params.search !== 'undefined') {

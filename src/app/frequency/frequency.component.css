@@ -1,0 +1,16 @@
+table.frequency {
+  background: #fff;
+  table-layout: fixed;
+  margin-bottom: 2rem;
+}
+table thead th {
+  border: 2px solid darkgray;
+}
+.results {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+.results a {
+  font-weight: bold;
+}

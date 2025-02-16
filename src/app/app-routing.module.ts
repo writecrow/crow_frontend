@@ -7,6 +7,7 @@ import { AccessChangeComponent } from './accesschange/accesschange.component';
 import { AccountComponent } from './account/account.component';
 import { AuthorizeComponent } from './authorize/authorize.component';
 import { DownloadComponent } from './download/download.component';
+import { FrequencyComponent } from './frequency/frequency.component';
 import { NotFoundComponent } from './404/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'corpus', component: CorpusSearchComponent },
   { path: 'corpus/:id', component: CorpusDetailComponent },
   { path: 'download', component: DownloadComponent },
+  { path: 'frequency', component: FrequencyComponent },
   { path: 'page/:id', component: PageComponent },
   { path: 'problems', component: ReportBugComponent },
   { path: 'repository/:id', component: RepositoryDetailComponent },
@@ -37,8 +39,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- Set 'true' for debugging purposes only
- // <-- Set 'true' for debugging purposes only
- // <-- Set 'true' for debugging purposes only
     )
   ],
   exports: [
