@@ -56,6 +56,7 @@ export class CorpusSearchComponent {
   numbering = 0;
   offset = 0;
   resultCount: number;
+  currentPage: '';
   resultDisplay = 'crowcordance';
   subcorpusWordcount: number;
   filters: any[] = [];
@@ -207,6 +208,7 @@ export class CorpusSearchComponent {
     this.route.queryParams.subscribe((routeParams) => {
       this.globals.inProgress = true;
       this.resultCount = 0;
+      this.currentPage = "";
       this.excerptCount = 0;
       this.method = "word";
       this.keywordMode = "or";
@@ -309,6 +311,7 @@ export class CorpusSearchComponent {
       }
     }
     this.resultCount = response.pager['total_items'];
+    this.currentPage = response.pager['current_page'];
     this.subcorpusWordcount = response.pager['subcorpus_wordcount'];
     this.globals.inProgress = false;
     // Determine how to display the export button.

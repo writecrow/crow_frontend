@@ -246,7 +246,8 @@
       <div *ngIf="isLoaded" class="centered">
         <span *ngIf="offset > 0">
           <button (click)="pager('previous', offset)" class="btn primary">&#x2190; Previous</button>
-        </span>&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="current-page">{{ currentPage }}</span>
         <span *ngIf="resultCount > 20 && (offset * 1 + 1) < resultCount">
           <button (click)="pager('next', offset)" class="btn primary">Next &#x2192;</button>
         </span>

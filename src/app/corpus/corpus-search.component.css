@@ -185,3 +185,6 @@ table {
   float: right;
   padding-right: 0.5rem;
 }
+.current-page {
+  margin: 0 1rem;
+}
