@@ -52,7 +52,7 @@ export class CorpusSearchComponent {
   searchResults: CorpusDetail[];
   excerptCount: number;
   isKeywordSearch = false;
-  metadata = 1;
+  metadata = 0;
   numbering = 0;
   offset = 0;
   resultCount: number;
