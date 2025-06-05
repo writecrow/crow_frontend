@@ -11,7 +11,7 @@ import { Globals } from '../globals';
 @Injectable()
 export class LoginService {
   private mainUrl = environment.backend;  // URL to web api
-  private grant_type = "password";
+  private grant_type = "client_credentials";
   private client_text = environment.alt_text;
   private client_uuid = environment.alt_uuid;
 
