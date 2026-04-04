@@ -110,7 +110,7 @@ export class CorpusSearchComponent {
     this.facets['authorship'] = { label: 'Authorship', index: '12' };
     this.facets['college'] = { label: 'College', index: '1' };
     this.facets['country'] = { label: 'Country', index: '2' };
-    this.facets['l1'] = { label: 'First language', index: '2' };
+    this.facets['l1'] = { label: 'Languages', index: '2' };
     this.facets['gender'] = { label: 'Gender', index: '5' };
     this.facets['program'] = { label: 'Program', index: '8' };
     this.facets['year_in_school'] = { label: 'Year in School', index: '11' };
