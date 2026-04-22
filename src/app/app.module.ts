@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AccessChangeComponent } from './accesschange/accesschange.component';
 import { AccountComponent } from './account/account.component';
 import { AuthorizeComponent } from './authorize/authorize.component';
+import { DiffComponent } from './diff/diff.component';
 import { DownloadComponent } from './download/download.component';
 import { FrequencyComponent } from './frequency/frequency.component';
 import { NotFoundComponent } from './404/notfound.component';
@@ -69,6 +70,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AccountComponent,
         AuthorizeComponent,
         DialogEmbed,
+        DiffComponent,
         DownloadComponent,
         FrequencyComponent,
         EscapeHtmlPipe,

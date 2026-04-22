@@ -40,6 +40,10 @@ export class APIService {
     return this.getResponseFromPath('corpus/metadata?' + query);
   }
 
+  getDiff(before, after) {
+    return this.getResponseFromPath('corpus/diff?before=' + before + '&after=' + after);
+  }
+
   getFrequencyData(attributes) {
     const queryElements = [];
     for (const key of Object.keys(attributes)) {

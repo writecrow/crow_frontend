@@ -1,0 +1,18 @@
+/* Provide a styled display to page content */
+:host ::ng-deep ins {
+  background: #edfaa8;
+  color: #39670b;
+  text-decoration: underline;
+}
+:host ::ng-deep del {
+text-decoration: none;
+  color: #b30000;
+  background: #fdbeb8;
+  text-decoration: line-through;
+}
+:host ::ng-deep table,
+:host ::ng-deep tr,
+:host ::ng-deep td {
+  border: 0;
+  background: white;
+}

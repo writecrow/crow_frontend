@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccessChangeComponent } from './accesschange/accesschange.component';
 import { AccountComponent } from './account/account.component';
 import { AuthorizeComponent } from './authorize/authorize.component';
+import { DiffComponent } from './diff/diff.component';
 import { DownloadComponent } from './download/download.component';
 import { FrequencyComponent } from './frequency/frequency.component';
 import { NotFoundComponent } from './404/notfound.component';
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'authorize', component: AuthorizeComponent},
   { path: 'corpus', component: CorpusSearchComponent },
   { path: 'corpus/:id', component: CorpusDetailComponent },
+  { path: 'diff/:before/:after', component: DiffComponent },
   { path: 'download', component: DownloadComponent },
   { path: 'frequency', component: FrequencyComponent },
   { path: 'page/:id', component: PageComponent },
