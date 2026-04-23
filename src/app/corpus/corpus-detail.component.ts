@@ -17,6 +17,8 @@ export class CorpusDetailComponent implements OnInit {
   relatedTexts: any[] = [];
   isLoaded: boolean;
   statusMessage = "";
+  before = "";
+  after = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -50,6 +52,11 @@ export class CorpusDetailComponent implements OnInit {
                 this.drafts.push({ draft: draftno, data: response[i] });
               }
               this.drafts = this.sortByKey(this.drafts, "draft");
+              if (this.drafts.length > 1) {
+                const last = this.drafts.length - 1;
+                this.before = this.drafts[0].data.filename;
+                this.after = this.drafts[last].data.filename;
+              }
             }
           });
           const exactTexts = {
@@ -118,6 +125,16 @@ export class CorpusDetailComponent implements OnInit {
         this.statusMessage = 'There was a problem retrieving this resource. You can wait a moment, then try again. If the problem persists, please email the maintainers at <a href="mailto: collaborate@writecrow.org">collaborate@writecrow.org</a>, describing the search parameters you were using, and we will investigate.';
       });
     });
+  }
+
+  setBefore(i) {
+    this.before = i;
+  }
+  setAfter(i) {
+    this.after = i;
+  }
+  compareRevisions() {
+    this.router.navigateByUrl('/diff/' + this.before + '/' + this.after, { skipLocationChange: false });
   }
 
   prepareDisplayOutput(data): CorpusDetail {

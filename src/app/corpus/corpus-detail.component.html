@@ -9,14 +9,31 @@
     <div class="bigger" [innerHTML]="content.body | keepHtml"></div>
 	</div>
   <div *ngIf="content" class="col-lg-4 panel bigger">
-		<div *ngIf="drafts.length">
+		<div *ngIf="drafts.length > 1">
 			<h3>Drafts</h3>
-			<ul *ngFor="let result of drafts">
-				<li><a routerLink="/corpus/{{ result.data.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
-					<span *ngIf="result.draft === 'F'">Final Draft</span>
-					<span *ngIf="result.draft !== 'F'">Draft {{result.draft}}</span>
-				</a></li>
-			</ul>
+      <table class="drafts">
+			  <tr *ngFor="let result of drafts; let first = first; let last = last">
+			  	<td><a routerLink="/corpus/{{ result.data.filename }}" [queryParams]="{ search: searchQuery }" routerLinkActive="active">
+			  		<span *ngIf="result.draft === 'F'">Final Draft</span>
+			  		<span *ngIf="result.draft !== 'F'">Draft {{result.draft}}</span>
+            <span *ngIf=" content.filename == result.data.filename"> (currently viewing)</span>
+			  	</a></td>
+          <td>
+            <input type="radio" (click)="setBefore(result.data.filename)" name="before" checked *ngIf="first"/>
+            <input type="radio" (click)="setBefore(result.data.filename)" name="before" *ngIf="!first"/>
+          </td>
+          <td>
+            <input type="radio" (click)="setAfter(result.data.filename)" name="after" value="{{result.draft}}" checked *ngIf="last"/>
+            <input type="radio" (click)="setAfter(result.data.filename)" name="after" *ngIf="!last"/>
+          </td>
+			  </tr>
+        <tr>
+          <td colspan="3">
+            <button id="compare-revisions" (click)="compareRevisions()">Compare revisions</button>
+          </td>
+        </tr>
+      </table>
+
 		</div>
 		<div *ngIf="exactTexts.length">
 			<div class="facet-wrapper">

@@ -1,7 +1,12 @@
 <div class="row">
   <div class="col-lg-8 offset-lg-2">
     <h1>Before/After Comparison</h1>
-    <p>Before text: <a routerLink="/corpus/{{ before}}">{{ before }}</a></p>
-    <p>After text: <a routerLink="/corpus/{{ after}}">{{ after }}</a></p>
-    <div class="bigger" [innerHTML]="diff" ></div>
+      <p>Before text: <a routerLink="/corpus/{{ before}}">{{ before }}</a></p>
+      <p>After text: <a routerLink="/corpus/{{ after}}">{{ after }}</a></p>
+    <div *ngIf="diff">
+      <div class="bigger" [innerHTML]="diff" ></div>
+    </div>
+    <div *ngIf="!diff">
+      There is nothing to compare between the selections.
+    </div>
 </div>
