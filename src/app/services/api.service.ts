@@ -40,8 +40,17 @@ export class APIService {
     return this.getResponseFromPath('corpus/metadata?' + query);
   }
 
-  getDiff(before, after) {
-    return this.getResponseFromPath('corpus/diff?before=' + before + '&after=' + after);
+  getDiff(queryParams) {
+    const queryElements = [];
+    queryElements.push('before=' + queryParams.before);
+    queryElements.push('after=' + queryParams.after);
+    if (typeof queryParams.format !== 'undefined' && queryParams.format !== '') {
+      queryElements.push('format=' + queryParams.format);
+    }
+    const query = Object.keys(queryElements)
+      .map(k => queryElements[k])
+      .join('&');
+    return this.getResponseFromPath('corpus/diff?' + query);
   }
 
   getFrequencyData(attributes) {

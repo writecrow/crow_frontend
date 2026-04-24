@@ -3,10 +3,13 @@
     <h1>Before/After Comparison</h1>
       <p>Before text: <a routerLink="/corpus/{{ before}}">{{ before }}</a></p>
       <p>After text: <a routerLink="/corpus/{{ after}}">{{ after }}</a></p>
-    <div *ngIf="diff">
-      <div class="bigger" [innerHTML]="diff" ></div>
+    <div class="bigger" *ngIf="diff">
+      Display format: <a routerLink="/diff" [queryParams]="{ before: before, after: after, format: 'side-by-side' }"><strong *ngIf="format == 'side-by-side'">Side-by-side</strong><span *ngIf="format != 'side-by-side'">Side-by-side</span></a> |
+      <a routerLink="/diff" [queryParams]="{ before: before, after: after, format: 'combined' }"><strong *ngIf="format == 'combined'">Combined</strong><span *ngIf="format != 'combined'">Combined</span></a> |
+      <a routerLink="/diff" [queryParams]="{ before: before, after: after, format: 'inline' }"><strong *ngIf="format == 'inline'">Inline</strong><span *ngIf="format != 'inline'">Inline</span></a>
+      <div class="{{format}}" [innerHTML]="diff" ></div>
     </div>
-    <div *ngIf="!diff">
+    <div class="bigger" *ngIf="!diff">
       There is nothing to compare between the selections.
     </div>
 </div>

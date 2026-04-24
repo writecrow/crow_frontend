@@ -14,6 +14,7 @@ export class DiffComponent implements OnInit {
   diff: string;
   before: string;
   after: string;
+  format: string;
   isLoaded: boolean;
   statusMessage = "";
 
@@ -27,13 +28,14 @@ export class DiffComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((routeParams) => {
+    this.route.queryParams.subscribe((routeParams) => {
       this.globals.inProgress = true;
-      this.API.getDiff(routeParams.before, routeParams.after).subscribe(response => {
+      this.API.getDiff(routeParams).subscribe(response => {
         if (response) {
           this.diff = response.diff;
           this.before = response.before;
           this.after = response.after;
+          this.format = routeParams.format ?? 'side-by-side';
         } else {
           this.router.navigateByUrl('404', { skipLocationChange: true });
         }

@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'authorize', component: AuthorizeComponent},
   { path: 'corpus', component: CorpusSearchComponent },
   { path: 'corpus/:id', component: CorpusDetailComponent },
-  { path: 'diff/:before/:after', component: DiffComponent },
+  { path: 'diff', component: DiffComponent },
   { path: 'download', component: DownloadComponent },
   { path: 'frequency', component: FrequencyComponent },
   { path: 'page/:id', component: PageComponent },

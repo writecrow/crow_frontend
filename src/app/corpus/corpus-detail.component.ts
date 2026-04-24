@@ -134,7 +134,7 @@ export class CorpusDetailComponent implements OnInit {
     this.after = i;
   }
   compareRevisions() {
-    this.router.navigateByUrl('/diff/' + this.before + '/' + this.after, { skipLocationChange: false });
+    this.router.navigateByUrl('/diff?before=' + this.before + '&after=' + this.after, { skipLocationChange: false });
   }
 
   prepareDisplayOutput(data): CorpusDetail {

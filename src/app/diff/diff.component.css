@@ -10,9 +10,23 @@ text-decoration: none;
   background: #fdbeb8;
   text-decoration: line-through;
 }
+:host ::ng-deep .sign.ins {
+  background: #edfaa8;
+  color: #39670b;
+}
+:host ::ng-deep .sign.del {
+  color: #b30000;
+  background: #fdbeb8;
+}
 :host ::ng-deep table,
 :host ::ng-deep tr,
 :host ::ng-deep td {
   border: 0;
   background: white;
+}
+ :host ::ng-deep table.diff-side-by-side {
+  td {
+    vertical-align: top;
+    width: 50%;
+  }
 }
