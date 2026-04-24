@@ -14,6 +14,7 @@ export class DiffComponent implements OnInit {
   diff: string;
   before: string;
   after: string;
+  width: string;
   format: string;
   isLoaded: boolean;
   statusMessage = "";
@@ -35,7 +36,11 @@ export class DiffComponent implements OnInit {
           this.diff = response.diff;
           this.before = response.before;
           this.after = response.after;
-          this.format = routeParams.format ?? 'side-by-side';
+          this.format = routeParams.format ?? '';
+          this.width = "col-lg-6";
+          if (this.format == 'side-by-side' || this.format == '') {
+            this.width = "col-lg-12";
+          }
         } else {
           this.router.navigateByUrl('404', { skipLocationChange: true });
         }

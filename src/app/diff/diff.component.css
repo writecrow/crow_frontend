@@ -1,4 +1,11 @@
 /* Provide a styled display to page content */
+.controls {
+  border: 1px solid darkslategray;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  width: fit-content;
+}
 :host ::ng-deep ins {
   background: #edfaa8;
   color: #39670b;
@@ -18,15 +25,30 @@ text-decoration: none;
   color: #b30000;
   background: #fdbeb8;
 }
+.difflayout {
+  flex: 100%;
+  max-width: 100%;
+}
+.difflayout.combined,
+.difflayout.inline {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
 :host ::ng-deep table,
 :host ::ng-deep tr,
 :host ::ng-deep td {
   border: 0;
   background: white;
 }
+:host ::ng-deep br {
+  margin-bottom: 1rem;
+}
+:host ::ng-deep td {
+  vertical-align: top;
+  border-right: 5px solid #f0f0f0;
+}
  :host ::ng-deep table.diff-side-by-side {
   td {
-    vertical-align: top;
     width: 50%;
   }
 }
