@@ -36,9 +36,9 @@ export class DiffComponent implements OnInit {
           this.diff = response.diff;
           this.before = response.before;
           this.after = response.after;
-          this.format = routeParams.format ?? '';
+          this.format = routeParams.format ?? 'plain';
           this.width = "col-lg-6";
-          if (this.format == 'side-by-side' || this.format == '') {
+          if (this.format == 'side-by-side' || this.format == 'plain') {
             this.width = "col-lg-12";
           }
         } else {

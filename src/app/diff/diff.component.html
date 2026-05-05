@@ -12,7 +12,7 @@
           <a routerLink="/diff" [queryParams]="{ before: before, after: after, format: 'inline' }"><strong *ngIf="format == 'inline'">Inline</strong><span *ngIf="format != 'inline'">Inline</span></a>
         </div>
       </div>
-      <div class="{{format}}" [innerHTML]="diff" *ngIf="diff"></div>
+      <div class="table-wrapper {{format}}" [innerHTML]="diff" *ngIf="diff"></div>
       <div *ngIf="!diff">
         There is nothing to compare between the selections.
       </div>
