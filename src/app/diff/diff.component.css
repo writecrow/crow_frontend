@@ -49,32 +49,27 @@ text-decoration: none;
   vertical-align: top;
   border-right: 5px solid #f0f0f0;
 }
- :host ::ng-deep table.diff-side-by-side,
- .plain {
-  td {
-    width: 50%;
-  }
-}
 
-:host ::ng-deep {
- .change.change-eq {
-   .old, .new {
-     background: inherit;
-   }
- }
- .change td {
-  border-bottom: 2px solid #fff;
- }
- tr:has(td.old:empty):has(td.new:empty) {
-  display: none;
- }
- .change .old.none,
- .change .new.none,
- .change .rep.none {
-    background: repeating-linear-gradient(45deg,
-      #fff,
-      #fff 10px,
-      #F5F5F5 10px,
-      #F5F5F5 20px);
- }
+:host ::ng-deep table.diff-side-by-side td,
+.plain td {
+  width: 50%;
+}
+:host ::ng-deep .change.change-eq .old,
+:host ::ng-deep .change.change-eq .new {
+  background: inherit;
+}
+.change td {
+ border-bottom: 2px solid #fff;
+}
+tr:has(td.old:empty):has(td.new:empty) {
+ display: none;
+}
+.change .old.none,
+.change .new.none,
+.change .rep.none {
+   background: repeating-linear-gradient(45deg,
+     #fff,
+     #fff 10px,
+     #F5F5F5 10px,
+     #F5F5F5 20px);
 }
