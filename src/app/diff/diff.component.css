@@ -6,6 +6,27 @@
   background: #fff;
   width: fit-content;
 }
+
+
+:host ::ng-deep .caxy-diff {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+:host ::ng-deep .before,
+:host ::ng-deep .after {
+  flex: 1 0 47%;
+  background: #fff;
+  margin: 3px;
+  padding: 1rem;
+}
+
+:host ::ng-deep .combined {
+  background: #fff;
+  padding: 1rem;
+}
+
 :host ::ng-deep ins {
   background: #edfaa8;
   color: #39670b;
@@ -27,15 +48,6 @@ text-decoration: none;
   color: #b30000;
   background: #fdbeb8;
 }
-.difflayout {
-  flex: 100%;
-  max-width: 100%;
-}
-.difflayout.combined,
-.difflayout.inline {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
 :host ::ng-deep table,
 :host ::ng-deep tr,
 :host ::ng-deep td {
@@ -48,28 +60,4 @@ text-decoration: none;
 :host ::ng-deep td {
   vertical-align: top;
   border-right: 5px solid #f0f0f0;
-}
-
-:host ::ng-deep table.diff-side-by-side td,
-.plain td {
-  width: 50%;
-}
-:host ::ng-deep .change.change-eq .old,
-:host ::ng-deep .change.change-eq .new {
-  background: inherit;
-}
-.change td {
- border-bottom: 2px solid #fff;
-}
-tr:has(td.old:empty):has(td.new:empty) {
- display: none;
-}
-.change .old.none,
-.change .new.none,
-.change .rep.none {
-   background: repeating-linear-gradient(45deg,
-     #fff,
-     #fff 10px,
-     #F5F5F5 10px,
-     #F5F5F5 20px);
 }
