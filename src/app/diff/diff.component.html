@@ -6,7 +6,7 @@
         <div class="controls">
           <p>Before text: <a routerLink="/corpus/{{ before }}">{{ before }}</a> | After text: <a routerLink="/corpus/{{ after }}">{{ after }}</a></p>
           Display format:
-          <a routerLink="/diff" [queryParams]="{ before: before, after: after }"><strong *ngIf="format == 'plain'">Side-by-side (plain)</strong><span *ngIf="format != 'plain'">Side-by-side (plain)</span></a> |
+          <a routerLink="/diff" [queryParams]="{ before: before, after: after, format: 'plain' }"><strong *ngIf="format == 'plain'">Side-by-side (plain)</strong><span *ngIf="format != 'plain'">Side-by-side (plain)</span></a> |
           <a routerLink="/diff" [queryParams]="{ before: before, after: after, format: 'side-by-side' }"><strong *ngIf="format == 'side-by-side'">Side-by-side (highlighted)</strong><span *ngIf="format != 'side-by-side'">Side-by-side (highlighted)</span></a> |
           <a routerLink="/diff" [queryParams]="{ before: before, after: after, format: 'combined' }"><strong *ngIf="format == 'combined'">Combined</strong><span *ngIf="format != 'combined'">Combined</span></a>
         </div>
