@@ -90,7 +90,7 @@ export class APIService {
   }
 
   getUser() {
-    return this.getResponseFromPath('api/account');
+    return this.getResponseFromPath('user/account');
   }
 
   searchCorpus(path) {

@@ -35,15 +35,15 @@ export class AccountComponent implements OnInit {
       this.router.navigate(['/authorize'], { queryParams: { 'destination': 'corpus' } });
     }
     this.API.getUser().subscribe(response => {
-      if (response[0]) {
-        this.full_name = response[0].full_name;
-        this.mail = response[0].email;
-        this.name = response[0].name;
-        this.roles = response[0].roles.split(',');
-        this.created = response[0].created;
-        this.field_project_complete_date = response[0].field_project_complete_date;
-        this.field_project_description = response[0].field_project_description;
-        this.password_reset_url += '?name=' + response[0].email;
+      if (response.name) {
+        this.full_name = response.full_name;
+        this.mail = response.email;
+        this.name = response.name;
+        this.roles = response.roles;
+        this.created = response.created;
+        this.field_project_complete_date = response.field_project_complete_date;
+        this.field_project_description = response.field_project_description;
+        this.password_reset_url += '?name=' + response.email;
       }
     });
   }
